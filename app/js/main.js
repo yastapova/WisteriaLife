@@ -14,7 +14,7 @@ var renderer; // TODO
 /**
  * Instantiate navbar events
  */
-$(document).ready(function ()) {
+$(document).ready(function () {
 	var menuElements = {
 		vert: $('#hamburger-vert'),
 		back: $('#drop-back'),
@@ -23,5 +23,5 @@ $(document).ready(function ()) {
 		loginout: $('#drop-loginout')
 	};
 
-	var menu = new OverflowMenu(menuElements);
-}
+	var menu = new DropdownMenu(menuElements);
+});
