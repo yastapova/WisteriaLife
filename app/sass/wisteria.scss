@@ -3,8 +3,6 @@ $primary-color: #c9a0dc;
 
 body {
     background-image: url('/img/wisteria-tunnel.jpg');
-	height: 100vh;
-	overflow: hidden;
 }
 
 // TODO - Brian
@@ -25,3 +23,4 @@ body {
 }
 
 @import 'splash';
+@import 'about';
