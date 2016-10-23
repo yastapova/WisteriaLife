@@ -6,20 +6,20 @@
  */
 
 var screen = function(id) {
-    if(id === undefined) {
-        this.id = undefined;
-    }
-    else {
-        this.id = id;
-    } 
+	if(id === undefined) {
+		this.id = undefined;
+	}
+	else {
+		this.id = id;
+	} 
 };
 
 screen.prototype.setId = function(id) {
-    this.id = id;
+	this.id = id;
 };
 
 screen.prototype.getId = function() {
-    return this.id;
+	return this.id;
 };
 
 screen.prototype.load = function() {
