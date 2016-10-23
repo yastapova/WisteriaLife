@@ -21,6 +21,10 @@ var adScreen = function(id, timer, image) {
 		this.timer = timer;
 		this.image = undefined;
 	}
+	else {
+		this.timer = timer;
+		this.image = image;
+	}
 	screen.call(this, id, timer, image);
 };
 
