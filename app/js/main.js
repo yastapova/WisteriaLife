@@ -20,6 +20,7 @@ $(document).ready(function () {
 		back: $('#drop-back'),
 		store: $('#drop-store'),
 		mute: $('#drop-mute'),
+		about: $('#drop-about'),
 		loginout: $('#drop-loginout')
 	};
 

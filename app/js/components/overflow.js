@@ -35,9 +35,9 @@ var DropdownMenu = function (menu, gm) {
 	this.about.on('click', function () {
 		this.handleAboutButton();
 	}.bind(this));
-
+	
 	this.loginout.on('click', function () {
-		this.handleLoginoutButton());
+		this.handleLoginoutButton();
 	}.bind(this));
 }
 
@@ -83,4 +83,4 @@ DropdownMenu.prototype = {
 	toggleLoginout: function () {
 
 	}
-}
+};
