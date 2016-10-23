@@ -20,3 +20,6 @@ TestB.prototype.getScreen = function () {
 var testB = new TestB();
 console.log(testB.getName());
 console.log(testB.getScreen());
+
+var testA = new TestA();
+console.log(testA.getName());
