@@ -1,0 +1,28 @@
+#victory-screen {
+	background: rgba(16, 16, 16, 0.7);
+	height: 100vh;
+}
+
+#dark {
+	color: #fff;
+}
+
+.material-icons.store {
+	color: purple;
+}
+
+.material-icons.back {
+	color: red;
+}
+
+.material-icons.replay {
+	color: yellow;
+}
+
+.material-icons.share {
+	color: green;
+}
+
+.material-icons.next {
+	color: $primary-color;
+}
