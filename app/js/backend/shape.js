@@ -6,15 +6,46 @@
  */
 
 var shape = function(name, thumbnail, cells) {
-	this.name = undefined;
-	this.thumbnail = undefined;
-	this.cells = undefined;
-};
-
-shape.prototype.init = function(name, thumnail, cells) {
+	if(name === undefined && thumbnail === undefined && cells === undefined) {
+		this.name = undefined;
+		this.thumbnail = undefined;
+		this.cells = undefined;
+	}
+	else if(name === undefined && thumbnail === undefined) {
+		this.name = undefined;
+		this.thumbnail = undefined;
+		this.cells = cells;
+	}
+	else if(name === undefined && cells === undefined) {
+		this.name = undefined;
+		this.thumbnail = thumbnail;
+		this.cells = undefined;
+	}
+	else if(thumbnail === undefined && cells === undefined) {
+		this.name = name;
+		this.thumbnail = thumbnail;
+		this.cells = cells;
+	}
+	else if(name === undefined) {
+		this.name = undefined;
+		this.thumbnail = thumbnail;
+		this.cells = cells;
+	}
+	else if(thumbnail === undefined) {
+		this.name = name;
+		this.thumbnail = undefined;
+		this.cells = cells;
+	}
+	else if(cells === undefined) {
+		this.name = name;
+		this.thumbnail = thumbnail;
+		this.cells = undefined;
+	}
+	else {
 	this.name = name;
-	this.thumnail = thumnail;
+	this.thumbnail = thumbnail;
 	this.cells = cells;
+	}
 };
 
 shape.prototype.setName = function(name) {

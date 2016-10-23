@@ -1,0 +1,117 @@
+"Extra Time"
+type = "Magic",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "extratime.png"
+
+"Stop Spawn":
+type = "Magic"
+description = "Reduce the number of enemies about to spawn in the next few seconds.",
+price = 100
+thumbnail = "stopspawn.png"
+
+"Void Cell":
+name = powerup,
+type = "Magic",
+description = "Void a cell so that they are no longer involved in the physics of the this world.",
+price = 100,
+thumbnail = "voidcell.png"
+
+"Tower":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "tower.png"
+
+"Blockade":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "blockade.png"
+
+"Shield":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "shild.png"
+
+"Caltrops":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "caltrops.png"
+
+"Archer NW":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "archernw.png"
+
+"Archer NE":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "archerne.png"
+
+"Archer SE":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "archerse.png"
+
+"Archer SW":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "archersw.png"
+
+"Infantry W":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "infantryw.png"
+
+"Infantry N":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "infantryn.png"
+
+"Infantry E":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "infantrye.png"
+
+"Infantry S":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "infantrys.png"
+
+"Wall Back":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "wallback.png"
+
+"Wall Forward":
+name = powerup,
+type = "Shape",
+description = "Reduce remaining survival time by 5-10 sec.",
+price = 100,
+thumbnail = "wallforward.png"
+
