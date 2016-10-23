@@ -18,6 +18,13 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
 $navbar-height: 64px !default;
 $navbar-height-mobile: 56px !default;
 
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  transition: $args;
+}
+
 body {
     background-image: url('/img/wisteria-tunnel.jpg');
 }
@@ -56,8 +63,21 @@ nav {
         color: $primary-color;
     }
 
-	.dropdown-content li:hover {
-		background-color: transparent;
+	.dropdown-content {
+		min-width: 50px;
+		
+		li:hover, a:hover {
+			background-color: transparent;
+		}
+
+		i {
+			color: $primary-color;
+			@include transition(all 0.3s ease-in);
+		}
+
+		i:hover {
+			color: #000;
+		}
 	}
 }
 
