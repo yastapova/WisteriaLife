@@ -19,16 +19,19 @@ gulp.task('scripts', function() {
     .pipe(gulp.dest('./app/dist/js/'));
 });
 
+// automatically concat scripts on change
 gulp.task('scripts:watch', function () {
   gulp.watch('./app/js/**/*.js', ['scripts']);
 });
 
+// compile scss files
 gulp.task('sass', function () {
   return gulp.src('./app/sass/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./app/dist/css'));
 });
 
+// automatically recompile scss on change
 gulp.task('sass:watch', function () {
   gulp.watch('./app/sass/**/*.scss', ['sass']);
 });
