@@ -1,8 +1,8 @@
-/* 
+/*
  * screen.js
- * 
+ *
  * Defines a screen
- * 
+ *
  */
 
 var screen = function(id) {
@@ -11,7 +11,7 @@ var screen = function(id) {
 	}
 	else {
 		this.id = id;
-	} 
+	}
 };
 
 screen.prototype.setId = function(id) {
@@ -27,5 +27,5 @@ screen.prototype.load = function() {
 };
 
 screen.prototype.hide = function() {
-	
+
 };

@@ -1,4 +1,4 @@
-/* 
+/*
  * PowerupManager.js
  * Defines an initializes all the powerups in the game
  */
@@ -30,7 +30,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "extratime.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Stop Spawn":
 			powerupAttrObj = {
@@ -40,7 +40,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "stopspawn.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Void Cell":
 			powerupAttrObj = {
@@ -50,7 +50,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "voidcell.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Tower":
 			powerupAttrObj = {
@@ -60,7 +60,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "tower.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Blockade":
 			powerupAttrObj = {
@@ -70,7 +70,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "blockade.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Shield":
 			powerupAttrObj = {
@@ -80,7 +80,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "shild.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Caltrops":
 			powerupAttrObj = {
@@ -90,7 +90,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "caltrops.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Archer NW":
 			powerupAttrObj = {
@@ -100,7 +100,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "archernw.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Archer NE":
 			powerupAttrObj = {
@@ -110,7 +110,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "archerne.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Archer SE":
 			powerupAttrObj = {
@@ -120,7 +120,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "archerse.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Archer SW":
 			powerupAttrObj = {
@@ -130,7 +130,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "archersw.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Infantry W":
 			powerupAttrObj = {
@@ -140,7 +140,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "infantryw.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Infantry N":
 			powerupAttrObj = {
@@ -150,7 +150,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "infantryn.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Infantry E":
 			powerupAttrObj = {
@@ -160,7 +160,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "infantrye.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Infantry S":
 			powerupAttrObj = {
@@ -170,7 +170,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "infantrys.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Wall Back":
 			powerupAttrObj = {
@@ -180,7 +180,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "wallback.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
 			break;
 		case "Wall Forward":
 			powerupAttrObj = {
@@ -190,8 +190,8 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 				price : 100,
 				thumbnail : "wallforward.png"
 			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, effect : new function(level){})
-			break;		
-		
+			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
+			break;
+
 	}
 };
