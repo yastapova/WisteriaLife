@@ -13,5 +13,5 @@ PrivateCustomLevelsScreen.prototype.hide = function() {
 };
 
 PrivateCustomLevelsScreen.prototype.loadPrivateLevels = function() {
-
+	
 }
