@@ -6,13 +6,22 @@
  */
 
 var ShapeManager = function(shapes, listOfShapes) {
-    this.shapes = undefined;
-    this.listOfShapes = undefined;
-};
-
-ShapeManager.prototype.init = function(shapes, listOfShapes) {
-    this.shapes = shapes;
-    this.listOfShapes = listOfShapes;
+    if(shapes === undefined && listOfShapes === undefined) {
+        this.shapes = undefined;
+        this.listOfShapes = undefined;
+    }
+    else if(shapes === undefined) {
+        this.shapes = undefined;
+        this.listOfShapes = listOfShapes;
+    }
+    else if(listOfShapes === undefined) {
+        this.shapes = shapes;
+        this.listOfShapes = undefined;
+    }
+    else {
+        this.shapes = shapes;
+        this.listOfShapes = listOfShapes;
+    }
 };
 
 ShapeManager.prototype.setShapes = function(shapes) {

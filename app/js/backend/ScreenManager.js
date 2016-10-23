@@ -5,18 +5,11 @@
  * 
  */
 
-var ScreenManager = function(currentScreen, lastLegalScreen, nextScreen, screenMap) {
-    this.currentScreen = undefined;
-    this.lastLegalScreen = undefined;
-    this.nextScreen = undefined;
-    this.screenMap = undefined;
-};
-
-ScreenManager.prototype.init = function(currentScreen, lastLegalScreen, nextScreen, screenMap) {
-    this.currentScreen = new Screen();
-    this.lastLegalScreen = new Screen();
-    this.nextScreen = new Screen();
-    this.screenMap = screenMap;
+var ScreenManager = function(screenManager) {
+    this.currentScreen = screenManager.currentScreen;
+    this.lastLegalScreen = screenManager.lastLegalScreen;
+    this.nextScreen = screenManager.nextScreen;
+    this.screenMap = screenManager.screenMap;
 };
 
 ScreenManager.prototype.setCurrentScreen = function(currentScreen) {

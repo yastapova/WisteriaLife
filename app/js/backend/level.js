@@ -5,30 +5,17 @@
  * 
  */
 
-var level = function(name, id, storyline, grid, allowedShapes, time, messageMap, enemySpawns, image, wistbux) {
-    this.name = undefined;
-    this.id = undefined;
-    this.storyline = undefined;
-    this.grid = undefined;
-    this.allowedShapes = undefined;
-    this.time = undefined;
-    this.messageMap = undefined;
-    this.enemySpawns = undefined;
-    this.image = undefined;
-    this.wistbux = undefined;
-};
-
-level.prototype.init = function(name, id, storyline, grid, allowedShapes, time, messageMap, enemySpawns, image, wistbux) {
-    this.name = name;
-    this.id = id;
-    this.storyline = storyline;
-    this.grid = grid;
-    this.allowedShapes = allowedShapes;
-    this.time = time;
-    this.messageMap = messageMap;
-    this.enemySpawns = enemySpawns;
-    this.image = image;
-    this.wistbux = wistbux;
+var level = function(Level) {
+    this.name = Level.name;
+    this.id = Level.id;
+    this.storyline = Level.storyline;
+    this.grid = Level.grid;
+    this.allowedShapes = Level.allowedShapes;
+    this.time = Level.time;
+    this.messageMap = Level.messageMap;
+    this.enemySpawns = Level.enemySpawns;
+    this.image = Level.image;
+    this.wistbux = Level.wistbux;
 };
 
 level.prototype.setName = function(name) {
