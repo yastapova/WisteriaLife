@@ -18,6 +18,27 @@ var DropdownMenu = function (menu, gm) {
 
 	// use gm if provided, oter
 	this.gameManager = gm ? gm : gameManager;
+
+	// set click events on all menu items
+	this.back.on('click', function () {
+		this.handleBackButton();
+	}.bind(this));
+
+	this.store.on('click', function () {
+		this.handleStoreButton();
+	}.bind(this));
+
+	this.mute.on('click', function () {
+		this.handleMuteButton();
+	}.bind(this));
+
+	this.about.on('click', function () {
+		this.handleAboutButton();
+	}.bind(this));
+
+	this.loginout.on('click', function () {
+		this.handleLoginoutButton());
+	}.bind(this));
 }
 
 DropdownMenu.prototype = {
@@ -25,7 +46,7 @@ DropdownMenu.prototype = {
 	 * Handle back button
 	 */
 	handleBackButton: function () {
-
+		console.log("Back button pressed!");
 	},
 
 	/**
