@@ -1,24 +1,24 @@
 /* 
- * aboutScreen.js
- * aboutScreen object
+ * AboutScreen.js
+ * AboutScreen object
  */
 
  /*
-  * construct a aboutScreen obj with given id
+  * construct a AboutScreen obj with given id
   */
-var aboutScreen = function(id) {
-	screen.call(this,id);	
+var AboutScreen = function(id) {
+	Screen.call(this,id);	
 };
 
-inherits(aboutScreen, screen);
+inherits(AboutScreen, Screen);
 
 /*
  * Override the load and hide of the parent screen
  */
-aboutScreen.prototype.load = function() {
+AboutScreen.prototype.load = function() {
 
 };
 
-aboutScreen.prototype.hide = function() {
+AboutScreen.prototype.hide = function() {
 	
 };

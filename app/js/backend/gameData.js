@@ -1,12 +1,12 @@
 /* 
- * gameData.js
- * Defines a gameData obj 
+ * GameData.js
+ * Defines a GameData obj 
  */
 
  /*
-  * Construct a blank gameData obj
+  * Construct a blank GameData obj
   */
-var gameData = function() {
+var GameData = function() {
 	this.wistbux = 0;
     this.powerupsMap = new Map();
 	this.currentLevel = 0;

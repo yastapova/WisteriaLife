@@ -1,24 +1,24 @@
 /* 
- * storeScreen.js
- * storeScreen object
+ * StoreScreen.js
+ * StoreScreen object
  */
 
  /*
-  * construct a storeScreen obj with given id
+  * construct a StoreScreen obj with given id
   */
-var storeScreen = function(id) {
-	screen.call(this,id);	
+var StoreScreen = function(id) {
+	Screen.call(this,id);	
 };
 
-inherits(storeScreen, screen);
+inherits(StoreScreen, Screen);
 
 /*
  * Override the load and hide of the parent screen
  */
-storeScreen.prototype.load = function() {
+StoreScreen.prototype.load = function() {
 
 };
 
-storeScreen.prototype.hide = function() {
+StoreScreen.prototype.hide = function() {
 	
 };

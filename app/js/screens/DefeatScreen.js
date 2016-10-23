@@ -1,24 +1,24 @@
 /* 
- * defeatScreen.js
- * defeatScreen object
+ * DefeatScreen.js
+ * DefeatScreen object
  */
 
  /*
-  * construct a defeatScreen obj with given id
+  * construct a DefeatScreen obj with given id
   */
-var defeatScreen = function(id) {
-	screen.call(this,id);	
+var DefeatScreen = function(id) {
+	Screen.call(this,id);	
 };
 
-inherits(defeatScreen, screen);
+inherits(DefeatScreen, Screen);
 
 /*
  * Override the load and hide of the parent screen
  */
-defeatScreen.prototype.load = function() {
+DefeatScreen.prototype.load = function() {
 
 };
 
-defeatScreen.prototype.hide = function() {
+DefeatScreen.prototype.hide = function() {
 	
 };
