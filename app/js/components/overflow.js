@@ -23,7 +23,7 @@ var DropdownMenu = function (menu, gm) {
 	this.back.on('click', function () {
 		this.handleBackButton();
 	}.bind(this));
-	
+
 	this.store.on('click', function () {
 		this.handleStoreButton();
 	}.bind(this));
