@@ -1,18 +1,18 @@
-var publicCustomLevelsScreen = function(id, publicCustomLevelsMap) {
+var PublicCustomLevelsScreen = function(id, publicCustomLevelsMap) {
     this.publicCustomLevelsMap = publicCustomLevelsMap;
     screen.call(this,id);   
 };
 
-inherits(publicCustomLevelsScreen, screen);
+inherits(PublicCustomLevelsScreen, screen);
 
-publicCustomLevelsScreen.prototype.load = function() {
+PublicCustomLevelsScreen.prototype.load = function() {
 
 };
 
-publicCustomLevelsScreen.prototype.hide = function() {
+PublicCustomLevelsScreen.prototype.hide = function() {
     
 };
 
-publicCustomLevelsScreen.prototype.loadPublicLevels = function() {
+PublicCustomLevelsScreen.prototype.loadPublicLevels = function() {
     
 };

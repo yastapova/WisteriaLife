@@ -1,28 +1,28 @@
-var levelEditScreen = function(id, level) {
+var LevelEditScreen = function(id, level) {
     this.level = level;
     this.renderGrid = [];
     this.defenseGrid = [];
     screen.call(this,id);   
 };
 
-inherits(levelEditScreen, screen);
+inherits(LevelEditScreen, screen);
 
-levelEditScreen.prototype.load = function() {
+LevelEditScreen.prototype.load = function() {
 
 };
 
-levelEditScreen.prototype.hide = function() {
+LevelEditScreen.prototype.hide = function() {
     
 };
 
-levelEditScreen.prototype.placeShape = function(shape) {
+LevelEditScreen.prototype.placeShape = function(shape) {
 
 }
 
-levelEditScreen.prototype.isValidCell = function() {
+LevelEditScreen.prototype.isValidCell = function() {
 
 }
 
-levelEditScreen.prototype.getRelativeCoords = function() {
+LevelEditScreen.prototype.getRelativeCoords = function() {
     
 }

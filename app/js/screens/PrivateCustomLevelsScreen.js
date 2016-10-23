@@ -1,17 +1,17 @@
-var privateCustomLevelsScreen = function(id) {
+var PrivateCustomLevelsScreen = function(id) {
     screen.call(this,id);   
 };
 
-inherits(privateCustomLevelsScreen, screen);
+inherits(PrivateCustomLevelsScreen, screen);
 
-privateCustomLevelsScreen.prototype.load = function() {
+PrivateCustomLevelsScreen.prototype.load = function() {
 
 };
 
-privateCustomLevelsScreen.prototype.hide = function() {
+PivateCustomLevelsScreen.prototype.hide = function() {
     
 };
 
-privateCustomLevelsScreen.prototype.loadPrivateLevels = function() {
+PrivateCustomLevelsScreen.prototype.loadPrivateLevels = function() {
 
 }

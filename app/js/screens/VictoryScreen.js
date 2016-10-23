@@ -1,23 +1,23 @@
-var victoryScreen = function(id, level, user) {
+var VictoryScreen = function(id, level, user) {
     this.level = level;
     this.user = user;
     screen.call(this,id);
 };
 
-inherits(victoryScreen, screen);
+inherits(VictoryScreen, screen);
 
-victoryScreen.prototype.load = function() {
+VictoryScreen.prototype.load = function() {
 
 };
 
-victoryScreen.prototype.hide = function() {
+VictoryScreen.prototype.hide = function() {
     
 };
 
-victoryScreen.prototype.share = function() {
+VictoryScreen.prototype.share = function() {
 
 }
 
-victoryScreen.prototype.replay = function() {
+VictoryScreen.prototype.replay = function() {
 
 }
