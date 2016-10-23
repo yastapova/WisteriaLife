@@ -1,0 +1,16 @@
+// wisteria color
+$primary-color: #c9a0dc;
+
+body {
+    background-image: url('/img/wisteria-tunnel.jpg');
+}
+
+#wisteria-nav {
+    background-color: #000;
+
+    #logo {
+        color: $primary-color;
+    }
+}
+
+@import 'splash';

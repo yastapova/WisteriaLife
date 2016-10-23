@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Wisteria Life - Game of Life",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yastapova/WisteriaLife.git"
@@ -18,6 +16,8 @@
   "homepage": "https://github.com/yastapova/WisteriaLife#readme",
   "devDependencies": {
     "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.0"
+    "gulp-concat": "^2.6.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-serve": "^1.4.0"
   }
 }
