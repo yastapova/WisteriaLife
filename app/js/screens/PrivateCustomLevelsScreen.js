@@ -8,7 +8,7 @@ PrivateCustomLevelsScreen.prototype.load = function() {
 
 };
 
-PivateCustomLevelsScreen.prototype.hide = function() {
+PrivateCustomLevelsScreen.prototype.hide = function() {
     
 };
 
