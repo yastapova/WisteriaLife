@@ -5,18 +5,22 @@ var sass = require('gulp-sass');
 
 
 // default task
-gulp.task('default', ['scripts', 'serve', 'sass', 'sass:watch']);
+gulp.task('default', ['scripts', 'scripts:watch', 'serve', 'sass', 'sass:watch']);
 
 // concatenate all our scripts
 gulp.task('scripts', function() {
   return gulp.src([
       './app/js/util.js',
-	  './app/js/backend/screen.js',
+	  './app/js/screens/Screen.js',
       './app/js/*/*.js',
       './app/js/main.js'
     ])
     .pipe(concat('wisteria.js'))
     .pipe(gulp.dest('./app/dist/js/'));
+});
+
+gulp.task('scripts:watch', function () {
+  gulp.watch('./app/js/**/*.js', ['scripts']);
 });
 
 gulp.task('sass', function () {
