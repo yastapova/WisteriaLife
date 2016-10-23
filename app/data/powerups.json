@@ -1,0 +1,139 @@
+{
+	{
+		name: "Extra Time",
+		type : "Magic",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "extratime.png"
+	}
+	,
+	{
+		name: "Stop Spawn",
+		type : "Magic"
+		description : "Reduce the number of enemies about to spawn in the next few seconds.",
+		price : 100
+		thumbnail : "stopspawn.png"
+	}
+	,
+	{
+		name: "Void Cell",
+		name : powerup,
+		type : "Magic",
+		description : "Void a cell so that they are no longer involved in the physics of the this world.",
+		price : 100,
+		thumbnail : "voidcell.png"
+	}
+	,
+	{
+		name: "Tower",
+		name : powerup,
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "tower.png"
+	}
+	,
+	{
+		name: "Blockade",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "blockade.png"
+	}
+	,
+	{
+		name : "Shield",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "shild.png"
+	}
+	,
+	{
+		name : "Caltrops",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "caltrops.png"
+	}
+	,
+	{
+		name : "Archer NW",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "archernw.png"
+	}
+	,
+	{
+		name : "Archer NE",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "archerne.png"
+	}
+	,
+	{
+		name : "Archer SE",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "archerse.png"
+	}
+	,
+	{
+		name : "Archer SW",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "archersw.png"
+	}
+	,
+	{
+		name : "Infantry W",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "infantryw.png"
+	}
+	,
+	{
+		name : "Infantry N",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "infantryn.png"
+	}
+	,
+	{
+		name : "Infantry E":,
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "infantrye.png"
+	}
+	,
+	{
+		name : "Infantry S",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "infantrys.png"
+	}
+	,
+	{
+		name : "Wall Back",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "wallback.png"
+	}
+	,
+	{
+		name : "Wall Forward",
+		type : "Shape",
+		description : "Reduce remaining survival time by 5-10 sec.",
+		price : 100,
+		thumbnail : "wallforward.png"
+	}
+}
