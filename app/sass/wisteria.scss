@@ -5,6 +5,13 @@ body {
     background-image: url('/img/wisteria-tunnel.jpg');
 }
 
+// TODO - Brian
+// temporary fix for full width layout
+.container {
+	width: 100%;
+	max-width: 100%;
+}
+
 #wisteria-nav {
     background-color: #000;
 
