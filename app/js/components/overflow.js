@@ -16,14 +16,14 @@ var DropdownMenu = function (menu, gm) {
 	this.about = menu.about;
 	this.loginout = menu.loginout;
 
-	// use gm if provided, oter
+	// use gm if provided, otherwise, use global
 	this.gameManager = gm ? gm : gameManager;
 
 	// set click events on all menu items
 	this.back.on('click', function () {
 		this.handleBackButton();
 	}.bind(this));
-
+	
 	this.store.on('click', function () {
 		this.handleStoreButton();
 	}.bind(this));
@@ -35,7 +35,7 @@ var DropdownMenu = function (menu, gm) {
 	this.about.on('click', function () {
 		this.handleAboutButton();
 	}.bind(this));
-	
+
 	this.loginout.on('click', function () {
 		this.handleLoginoutButton();
 	}.bind(this));

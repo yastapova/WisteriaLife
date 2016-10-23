@@ -11,7 +11,7 @@ gulp.task('default', ['scripts', 'serve', 'sass', 'sass:watch']);
 gulp.task('scripts', function() {
   return gulp.src([
       './app/js/util.js',
-	  './app/js/backend/screen.js',
+	  './app/js/screens/Screen.js',
       './app/js/*/*.js',
       './app/js/main.js'
     ])
