@@ -46,7 +46,6 @@ body {
 	width: 100%;
 	max-width: 100%;
 	height: 100vh;
-	background-color: rgba(255, 255, 255, 0.5);
 
 	.row {
 		margin-right: 0;
@@ -54,7 +53,6 @@ body {
 }
 
 .container-inner {
-	height: 100%;
 	padding-top: $navbar-height-mobile;
 }
 
@@ -66,6 +64,7 @@ body {
 
 nav {
 	position: fixed;
+	z-index: 10;
 }
 
 #wisteria-nav {
@@ -106,3 +105,4 @@ nav {
 @import 'gameplay';
 @import 'level-editor';
 @import 'defeat';
+
