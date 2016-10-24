@@ -107,6 +107,12 @@ nav {
 	}
 }
 
+.cards {
+	.row {
+		font-size: 1em;
+	}
+}
+
 /* Screen specific styles */
 @import 'splash';
 @import 'about_save_level';
@@ -120,3 +126,4 @@ nav {
 @import 'gameplay';
 @import 'level-editor';
 @import 'custom-levels';
+@import 'map';

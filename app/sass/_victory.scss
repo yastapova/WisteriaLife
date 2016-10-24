@@ -1,0 +1,47 @@
+#victory-screen {
+	background: rgba(16, 16, 16, 0.7);
+	height: 100vh;
+}
+
+#victory-title {
+    font-size: 5em;
+    color: #fff;
+    text-align: center;
+	padding: 30px;
+	margin: 0;
+}
+
+#win-bux {
+	width: 50%;
+}
+
+.dark {
+	color: #fff;
+	font-size: 2.5em;
+}
+
+.material-icons.store {
+	color: purple;
+	font-size: 5em;
+}
+
+.material-icons.back {
+	color: red;
+	font-size: 5em;
+	transform: rotate(180deg);
+}
+
+.material-icons.replay {
+	color: yellow;
+	font-size: 5em;
+}
+
+.material-icons.share {
+	color: green;
+	font-size: 5em;
+}
+
+.material-icons.next {
+	color: $primary-color;
+	font-size: 5em;
+}
