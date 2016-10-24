@@ -15,6 +15,10 @@ $primary-dark: #773795;
 $enemy-color: #008080;
 $enemy-light: #3da3a9;
 
+// Small heights
+$small-height: 512px;
+$small-height-and-down: "only screen and (max-height : #{$small-height})" !default;
+
 /*
 	SCSS MIXINS
 	======
@@ -49,7 +53,6 @@ body {
 	width: 100%;
 	max-width: 100%;
 	height: 100vh;
-	background-color: rgba(255, 255, 255, 0.5);
 
 	.row {
 		margin-right: 0;
@@ -57,7 +60,6 @@ body {
 }
 
 .container-inner {
-	height: 100%;
 	padding-top: $navbar-height-mobile;
 }
 
@@ -69,6 +71,7 @@ body {
 
 nav {
 	position: fixed;
+	z-index: 10;
 }
 
 #wisteria-nav {
@@ -100,7 +103,7 @@ nav {
 @import 'splash';
 @import 'about';
 @import 'pause';
-@import 'victory';
+@import 'victory_defeat';
 @import 'store';
 @import 'ad';
 @import 'level-story';

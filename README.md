@@ -22,10 +22,8 @@ gulp
 
 This will concatenate all the JavaScript files, compile the SCSS files, and start a local server on port 3000.
 
-This will start a file watch that will automatically recompile SCSS files. There is no need to restart the server.
-
-A similar JavaScript file watch will be added later.
-
+This will also start a file watch that will automatically recompile SCSS files and
+re-concatenate JavaScript files whenever a change is saved. There is no need to restart the server.
 
 To only concatenate the JavaScript files without restarting the server, run this in another terminal window:
 
