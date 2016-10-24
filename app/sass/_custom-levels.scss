@@ -23,7 +23,8 @@
 
 .custom-link {
 	font-size: 1rem;
-	color: $primary-dark;
+	color: #999999;
+	background: #ededed;
 	display: inline-block;
 	width: 4rem;
 	line-height: 1rem;
@@ -33,11 +34,28 @@
 	padding-right: 0.5rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
-	background: white;
 	border-radius: 0.5rem;
 }
 
 .custom-link.active {
-	background: $primary-color;
+	color: $primary-color;
+	background: white;
 	font-weight: bold;
+}
+
+.left-bar {
+	display: inline;
+	width: 30%;
+}
+.right-bar {
+	display: inline;
+	width: 70%;
+	margin-left: 50%;
+	margin-top: 0.5rem;
+}
+
+.bar-icon {
+	color: white;
+	font-size: 1rem;
+	margin-left: 2%;
 }
