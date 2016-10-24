@@ -25,6 +25,16 @@ $navbar-height-mobile: 56px !default;
   transition: $args;
 }
 
+.cf:before,
+.cf:after {
+    content: " ";
+    display: table;
+}
+
+.cf:after {
+    clear: both;
+}
+
 body {
     background-image: url('/img/wisteria-tunnel.jpg');
 }

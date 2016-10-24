@@ -8,7 +8,7 @@
 }
 
 .collapsible, .side-nav {
-    box-shadow: none; 
+    box-shadow: none;
 }
 
 .collapsible .collapsible-body {
@@ -17,10 +17,20 @@
 	font-size: .5em;
 }
 
-.collapsible .collapsible-header {	
+.collapsible .collapsible-header {
     background: rgba(16, 16, 16, 0.0);
 	border-bottom: 1px solid;
 	border-color: rgb(80, 208, 208);
+
+	.collapse-icon {
+		@include transition(all 0.3s linear);
+	}
+	
+	&.active {
+		.collapse-icon {
+			transform: rotate(180deg);
+		}
+	}
 }
 
 .row{
