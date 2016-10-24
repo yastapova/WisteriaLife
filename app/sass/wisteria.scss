@@ -57,6 +57,12 @@ body {
 	height: 100%;
 }
 
+@media #{$medium-and-up} {
+	.container-inner {
+		padding-top: $navbar-height;
+	}
+}
+
 nav {
 	position: fixed;
 }
