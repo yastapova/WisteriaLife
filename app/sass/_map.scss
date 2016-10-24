@@ -1,3 +1,10 @@
 #map-screen {
-	
+
+}
+
+@media #{$medium-and-up} {
+	#map-screen {
+		width: 80vw;
+		margin: auto;
+	}
 }
