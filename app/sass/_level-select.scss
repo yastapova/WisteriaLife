@@ -21,3 +21,50 @@
 	color:white;
 	text-align:center;
 }
+
+#level-num-shape {
+	background: $primary-color;
+	height:5em;
+	width:5em;
+	border-radius: 2.5em;
+	display:inline-block;
+	position:relative;
+	margin-right:1.5em;
+}
+
+#level-num {
+	z-index:10;
+	position:absolute; 
+	font-size:2em;
+	top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+	color:white;
+}
+
+#level-title {
+	font-weight:bold;
+	font-size:0.96rem;
+	color:black;
+	display:inline;
+	vertical-align:top;
+	position:absolute;
+}
+
+#level-sub {
+	font-size:0.87rem;
+	display:inline;
+	text-align:left;
+	position:relative;
+	vertical-align:1.7em;
+
+}
+
+#level-desc {
+	word-wrap: break-word;
+	margin-left:5rem;
+}
+
+#desc-box {
+	margin-left:3rem;
+}
