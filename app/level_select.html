@@ -5,8 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Wisteria Life</title>
-
         <!-- jQuery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -26,7 +24,7 @@
         <!-- Global Nav Bar -->
         <nav>
             <div id="wisteria-nav" class="nav-wrapper">
-                <ul id="nav-mobile" class="left">
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
                     <li id="account">
                         <a href="mobile.html">
                             <i class="material-icons left">person</i>
@@ -34,7 +32,7 @@
                     </li>
                 </ul>
                 <a href="#" id="logo" class="brand-logo center">WL</a>
-                <ul id="nav-mobile" class="right">
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li id="wistbux">
                         <a href="#">
                             <i class="material-icons left">attach_money</i>
@@ -43,28 +41,9 @@
 
                     <!-- Hamburger Menu - TODO -->
                     <li id="hamburger">
-                        <a href="#!" id="hamburger-vert" data-activates="hamburger-dropdown">
+                        <a href="#">
                             <i class="material-icons">more_vert</i>
                         </a>
-                    </li>
-                </ul>
-
-                <ul id="hamburger-dropdown" class="dropdown-content">
-                    <li>
-                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
-                    </li>
-                    <li>
-                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
-                    </li>
-                    <li>
-                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
-                    </li>
-                    <li>
-                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#!" id="drop-loginout"><i class="material-icons">power_settings_new</i></a>
                     </li>
                 </ul>
             </div>
@@ -74,23 +53,95 @@
         <div class="container">
             <!-- Page Content goes here -->
             <div id="level-select-screen" class="container-inner">
-                <div align="center">
-                    <div id="region-header" class="region-container">
-                    <h2 id="level-select-title">REGION 1</h2>
-                    <div class="card">
-                        <div class="card-content">                              
-                            <div class="type-powerup"><i class="material-icons left">whatshot</i><span id="powerup-title">Stop Spawn</span></div>
+                <div id="region-header">
+                    <h2 id="region-number">REGION 1</h2>
+                </div>
+                <div class="row">
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup"><i class="material-icons left">whatshot</i><span id="powerup-title">Extra Time</span></div>
                                 <div class="icon-description cf">
-                                    <img src="./img/powerups/StopSpawn.png"></img>
+                                    <img src="./img/powerups/extratime.png"></img>
+                                    <span>Reduce remaining survival time by 5-10 sec.</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                              <a href="#" data-powerup="extratime">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                          
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup"><i class="material-icons left">whatshot</i><span id="powerup-title">Stop Spawn</span></div>
+                                <div class="icon-description cf">
+                                    <img src="./img/powerups/stopspawn.png"></img>
                                     <span>Reduce the number of enemies about to spawn in the next few seconds.</span>
                                 </div>
                             </div>
-                        <div class="card-action">
-                        <a href="#" data-powerup="void">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>     
-                        </div>                  
-                    </div>               
-                </div>
-            </div>
-        </div>
+                            <div class="card-action">
+                              <a href="#" data-powerup="stopspawn">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                          
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup"><i class="material-icons left">whatshot</i><span id="powerup-title">Void Cell</span></div>
+                                <div class="icon-description cf">
+                                    <img src="./img/powerups/void.png"></img>
+                                    <span>Reduce the number of enemies about to spawn in the next few seconds.</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                              <a href="#" data-powerup="void">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                       
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup"><i class="material-icons left">widgets</i><span id="powerup-title">Tower</span></div>
+                                <div class="icon-description cf">
+                                    <img src="./img/powerups/tower.png"></img>
+                                    <span>A non-moving 2x2 cell square.</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                              <a href="#" data-powerup="tower">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                          
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup"><i class="material-icons left">widgets</i><span id="powerup-title">Blockade</span></div>
+                                <div class="icon-description cf">
+                                    <img src="./img/powerups/blockade.png"></img>
+                                    <span>A stationary defense unit that repeatedly changes shape.</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                              <a href="#" data-powerup="blockade">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                       
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup"><i class="material-icons left">widgets</i><span id="powerup-title">Shield</span></div>
+                                <div class="icon-description cf">
+                                    <img src="./img/powerups/shield.png"></img>
+                                    <span>A stationary defense unit that repeatedly changes shape.</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                              <a href="#" data-powerup="shield">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                         
+                            </div>
+                        </div>
+                    </div>
+
+      </div>
     </body>
 </html>

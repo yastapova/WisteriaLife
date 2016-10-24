@@ -1,15 +1,23 @@
-#level-select-screen {   
-	height: 100vh;
+#level-select-screen {
 	.row {
 		font-size: 1em;
+		margin-top:4em;
 	}
 }
 
-#level-select-title {
-	font-size:4em;
+#region-header{
+    position: fixed;
+    margin-top: 0em;
+    margin-bottom:3em;
+    height:3em;
+    z-index:10;
+    background: rgba(16, 16, 16, 0.4);
+    width:100%;
 }
 
-#region-header {
-    background: rgba(16, 16, 16, 0.7);
-	height: 100vh;
+#region-number {
+	font-size: 1.5em;
+	margin-top:0.34em;
+	color:white;
+	text-align:center;
 }
