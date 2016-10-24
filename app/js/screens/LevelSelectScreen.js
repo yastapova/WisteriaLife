@@ -1,14 +1,14 @@
 /* 
- * levelSelectScreen.js
- * levelSelectScreen object
+ * LevelSelectScreen.js
+ * LevelSelectScreen object
  */
 
 /*
- * Construct a levelSelectScreen with given id
+ * Construct a LevelSelectScreen with given id
  * 
  */
 
-var levelSelectScreen = function(id, region) {
+var LevelSelectScreen = function(id, region) {
 	if(region === undefined) {
 		this.region = undefined;
 	}
@@ -18,25 +18,25 @@ var levelSelectScreen = function(id, region) {
 	screen.call(this, id, region);
 };
 
-inherits(levelSelectScreen, screen); 
+inherits(LevelSelectScreen, screen); 
 
 /*
  * Override the load and hide of the parent screen
  * 
  */
 
-levelSelectScreen.prototype.load = function() {
+LevelSelectScreen.prototype.load = function() {
 
 };
 
-levelSelectScreen.prototype.hide = function() {
+LevelSelectScreen.prototype.hide = function() {
 	
 };
 
-levelSelectScreen.prototype.loadAvailableLevels = function() {
+LevelSelectScreen.prototype.loadAvailableLevels = function() {
 	
 };
 
-levelSelectScreen.prototype.loadLevels = function() {
+LevelSelectScreen.prototype.loadLevels = function() {
 	
 };
