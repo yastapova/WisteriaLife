@@ -54,7 +54,6 @@ body {
 
 .container-inner {
 	padding-top: $navbar-height-mobile;
-	height: 100%;
 }
 
 @media #{$medium-and-up} {
@@ -97,8 +96,8 @@ nav {
 @import 'about';
 @import 'pause';
 @import 'victory';
-@import 'gameplay';
 @import 'store';
 @import 'ad';
 @import 'level-story';
 @import 'card';
+@import 'level-select';
