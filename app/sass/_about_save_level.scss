@@ -1,0 +1,45 @@
+#about-save-level-screen {
+    background: rgba(16, 16, 16, 0.7);
+	height: 100%;
+}
+.collapsible {
+	border: 0px;
+	background: rgba(16, 16, 16, 0.0);
+}
+
+.collapsible, .side-nav {
+    box-shadow: none;
+}
+
+.collapsible .collapsible-body {
+	border: 0px;
+    background: rgba(16, 16, 16, 0.0);
+	font-size: .5em;
+}
+
+.collapsible .collapsible-header {
+    background: rgba(16, 16, 16, 0.0);
+	border-bottom: 1px solid;
+	border-color: rgb(80, 208, 208);
+
+	.collapse-icon {
+		@include transition(all 0.3s linear);
+	}
+
+	&.active {
+		.collapse-icon {
+			transform: rotate(180deg);
+		}
+	}
+}
+
+.row{
+	padding: 10px;
+	font-size: 2em;
+    color: #fff;
+    text-align: left;
+}
+
+.row p{
+	font-size: 1em;
+}
