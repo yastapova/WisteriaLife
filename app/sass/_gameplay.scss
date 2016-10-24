@@ -1,0 +1,44 @@
+.toolbar {
+	height: 10%;
+	background: $primary-color;
+	width: 100%;
+	vertical-align: middle;
+}
+
+.canvas {
+	height: 80%;
+}
+
+.material-icons.play {
+	color: green;
+	font-size: 2.5em;
+}
+
+.dropdown-button.btn.small {
+	padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 0;
+    padding-bottom: 0;
+    font-size: 0.20rem;
+}
+
+.dropdown-content li {
+	min-height: 0px;
+}
+
+.dropdown-content li>a {
+	font-size: 0.50rem;
+	line-height: 20px;
+    padding: 5px;
+}
+
+.bottom.align {
+    display: inline-block;
+    height: 50%;
+    vertical-align: top;
+    margin-left: 10%;
+}
+
+.progress {
+	margin: 0;
+}

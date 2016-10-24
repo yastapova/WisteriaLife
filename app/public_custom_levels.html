@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<title>Wisteria Life</title>
+
+        <!-- jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+        <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <!-- Materialize CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+        <link rel="stylesheet" href="dist/css/wisteria.css"/>
+        <script src="dist/js/wisteria.js"></script>
+    </head>
+
+    <body>
+
+        <!-- Global Nav Bar -->
+        <nav>
+            <div id="wisteria-nav" class="nav-wrapper">
+                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    <li id="account">
+                        <a href="mobile.html">
+                            <i class="material-icons left">person</i>
+                            R. Boxman</a>
+                    </li>
+                </ul>
+                <a href="#" id="logo" class="brand-logo center">WL</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li id="wistbux">
+                        <a href="#">
+                            <i class="material-icons left">attach_money</i>
+                            9,999</a>
+                    </li>
+
+                    <!-- Hamburger Menu - TODO -->
+                    <li id="hamburger">
+                        <a href="#!" id="hamburger-vert" data-activates="hamburger-dropdown">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                    </li>
+                </ul>
+
+				<ul id="hamburger-dropdown" class="dropdown-content">
+					<li>
+						<a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
+					</li>
+					<li>
+						<a href="#!" id="drop-store"><i class="material-icons">store</i></a>
+					</li>
+					<li>
+						<a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
+					</li>
+					<li>
+						<a href="#!" id="drop-about"><i class="material-icons">info</i></a>
+					</li>
+					<li class="divider"></li>
+					<li>
+						<a href="#!" id="drop-loginout"><i class="material-icons">close</i></a>
+					</li>
+				</ul>
+            </div>
+        </nav>
+
+        <!-- Screen Section -->
+        <div class="container">
+            <!-- Page Content goes here -->
+            <h2 id="splash-title">Wisteria Life</h2>
+        </div>
+    </body>
+</html>
