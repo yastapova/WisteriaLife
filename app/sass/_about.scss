@@ -1,6 +1,5 @@
 #about-screen {
     background: rgba(16, 16, 16, 0.7);
-	height: 100vh;
 }
 .collapsible {
 	border: 0px;
@@ -25,7 +24,7 @@
 	.collapse-icon {
 		@include transition(all 0.3s linear);
 	}
-	
+
 	&.active {
 		.collapse-icon {
 			transform: rotate(180deg);
