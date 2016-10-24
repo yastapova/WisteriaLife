@@ -11,3 +11,19 @@
 	width: 175px;
 	display: block;
 }
+
+@media #{$small-height-and-down} {
+	#splash-title {
+	    font-size: 3.5em;
+		padding: 40px;
+	}
+
+	#splash-buttons a {
+		width: 145px;
+	}
+
+	.btn-large {
+		height: 42px;
+		line-height: 42px;
+	}
+}

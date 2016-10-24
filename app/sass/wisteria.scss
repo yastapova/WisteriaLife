@@ -12,6 +12,10 @@
 // Primary Wisteria Color
 $primary-color: #c9a0dc;
 
+// Small heights
+$small-height: 512px;
+$small-height-and-down: "only screen and (max-height : #{$small-height})" !default;
+
 /*
 	SCSS MIXINS
 	======
@@ -105,4 +109,3 @@ nav {
 @import 'gameplay';
 @import 'level-editor';
 @import 'defeat';
-
