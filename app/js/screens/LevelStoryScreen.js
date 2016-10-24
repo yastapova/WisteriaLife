@@ -1,14 +1,14 @@
 /* 
- * levelStoryScreen.js
- * levelStoryScreen object
+ * LevelStoryScreen.js
+ * LevelStoryScreen object
  */
 
 /*
- * Construct a levelStoryScreen with given id
+ * Construct a LevelStoryScreen with given id
  * 
  */
 
-var levelStoryScreen = function(id, level) {
+var LevelStoryScreen = function(id, level) {
 	if(level === undefined) {
 		this.level = undefined;
 	}
@@ -18,17 +18,17 @@ var levelStoryScreen = function(id, level) {
 	screen.call(this, id, level);
 };
 
-inherits(levelStoryScreen, screen); 
+inherits(LevelStoryScreen, screen); 
 
 /*
  * Override the load and hide of the parent screen
  * 
  */
 
-levelStoryScreen.prototype.load = function() {
+LevelStoryScreen.prototype.load = function() {
 
 };
 
-levelStoryScreen.prototype.hide = function() {
+LevelStoryScreen.prototype.hide = function() {
 	
 };
