@@ -1,3 +1,15 @@
+
+// Primary Wisteria Color
+$primary-color: #c9a0dc;
+
+// Media Query Overrides
+$small-screen-up: 800px !default;
+$medium-screen-up: 1024px !default;
+$large-screen-up: 1201px !default;
+$small-screen: 799px !default;
+$medium-screen: 1023px !default;
+$large-screen: 1200px !default;
+
 @import 'materialize/materialize';
 
 /*
@@ -9,8 +21,6 @@
 	Do not modify _variables.scss as that file is excluded from Git.
  */
 
-// Primary Wisteria Color
-$primary-color: #c9a0dc;
 
 // Small heights
 $small-height: 512px;
