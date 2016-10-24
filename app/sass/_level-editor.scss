@@ -2,3 +2,30 @@
 	color: #26a69a;
 	font-size: 2.5em;
 }
+
+.switch {
+	display: inline-block;
+}
+
+.switch label .lever {
+	background-color: $enemy-light;
+}
+.switch label .lever:after {
+	background-color: $enemy-color;
+}
+
+.switch label input[type=checkbox]:checked + .lever {
+    background-color: #a057c1;
+}
+.switch label input[type=checkbox]:checked + .lever:after {
+    background-color: $primary-dark;
+}
+
+.enemy-swatch {
+	color: $enemy-color;
+	font-size: 1.5rem;
+}
+.friendly-swatch {
+	color: $primary-dark;
+	font-size: 1.5rem;
+}
