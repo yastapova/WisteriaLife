@@ -11,3 +11,4 @@
  splashScreen.prototype.checkUser = function () {
 
  }
+ 
