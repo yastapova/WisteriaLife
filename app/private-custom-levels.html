@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>Wisteria Life</title>
+        <title>Wisteria Life</title>
 
         <!-- jQuery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -13,11 +13,13 @@
         <!-- Material Icons -->
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-        <!-- Materialize CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+        <!-- Materialize -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
+        <!-- CSS including Materialize -->
         <link rel="stylesheet" href="dist/css/wisteria.css"/>
+
+        <!-- Custom JavaScript -->
         <script src="dist/js/wisteria.js"></script>
     </head>
 
@@ -26,15 +28,15 @@
         <!-- Global Nav Bar -->
         <nav>
             <div id="wisteria-nav" class="nav-wrapper">
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <ul id="nav-mobile" class="left">
                     <li id="account">
                         <a href="mobile.html">
                             <i class="material-icons left">person</i>
                             R. Boxman</a>
                     </li>
                 </ul>
-                <a href="#" id="logo" class="brand-logo center">WL</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <a href="/" id="logo" class="brand-logo center">WL</a>
+                <ul id="nav-mobile" class="right">
                     <li id="wistbux">
                         <a href="#">
                             <i class="material-icons left">attach_money</i>
@@ -49,31 +51,123 @@
                     </li>
                 </ul>
 
-				<ul id="hamburger-dropdown" class="dropdown-content">
-					<li>
-						<a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
-					</li>
-					<li>
-						<a href="#!" id="drop-store"><i class="material-icons">store</i></a>
-					</li>
-					<li>
-						<a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
-					</li>
-					<li>
-						<a href="#!" id="drop-about"><i class="material-icons">info</i></a>
-					</li>
-					<li class="divider"></li>
-					<li>
-						<a href="#!" id="drop-loginout"><i class="material-icons">close</i></a>
-					</li>
-				</ul>
+                <ul id="hamburger-dropdown" class="dropdown-content">
+                    <li>
+                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
+                    </li>
+                    <li>
+                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
+                    </li>
+                    <li>
+                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
+                    </li>
+                    <li>
+                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#!" id="drop-loginout"><i class="material-icons">power_settings_new</i></a>
+                    </li>
+                </ul>
             </div>
         </nav>
+
 
         <!-- Screen Section -->
         <div class="container">
             <!-- Page Content goes here -->
-            <h2 id="splash-title">Wisteria Life</h2>
+            <div id="private-custom-levels-screen" class="container-inner">
+                <div id="private-public-bar">
+                    <div class="left-bar" align="left">
+                        <a class="custom-link active" href="private-custom-levels.html">Private</a>
+                        <a class="custom-link" href="public-custom-levels.html">Public</a>
+                    </div>
+                    <div class="right-bar" align="right">
+                        <span class="bar-icon"><i class="material-icons">add</i></span>
+                        <a href="level-editor.html"><span class="bar-icon"><i class="material-icons">edit</i></span></a>
+                        <span class="bar-icon"><i class="material-icons">delete</i></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup"><i class="material-icons left">dashboard</i><span class="card-title">Defenders</span></div>
+                                <div class="icon-description cf">
+                                    <span class="card-desc">This is a custom level created by you, the user. This is a custom level created by you, the user. This is a custom level created by you, the user.</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                              <a href="#" data-level="1">Play</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup">
+                                    <i class="material-icons left">line_style</i>
+                                    <span class="card-title">Front Lines</span>
+                                </div>
+                                <div class="icon-description cf">
+                                    <span class="card-desc">This is a second custom level created by you, the user. This is a custom level created by you, the user.</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                              <a href="#" data-level="2">Play</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup">
+                                    <i class="material-icons left">business</i>
+                                    <span class="card-title">School Spirit</span>
+                                </div>
+                                <div class="icon-description cf">
+                                    <span class="card-desc">This is a yet another custom level created by you, the user. This is a custom level created by you, the user. This is a custom level created by you, the user.</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                              <a href="#" data-level="3">Play</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup">
+                                    <i class="material-icons left">widgets</i>
+                                    <span class="card-title">Falling Empire</span>
+                                </div>
+                                <div class="icon-description cf">
+                                    <span class="card-desc">Defend your falling empire from the enemy hordes! This is a custom level created by you, the user.</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                              <a href="#" data-level="4">Play</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card">
+                            <div class="card-content">                              
+                                <div class="type-powerup">
+                                    <i class="material-icons left">home</i>
+                                    <span class="card-title">Home Base</span>
+                                </div>
+                                <div class="icon-description cf">
+                                    <span class="card-desc">Mustn't forget to protect yourself at home. This is a custom level created by you, the user. This is a custom level created by you, the user.</span>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                              <a href="#" data-level="5">Play</a>                  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
 </html>

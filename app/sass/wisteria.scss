@@ -1,3 +1,11 @@
+// Media Query Overrides
+$small-screen-up: 800px !default;
+$medium-screen-up: 1024px !default;
+$large-screen-up: 1201px !default;
+$small-screen: 799px !default;
+$medium-screen: 1023px !default;
+$large-screen: 1200px !default;
+
 @import 'materialize/materialize';
 
 /*
@@ -99,6 +107,12 @@ nav {
 	}
 }
 
+.cards {
+	.row {
+		font-size: 1em;
+	}
+}
+
 /* Screen specific styles */
 @import 'splash';
 @import 'about-save-level';
@@ -111,3 +125,5 @@ nav {
 @import 'level-select';
 @import 'gameplay';
 @import 'level-editor';
+@import 'custom-levels';
+@import 'map';
