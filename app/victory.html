@@ -5,6 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+        <title>Wisteria Life</title>
+
         <!-- jQuery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
@@ -24,12 +26,20 @@
         <!-- Global Nav Bar -->
         <nav>
             <div id="wisteria-nav" class="nav-wrapper">
-                <ul id="nav-mobile" class="left hide-on-med-and-down">
-                    <li id="account"><a href="mobile.html"><i class="material-icons left">person</i> R. Boxman</a></li>
+                <ul id="nav-mobile" class="left">
+                    <li id="account">
+                        <a href="mobile.html">
+                            <i class="material-icons left">person</i>
+                            R. Boxman</a>
+                    </li>
                 </ul>
-                <a href="#" id="logo" class="brand-logo center">WL</a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li id="wistbux"><a href="#"><i class="material-icons left">attach_money</i> 9,999</a></li>
+                <a href="/" id="logo" class="brand-logo center">WL</a>
+                <ul id="nav-mobile" class="right">
+                    <li id="wistbux">
+                        <a href="#">
+                            <i class="material-icons left">attach_money</i>
+                            9,999</a>
+                    </li>
 
                     <!-- Hamburger Menu - TODO -->
                     <li id="hamburger">
@@ -40,12 +50,22 @@
                 </ul>
 
                 <ul id="hamburger-dropdown" class="dropdown-content">
-                    <li><a href="#!" id="drop-back">Back</a></li>
-                    <li><a href="#!" id="drop-store">Store</a></li>
-                    <li><a href="#!" id="drop-mute">Mute</a></li>
-                    <li><a href="#!" id="drop-about">About</a></li>
+                    <li>
+                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
+                    </li>
+                    <li>
+                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
+                    </li>
+                    <li>
+                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
+                    </li>
+                    <li>
+                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
+                    </li>
                     <li class="divider"></li>
-                    <li><a href="#!" id="drop-loginout">Log In</a></li>
+                    <li>
+                        <a href="#!" id="drop-loginout"><i class="material-icons">power_settings_new</i></a>
+                    </li>
                 </ul>
             </div>
         </nav>
