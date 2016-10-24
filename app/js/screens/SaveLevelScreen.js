@@ -1,24 +1,24 @@
 /* 
- * saveLevelScreen.js
- * saveLevelScreen object
+ * SaveLevelScreen.js
+ * SaveLevelScreen object
  */
 
  /*
-  * construct a saveLevelScreen obj with given id
+  * construct a SaveLevelScreen obj with given id
   */
-var saveLevelScreen = function(id) {
-	screen.call(this,id);	
+var SaveLevelScreen = function(id) {
+	Screen.call(this,id);	
 };
 
-inherits(saveLevelScreen, screen);
+inherits(SaveLevelScreen, Screen);
 
 /*
  * Override the load and hide of the parent screen
  */
-saveLevelScreen.prototype.load = function() {
+SaveLevelScreen.prototype.load = function() {
 
 };
 
-saveLevelScreen.prototype.hide = function() {
+SaveLevelScreen.prototype.hide = function() {
 	
 };

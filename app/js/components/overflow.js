@@ -47,6 +47,7 @@ DropdownMenu.prototype = {
 	 */
 	handleBackButton: function () {
 		console.log("Back button pressed!");
+		window.history.back(); //temporary only
 	},
 
 	/**

@@ -1,14 +1,14 @@
 /* 
- * adScreen.js
- * adScreen object
+ * AdScreen.js
+ * AdScreen object
  */
 
 /*
- * Construct an adScreen with given id
+ * Construct an AdScreen with given id
  * 
  */
 
-var adScreen = function(id, timer, image) {
+var AdScreen = function(id, timer, image) {
 	if(timer === undefined && image === undefined) {
 		this.timer = undefined;
 		this.image = undefined;
@@ -28,17 +28,17 @@ var adScreen = function(id, timer, image) {
 	screen.call(this, id, timer, image);
 };
 
-inherits(adScreen, screen); 
+inherits(AdScreen, screen); 
 
 /*
  * Override the load and hide of the parent screen
  * 
  */
 
-adScreen.prototype.load = function() {
+AdScreen.prototype.load = function() {
 
 };
 
-adScreen.prototype.hide = function() {
+AdScreen.prototype.hide = function() {
 	
 };

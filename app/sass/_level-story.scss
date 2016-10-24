@@ -1,0 +1,22 @@
+#level-story-screen {
+	height:100vh;
+}
+
+#level-story-title {
+	font-size: 3em;
+    color: $primary-color;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000; 
+    text-align: center;
+	padding: 30px;
+	margin: 0;
+}
+
+#level-story-description {
+	font-size: 1em;
+	margin-left:9em;
+	margin-right:9em;
+}

@@ -1,14 +1,14 @@
 /* 
- * pauseScreen.js
- * pauseScreen object
+ * PauseScreen.js
+ * PauseScreen object
  */
 
 /*
- * Construct a pauseScreen with given id
+ * Construct a PauseScreen with given id
  * 
  */
 
-var pauseScreen = function(id, level) {
+var PauseScreen = function(id, level) {
 	if(level === undefined) {
 		this.level = undefined;
 	}
@@ -18,21 +18,21 @@ var pauseScreen = function(id, level) {
 	screen.call(this, id, level);
 };
 
-inherits(pauseScreen, screen); 
+inherits(PauseScreen, screen); 
 
 /*
  * Override the load and hide of the parent screen
  * 
  */
 
-pauseScreen.prototype.load = function() {
+PauseScreen.prototype.load = function() {
 
 };
 
-pauseScreen.prototype.hide = function() {
+PauseScreen.prototype.hide = function() {
 	
 };
 
-pauseScreen.prototype.replay = function() {
+PauseScreen.prototype.replay = function() {
 	
 }
