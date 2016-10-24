@@ -56,7 +56,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A non-moving 2x2 cell square.",
 				price : 100,
 				thumbnail : "tower.png"
 			}
@@ -66,7 +66,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A stationary defense unit that repeatedly changes shape.",
 				price : 100,
 				thumbnail : "blockade.png"
 			}
@@ -76,7 +76,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A stationary defense unit that repeatedly changes shape.",
 				price : 100,
 				thumbnail : "shild.png"
 			}
@@ -86,7 +86,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A unit that explodes into several stable structures.",
 				price : 100,
 				thumbnail : "caltrops.png"
 			}
@@ -96,7 +96,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A unit moving diagonally northwest.",
 				price : 100,
 				thumbnail : "archernw.png"
 			}
@@ -106,7 +106,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A unit moving diagonally northwest.",
 				price : 100,
 				thumbnail : "archerne.png"
 			}
@@ -116,7 +116,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A unit moving diagonally southeast.",
 				price : 100,
 				thumbnail : "archerse.png"
 			}
@@ -126,7 +126,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A unit moving diagonally southwest.",
 				price : 100,
 				thumbnail : "archersw.png"
 			}
@@ -136,7 +136,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A unit moving linearly west.",
 				price : 100,
 				thumbnail : "infantryw.png"
 			}
@@ -146,7 +146,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A unit moving linearly north.",
 				price : 100,
 				thumbnail : "infantryn.png"
 			}
@@ -156,7 +156,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A unit moving linearly east.",
 				price : 100,
 				thumbnail : "infantrye.png"
 			}
@@ -166,7 +166,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A unit moving linearly south.",
 				price : 100,
 				thumbnail : "infantrys.png"
 			}
@@ -176,7 +176,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A stationary defense unit that does not change shape.",
 				price : 100,
 				thumbnail : "wallback.png"
 			}
@@ -186,7 +186,7 @@ PowerupManager.prototype.initPowerup = function(powerup) {
 			powerupAttrObj = {
 				name : powerup,
 				type : "Shape",
-				description : "Reduce remaining survival time by 5-10 sec.",
+				description : "A stationary defense unit that does not change shape.",
 				price : 100,
 				thumbnail : "wallforward.png"
 			}
