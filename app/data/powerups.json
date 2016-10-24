@@ -122,11 +122,11 @@
 	}
 	,
 	{
-		"name" : "Wall Back",
+		"name" : "Wall Backward",
 		"type" : "Shape",
 		"description" : "A stationary defense unit that does not change shape.",
 		"price" : 100,
-		"thumbnail" : "wallback.png"
+		"thumbnail" : "wallbackward.png"
 	}
 	,
 	{
