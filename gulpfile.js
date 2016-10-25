@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var concat = require('gulp-concat');
 var serve = require('gulp-serve');
 var sass = require('gulp-sass');
+var sourcemaps = require('gulp-sourcemaps');
 
 
 // default task
@@ -33,7 +34,9 @@ gulp.task('materialize', function() {
 // compile scss files
 gulp.task('sass', ['materialize'], function() {
     return gulp.src(['./app/sass/**/*.scss', '!./app/sass/materialize/*.scss'])
+		.pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
+		.pipe(sourcemaps.write())
         .pipe(gulp.dest('./app/dist/css'));
 });
 
