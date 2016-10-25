@@ -44,55 +44,55 @@ PowerupManager.prototype.loadJSONData = function(data){
 		}
 		switch(powerupData.name){
 			case "Extra Time":
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Stop Spawn":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Void Cell":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Tower":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Blockade":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Shield":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Caltrops":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Archer NW":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Archer NE":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Archer SE":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Archer SW":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Infantry W":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Infantry N":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Infantry E":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Infantry S":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Wall Backward":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;
 			case "Wall Forward":					
-				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				this.powerMap.set(powerupData.name, new Powerup(powerupAttrObj, function(level){}))
 				break;	
 		}
 	}
