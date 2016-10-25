@@ -2,7 +2,7 @@
     .card {
 
         &[id$='-card'] {
-            background: #fff url('/img/map-sample-img.jpg')
+            background: transparent url('/img/map-sample-img.jpg')
                         no-repeat center center;
             background-size: cover;
         }
