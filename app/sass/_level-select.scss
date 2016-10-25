@@ -29,9 +29,9 @@
 
 #level-num-shape {
     background: $primary-color;
-    height:5em;
-    width:5em;
-    border-radius: 2.5em;
+    height:50px;
+    width:50px;
+    border-radius: 25px;
     display:inline-block;
     position:relative;
     margin-right:1.5em;
@@ -51,15 +51,7 @@
     margin-left:5rem;
 }
 
-#desc-box {
-    margin-left:3rem;
-}
-
 .material-icons.lockedlevel {
     margin-left:90%;
-    font-size:1.56rem;
-}
-
-#playaction {
-    padding-bottom:1.9rem;
+    font-size:1.50rem;
 }
