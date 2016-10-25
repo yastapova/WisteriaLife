@@ -24,8 +24,17 @@ $enemy-color: #008080;
 $enemy-light: #3da3a9;
 
 // Small heights
-$small-height: 512px;
+$small-height: 376px;
+$small-height-up: 377px;
 $small-height-and-down: "only screen and (max-height : #{$small-height})" !default;
+
+// Medium height
+$medium-height: 800px;
+$medium-height-only: "only screen and (min-height: #{$small-height-up}) and (max-height : #{$medium-height})" !default;
+
+// Large heights
+$large-height: 1000px;
+$large-height-and-up: "only screen and (min-height: #{$large-height})" !default;
 
 /*
 	SCSS MIXINS
