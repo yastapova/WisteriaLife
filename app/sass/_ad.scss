@@ -19,7 +19,7 @@
     height:26rem;
     width:26rem;
 
-    @media #{$large-height-up} {
+    @media(#{$large-height-up}) {
         position:absolute;
         margin-top:-22rem;
         margin-left:-22rem;
@@ -39,7 +39,7 @@
         width:34rem;
     }
 
-    @media #{$small-height-and-down} {
+    @media #{$small-height-and-down}  {
         position:absolute;
         margin-top:-10rem;
         margin-left:-10rem;
