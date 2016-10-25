@@ -37,18 +37,22 @@
 	            vertical-align: middle;
 	        }
 
+	        div.titles-with-sub {
+	        	display: inline-block;
+	        }
+
             span.level-title {
                 font-weight:bold;
                 font-size:1rem;
                 color:black;
-                display:inline;
+                display:block;
                 vertical-align:top;
-                position:absolute;
+                // position:absolute;
             }
 
             span.level-sub {
                 font-size:0.9rem;
-                display:inline;
+                display:block;
                 text-align:left;
                 position:relative;
                 vertical-align:1em;
