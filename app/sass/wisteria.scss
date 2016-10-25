@@ -71,10 +71,8 @@ body {
 
 .container-inner {
 	padding-top: $navbar-height-mobile;
-}
 
-@media #{$medium-and-up} {
-	.container-inner {
+	@media #{$medium-and-up} {
 		padding-top: $navbar-height;
 	}
 }
