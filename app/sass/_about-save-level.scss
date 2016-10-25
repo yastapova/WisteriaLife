@@ -34,9 +34,10 @@
         background-color: $primary-color;
     }
 
-    input[type=range] + .thumb .value {
-        background-color: $primary-color;
-    }
+    // commented out because makes an awkward box
+    // input[type=range] + .thumb .value {
+    //     background-color: $primary-color;
+    // }
 
     input[type=range]::-webkit-slider-thumb {
       background: $primary-color;
