@@ -3,7 +3,7 @@
 }
 
 #level-story-title {
-	font-size: 3em;
+	font-size: 3rem;
     color: $primary-color;
     text-shadow:
     -1px -1px 0 #000,
@@ -16,17 +16,17 @@
 }
 
 #level-story-description {
-	font-size: 1em;
+	font-size: 1rem;
+	color:white;
 	margin-left:9em;
 	margin-right:9em;
 }
 
-#level-number {
+#level-story-number {
 	color: white;
 	font-size: 2em;
-	position:absolute;
 	bottom:0;
-	right:2em;
+	margin-right:2em;
 }
 
 #level-story-buttons a {

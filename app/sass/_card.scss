@@ -28,8 +28,10 @@
 	img{
 		width: 100px;
 		height: 100px;
-		display: inline;
+		display: inline-block;
 		float: left;
 		margin-right: 5px;
+		margin-top:-5px;
+		margin-right:9px;
 	}
 }

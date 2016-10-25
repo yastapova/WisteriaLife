@@ -4,8 +4,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
-        <title>Wisteria Life</title>
+
+        <title>Level Select - Wisteria Life</title>
 
         <!-- jQuery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -84,90 +84,211 @@
                 </div>
                 <div class="row">
                     <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">                              
-                                <div class="type-powerup"><i class="material-icons left">whatshot</i><span id="powerup-title">Extra Time</span></div>
+                        <div class="card"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">1</span></div>
+                                    <div id="level-title">Rise of the Scarlet</div>
+                                    <div id="level-sub">Level 1</div>
+                                </div>
                                 <div class="icon-description cf">
-                                    <img src="./img/powerups/extratime.png"></img>
-                                    <span>Reduce remaining survival time by 5-10 sec.</span>
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-action">
-                              <a href="#" data-powerup="extratime">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                          
+                            <div class="card-action" id="playaction">
+                                <a id="playnow" href="#" data-level="level1">
+                                <span>Play Now</span></a>
                             </div>
-                        </div>
+                        </div> <!-- this is the end of the card !-->
                     </div>
                     <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">                              
-                                <div class="type-powerup"><i class="material-icons left">whatshot</i><span id="powerup-title">Stop Spawn</span></div>
+                        <div class="card"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">2</span></div>
+                                    <div id="level-title">Level 2</div>
+                                    <div id="level-sub">Level 2</div>
+                                </div>
                                 <div class="icon-description cf">
-                                    <img src="./img/powerups/stopspawn.png"></img>
-                                    <span>Reduce the number of enemies about to spawn in the next few seconds.</span>
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-action">
-                              <a href="#" data-powerup="stopspawn">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                          
+                            <div class="card-action" id="playaction">
+                                <a id="playnow" href="#" data-level="level2">
+                                <span>Play Now</span></a>
                             </div>
-                        </div>
+                        </div> <!-- this is the end of the card !-->
                     </div>
                     <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">                              
-                                <div class="type-powerup"><i class="material-icons left">whatshot</i><span id="powerup-title">Void Cell</span></div>
+                        <div class="card"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">3</span></div>
+                                    <div id="level-title">Level 3</div>
+                                    <div id="level-sub">Level 3</div>
+                                </div>
                                 <div class="icon-description cf">
-                                    <img src="./img/powerups/void.png"></img>
-                                    <span>Reduce the number of enemies about to spawn in the next few seconds.</span>
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-action">
-                              <a href="#" data-powerup="void">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                       
+                            <div class="card-action" id="playaction">
+                                <a id="playnow" href="#" data-level="level3">
+                                <span>Play Now</span></a>
                             </div>
-                        </div>
+                        </div> <!-- this is the end of the card !-->
                     </div>
                     <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">                              
-                                <div class="type-powerup"><i class="material-icons left">widgets</i><span id="powerup-title">Tower</span></div>
+                        <div class="card"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">4</span></div>
+                                    <div id="level-title">Level 4</div>
+                                    <div id="level-sub">Level 4</div>
+                                </div>
                                 <div class="icon-description cf">
-                                    <img src="./img/powerups/tower.png"></img>
-                                    <span>A non-moving 2x2 cell square.</span>
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="card-action">
-                              <a href="#" data-powerup="tower">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                          
+                            <div class="card-action" id="playaction">
+                                <a id="playnow" href="#" data-level="level4">
+                                <span>Play Now</span></a>
                             </div>
-                        </div>
+                        </div> <!-- this is the end of the card !-->
                     </div>
                     <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">                              
-                                <div class="type-powerup"><i class="material-icons left">widgets</i><span id="powerup-title">Blockade</span></div>
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">5</span></div>
+                                    <div id="level-title">Level 5</div>
+                                    <div id="level-sub">Level 5</div>
+                                </div>
                                 <div class="icon-description cf">
-                                    <img src="./img/powerups/blockade.png"></img>
-                                    <span>A stationary defense unit that repeatedly changes shape.</span>
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-action">
-                              <a href="#" data-powerup="blockade">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                       
+                                <i class="material-icons lockedlevel">lock_outline</i>
                             </div>
-                        </div>
+                        </div> <!-- this is the end of the card !-->
                     </div>
                     <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">                              
-                                <div class="type-powerup"><i class="material-icons left">widgets</i><span id="powerup-title">Shield</span></div>
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">6</span></div>
+                                    <div id="level-title">Level 6</div>
+                                    <div id="level-sub">Level 6</div>
+                                </div>
                                 <div class="icon-description cf">
-                                    <img src="./img/powerups/shield.png"></img>
-                                    <span>A stationary defense unit that repeatedly changes shape.</span>
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-action">
-                              <a href="#" data-powerup="shield">Buy</a><span class="wistbux"><strike>W</strike></span><span id="price">100</span>                         
+                                <i class="material-icons lockedlevel">lock_outline</i>
                             </div>
-                        </div>
-                    </div>
-
-      </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div> <!-- This is the end of the col div !-->
+                    <div class="col s6 m4">
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">7</span></div>
+                                    <div id="level-title">Level 7</div>
+                                    <div id="level-sub">Level 7</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <i class="material-icons lockedlevel">lock_outline</i>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div> <!-- This is the end of the col div !-->
+                    <div class="col s6 m4">
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">8</span></div>
+                                    <div id="level-title">Level 8</div>
+                                    <div id="level-sub">Level 8</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <i class="material-icons lockedlevel">lock_outline</i>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div> <!-- This is the end of the col div !-->
+                    <div class="col s6 m4">
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">9</span></div>
+                                    <div id="level-title">Level 9</div>
+                                    <div id="level-sub">Level 9</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <i class="material-icons lockedlevel">lock_outline</i>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div> <!-- This is the end of the col div !-->
+                    <div class="col s6 m4">
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">10</span></div>
+                                    <div id="level-title">Boss Level</div>
+                                    <div id="level-sub">Level 10</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <i class="material-icons lockedlevel">lock_outline</i>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div> <!-- This is the end of the col div !-->
+                </div> <!-- This is the end of the row div !-->
+            </div> <!-- This is the end of the level select div !-->
+        </div> <!-- This is the end of the container div !-->
     </body>
 </html>

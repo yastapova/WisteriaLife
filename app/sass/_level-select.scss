@@ -21,3 +21,67 @@
 	color:white;
 	text-align:center;
 }
+
+#level-num-shape {
+	background: $primary-color;
+	height:5em;
+	width:5em;
+	border-radius: 2.5em;
+	display:inline-block;
+	position:relative;
+	margin-right:1.5em;
+}
+
+#level-num {
+	position:absolute; 
+	font-size:2em;
+	top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+	color:white;
+}
+
+#level-title {
+	font-weight:bold;
+	font-size:1rem;
+	color:black;
+	display:inline;
+	vertical-align:top;
+	position:absolute;
+}
+
+#level-sub {
+	font-size:0.9rem;
+	display:inline;
+	text-align:left;
+	position:relative;
+	vertical-align:1.7em;
+
+}
+
+#level-desc {
+	word-wrap: break-word;
+	margin-left:5rem;
+}
+
+#desc-box {
+	margin-left:3rem;
+}
+
+.material-icons.lockedlevel {
+	margin-left:90%;
+	font-size:1.56rem;
+}
+
+#playaction {
+	padding-bottom:2rem;
+}
+
+#playnow span {
+	float:right;
+	font-size:1.3rem;
+}
+
+#card-locked {
+	opacity: 0.6;
+}

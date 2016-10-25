@@ -53,7 +53,9 @@ $small-height-and-down: "only screen and (max-height : #{$small-height})" !defau
 /* Start Global Wisteria Life CSS */
 
 body {
-    background-image: url('/img/wisteria-tunnel.jpg');
+    background: $primary-color url('/img/wisteria-tunnel.jpg') no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
     font-size: 12px;
 }
 
@@ -79,7 +81,7 @@ body {
 
 nav {
 	position: fixed;
-	z-index: 10;
+	z-index: 20;
 }
 
 #wisteria-nav {
