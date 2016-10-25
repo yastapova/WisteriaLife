@@ -115,6 +115,11 @@ nav {
 	}
 }
 
+.screen-overlay {
+	background: rgba(16, 16, 16, 0.7);
+	height: 100vh;
+}
+
 /* Screen specific styles */
 @import 'splash';
 @import 'about-save-level';
