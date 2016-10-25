@@ -82,6 +82,19 @@ body {
 nav {
 	position: fixed;
 	z-index: 20;
+
+	#logo {
+		background: url('/img/logo.png') no-repeat;
+		background-size: cover;
+		margin: 5px;
+		display: inline-block;
+		width: 50px;
+		height: $navbar-height-mobile;
+
+		@media #{$medium-and-up} {
+			height: $navbar-height;
+		}
+	}
 }
 
 #wisteria-nav {
