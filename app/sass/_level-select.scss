@@ -33,7 +33,6 @@
 }
 
 #level-num {
-	z-index:10;
 	position:absolute; 
 	font-size:2em;
 	top: 50%;
@@ -44,7 +43,7 @@
 
 #level-title {
 	font-weight:bold;
-	font-size:0.96rem;
+	font-size:1rem;
 	color:black;
 	display:inline;
 	vertical-align:top;
@@ -52,7 +51,7 @@
 }
 
 #level-sub {
-	font-size:0.87rem;
+	font-size:0.9rem;
 	display:inline;
 	text-align:left;
 	position:relative;
@@ -67,4 +66,22 @@
 
 #desc-box {
 	margin-left:3rem;
+}
+
+.material-icons.lockedlevel {
+	margin-left:90%;
+	font-size:1.56rem;
+}
+
+#playaction {
+	padding-bottom:2rem;
+}
+
+#playnow span {
+	float:right;
+	font-size:1.3rem;
+}
+
+#card-locked {
+	opacity: 0.6;
 }
