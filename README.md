@@ -25,13 +25,5 @@ This will concatenate all the JavaScript files, compile the SCSS files, and star
 This will also start a file watch that will automatically recompile SCSS files and
 re-concatenate JavaScript files whenever a change is saved. There is no need to restart the server.
 
-To only concatenate the JavaScript files without restarting the server, run this in another terminal window:
-
-```
-gulp scripts
-```
-
-This should run a Gulp task to concatenate all the JavaScript files.
-
 ## Design
 Wisteria Life is using [Materialize CSS](http://materializecss.com/getting-started.html). Refer to its documentation.
