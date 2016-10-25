@@ -1,5 +1,7 @@
-#defeat-pause-victory-screen {
-
+#defeat-pause-victory-screen {    
+    .center-all {
+        text-align: center;
+    }
 }
 
 #defeat-pause-victory-title {
@@ -58,8 +60,4 @@
 .material-icons.disabled {
     color: lightgray;
     font-size: 4.5em;
-}
-
-.center-all {
-    text-align: center;
 }
