@@ -31,10 +31,13 @@
                 width: 50px;
                 position: relative;
                 margin-right: 1.5em;
+                display:table-cell;
+                vertical-align:middle;
+                float:left;
             }
 
-            span.card-title {
-                vertical-align: middle;
+            span.card-title {     
+                float:right;
             }
 
             div.titles-with-sub {
