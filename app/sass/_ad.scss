@@ -1,14 +1,24 @@
 #ad-screen {
-
+	padding-top: 0px;
 }
 
 #ad {
-	height:30em;
-	width:30em;
+	height: 30em;
+	width: 30em;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .material-icons.close {
-	font-size:3em;
-	float:right;
-	color:white;
+	font-size: 3em;
+	float: right;
+	padding: 15px;
+	color: #fff;
+	@include transition(all 0.3s linear);
+
+	&:hover {
+		color: $primary-color;
+	}
 }
