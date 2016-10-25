@@ -1,8 +1,8 @@
-.card-content{
+.card-content {
     color: #989898;
 }
 
-.card-action{
+.card-action {
     color: black;
     font-size: 1em;
 }
@@ -12,86 +12,85 @@
 }
 
 .card {
-	.card-content{
-		padding: 10px 20px 20px;
+    .card-content {
+        padding: 10px 20px 20px;
 
-	    .type-powerup{
-	        display: inline-block;
-	        color: #000;
-	        height: 50px;
+        .type-powerup {
+            display: inline-block;
+            color: #000;
+            height: 50px;
 
-	        .material-icons {
-	            font-size: 2.5em;
-	            vertical-align: middle;
-	        }
+            .material-icons {
+                font-size: 2.5em;
+                vertical-align: middle;
+            }
 
-	        .card-icon {
-	            display: inline-block;
-	            height: 50px;
-	            width:50px;
-	            position:relative;
-	            margin-right:1.5em;
-	        }
+            .card-icon {
+                display: inline-block;
+                height: 50px;
+                width: 50px;
+                position: relative;
+                margin-right: 1.5em;
+            }
 
-	        span.card-title {
-	            vertical-align: middle;
-	        }
+            span.card-title {
+                vertical-align: middle;
+            }
 
-	        div.titles-with-sub {
-	        	display: inline-block;
-	        }
+            div.titles-with-sub {
+                display: inline-block;
+            }
 
             span.level-title {
-                font-weight:bold;
-                font-size:1rem;
-                color:black;
-                display:block;
-                vertical-align:top;
+                font-weight: bold;
+                font-size: 1rem;
+                color: black;
+                display: block;
+                vertical-align: top;
                 // position:absolute;
             }
 
             span.level-sub {
-                font-size:0.9rem;
-                display:block;
-                text-align:left;
-                position:relative;
-                vertical-align:1em;
+                font-size: 0.9rem;
+                display: block;
+                text-align: left;
+                position: relative;
+                vertical-align: 1em;
             }
 
             span.card-desc {
-    			word-wrap: break-word;
-    			margin-left:5rem;
-			}
+                word-wrap: break-word;
+                margin-left: 5rem;
+            }
+        }
 
-	    }
+        .icon-description {
+            margin-top: 7px;
+        }
 
-	    .icon-description {
-	        margin-top: 7px;
-	    }
+        .icon-description {
+            font-size: 1rem;
+        }
 
-		.icon-description {
-		    font-size: 1rem;
-		}
-
-	    img{
-	        width: 100px;
-	        height: 100px;
-	        display: inline-block;
-	        float: left;
-	        margin-right: 5px;
-	        margin-top:-5px;
-	        margin-right:9px;
-	    }
-	}
+        img {
+            width: 100px;
+            height: 100px;
+            display: inline-block;
+            float: left;
+            margin-right: 5px;
+            margin-top: -5px;
+            margin-right: 9px;
+        }
+    }
 }
 
 .container .row {
-	margin-left: 0;
-	margin-right: 0;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 #card-checkbox {
-    float:right;
+    float: right;
 }
 
 #card-locked {

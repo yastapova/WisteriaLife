@@ -2,17 +2,17 @@ var LevelEditScreen = function(id, level) {
     this.level = level;
     this.renderGrid = [];
     this.defenseGrid = [];
-    screen.call(this,id);   
+    screen.call(this,id);
 };
 
 inherits(LevelEditScreen, screen);
 
 LevelEditScreen.prototype.load = function() {
-
+	
 };
 
 LevelEditScreen.prototype.hide = function() {
-    
+
 };
 
 LevelEditScreen.prototype.placeShape = function(shape) {
@@ -24,5 +24,5 @@ LevelEditScreen.prototype.isValidCell = function() {
 }
 
 LevelEditScreen.prototype.getRelativeCoords = function() {
-    
+
 }
