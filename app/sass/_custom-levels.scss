@@ -12,3 +12,19 @@
         height: 100px;
     }
 }
+
+.input-field#card-checkbox {
+	margin-top: 0;
+}
+
+#card-checkbox [type="checkbox"]:not(:checked), #card-checkbox [type="checkbox"]:checked {
+	position: initial;
+}
+
+#card-checkbox [type="checkbox"] + label {
+    position: initial;
+    padding-left: 0;
+}
+.input-field#card-checkbox label {
+	position: initial;
+}
