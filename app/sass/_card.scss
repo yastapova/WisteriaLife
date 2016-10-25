@@ -51,6 +51,12 @@
                 position:relative;
                 vertical-align:1.7em;
             }
+
+            span.card-desc {
+    			word-wrap: break-word;
+    			margin-left:5rem;
+			}
+
 	    }
 
 	    .icon-description {
