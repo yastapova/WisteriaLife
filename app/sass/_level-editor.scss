@@ -1,21 +1,21 @@
 #level-editor {
-	height: 100%;
+    height: 100%;
 }
 
 .material-icons.clear-cell {
-	color: #26a69a;
-	font-size: 2.5em;
+    color: #26a69a;
+    font-size: 2.5em;
 }
 
 .switch {
-	display: inline-block;
+    display: inline-block;
 }
 
 .switch label .lever {
-	background-color: $enemy-light;
+    background-color: $enemy-light;
 }
 .switch label .lever:after {
-	background-color: $enemy-color;
+    background-color: $enemy-color;
 }
 
 .switch label input[type=checkbox]:checked + .lever {
@@ -26,10 +26,10 @@
 }
 
 .enemy-swatch {
-	color: $enemy-color;
-	font-size: 1.5rem;
+    color: $enemy-color;
+    font-size: 1.5rem;
 }
 .friendly-swatch {
-	color: $primary-dark;
-	font-size: 1.5rem;
+    color: $primary-dark;
+    font-size: 1.5rem;
 }

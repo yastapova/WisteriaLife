@@ -6,52 +6,52 @@
  */
 
 var ScreenManager = function(screenManager) {
-	this.currentScreen = screenManager.currentScreen;
-	this.lastLegalScreen = screenManager.lastLegalScreen;
-	this.nextScreen = screenManager.nextScreen;
-	this.screenMap = screenManager.screenMap;
+    this.currentScreen = screenManager.currentScreen;
+    this.lastLegalScreen = screenManager.lastLegalScreen;
+    this.nextScreen = screenManager.nextScreen;
+    this.screenMap = screenManager.screenMap;
 };
 
 ScreenManager.prototype.setCurrentScreen = function(currentScreen) {
-	this.currentScreen = currentScreen;
+    this.currentScreen = currentScreen;
 };
 
 ScreenManager.prototype.setLastLegalScreen = function(lastLegalScreen) {
-	this.lastLegalScreen = lastLegalScreen;
+    this.lastLegalScreen = lastLegalScreen;
 };
 
 ScreenManager.prototype.setNextScreen = function(nextScreen) {
-	this.nextScreen = nextScreen;
+    this.nextScreen = nextScreen;
 };
 
 ScreenManager.prototype.setScreenMap = function(screenMap) {
-	this.screenMap = screenMap;
+    this.screenMap = screenMap;
 };
 
 ScreenManager.prototype.getCurrentScreen = function() {
-	return this.currentScreen;
+    return this.currentScreen;
 };
 
 ScreenManager.prototype.getLastLegalScreen = function() {
-	return this.lastLegalScreen;
+    return this.lastLegalScreen;
 };
 
 ScreenManager.prototype.getNextScreen = function() {
-	return this.nextScreen;
+    return this.nextScreen;
 };
 
 ScreenManager.prototype.getScreenMap = function() {
-	return this.screenMap;
+    return this.screenMap;
 };
 
 ScreenManager.prototype.setScreen = function(currentScreen) {
-	this.currentScreen = currentScreen;
+    this.currentScreen = currentScreen;
 };
 
 ScreenManager.prototype.initializeScreens = function() {
-	
+    
 };
 
 ScreenManager.prototype.back = function() {
-	
+    
 };

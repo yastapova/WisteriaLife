@@ -7,7 +7,7 @@
   * construct a SaveLevelScreen obj with given id
   */
 var SaveLevelScreen = function(id) {
-	Screen.call(this,id);	
+    Screen.call(this,id);   
 };
 
 inherits(SaveLevelScreen, Screen);
@@ -20,5 +20,5 @@ SaveLevelScreen.prototype.load = function() {
 };
 
 SaveLevelScreen.prototype.hide = function() {
-	
+    
 };

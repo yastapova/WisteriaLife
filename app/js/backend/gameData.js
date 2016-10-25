@@ -7,8 +7,8 @@
   * Construct a blank GameData obj
   */
 var GameData = function() {
-	this.wistbux = 0;
+    this.wistbux = 0;
     this.powerupsMap = new Map();
-	this.currentLevel = 0;
-	this.customLevelsIds = [];
+    this.currentLevel = 0;
+    this.customLevelsIds = [];
 };

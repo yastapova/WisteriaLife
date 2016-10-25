@@ -1,294 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>Level Select - Wisteria Life</title>
+        <title>Level Select - Wisteria Life</title>
 
-		<!-- jQuery -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <!-- jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
-		<!-- Roboto font -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <!-- Roboto font -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
-		<!-- Material Icons -->
-		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Material Icons -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-		<!-- Materialize -->
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+        <!-- Materialize -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
-		<!-- CSS including Materialize -->
-		<link rel="stylesheet" href="dist/css/wisteria.css"/>
+        <!-- CSS including Materialize -->
+        <link rel="stylesheet" href="dist/css/wisteria.css"/>
 
-		<!-- Custom JavaScript -->
-		<script src="dist/js/wisteria.js"></script>
-	</head>
+        <!-- Custom JavaScript -->
+        <script src="dist/js/wisteria.js"></script>
+    </head>
 
-	<body>
+    <body>
 
-		<!-- Global Nav Bar -->
-		<nav>
-			<div id="wisteria-nav" class="nav-wrapper">
-				<ul id="nav-mobile" class="left">
-					<li id="account">
-						<a href="mobile.html">
-							<i class="material-icons left">person</i>
-							R. Boxman</a>
-					</li>
-				</ul>
-				<a href="/" id="logo" class="brand-logo center"></a>
-				<ul id="nav-mobile" class="right">
-					<li id="wistbux">
-						<a href="#">
-							<i class="material-icons left">attach_money</i>
-							9,999</a>
-					</li>
+        <!-- Global Nav Bar -->
+        <nav>
+            <div id="wisteria-nav" class="nav-wrapper">
+                <ul id="nav-mobile" class="left">
+                    <li id="account">
+                        <a href="mobile.html">
+                            <i class="material-icons left">person</i>
+                            R. Boxman</a>
+                    </li>
+                </ul>
+                <a href="/" id="logo" class="brand-logo center"></a>
+                <ul id="nav-mobile" class="right">
+                    <li id="wistbux">
+                        <a href="#">
+                            <i class="material-icons left">attach_money</i>
+                            9,999</a>
+                    </li>
 
-					<!-- Hamburger Menu - TODO -->
-					<li id="hamburger">
-						<a href="#!" id="hamburger-vert" data-activates="hamburger-dropdown">
-							<i class="material-icons">more_vert</i>
-						</a>
-					</li>
-				</ul>
+                    <!-- Hamburger Menu - TODO -->
+                    <li id="hamburger">
+                        <a href="#!" id="hamburger-vert" data-activates="hamburger-dropdown">
+                            <i class="material-icons">more_vert</i>
+                        </a>
+                    </li>
+                </ul>
 
-				<ul id="hamburger-dropdown" class="dropdown-content">
-					<li>
-						<a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
-					</li>
-					<li>
-						<a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
-					</li>
-					<li>
-						<a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
-					</li>
-					<li>
-						<a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
-					</li>
-					<li class="divider"></li>
-					<li>
-						<a href="#!" id="drop-loginout"><i class="material-icons">power_settings_new</i></a>
-					</li>
-				</ul>
-			</div>
-		</nav>
+                <ul id="hamburger-dropdown" class="dropdown-content">
+                    <li>
+                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
+                    </li>
+                    <li>
+                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
+                    </li>
+                    <li>
+                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
+                    </li>
+                    <li>
+                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#!" id="drop-loginout"><i class="material-icons">power_settings_new</i></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 
-		<!-- Screen Section -->
-		<div class="container">
-			<!-- Page Content goes here -->
-			<div id="level-select-screen" class="container-inner">
-				<div id="region-header">
-					<h2 id="region-number">REGION 1</h2>
-				</div>
-				<div class="row">
-					<div class="col s6 m4">
-						<div class="card"> <!-- This is the beginning of the card !-->
-							<div class="card-content">
-								<div class="type-level">
-									<div id="level-num-shape"><span id="level-num">1</span></div>
-									<div id="level-title">Rise of the Scarlet</div>
-									<div id="level-sub">Level 1</div>
-								</div>
-								<div class="icon-description cf">
-									<img src="./img/level thumbnails/grey_square.png"></img>
-									<div id="desc-box">
-										<p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-									</div>
-								</div>
-							</div>
-							<div class="card-action" id="playaction">
-								<a id="playnow" href="#" data-level="level1">
-								<span>Play Now</span></a>
-							</div>
-						</div> <!-- this is the end of the card !-->
-					</div>
-					<div class="col s6 m4">
-						<div class="card"> <!-- This is the beginning of the card !-->
-							<div class="card-content">
-								<div class="type-level">
-									<div id="level-num-shape"><span id="level-num">2</span></div>
-									<div id="level-title">Level 2</div>
-									<div id="level-sub">Level 2</div>
-								</div>
-								<div class="icon-description cf">
-									<img src="./img/level thumbnails/grey_square.png"></img>
-									<div id="desc-box">
-										<p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-									</div>
-								</div>
-							</div>
-							<div class="card-action" id="playaction">
-								<a id="playnow" href="#" data-level="level2">
-								<span>Play Now</span></a>
-							</div>
-						</div> <!-- this is the end of the card !-->
-					</div>
-					<div class="col s6 m4">
-						<div class="card"> <!-- This is the beginning of the card !-->
-							<div class="card-content">
-								<div class="type-level">
-									<div id="level-num-shape"><span id="level-num">3</span></div>
-									<div id="level-title">Level 3</div>
-									<div id="level-sub">Level 3</div>
-								</div>
-								<div class="icon-description cf">
-									<img src="./img/level thumbnails/grey_square.png"></img>
-									<div id="desc-box">
-										<p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-									</div>
-								</div>
-							</div>
-							<div class="card-action" id="playaction">
-								<a id="playnow" href="#" data-level="level3">
-								<span>Play Now</span></a>
-							</div>
-						</div> <!-- this is the end of the card !-->
-					</div>
-					<div class="col s6 m4">
-						<div class="card"> <!-- This is the beginning of the card !-->
-							<div class="card-content">
-								<div class="type-level">
-									<div id="level-num-shape"><span id="level-num">4</span></div>
-									<div id="level-title">Level 4</div>
-									<div id="level-sub">Level 4</div>
-								</div>
-								<div class="icon-description cf">
-									<img src="./img/level thumbnails/grey_square.png"></img>
-									<div id="desc-box">
-										<p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-									</div>
-								</div>
-							</div>
-							<div class="card-action" id="playaction">
-								<a id="playnow" href="#" data-level="level4">
-								<span>Play Now</span></a>
-							</div>
-						</div> <!-- this is the end of the card !-->
-					</div>
-					<div class="col s6 m4">
-						<div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
-							<div class="card-content">
-								<div class="type-level">
-									<div id="level-num-shape"><span id="level-num">5</span></div>
-									<div id="level-title">Level 5</div>
-									<div id="level-sub">Level 5</div>
-								</div>
-								<div class="icon-description cf">
-									<img src="./img/level thumbnails/grey_square.png"></img>
-									<div id="desc-box">
-										<p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-									</div>
-								</div>
-							</div>
-							<div class="card-action">
-								<i class="material-icons lockedlevel">lock_outline</i>
-							</div>
-						</div> <!-- this is the end of the card !-->
-					</div>
-					<div class="col s6 m4">
-						<div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
-							<div class="card-content">
-								<div class="type-level">
-									<div id="level-num-shape"><span id="level-num">6</span></div>
-									<div id="level-title">Level 6</div>
-									<div id="level-sub">Level 6</div>
-								</div>
-								<div class="icon-description cf">
-									<img src="./img/level thumbnails/grey_square.png"></img>
-									<div id="desc-box">
-										<p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-									</div>
-								</div>
-							</div>
-							<div class="card-action">
-								<i class="material-icons lockedlevel">lock_outline</i>
-							</div>
-						</div> <!-- this is the end of the card !-->
-					</div> <!-- This is the end of the col div !-->
-					<div class="col s6 m4">
-						<div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
-							<div class="card-content">
-								<div class="type-level">
-									<div id="level-num-shape"><span id="level-num">7</span></div>
-									<div id="level-title">Level 7</div>
-									<div id="level-sub">Level 7</div>
-								</div>
-								<div class="icon-description cf">
-									<img src="./img/level thumbnails/grey_square.png"></img>
-									<div id="desc-box">
-										<p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-									</div>
-								</div>
-							</div>
-							<div class="card-action">
-								<i class="material-icons lockedlevel">lock_outline</i>
-							</div>
-						</div> <!-- this is the end of the card !-->
-					</div> <!-- This is the end of the col div !-->
-					<div class="col s6 m4">
-						<div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
-							<div class="card-content">
-								<div class="type-level">
-									<div id="level-num-shape"><span id="level-num">8</span></div>
-									<div id="level-title">Level 8</div>
-									<div id="level-sub">Level 8</div>
-								</div>
-								<div class="icon-description cf">
-									<img src="./img/level thumbnails/grey_square.png"></img>
-									<div id="desc-box">
-										<p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-									</div>
-								</div>
-							</div>
-							<div class="card-action">
-								<i class="material-icons lockedlevel">lock_outline</i>
-							</div>
-						</div> <!-- this is the end of the card !-->
-					</div> <!-- This is the end of the col div !-->
-					<div class="col s6 m4">
-						<div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
-							<div class="card-content">
-								<div class="type-level">
-									<div id="level-num-shape"><span id="level-num">9</span></div>
-									<div id="level-title">Level 9</div>
-									<div id="level-sub">Level 9</div>
-								</div>
-								<div class="icon-description cf">
-									<img src="./img/level thumbnails/grey_square.png"></img>
-									<div id="desc-box">
-										<p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-									</div>
-								</div>
-							</div>
-							<div class="card-action">
-								<i class="material-icons lockedlevel">lock_outline</i>
-							</div>
-						</div> <!-- this is the end of the card !-->
-					</div> <!-- This is the end of the col div !-->
-					<div class="col s6 m4 offset-m4">
-						<div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
-							<div class="card-content">
-								<div class="type-level">
-									<div id="level-num-shape"><span id="level-num">10</span></div>
-									<div id="level-title">Boss Level</div>
-									<div id="level-sub">Level 10</div>
-								</div>
-								<div class="icon-description cf">
-									<img src="./img/level thumbnails/grey_square.png"></img>
-									<div id="desc-box">
-										<p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
-									</div>
-								</div>
-							</div>
-							<div class="card-action">
-								<i class="material-icons lockedlevel">lock_outline</i>
-							</div>
-						</div> <!-- this is the end of the card !-->
-					</div> <!-- This is the end of the col div !-->
-				</div> <!-- This is the end of the row div !-->
-			</div> <!-- This is the end of the level select div !-->
-		</div> <!-- This is the end of the container div !-->
-	</body>
+        <!-- Screen Section -->
+        <div class="container">
+            <!-- Page Content goes here -->
+            <div id="level-select-screen" class="container-inner">
+                <div id="region-header">
+                    <h2 id="region-number">REGION 1</h2>
+                </div>
+                <div class="row">
+                    <div class="col s6 m4">
+                        <div class="card"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">1</span></div>
+                                    <div id="level-title">Rise of the Scarlet</div>
+                                    <div id="level-sub">Level 1</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action" id="playaction">
+                                <a id="playnow" href="#" data-level="level1">
+                                <span>Play Now</span></a>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">2</span></div>
+                                    <div id="level-title">Level 2</div>
+                                    <div id="level-sub">Level 2</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action" id="playaction">
+                                <a id="playnow" href="#" data-level="level2">
+                                <span>Play Now</span></a>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">3</span></div>
+                                    <div id="level-title">Level 3</div>
+                                    <div id="level-sub">Level 3</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action" id="playaction">
+                                <a id="playnow" href="#" data-level="level3">
+                                <span>Play Now</span></a>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">4</span></div>
+                                    <div id="level-title">Level 4</div>
+                                    <div id="level-sub">Level 4</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action" id="playaction">
+                                <a id="playnow" href="#" data-level="level4">
+                                <span>Play Now</span></a>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">5</span></div>
+                                    <div id="level-title">Level 5</div>
+                                    <div id="level-sub">Level 5</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <i class="material-icons lockedlevel">lock_outline</i>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div>
+                    <div class="col s6 m4">
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">6</span></div>
+                                    <div id="level-title">Level 6</div>
+                                    <div id="level-sub">Level 6</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <i class="material-icons lockedlevel">lock_outline</i>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div> <!-- This is the end of the col div !-->
+                    <div class="col s6 m4">
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">7</span></div>
+                                    <div id="level-title">Level 7</div>
+                                    <div id="level-sub">Level 7</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <i class="material-icons lockedlevel">lock_outline</i>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div> <!-- This is the end of the col div !-->
+                    <div class="col s6 m4">
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">8</span></div>
+                                    <div id="level-title">Level 8</div>
+                                    <div id="level-sub">Level 8</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <i class="material-icons lockedlevel">lock_outline</i>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div> <!-- This is the end of the col div !-->
+                    <div class="col s6 m4">
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">9</span></div>
+                                    <div id="level-title">Level 9</div>
+                                    <div id="level-sub">Level 9</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <i class="material-icons lockedlevel">lock_outline</i>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div> <!-- This is the end of the col div !-->
+                    <div class="col s6 m4 offset-m4">
+                        <div class="card" id="card-locked"> <!-- This is the beginning of the card !-->
+                            <div class="card-content">
+                                <div class="type-level">
+                                    <div id="level-num-shape"><span id="level-num">10</span></div>
+                                    <div id="level-title">Boss Level</div>
+                                    <div id="level-sub">Level 10</div>
+                                </div>
+                                <div class="icon-description cf">
+                                    <img src="./img/level thumbnails/grey_square.png"></img>
+                                    <div id="desc-box">
+                                        <p id="level-desc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-action">
+                                <i class="material-icons lockedlevel">lock_outline</i>
+                            </div>
+                        </div> <!-- this is the end of the card !-->
+                    </div> <!-- This is the end of the col div !-->
+                </div> <!-- This is the end of the row div !-->
+            </div> <!-- This is the end of the level select div !-->
+        </div> <!-- This is the end of the container div !-->
+    </body>
 </html>

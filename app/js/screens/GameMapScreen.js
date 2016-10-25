@@ -4,7 +4,7 @@
  */
 
 var gameMap = function (id) {
-	screen.call(this, id);
+    screen.call(this, id);
 };
 
 inherits(gameMap, screen);

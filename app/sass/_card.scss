@@ -1,49 +1,49 @@
 .card-content{
-	color: #989898;
+    color: #989898;
 }
 
 .card-action{
-	color: black;
-	font-size: 1em;
+    color: black;
+    font-size: 1em;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
-	color: black;
+    color: black;
 }
 
 .card-content{
-	.type-powerup{
-		display: inline-block;
-		color: #000;
-		height: 50px;
+    .type-powerup{
+        display: inline-block;
+        color: #000;
+        height: 50px;
 
-		.material-icons {
-			font-size: 2.5em;
-			vertical-align: middle;
-		}
+        .material-icons {
+            font-size: 2.5em;
+            vertical-align: middle;
+        }
 
-		span.card-icon {
-			display: inline-block;
-			height: 50px;
-			padding-right: 10px;
-		}
+        span.card-icon {
+            display: inline-block;
+            height: 50px;
+            padding-right: 10px;
+        }
 
-		span.card-title {
-			vertical-align: middle;
-		}
-	}
+        span.card-title {
+            vertical-align: middle;
+        }
+    }
 
-	.icon-description {
-		margin-top: 7px;
-	}
+    .icon-description {
+        margin-top: 7px;
+    }
 
-	img{
-		width: 100px;
-		height: 100px;
-		display: inline-block;
-		float: left;
-		margin-right: 5px;
-		margin-top:-5px;
-		margin-right:9px;
-	}
+    img{
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+        float: left;
+        margin-right: 5px;
+        margin-top:-5px;
+        margin-right:9px;
+    }
 }

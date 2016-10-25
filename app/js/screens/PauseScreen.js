@@ -9,13 +9,13 @@
  */
 
 var PauseScreen = function(id, level) {
-	if(level === undefined) {
-		this.level = undefined;
-	}
-	else {
-		this.level = level;
-	}
-	screen.call(this, id, level);
+    if(level === undefined) {
+        this.level = undefined;
+    }
+    else {
+        this.level = level;
+    }
+    screen.call(this, id, level);
 };
 
 inherits(PauseScreen, screen); 
@@ -30,9 +30,9 @@ PauseScreen.prototype.load = function() {
 };
 
 PauseScreen.prototype.hide = function() {
-	
+    
 };
 
 PauseScreen.prototype.replay = function() {
-	
+    
 }

@@ -7,11 +7,11 @@
   * construct a powerup obj with given attributes and effect
   */
 var Powerup = function(powerupAttrObj, effect) {
-	this.name = powerupAttrObj.name;
-	this.type = powerupAttrObj.type;
-	this.description = powerupAttrObj.description;
-	this.price = powerupAttrObj.price;
-	this.thumbnail = powerupAttrObj.thumbnail
-	this.effect = effect;
+    this.name = powerupAttrObj.name;
+    this.type = powerupAttrObj.type;
+    this.description = powerupAttrObj.description;
+    this.price = powerupAttrObj.price;
+    this.thumbnail = powerupAttrObj.thumbnail
+    this.effect = effect;
 };
 

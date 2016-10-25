@@ -9,13 +9,13 @@
  */
 
 var LevelStoryScreen = function(id, level) {
-	if(level === undefined) {
-		this.level = undefined;
-	}
-	else {
-		this.level = level;
-	}
-	screen.call(this, id, level);
+    if(level === undefined) {
+        this.level = undefined;
+    }
+    else {
+        this.level = level;
+    }
+    screen.call(this, id, level);
 };
 
 inherits(LevelStoryScreen, screen); 
@@ -30,5 +30,5 @@ LevelStoryScreen.prototype.load = function() {
 };
 
 LevelStoryScreen.prototype.hide = function() {
-	
+    
 };

@@ -7,7 +7,7 @@
   * construct a DefeatScreen obj with given id
   */
 var DefeatScreen = function(id) {
-	Screen.call(this,id);	
+    Screen.call(this,id);   
 };
 
 inherits(DefeatScreen, Screen);
@@ -20,5 +20,5 @@ DefeatScreen.prototype.load = function() {
 };
 
 DefeatScreen.prototype.hide = function() {
-	
+    
 };

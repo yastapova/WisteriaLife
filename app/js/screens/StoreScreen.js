@@ -7,7 +7,7 @@
   * construct a StoreScreen obj with given id
   */
 var StoreScreen = function(id) {
-	Screen.call(this,id);	
+    Screen.call(this,id);   
 };
 
 inherits(StoreScreen, Screen);
@@ -20,5 +20,5 @@ StoreScreen.prototype.load = function() {
 };
 
 StoreScreen.prototype.hide = function() {
-	
+    
 };

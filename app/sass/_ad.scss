@@ -1,13 +1,13 @@
 #ad-screen {
-	padding-top: 0px;
+    padding-top: 0px;
 
-	// ad is a special case which overlays even the navbar
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	z-index: 99;
-	height: 100vh;
-	width: 100vw;
+    // ad is a special case which overlays even the navbar
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 99;
+    height: 100vh;
+    width: 100vw;
 }
 
 #ad {
@@ -16,8 +16,8 @@
     margin-left:-13rem;
     top:50%;
     left:50%;
-	height:26rem;
-	width:26rem;
+    height:26rem;
+    width:26rem;
 
     @media #{$large-height-up} {
         position:absolute;
@@ -29,35 +29,35 @@
         width:44rem;
     }
 
-	@media #{$medium-to-large} {
+    @media #{$medium-to-large} {
         position:absolute;
         margin-top:-17rem;
         margin-left:-17rem;
         top:50%;
         left:50%;
-		height:34rem;
-		width:34rem;
-	}
+        height:34rem;
+        width:34rem;
+    }
 
-	@media #{$small-height-and-down} {
+    @media #{$small-height-and-down} {
         position:absolute;
         margin-top:-10rem;
         margin-left:-10rem;
         top:50%;
         left:50%;
-    	width: 20rem;
-    	height: 20rem;
-	}
+        width: 20rem;
+        height: 20rem;
+    }
 }
 
 .material-icons.close {
-	font-size: 3em;
-	float: right;
-	padding: 15px;
-	color: #fff;
-	@include transition(all 0.3s linear);
+    font-size: 3em;
+    float: right;
+    padding: 15px;
+    color: #fff;
+    @include transition(all 0.3s linear);
 
-	&:hover {
-		color: $primary-color;
-	}
+    &:hover {
+        color: $primary-color;
+    }
 }

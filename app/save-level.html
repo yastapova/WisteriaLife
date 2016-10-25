@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-		<title>Save - Wisteria Life</title>
+        <title>Save - Wisteria Life</title>
 
         <!-- jQuery -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -49,116 +49,116 @@
                     </li>
                 </ul>
 
-				<ul id="hamburger-dropdown" class="dropdown-content">
-					<li>
-						<a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
-					</li>
-					<li>
-						<a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
-					</li>
-					<li>
-						<a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
-					</li>
-					<li>
-						<a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
-					</li>
-					<li class="divider"></li>
-					<li>
-						<a href="#!" id="drop-loginout"><i class="material-icons">power_settings_new</i></a>
-					</li>
-				</ul>
+                <ul id="hamburger-dropdown" class="dropdown-content">
+                    <li>
+                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
+                    </li>
+                    <li>
+                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
+                    </li>
+                    <li>
+                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
+                    </li>
+                    <li>
+                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#!" id="drop-loginout"><i class="material-icons">power_settings_new</i></a>
+                    </li>
+                </ul>
             </div>
         </nav>
 
         <!-- Screen Section -->
         <div class="container">
             <!-- Page Content goes here -->
-			<div id="about-save-level-screen" class="container-inner screen-overlay">
-				<div class="row">
-					<!--
-						Don't put a placeholder text
-						Materialize makes a nice animation w/o one
-					-->
-					<div class="input-field col s6 offset-s3">
-						<input id="level_title" type="text" class="validate" length="75">
-						<label for="level_title">Level Title  &nbsp; <small>Give your level an exciting name.</small></label>
-					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s6 offset-s3">
-						<textarea id="level_description" class="materialize-textarea validate" length="500"></textarea>
-						<label for="level_description">Level Description &nbsp; <small>Give your creation a story!</small></label>
-					</div>
-					<div class="col s6 offset-s3">
-						<label for="ally_units">Ally Units</label></br>
-					</div>
-					<div class="col s6 offset-s3" id="save_ally_units">
-						<label class="units" for="tower">Tower</label>
-						<span class="range-field">
-						  <input type="range" id="tower_num" min="0" max="25" />
-						</span>
-						<label class="units" for="blockade">Blockade</label>
-						<span class="range-field">
-						  <input type="range" id="blockad_num" min="0" max="25" />
-						</span>
-						<label class="units" for="caltrops">Caltrops</label>
-						<span class="range-field">
-						  <input type="range" id="caltrops_num" min="0" max="25" />
-						</span>
+            <div id="about-save-level-screen" class="container-inner screen-overlay">
+                <div class="row">
+                    <!--
+                        Don't put a placeholder text
+                        Materialize makes a nice animation w/o one
+                    -->
+                    <div class="input-field col s6 offset-s3">
+                        <input id="level_title" type="text" class="validate" length="75">
+                        <label for="level_title">Level Title  &nbsp; <small>Give your level an exciting name.</small></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6 offset-s3">
+                        <textarea id="level_description" class="materialize-textarea validate" length="500"></textarea>
+                        <label for="level_description">Level Description &nbsp; <small>Give your creation a story!</small></label>
+                    </div>
+                    <div class="col s6 offset-s3">
+                        <label for="ally_units">Ally Units</label></br>
+                    </div>
+                    <div class="col s6 offset-s3" id="save_ally_units">
+                        <label class="units" for="tower">Tower</label>
+                        <span class="range-field">
+                          <input type="range" id="tower_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="blockade">Blockade</label>
+                        <span class="range-field">
+                          <input type="range" id="blockad_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="caltrops">Caltrops</label>
+                        <span class="range-field">
+                          <input type="range" id="caltrops_num" min="0" max="25" />
+                        </span>
 
-						<label class="units" for="archernw">Archer NW</label>
-						<span class="range-field">
-						  <input type="range" id="archernw_num" min="0" max="25" />
-						</span>
-						<label class="units" for="archerne">Archer NE</label>
-						<span class="range-field">
-						  <input type="range" id="archerne_num" min="0" max="25" />
-						</span>
-						<label class="units" for="archerse">Archer SE</label>
-						<span class="range-field">
-						  <input type="range" id="archerse_num" min="0" max="25" />
-						</span>
-						<label class="units" for="archersw">Archer SW</label>
-						<span class="range-field">
-						  <input type="range" id="archersw_num" min="0" max="25" />
-						</span>
-						<label class="units" for="infantryw">Infantry W</label>
-						<span class="range-field">
-						  <input type="range" id="infantryw_num" min="0" max="25" />
-						</span>
-						<label class="units" for="infantryn">Infantry N</label>
-						<span class="range-field">
-						  <input type="range" id="infantryn_num" min="0" max="25" />
-						</span>
-						<label class="units" for="infantrye">Infantry E</label>
-						<span class="range-field">
-						  <input type="range" id="infantrye_num" min="0" max="25" />
-						</span>
-						<label class="units" for="blockade">Infantry S</label>
-						<span class="range-field">
-						  <input type="range" id="infantrys_num" min="0" max="25" />
-						</span>
-						<label class="units" for="wallbackward">Wall Backward</label>
-						<span class="range-field">
-						  <input type="range" id="wallbackward_num" min="0" max="25" />
-						</span>
-						<label class="units" for="wallforward">Wall Forward</label>
-						<span class="range-field">
-						  <input type="range" id="wallforward_num" min="0" max="25" />
-						</span>
-					</div>
-					<div class="input-field col s6 offset-s3">
-					  <p>
-						 <input id="save-public" type="checkbox" checked="checked">
-						 <label for="save-public">Public</label>
-					  </p>
-					</div>
-					<div class="col s6 offset-s3 center-buttons">
-					 <button class="btn waves-effect waves-purple" type="submit">Save</button>
-					 <a href="level-editor.html" class="btn waves-effect waves-purple" type="submit" >Cancel</a>
-					</div>
-				</div>
-			</div>
+                        <label class="units" for="archernw">Archer NW</label>
+                        <span class="range-field">
+                          <input type="range" id="archernw_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="archerne">Archer NE</label>
+                        <span class="range-field">
+                          <input type="range" id="archerne_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="archerse">Archer SE</label>
+                        <span class="range-field">
+                          <input type="range" id="archerse_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="archersw">Archer SW</label>
+                        <span class="range-field">
+                          <input type="range" id="archersw_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="infantryw">Infantry W</label>
+                        <span class="range-field">
+                          <input type="range" id="infantryw_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="infantryn">Infantry N</label>
+                        <span class="range-field">
+                          <input type="range" id="infantryn_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="infantrye">Infantry E</label>
+                        <span class="range-field">
+                          <input type="range" id="infantrye_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="blockade">Infantry S</label>
+                        <span class="range-field">
+                          <input type="range" id="infantrys_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="wallbackward">Wall Backward</label>
+                        <span class="range-field">
+                          <input type="range" id="wallbackward_num" min="0" max="25" />
+                        </span>
+                        <label class="units" for="wallforward">Wall Forward</label>
+                        <span class="range-field">
+                          <input type="range" id="wallforward_num" min="0" max="25" />
+                        </span>
+                    </div>
+                    <div class="input-field col s6 offset-s3">
+                      <p>
+                         <input id="save-public" type="checkbox" checked="checked">
+                         <label for="save-public">Public</label>
+                      </p>
+                    </div>
+                    <div class="col s6 offset-s3 center-buttons">
+                     <button class="btn waves-effect waves-purple" type="submit">Save</button>
+                     <a href="level-editor.html" class="btn waves-effect waves-purple" type="submit" >Cancel</a>
+                    </div>
+                </div>
+            </div>
       </div>
     </body>
 </html>

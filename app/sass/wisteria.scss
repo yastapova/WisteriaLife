@@ -9,12 +9,12 @@ $large-screen: 1200px !default;
 @import 'materialize/materialize';
 
 /*
-	SCSS VARIABLES
-	======
+    SCSS VARIABLES
+    ======
 
-	See ./materialize/components/_variables.scss for full
-	list of variables. Override or add additional variables here.
-	Do not modify _variables.scss as that file is excluded from Git.
+    See ./materialize/components/_variables.scss for full
+    list of variables. Override or add additional variables here.
+    Do not modify _variables.scss as that file is excluded from Git.
  */
 
 // Primary Wisteria Color
@@ -39,8 +39,8 @@ $medium-to-large: "only screen and (min-height: #{$medium-height-up}) and (max-h
 $large-height-up: "only screen and (min-height : #{$large-height-up})" !default;
 
 /*
-	SCSS MIXINS
-	======
+    SCSS MIXINS
+    ======
  */
 
 @mixin transition($args...) {
@@ -65,49 +65,49 @@ $large-height-up: "only screen and (min-height : #{$large-height-up})" !default;
 
 body {
     background: $primary-color url('/img/wisteria-tunnel.jpg') no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
+    background-size: cover;
+    background-attachment: fixed;
     font-size: 12px;
 }
 
 a {
-	@include transition(all 0.3s linear);
+    @include transition(all 0.3s linear);
 }
 
 .container {
-	width: 100%;
-	max-width: 100%;
-	height: 100vh;
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
 
-	.row {
-		margin-right: 0;
-	}
+    .row {
+        margin-right: 0;
+    }
 }
 
 .container-inner {
-	padding-top: $navbar-height-mobile;
+    padding-top: $navbar-height-mobile;
 
-	@media #{$medium-and-up} {
-		padding-top: $navbar-height;
-	}
+    @media #{$medium-and-up} {
+        padding-top: $navbar-height;
+    }
 }
 
 nav {
-	position: fixed;
-	z-index: 20;
+    position: fixed;
+    z-index: 20;
 
-	#logo {
-		background: url('/img/logo.png') no-repeat;
-		background-size: cover;
-		margin: 5px;
-		display: inline-block;
-		width: 50px;
-		height: $navbar-height-mobile;
+    #logo {
+        background: url('/img/logo.png') no-repeat;
+        background-size: cover;
+        margin: 5px;
+        display: inline-block;
+        width: 50px;
+        height: $navbar-height-mobile;
 
-		@media #{$medium-and-up} {
-			height: $navbar-height;
-		}
-	}
+        @media #{$medium-and-up} {
+            height: $navbar-height;
+        }
+    }
 }
 
 #wisteria-nav {
@@ -117,92 +117,92 @@ nav {
         color: $primary-color;
     }
 
-	.dropdown-content {
-		min-width: 50px;
+    .dropdown-content {
+        min-width: 50px;
 
-		li:hover, a:hover {
-			background-color: transparent;
-		}
+        li:hover, a:hover {
+            background-color: transparent;
+        }
 
-		i {
-			color: $primary-color;
-			@include transition(all 0.3s ease-in);
-		}
+        i {
+            color: $primary-color;
+            @include transition(all 0.3s ease-in);
+        }
 
-		i:hover {
-			color: #000;
-		}
-	}
+        i:hover {
+            color: #000;
+        }
+    }
 }
 
 .cards {
-	.row {
-		font-size: 1em;
-	}
+    .row {
+        font-size: 1em;
+    }
 }
 
 // Android Holo style tab bar
 // Maybe update to Material style if applicable
 .holo-tab-bar {
-	position: fixed;
+    position: fixed;
     margin: 0 0 1rem;
     height:3rem;
     z-index:10;
     background: rgba(16, 16, 16, 0.6);
     width:100%;
 
-	.holo-tab {
-		font-size: 0.9rem;
-		color: rgba(255, 255, 255, 0.6);
-		display: inline-block;
-		line-height: 2.90rem;
-		text-transform: uppercase;
-		padding: 0 30px;
-		@include transition(all 0.3s linear);
+    .holo-tab {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.6);
+        display: inline-block;
+        line-height: 2.90rem;
+        text-transform: uppercase;
+        padding: 0 30px;
+        @include transition(all 0.3s linear);
 
-		&.active {
-			font-weight: bold;
-			border-bottom: 3px solid $primary-color;
-			color: rgba(255, 255, 255, 1.0);
-		}
+        &.active {
+            font-weight: bold;
+            border-bottom: 3px solid $primary-color;
+            color: rgba(255, 255, 255, 1.0);
+        }
 
-		&:hover {
-			background-color: rgba(0, 0, 0, 0.4);
-			color: rgba(255, 255, 255, 1.0);
-		}
-	}
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.4);
+            color: rgba(255, 255, 255, 1.0);
+        }
+    }
 
-	ul.holo-tab-bar-buttons {
+    ul.holo-tab-bar-buttons {
 
-		list-style: none;
-		height: 3rem;
-		margin: 0;
+        list-style: none;
+        height: 3rem;
+        margin: 0;
 
-		li {
-			display: inline-block;
-			padding: 0 1rem;
+        li {
+            display: inline-block;
+            padding: 0 1rem;
 
-			a {
-				color: $primary-color;
-				line-height: 3rem;
+            a {
+                color: $primary-color;
+                line-height: 3rem;
 
-				&:hover {
-					color: #fff;
-				}
-			}
+                &:hover {
+                    color: #fff;
+                }
+            }
 
-			i.material-icons {
-				font-size: 2.0rem;
-				vertical-align: middle;
-			}
-		}
-	}
+            i.material-icons {
+                font-size: 2.0rem;
+                vertical-align: middle;
+            }
+        }
+    }
 }
 
 .screen-overlay {
-	background: rgba(16, 16, 16, 0.7);
-	min-height: 100vh;
-	overflow: hidden;
+    background: rgba(16, 16, 16, 0.7);
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 /* Screen specific styles */

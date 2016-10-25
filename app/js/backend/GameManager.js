@@ -2,7 +2,7 @@
  * GameManager handles the user and saving/loading of data
  */
 var GameManager = function () {
-	this.user = undefined;
+    this.user = undefined;
 }
 
 /**
@@ -10,8 +10,8 @@ var GameManager = function () {
  * @return {User} user object
  */
 GameManager.prototype.initializeUser = function () {
-	user = new User("Mystery Boxman");
-	return user;
+    user = new User("Mystery Boxman");
+    return user;
 }
 
 /**
@@ -59,5 +59,5 @@ GameManager.prototype.back = function () {}
  * @return {boolean} login status
  */
 GameManager.prototype.checkIsLoggedIn = function () {
-	return false;
+    return false;
 }

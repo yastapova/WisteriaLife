@@ -2,28 +2,28 @@
     font-size: 5.5em;
     color: #fff;
     text-align: center;
-	padding: 80px;
-	margin: 0;
+    padding: 80px;
+    margin: 0;
 }
 
 #splash-buttons a {
-	margin: 10px auto;
-	width: 175px;
-	display: block;
+    margin: 10px auto;
+    width: 175px;
+    display: block;
 }
 
 @media #{$small-height-and-down} {
-	#splash-title {
-	    font-size: 3.5em;
-		padding: 40px;
-	}
+    #splash-title {
+        font-size: 3.5em;
+        padding: 40px;
+    }
 
-	#splash-buttons a {
-		width: 145px;
-	}
+    #splash-buttons a {
+        width: 145px;
+    }
 
-	.btn-large {
-		height: 42px;
-		line-height: 42px;
-	}
+    .btn-large {
+        height: 42px;
+        line-height: 42px;
+    }
 }

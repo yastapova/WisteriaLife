@@ -11,6 +11,6 @@
  * @param parent parent object
  */
 function inherits(child, parent) {
-	child.prototype = Object.create(parent.prototype);
-	child.prototype.constructor = parent;
+    child.prototype = Object.create(parent.prototype);
+    child.prototype.constructor = parent;
 }
