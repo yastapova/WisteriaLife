@@ -5,7 +5,7 @@ var sass = require('gulp-sass');
 
 
 // default task
-gulp.task('default', ['scripts', 'scripts:watch', 'serve', 'sass', 'sass:watch']);
+gulp.task('default', ['roboto', 'scripts', 'scripts:watch', 'serve', 'sass', 'sass:watch']);
 
 // concatenate all our scripts
 gulp.task('scripts', function() {
@@ -35,6 +35,12 @@ gulp.task('sass', ['materialize'], function() {
     return gulp.src(['./app/sass/**/*.scss', '!./app/sass/materialize/*.scss'])
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('./app/dist/css'));
+});
+
+// move roboto font
+gulp.task('roboto', function() {
+    return gulp.src('./app/fonts/**/*.*')
+        .pipe(gulp.dest('./app/dist/fonts'));
 });
 
 // automatically recompile scss on change
