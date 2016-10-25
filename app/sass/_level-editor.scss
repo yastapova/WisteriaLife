@@ -13,6 +13,9 @@
 
 .switch label .lever {
     background-color: $enemy-light;
+    vertical-align: super;
+    margin-right: 0;
+    margin: 0 15px;
 }
 .switch label .lever:after {
     background-color: $enemy-color;

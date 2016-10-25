@@ -75,69 +75,73 @@
             <!-- Page Content goes here -->
             <div id="gameplay-screen" class="container-inner" align="center">
                 <div class="toolbar top">
-                    <div class="padder">
-                    </div>
-                    <span class="toolbar-text">0:30</span>
+                    <span class="toolbar-content">
+                        <!-- <div class="padder">
+                        </div> -->
+                        <span class="toolbar-text">0:30</span>
+                    </span>
                 </div>
                 <div class="canvas">
                     <canvas id="editor-canvas" class="game-canvas"></canvas>
                 </div>
                 <div class="toolbar bottom">
-                    <div class="bottom align">
-                        <i class="material-icons clear-cell">backspace</i>
-                    </div>
-                    <!-- Dropdown Trigger -->
-                    <div class="bottom align">
-                        <a class='dropdown-button btn small' href='#' data-activates='shapes'>Shapes</a>
-                    </div>
-
-                    <!-- Dropdown Structure -->
-                    <ul id='shapes' class='dropdown-content'>
-                        <li><a href="#!">Archer &nwarr;</a></li>
-                        <li><a href="#!">Archer &nearr;</a></li>
-                        <li><a href="#!">Archer &swarr;</a></li>
-                        <li><a href="#!">Archer &searr;</a></li>
-                        <li><a href="#!">Infantry &uarr;</a></li>
-                        <li><a href="#!">Infantry &darr;</a></li>
-                        <li><a href="#!">Infantry &rarr;</a></li>
-                        <li><a href="#!">Infantry &larr;</a></li>
-                    </ul>
-
-                    <!-- Switch -->
-                    <div class="bottom align">
-                        <div class="switch">
-                            <label>
-                                <span class="enemy-swatch">&#9632;</span>
-                            <input type="checkbox">
-                            <span class="lever"></span>
-                                <span class="friendly-swatch">&#9632;</span>
-                            </label>
+                    <span class="toolbar-content">
+                        <div class="bottom align">
+                            <i class="material-icons clear-cell">backspace</i>
                         </div>
-                    </div>
+                        <!-- Dropdown Trigger -->
+                        <div class="bottom align">
+                            <a class='dropdown-button btn small' href='#' data-activates='shapes'>Shapes</a>
+                        </div>
 
-                    <!-- Dropdown Trigger -->
-                    <div class="bottom align">
-                        <a class='dropdown-button btn small' href='#' data-activates='zoom'>Zoom</a>
-                    </div>
+                        <!-- Dropdown Structure -->
+                        <ul id='shapes' class='dropdown-content'>
+                            <li><a href="#!">Archer &nwarr;</a></li>
+                            <li><a href="#!">Archer &nearr;</a></li>
+                            <li><a href="#!">Archer &swarr;</a></li>
+                            <li><a href="#!">Archer &searr;</a></li>
+                            <li><a href="#!">Infantry &uarr;</a></li>
+                            <li><a href="#!">Infantry &darr;</a></li>
+                            <li><a href="#!">Infantry &rarr;</a></li>
+                            <li><a href="#!">Infantry &larr;</a></li>
+                        </ul>
 
-                    <!-- Dropdown Structure -->
-                    <ul id='zoom' class='dropdown-content'>
-                        <li><a href="#!">Small</a></li>
-                        <li><a href="#!">Medium</a></li>
-                        <li><a href="#!">Large</a></li>
-                    </ul>
+                        <!-- Switch -->
+                        <div class="bottom align">
+                            <div class="switch">
+                                <label>
+                                    <span class="enemy-swatch"><i class="material-icons">stop</i></span>
+                                <input type="checkbox">
+                                <span class="lever"></span>
+                                    <span class="friendly-swatch"><i class="material-icons">stop</i></span>
+                                </label>
+                            </div>
+                        </div>
 
-                    <div class="bottom align">
-                        <i class="material-icons clear-cell">message</i>
-                    </div>
+                        <!-- Dropdown Trigger -->
+                        <div class="bottom align">
+                            <a class='dropdown-button btn small' href='#' data-activates='zoom'>Zoom</a>
+                        </div>
 
-                    <div class="bottom align">
-                        <a href="save-level.html"><i class="material-icons clear-cell">save</i></a>
-                    </div>
+                        <!-- Dropdown Structure -->
+                        <ul id='zoom' class='dropdown-content'>
+                            <li><a href="#!">Small</a></li>
+                            <li><a href="#!">Medium</a></li>
+                            <li><a href="#!">Large</a></li>
+                        </ul>
 
-                    <div class="bottom align">
-                        <a href="private-custom-levels.html"><i class="material-icons clear-cell">delete_forever</i></a>
-                    </div>
+                        <div class="bottom align">
+                            <i class="material-icons clear-cell">message</i>
+                        </div>
+
+                        <div class="bottom align">
+                            <a href="save-level.html"><i class="material-icons clear-cell">save</i></a>
+                        </div>
+
+                        <div class="bottom align">
+                            <a href="private-custom-levels.html"><i class="material-icons clear-cell">delete_forever</i></a>
+                        </div>
+                    </span>
                 </div>
             </div>
         </div>

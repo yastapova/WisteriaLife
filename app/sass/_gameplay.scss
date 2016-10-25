@@ -6,7 +6,7 @@
     height: 10%;
     background: $primary-color;
     width: 100%;
-    vertical-align: middle;
+    position: relative;
 }
 
 .canvas {
@@ -61,4 +61,12 @@
 
 .toolbar-text {
     font-size: 1rem;
+}
+
+.toolbar-content {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    margin-top: -1em;
+    width:100%;
 }
