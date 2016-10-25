@@ -117,7 +117,8 @@ nav {
 
 .screen-overlay {
 	background: rgba(16, 16, 16, 0.7);
-	height: 100vh;
+	min-height: 100vh;
+	overflow: hidden;
 }
 
 /* Screen specific styles */
