@@ -28,7 +28,10 @@
 	        span.card-icon {
 	            display: inline-block;
 	            height: 50px;
+	            width:50px;
 	            padding-right: 10px;
+	            position:relative;
+	            margin-right:1.5em;
 	        }
 
 	        span.card-title {
@@ -49,7 +52,7 @@
                 display:inline;
                 text-align:left;
                 position:relative;
-                vertical-align:1.7em;
+                vertical-align:1em;
             }
 
             span.card-desc {
