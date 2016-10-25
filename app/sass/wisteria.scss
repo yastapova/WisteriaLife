@@ -53,7 +53,9 @@ $small-height-and-down: "only screen and (max-height : #{$small-height})" !defau
 /* Start Global Wisteria Life CSS */
 
 body {
-    background-image: url('/img/wisteria-tunnel.jpg');
+    background: $primary-color url('/img/wisteria-tunnel.jpg') no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
     font-size: 12px;
 }
 
@@ -113,11 +115,16 @@ nav {
 	}
 }
 
+.screen-overlay {
+	background: rgba(16, 16, 16, 0.7);
+	min-height: 100vh;
+	overflow: hidden;
+}
+
 /* Screen specific styles */
 @import 'splash';
 @import 'about-save-level';
-@import 'pause';
-@import 'victory-defeat';
+@import 'defeat-pause-victory';
 @import 'store';
 @import 'ad';
 @import 'level-story';
