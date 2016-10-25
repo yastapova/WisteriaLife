@@ -4,7 +4,7 @@
 
 .card-action {
     color: black;
-    font-size: 1em;
+    font-size: 1.65em;
 }
 
 .card .card-action a:not(.btn):not(.btn-large):not(.btn-floating) {
@@ -21,7 +21,7 @@
             height: 50px;
 
             .material-icons {
-                font-size: 2.5em;
+                font-size: 3em;
                 vertical-align: middle;
             }
 
@@ -30,7 +30,9 @@
                 height: 50px;
                 width: 50px;
                 position: relative;
-                margin-right: 1.5em;
+                margin-right: 1.25em;
+                margin-left: 1.15em;
+                margin-top: 0.5em;
                 display:table-cell;
                 vertical-align:middle;
                 float:left;
@@ -45,8 +47,7 @@
             }
 
             span.level-title {
-                font-weight: bold;
-                font-size: 1rem;
+                font-size: 1.5rem;
                 color: black;
                 display: block;
                 vertical-align: top;
@@ -54,6 +55,7 @@
             }
 
             span.level-sub {
+                font-style: italic;
                 font-size: 0.9rem;
                 display: block;
                 text-align: left;
