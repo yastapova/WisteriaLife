@@ -1,10 +1,50 @@
 #map-screen {
+	.card {
 
+		&[id$='-card'] {
+			background: #fff url('/img/map-sample-img.jpg')
+						no-repeat center center;
+			background-size: cover;
+		}
+
+		.card-content {
+			font-size: 4.0rem;
+			text-align: center;
+			font-weight: bold;
+			color: $primary-color;
+			text-shadow: 1px 0px 6px rgb(0, 0, 0);
+		}
+
+		a.card-action {
+			width: 100%;
+			display: block;
+			font-size: 1.5em;
+			text-align: center;
+			background-color: rgba(255, 255, 255, 0.8);
+			padding: 10px;
+			@include transition(all 0.4s ease-in);
+
+			&:hover {
+				background-color: rgba(255, 255, 255, 0.5);
+			}
+		}
+	}
+
+	#custom-levels-button {
+		text-align: center;
+	}
 }
 
 @media #{$medium-and-up} {
 	#map-screen {
 		width: 80vw;
+		margin: auto;
+	}
+}
+
+@media #{$large-and-up} {
+	#map-screen {
+		width: 50vw;
 		margin: auto;
 	}
 }
