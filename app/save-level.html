@@ -75,16 +75,20 @@
             <!-- Page Content goes here -->
 			<div id="about-save-level-screen" class="container-inner screen-overlay">
 				<div class="row">
-						<div class="input-field col s6 offset-s3">
-							<input placeholder="Enter level title here" id="level_title" type="text" class="validate">
-							<label for="level_title">Title</label>
-						</div>
+					<!--
+						Don't put a placeholder text
+						Materialize makes a nice animation w/o one
+					-->
+					<div class="input-field col s6 offset-s3">
+						<input id="level_title" type="text" class="validate" length="75">
+						<label for="level_title">Level Title  &nbsp; <small>Give your level an exciting name.</small></label>
+					</div>
 				</div>
 				<div class="row">
-						<div class="input-field col s6 offset-s3">
-							<textarea id="level_description" class="materialize-textarea validate" placeholder="Enter the level description here."></textarea>
-							<label for="level_description">Description</label>
-						</div>
+					<div class="input-field col s6 offset-s3">
+						<textarea id="level_description" class="materialize-textarea validate" length="500"></textarea>
+						<label for="level_description">Level Description &nbsp; <small>Give your creation a story!</small></label>
+					</div>
 					<div class="col s6 offset-s3">
 						<label for="ally_units">Ally Units</label></br>
 					</div>

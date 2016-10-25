@@ -12,5 +12,11 @@
 }
 
 .custom-levels-row {
-	margin-top: 3rem;
+	margin-top: 3.5rem;
+}
+
+.container-inner[id$=custom-levels-screen] {
+	.icon-description {
+		height: 100px;
+	}
 }
