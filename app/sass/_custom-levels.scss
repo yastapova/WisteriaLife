@@ -1,3 +1,22 @@
+#private-custom-levels-screen {
+	.card {
+		input[type='checkbox'] + label {
+			opacity: 0;
+			@include transition(opacity, 0.3s, linear);
+		}
+
+		input[type='checkbox']:checked + label {
+			opacity: 1;
+		}
+
+		&:hover {
+			input[type='checkbox'] + label {
+				opacity: 1;
+			}
+		}
+	}
+}
+
 .card-img {
     width: 1rem;
     height: 1rem;
