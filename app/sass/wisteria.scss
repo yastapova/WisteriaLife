@@ -24,17 +24,19 @@ $enemy-color: #008080;
 $enemy-light: #3da3a9;
 
 // Small heights
-$small-height: 376px;
-$small-height-up: 377px;
+$small-height: 400px;
+$small-height-up: 401px;
 $small-height-and-down: "only screen and (max-height : #{$small-height})" !default;
 
-// Medium height
-$medium-height: 800px;
-$medium-height-only: "only screen and (min-height: #{$small-height-up}) and (max-height : #{$medium-height})" !default;
+// Medium heights
+$medium-height: 511px;
+$medium-height-up: 512px;
 
-// Large heights
-$large-height: 1000px;
-$large-height-and-up: "only screen and (min-height: #{$large-height})" !default;
+// Large height
+$large-height: 766px;
+$large-height-up: 767px;
+$medium-to-large: "only screen and (min-height: #{$medium-height-up}) and (max-height : #{$large-height})" !default;
+$large-height-up: "only screen and (min-height : #{$large-height-up})" !default;
 
 /*
 	SCSS MIXINS

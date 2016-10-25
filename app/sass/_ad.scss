@@ -11,29 +11,42 @@
 }
 
 #ad {
-	height:26em;
-	width:26em;
-	vertical-align:middle;
+    position:absolute;
+    margin-top:-13rem;
+    margin-left:-13rem;
+    top:50%;
+    left:50%;
+	height:26rem;
+	width:26rem;
 
-	@media #{$medium-height-only} {
-		height: 35em;
-		width: 35em;
-		vertical-align:middle;
-		top:50%;
+    @media #{$large-height-up} {
+        position:absolute;
+        margin-top:-22rem;
+        margin-left:-22rem;
+        top:50%;
+        left:50%;
+        height:44rem;
+        width:44rem;
+    }
+
+	@media #{$medium-to-large} {
+        position:absolute;
+        margin-top:-17rem;
+        margin-left:-17rem;
+        top:50%;
+        left:50%;
+		height:34rem;
+		width:34rem;
 	}
 
 	@media #{$small-height-and-down} {
-		height:24em;
-		width:24em;
-		vertical-align:middle;
-		top:50%;
-	}
-
-	@media #{$large-height-and-up} {
-		height: 53em;
-		width: 53em;
-		vertical-align:middle;
-		top:50%;
+        position:absolute;
+        margin-top:-10rem;
+        margin-left:-10rem;
+        top:50%;
+        left:50%;
+    	width: 20rem;
+    	height: 20rem;
 	}
 }
 
