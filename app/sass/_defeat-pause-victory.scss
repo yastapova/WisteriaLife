@@ -5,17 +5,24 @@
 #defeat-pause-victory-title {
     font-size: 4rem;
     color: #fff;
-    text-align: center;
-    
+    display: block;    
     margin: 0;
 }
 
-.defeat-pause-victory-note{
+.defeat-pause-victory-text {
     font-size: 2rem;
-    color: #fff;
-    text-align: center;    
+    color: #fff;    
     margin: 0;
-    
+    display: inline;
+    margin-right: 5px;
+}
+.defeat-pause-victory-note {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.defeat-pause-victory-icons {
+    display: block;
 }
 
 .material-icons.store {
