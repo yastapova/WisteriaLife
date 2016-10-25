@@ -10,188 +10,93 @@
 var PowerupManager = function(listOfPowerups) {
 	this.powerupsList = listOfPowerups;
     this.powerupsMap = new Map();
-	for (var i = 0; i < powerupsList.length; i++) {
-		initPowerup(powerupsList[i]);
+	this.initPowerupsMap();
+	for (var i = 0; i < this.powerupsList.length; i++) {
+		this.initPowerup(powerupsList[i]);
 		console.log("initialized " + powerupsList[i])
 	}
 };
 
-/*
- * Initialize the power up and add it to the map of powerups
- * TO DO: implement the effect function for the specified powerups
- */
-PowerupManager.prototype.initPowerup = function(powerup) {
-	switch(powerup){
-		case "Extra Time":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Magic",
-				description : "Reduce remaining survival time by 5-10 sec.",
-				price : 100,
-				thumbnail : "extratime.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Stop Spawn":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Magic",
-				description : "Reduce the number of enemies about to spawn in the next few seconds.",
-				price : 100,
-				thumbnail : "stopspawn.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Void Cell":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Magic",
-				description : "Void a cell so that they are no longer involved in the physics of the this world.",
-				price : 100,
-				thumbnail : "voidcell.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Tower":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A non-moving 2x2 cell square.",
-				price : 100,
-				thumbnail : "tower.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Blockade":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A stationary defense unit that repeatedly changes shape.",
-				price : 100,
-				thumbnail : "blockade.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Shield":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A stationary defense unit that repeatedly changes shape.",
-				price : 100,
-				thumbnail : "shild.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Caltrops":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A unit that explodes into several stable structures.",
-				price : 100,
-				thumbnail : "caltrops.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Archer NW":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A unit moving diagonally northwest.",
-				price : 100,
-				thumbnail : "archernw.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Archer NE":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A unit moving diagonally northwest.",
-				price : 100,
-				thumbnail : "archerne.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Archer SE":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A unit moving diagonally southeast.",
-				price : 100,
-				thumbnail : "archerse.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Archer SW":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A unit moving diagonally southwest.",
-				price : 100,
-				thumbnail : "archersw.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Infantry W":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A unit moving linearly west.",
-				price : 100,
-				thumbnail : "infantryw.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Infantry N":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A unit moving linearly north.",
-				price : 100,
-				thumbnail : "infantryn.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Infantry E":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A unit moving linearly east.",
-				price : 100,
-				thumbnail : "infantrye.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Infantry S":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A unit moving linearly south.",
-				price : 100,
-				thumbnail : "infantrys.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Wall Back":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A stationary defense unit that does not change shape.",
-				price : 100,
-				thumbnail : "wallback.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
-		case "Wall Forward":
-			powerupAttrObj = {
-				name : powerup,
-				type : "Shape",
-				description : "A stationary defense unit that does not change shape.",
-				price : 100,
-				thumbnail : "wallforward.png"
-			}
-			powerMap.set(powerup, new powerup(powerupAttrObj, function(level){}))
-			break;
+PowerupManager.prototype.initPowerupsMap = function(){
+	console.log("Init powerup map called.");
+	var powerupsFile =  "/data/powerups.json";	
+	$.getJSON(powerupsFile, function(data){	
+		console.log("hi");
+		this.loadJSONData(data);
+	}.bind(this));
+}
 
+/*
+ * Create a powerupAttrObj from the objs in the json file
+ * and map the powerup accordingly.
+ * TO DO: add the effect functions.
+ */
+PowerupManager.prototype.loadJSONData = function(data){
+	
+	for (var i = 0; i < data.powerups.length;i++){
+		var powerupData = data.powerups[i];
+		var powerupAttrObj = {
+			name : powerupData.name,
+			type : powerupData.type,
+			description : powerupData.description,
+			price : powerupData.price,
+			thumbnail : powerupData.thumbnail
+		}
+		switch(powerupData.name){
+			case "Extra Time":
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Stop Spawn":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Void Cell":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Tower":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Blockade":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Shield":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Caltrops":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Archer NW":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Archer NE":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Archer SE":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Archer SW":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Infantry W":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Infantry N":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Infantry E":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Infantry S":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Wall Backward":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;
+			case "Wall Forward":					
+				this.powerMap.set(powerupData.name, new powerup(powerupAttrObj, function(level){}))
+				break;	
+		}
 	}
-};
+}
+
+var powerups = new PowerupManager([]);
+
