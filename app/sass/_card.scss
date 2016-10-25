@@ -34,6 +34,23 @@
 	        span.card-title {
 	            vertical-align: middle;
 	        }
+
+            span.level-title {
+                font-weight:bold;
+                font-size:1rem;
+                color:black;
+                display:inline;
+                vertical-align:top;
+                position:absolute;
+            }
+
+            span.level-sub {
+                font-size:0.9rem;
+                display:inline;
+                text-align:left;
+                position:relative;
+                vertical-align:1.7em;
+            }
 	    }
 
 	    .icon-description {
