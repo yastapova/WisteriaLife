@@ -1,0 +1,45 @@
+/**
+ * Top nav bar and overflow menu
+ */
+nav {
+    position: fixed;
+    z-index: 20;
+
+    #logo {
+        background: url('/img/logo.png') no-repeat;
+        background-size: cover;
+        margin: 5px;
+        display: inline-block;
+        width: 50px;
+        height: $navbar-height-mobile;
+
+        @media #{$medium-and-up} {
+            height: $navbar-height;
+        }
+    }
+}
+
+#wisteria-nav {
+    background-color: #000;
+
+    #logo {
+        color: $primary-color;
+    }
+
+    .dropdown-content {
+        min-width: 50px;
+
+        li:hover, a:hover {
+            background-color: transparent;
+        }
+
+        i {
+            color: $primary-color;
+            @include transition(all 0.3s ease-in);
+        }
+
+        i:hover {
+            color: #000;
+        }
+    }
+}
