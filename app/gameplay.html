@@ -19,13 +19,16 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
+        <!-- Pixi.js -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.1.0/pixi.min.js"></script>
+
         <link rel="stylesheet" href="dist/css/wisteria.css"/>
         <script src="dist/js/wisteria.js"></script>
 
         <script>
             // start canvas
             $(document).ready(function () {
-                var canvas = new Canvas($('#gameplay-canvas'));
+                var canvas = new PixiCanvas($('#gameplay-canvas'));
             });
         </script>
     </head>
@@ -93,8 +96,8 @@
                         <span class="toolbar-text">0:30</span>
                     </span>
                 </div>
-                <div class="canvas">
-                    <canvas id="gameplay-canvas" class="game-canvas"></canvas>
+                <div class="canvas" id="gameplay-canvas">
+                    
                 </div>
                 <div class="toolbar bottom">
                     <span class="toolbar-content">
@@ -122,7 +125,7 @@
                             <li><a href="#!">Caltrops</a></li>
                             <li><a href="#!">Wall &nwarr;</a></li>
                             <li><a href="#!">Wall &nearr;</a></li>
-                            
+
                         </ul>
 
                         <!-- Dropdown Trigger -->

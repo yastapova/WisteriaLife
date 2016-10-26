@@ -1,5 +1,14 @@
 /**
  * Canvas manager
+ *
+ * ***
+ * DO NOT USE - due to be replaced by pixi-canvas.js
+ * Left here for now to avoid breaking pages that haven't updated yet
+ *
+ * gameplay and edit-level now use pixi-canvas.js instead
+ * TODO - transition pause/defeat/victory/save-level to use pixi
+ * ***
+ *
  * @param {jQuery object} element Canvas jQuery item
  */
 var Canvas = function (element) {
