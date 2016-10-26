@@ -36,3 +36,20 @@
     color: $primary-dark;
     font-size: 1.5rem;
 }
+
+.range-field#timeline {
+    margin-top: 0;
+}
+
+#timeline input[type=range] {
+    margin: 0;
+}
+
+#timeline input[type=range] + .thumb {
+    z-index: 50;
+}
+
+.padder2 {
+    padding-left: 1em;
+    padding-right: 5rem;
+}
