@@ -5,7 +5,7 @@ var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 
 // default task
-gulp.task('default', ['roboto', 'scripts', 'scripts:watch', 'serve', 'materialize', 'sass', 'sass:watch']);
+gulp.task('default', ['roboto', 'scripts', 'scripts:watch', 'serve', 'sass', 'sass:watch']);
 
 // concatenate all our scripts
 gulp.task('scripts', function() {
