@@ -1,11 +1,11 @@
 /* 
- * shape.js
+ * Shape.js
  * 
- * Defines a shape
+ * Defines a Shape
  * 
  */
 
-var shape = function(name, thumbnail, cells) {
+var Shape = function(name, thumbnail, cells) {
     if(name === undefined && thumbnail === undefined && cells === undefined) {
         this.name = undefined;
         this.thumbnail = undefined;
@@ -48,26 +48,26 @@ var shape = function(name, thumbnail, cells) {
     }
 };
 
-shape.prototype.setName = function(name) {
+Shape.prototype.setName = function(name) {
     this.name = name;
 };
 
-shape.prototype.setThumbnail = function(thumbnail) {
+Shape.prototype.setThumbnail = function(thumbnail) {
     this.thumbnail = thumbnail;
 };
 
-shape.prototype.setCells = function(cells) {
+Shape.prototype.setCells = function(cells) {
     this.cells = cells;
 };
 
-shape.prototype.getName = function() {
+Shape.prototype.getName = function() {
     return this.name;
 };
 
-shape.prototype.getThumbnail = function() {
+Shape.prototype.getThumbnail = function() {
     return this.thumbnail;
 };
 
-shape.prototype.getCells = function() {
+Shape.prototype.getCells = function() {
     return this.cells;
 };
