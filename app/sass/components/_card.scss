@@ -36,20 +36,25 @@
                 height: 50px;
                 width: 50px;
                 position: relative;
-                margin-right: 1.25em;
-                margin-left: 1.15em;
                 margin-top: 0.5em;
-                display:table-cell;
-                vertical-align:middle;
-                float:left;
+                float: left;
             }
 
-            span.card-title {
-                float:right;
+            .card-title {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 1.5rem;
+
+                @media #{$medium-height-and-down} {
+                    font-size: 1.3rem;
+                }
             }
 
             div.titles-with-sub {
-                display: inline-block;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
             }
 
             span.level-title {
