@@ -1,5 +1,9 @@
-#defeat-pause-victory-screen {    
+#defeat-pause-victory-screen {
     .center-all {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
         text-align: center;
     }
 }
@@ -7,13 +11,17 @@
 #defeat-pause-victory-title {
     font-size: 4rem;
     color: #fff;
-    display: block;    
+    display: block;
     margin: 0;
+
+    @media #{$small-height-and-down} {
+        margin-top: 1em;
+    }
 }
 
 .defeat-pause-victory-text {
     font-size: 2rem;
-    color: #fff;    
+    color: #fff;
     margin: 0;
     display: inline;
     margin-right: 5px;
@@ -25,6 +33,11 @@
 
 .defeat-pause-victory-icons {
     display: block;
+
+    a {
+        display: inline-block;
+        padding: 5px;
+    }
 }
 
 .material-icons.store {
@@ -39,7 +52,7 @@
     color: red;
     font-size: 4.5em;
     transform: rotate(180deg);
-    
+
 }
 
 .material-icons.replay {

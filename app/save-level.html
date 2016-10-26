@@ -19,6 +19,13 @@
 
         <link rel="stylesheet" href="dist/css/wisteria.css"/>
         <script src="dist/js/wisteria.js"></script>
+
+        <script>
+            // start canvas
+            $(document).ready(function() {
+                var canvas = new Canvas($('#editor-canvas'));
+            });
+        </script>
     </head>
 
     <body>
@@ -51,20 +58,30 @@
 
                 <ul id="hamburger-dropdown" class="dropdown-content">
                     <li>
-                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
+                        <a href="#!" id="drop-back">
+                            <i class="material-icons">arrow_back</i>
+                        </a>
                     </li>
                     <li>
-                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
+                        <a href="/store.html" id="drop-store">
+                            <i class="material-icons">store</i>
+                        </a>
                     </li>
                     <li>
-                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
+                        <a href="#!" id="drop-mute">
+                            <i class="material-icons">volume_mute</i>
+                        </a>
                     </li>
                     <li>
-                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
+                        <a href="/about.html" id="drop-about">
+                            <i class="material-icons">info</i>
+                        </a>
                     </li>
                     <li class="divider"></li>
                     <li>
-                        <a href="#!" id="drop-loginout"><i class="material-icons">power_settings_new</i></a>
+                        <a href="#!" id="drop-loginout">
+                            <i class="material-icons">power_settings_new</i>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -73,6 +90,7 @@
         <!-- Screen Section -->
         <div class="container">
             <!-- Page Content goes here -->
+
             <div id="about-save-level-screen" class="container-inner screen-overlay">
                 <div class="row">
                     <!--
@@ -81,84 +99,190 @@
                     -->
                     <div class="input-field col s6 offset-s3">
                         <input id="level_title" type="text" class="validate" length="75">
-                        <label for="level_title">Level Title  &nbsp; <small>Give your level an exciting name.</small></label>
+                        <label for="level_title">Level Title &nbsp;
+                            <small>Give your level an exciting name.</small>
+                        </label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="input-field col s6 offset-s3">
                         <textarea id="level_description" class="materialize-textarea validate" length="500"></textarea>
-                        <label for="level_description">Level Description &nbsp; <small>Give your creation a story!</small></label>
+                        <label for="level_description">Level Description &nbsp;
+                            <small>Give your creation a story!</small>
+                        </label>
                     </div>
                     <div class="col s6 offset-s3">
-                        <label for="ally_units">Ally Units</label></br>
-                    </div>
-                    <div class="col s6 offset-s3" id="save_ally_units">
-                        <label class="units" for="tower">Tower</label>
-                        <span class="range-field">
-                          <input type="range" id="tower_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="blockade">Blockade</label>
-                        <span class="range-field">
-                          <input type="range" id="blockad_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="caltrops">Caltrops</label>
-                        <span class="range-field">
-                          <input type="range" id="caltrops_num" min="0" max="25" />
-                        </span>
+                        <label for="ally_units">Ally Units</label>
+                    </br>
+                </div>
+                <div class="col s6 offset-s3" id="save_ally_units">
+                    <label class="units" for="tower">Tower</label>
+                    <span class="range-field">
+                        <input type="range" id="tower_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="blockade">Blockade</label>
+                    <span class="range-field">
+                        <input type="range" id="blockad_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="caltrops">Caltrops</label>
+                    <span class="range-field">
+                        <input type="range" id="caltrops_num" min="0" max="25"/>
+                    </span>
 
-                        <label class="units" for="archernw">Archer NW</label>
-                        <span class="range-field">
-                          <input type="range" id="archernw_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="archerne">Archer NE</label>
-                        <span class="range-field">
-                          <input type="range" id="archerne_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="archerse">Archer SE</label>
-                        <span class="range-field">
-                          <input type="range" id="archerse_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="archersw">Archer SW</label>
-                        <span class="range-field">
-                          <input type="range" id="archersw_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="infantryw">Infantry W</label>
-                        <span class="range-field">
-                          <input type="range" id="infantryw_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="infantryn">Infantry N</label>
-                        <span class="range-field">
-                          <input type="range" id="infantryn_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="infantrye">Infantry E</label>
-                        <span class="range-field">
-                          <input type="range" id="infantrye_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="blockade">Infantry S</label>
-                        <span class="range-field">
-                          <input type="range" id="infantrys_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="wallbackward">Wall Backward</label>
-                        <span class="range-field">
-                          <input type="range" id="wallbackward_num" min="0" max="25" />
-                        </span>
-                        <label class="units" for="wallforward">Wall Forward</label>
-                        <span class="range-field">
-                          <input type="range" id="wallforward_num" min="0" max="25" />
-                        </span>
-                    </div>
-                    <div class="input-field col s6 offset-s3">
-                      <p>
-                         <input id="save-public" type="checkbox" checked="checked">
-                         <label for="save-public">Public</label>
-                      </p>
-                    </div>
-                    <div class="col s6 offset-s3 center-buttons">
-                     <button class="btn waves-effect waves-purple" type="submit">Save</button>
-                     <a href="level-editor.html" class="btn waves-effect waves-purple" type="submit" >Cancel</a>
-                    </div>
+                    <label class="units" for="archernw">Archer NW</label>
+                    <span class="range-field">
+                        <input type="range" id="archernw_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="archerne">Archer NE</label>
+                    <span class="range-field">
+                        <input type="range" id="archerne_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="archerse">Archer SE</label>
+                    <span class="range-field">
+                        <input type="range" id="archerse_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="archersw">Archer SW</label>
+                    <span class="range-field">
+                        <input type="range" id="archersw_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="infantryw">Infantry W</label>
+                    <span class="range-field">
+                        <input type="range" id="infantryw_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="infantryn">Infantry N</label>
+                    <span class="range-field">
+                        <input type="range" id="infantryn_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="infantrye">Infantry E</label>
+                    <span class="range-field">
+                        <input type="range" id="infantrye_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="blockade">Infantry S</label>
+                    <span class="range-field">
+                        <input type="range" id="infantrys_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="wallbackward">Wall Backward</label>
+                    <span class="range-field">
+                        <input type="range" id="wallbackward_num" min="0" max="25"/>
+                    </span>
+                    <label class="units" for="wallforward">Wall Forward</label>
+                    <span class="range-field">
+                        <input type="range" id="wallforward_num" min="0" max="25"/>
+                    </span>
+                </div>
+                <div class="input-field col s6 offset-s3">
+                    <p>
+                        <input id="save-public" type="checkbox" checked="checked">
+                        <label for="save-public">Public</label>
+                    </p>
+                </div>
+                <div class="col s6 offset-s3 center-buttons">
+                    <button class="btn waves-effect waves-purple" type="submit">Save</button>
+                    <a href="level-editor.html" class="btn waves-effect waves-purple" type="submit">Cancel</a>
                 </div>
             </div>
-      </div>
-    </body>
+        </div>
+        <div id="gameplay-screen" class="container-inner" align="center">
+            <div class="toolbar top">
+                <span class="toolbar-content">
+                    <!-- <div class="padder">
+                        </div> -->
+                    <span class="toolbar-text">0:30</span>
+                </span>
+            </div>
+            <div class="canvas">
+                <canvas id="editor-canvas" class="game-canvas"></canvas>
+            </div>
+            <div class="toolbar bottom">
+                <span class="toolbar-content">
+                    <div class="bottom align">
+                        <i class="material-icons clear-cell">backspace</i>
+                    </div>
+                    <!-- Dropdown Trigger -->
+                    <div class="bottom align">
+                        <a class='dropdown-button btn small' href='#' data-activates='shapes'>Shapes</a>
+                    </div>
+
+                    <!-- Dropdown Structure -->
+                    <ul id='shapes' class='dropdown-content'>
+                        <li>
+                            <a href="#!">Archer &nwarr;</a>
+                        </li>
+                        <li>
+                            <a href="#!">Archer &nearr;</a>
+                        </li>
+                        <li>
+                            <a href="#!">Archer &swarr;</a>
+                        </li>
+                        <li>
+                            <a href="#!">Archer &searr;</a>
+                        </li>
+                        <li>
+                            <a href="#!">Infantry &uarr;</a>
+                        </li>
+                        <li>
+                            <a href="#!">Infantry &darr;</a>
+                        </li>
+                        <li>
+                            <a href="#!">Infantry &rarr;</a>
+                        </li>
+                        <li>
+                            <a href="#!">Infantry &larr;</a>
+                        </li>
+                    </ul>
+
+                    <!-- Switch -->
+                    <div class="bottom align">
+                        <div class="switch">
+                            <label>
+                                <span class="enemy-swatch">
+                                    <i class="material-icons">stop</i>
+                                </span>
+                                <input type="checkbox">
+                                <span class="lever"></span>
+                                <span class="friendly-swatch">
+                                    <i class="material-icons">stop</i>
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Dropdown Trigger -->
+                    <div class="bottom align">
+                        <a class='dropdown-button btn small' href='#' data-activates='zoom'>Zoom</a>
+                    </div>
+
+                    <!-- Dropdown Structure -->
+                    <ul id='zoom' class='dropdown-content'>
+                        <li>
+                            <a href="#!">Small</a>
+                        </li>
+                        <li>
+                            <a href="#!">Medium</a>
+                        </li>
+                        <li>
+                            <a href="#!">Large</a>
+                        </li>
+                    </ul>
+
+                    <div class="bottom align">
+                        <i class="material-icons clear-cell">message</i>
+                    </div>
+
+                    <div class="bottom align">
+                        <a href="save-level.html">
+                            <i class="material-icons clear-cell">save</i>
+                        </a>
+                    </div>
+
+                    <div class="bottom align">
+                        <a href="private-custom-levels.html">
+                            <i class="material-icons clear-cell">delete_forever</i>
+                        </a>
+                    </div>
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
