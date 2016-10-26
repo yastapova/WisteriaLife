@@ -36,6 +36,10 @@ Canvas.prototype.resizeCanvas = function () {
     // reset to 100% again
     this.element.width('100%');
     this.element.height('100%');
+
+    this.element.attr('width', '');
+    this.element.attr('height', '');
+
     var width = this.element.width();
     var height = this.element.height();
 
@@ -61,6 +65,9 @@ Canvas.prototype.resizeCanvas = function () {
     // resize actual element
     this.element.attr('width', canvasDimensions.width);
     this.element.attr('height', canvasDimensions.height);
+
+    this.element.width('');
+    this.element.height('');
 
     // resize canvas2D context
     this.canvas.width = canvasDimensions.width;
