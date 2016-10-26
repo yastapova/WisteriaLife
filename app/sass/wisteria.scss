@@ -1,3 +1,8 @@
+/**
+ * Wisteria Life
+ * Main Stylesheet
+ */
+
 // Media Query Overrides
 $small-screen-up: 800px !default;
 $medium-screen-up: 1024px !default;
@@ -92,130 +97,21 @@ a {
     }
 }
 
-nav {
-    position: fixed;
-    z-index: 20;
-
-    #logo {
-        background: url('/img/logo.png') no-repeat;
-        background-size: cover;
-        margin: 5px;
-        display: inline-block;
-        width: 50px;
-        height: $navbar-height-mobile;
-
-        @media #{$medium-and-up} {
-            height: $navbar-height;
-        }
-    }
-}
-
-#wisteria-nav {
-    background-color: #000;
-
-    #logo {
-        color: $primary-color;
-    }
-
-    .dropdown-content {
-        min-width: 50px;
-
-        li:hover, a:hover {
-            background-color: transparent;
-        }
-
-        i {
-            color: $primary-color;
-            @include transition(all 0.3s ease-in);
-        }
-
-        i:hover {
-            color: #000;
-        }
-    }
-}
-
-.cards {
-    .row {
-        font-size: 1em;
-    }
-}
-
-// Android Holo style tab bar
-// Maybe update to Material style if applicable
-.holo-tab-bar {
-    position: fixed;
-    margin: 0 0 1rem;
-    height:3rem;
-    z-index:10;
-    background: rgba(16, 16, 16, 0.6);
-    width:100%;
-
-    .holo-tab {
-        font-size: 0.9rem;
-        color: rgba(255, 255, 255, 0.6);
-        display: inline-block;
-        line-height: 2.90rem;
-        text-transform: uppercase;
-        padding: 0 30px;
-        @include transition(all 0.3s linear);
-
-        &.active {
-            font-weight: bold;
-            border-bottom: 3px solid $primary-color;
-            color: rgba(255, 255, 255, 1.0);
-        }
-
-        &:hover {
-            background-color: rgba(0, 0, 0, 0.4);
-            color: rgba(255, 255, 255, 1.0);
-        }
-    }
-
-    ul.holo-tab-bar-buttons {
-
-        list-style: none;
-        height: 3rem;
-        margin: 0;
-
-        li {
-            display: inline-block;
-            padding: 0 1rem;
-
-            a {
-                color: $primary-color;
-                line-height: 3rem;
-
-                &:hover {
-                    color: #fff;
-                }
-            }
-
-            i.material-icons {
-                font-size: 2.0rem;
-                vertical-align: middle;
-            }
-        }
-    }
-}
-
-.screen-overlay {
-    background: rgba(16, 16, 16, 0.7);
-    min-height: 100vh;
-    overflow: hidden;
-}
+/*  General components */
+@import 'components/menu';
+@import 'components/tabs';
+@import 'components/card';
+@import 'components/canvas';
 
 /* Screen specific styles */
-@import 'splash';
-@import 'about-save-level';
-@import 'defeat-pause-victory';
-@import 'store';
-@import 'ad';
-@import 'level-story';
-@import 'card';
-@import 'level-select';
-@import 'gameplay';
-@import 'level-editor';
-@import 'custom-levels';
-@import 'map';
-@import 'canvas';
+@import 'screens/splash';
+@import 'screens/about-save-level';
+@import 'screens/defeat-pause-victory';
+@import 'screens/store';
+@import 'screens/ad';
+@import 'screens/level-story';
+@import 'screens/level-select';
+@import 'screens/gameplay';
+@import 'screens/level-editor';
+@import 'screens/custom-levels';
+@import 'screens/map';
