@@ -1,100 +1,100 @@
 /* 
- * level.js
+ * Level.js
  * 
  * Defines a level
  * 
  */
 
-var level = function(Level) {
-    this.name = Level.name;
-    this.id = Level.id;
-    this.storyline = Level.storyline;
-    this.grid = Level.grid;
-    this.allowedShapes = Level.allowedShapes;
-    this.time = Level.time;
-    this.messageMap = Level.messageMap;
-    this.enemySpawns = Level.enemySpawns;
-    this.image = Level.image;
-    this.wistbux = Level.wistbux;
+var Level = function(level) {
+    this.name = level.name;
+    this.id = level.id;
+    this.storyline = level.storyline;
+    this.grid = level.grid;
+    this.allowedShapes = level.allowedShapes;
+    this.time = level.time;
+    this.messageMap = level.messageMap;
+    this.enemySpawns = level.enemySpawns;
+    this.image = level.image;
+    this.wistbux = level.wistbux;
 };
 
-level.prototype.setName = function(name) {
+Level.prototype.setName = function(name) {
     this.name = name;
 };
 
-level.prototype.setId = function(id) {
+Level.prototype.setId = function(id) {
     this.id = id;
 };
 
-level.prototype.setStoryline = function(storyline) {
+Level.prototype.setStoryline = function(storyline) {
     this.storyline = storyline;
 };
 
-level.prototype.setGrid = function(grid) {
+Level.prototype.setGrid = function(grid) {
     this.grid = grid;
 };
 
-level.prototype.setAllowedShapes = function(allowedShapes) {
+Level.prototype.setAllowedShapes = function(allowedShapes) {
     this.allowedShapes = allowedShapes;
 };
 
-level.prototype.setTime = function(time) {
+Level.prototype.setTime = function(time) {
     this.time = time;
 };
 
-level.prototype.setMessageMap = function(messageMap) {
+Level.prototype.setMessageMap = function(messageMap) {
     this.messageMap = messageMap;
 };
 
-level.prototype.setEnemySpawns = function(enemySpawns) {
+Level.prototype.setEnemySpawns = function(enemySpawns) {
     this.enemySpawns = enemySpawns;
 };
 
-level.prototype.setImage = function(image) {
+Level.prototype.setImage = function(image) {
     this.image = image;
 };
 
-level.prototype.setWistbux = function(wistbux) {
+Level.prototype.setWistbux = function(wistbux) {
     this.wistbux = wistbux;
 };
 
-level.prototype.getName = function() {
+Level.prototype.getName = function() {
     return this.name;
 };
 
-level.prototype.getId = function() {
+Level.prototype.getId = function() {
     return this.id;
 };
 
-level.prototype.getStoryline = function() {
+Level.prototype.getStoryline = function() {
     return this.storyline;
 };
 
-level.prototype.getGrid = function() {
+Level.prototype.getGrid = function() {
     return this.grid;
 };
 
-level.prototype.getAllowedShapes = function() {
+Level.prototype.getAllowedShapes = function() {
     return this.allowedShapes;
 };
 
-level.prototype.getTime = function() {
+Level.prototype.getTime = function() {
     return this.time;
 };
 
-level.prototype.getMessageMap = function() {
+Level.prototype.getMessageMap = function() {
     return this.messageMap;
 };
 
-level.prototype.getEnemySpawns = function() {
+Level.prototype.getEnemySpawns = function() {
     return this.enemySpawns;
 };
 
-level.prototype.getImage = function() {
+Level.prototype.getImage = function() {
     return this.image;
 };
 
-level.prototype.setWistbux = function() {
+Level.prototype.setWistbux = function() {
     return this.wistbux;
 };
 
