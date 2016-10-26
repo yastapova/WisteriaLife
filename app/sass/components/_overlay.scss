@@ -6,4 +6,9 @@
     background: rgba(16, 16, 16, 0.7);
     min-height: 100vh;
     overflow: hidden;
+    z-index: 10;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
 }
