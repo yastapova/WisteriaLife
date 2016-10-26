@@ -4,17 +4,11 @@
  */
 
  /*
-  * listOfPowerups is an array of strings (maybe use a json file for this?)
   * powerupsMap is a Map<string, powerup>
   */
-var PowerupManager = function(listOfPowerups) {
-    this.powerupsList = listOfPowerups;
+var PowerupManager = function() {   
     this.powerupsMap = new Map();
-    this.initPowerupsMap();
-    for (var i = 0; i < this.powerupsList.length; i++) {
-        this.initPowerup(powerupsList[i]);
-        console.log("initialized " + powerupsList[i])
-    }
+    this.initPowerupsMap();    
 };
 
 PowerupManager.prototype.initPowerupsMap = function(){
