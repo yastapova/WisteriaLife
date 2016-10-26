@@ -37,6 +37,7 @@ $small-height-and-down: "only screen and (max-height : #{$small-height})" !defau
 $medium-height: 511px;
 $medium-height-up: 512px;
 $medium-height-and-down: "only screen and (max-height : #{$medium-height})" !default;
+$medium-height-and-up: "only screen and (min-height : #{$medium-height-up})" !default;
 
 // Large height
 $large-height: 766px;
