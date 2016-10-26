@@ -4,9 +4,8 @@ var serve = require('gulp-serve');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 
-
 // default task
-gulp.task('default', ['roboto', 'scripts', 'scripts:watch', 'serve', 'sass', 'sass:watch']);
+gulp.task('default', ['roboto', 'scripts', 'scripts:watch', 'serve', 'materialize', 'sass', 'sass:watch']);
 
 // concatenate all our scripts
 gulp.task('scripts', function() {
@@ -32,7 +31,7 @@ gulp.task('materialize', function() {
 });
 
 // compile scss files
-gulp.task('sass', ['materialize'], function() {
+gulp.task('sass', function() {
     return gulp.src(['./app/sass/**/*.scss', '!./app/sass/materialize/*.scss'])
 		.pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
