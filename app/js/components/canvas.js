@@ -9,7 +9,7 @@ var Canvas = function (element) {
     this.canvas = element.get(0).getContext("2d");
 
     // temporary only
-    this.cellLength = 10;
+    this.cellLength = 25;
 
     // calculate size of canvas
     this.resizeCanvas();
@@ -59,12 +59,12 @@ Canvas.prototype.resizeCanvas = function () {
     var canvasDimensions = keepHeight.width <= width ? keepHeight : keepWidth;
 
     // resize actual element
-    this.element.width(canvasDimensions.width);
-    this.element.height(canvasDimensions.height);
+    this.element.attr('width', canvasDimensions.width);
+    this.element.attr('height', canvasDimensions.height);
 
     // resize canvas2D context
-    this.canvas.width = this.element.width();
-    this.canvas.height = this.element.height();
+    this.canvas.width = canvasDimensions.width;
+    this.canvas.height = canvasDimensions.height;
 
     // resized canvas, so need to reset and re-render
     this.render();
