@@ -1,0 +1,9 @@
+/**
+ * Semi-transparent overlays
+ */
+
+.screen-overlay {
+    background: rgba(16, 16, 16, 0.7);
+    min-height: 100vh;
+    overflow: hidden;
+}
