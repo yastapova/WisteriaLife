@@ -10,7 +10,7 @@ var PixiCanvas = function (element) {
 
     // parent of canvas
     this.element = element;
-    this.cellLength = 25;
+    this.cellLength = 10;
 
     //Create the renderer
     this.renderer = PIXI.autoDetectRenderer(1280, 720, {
@@ -37,6 +37,9 @@ var PixiCanvas = function (element) {
     $(window).resize(function () {
         this.resizePixiCanvas();
     }.bind(this));
+
+    // canvas click event
+    this.renderer.view.addEventListener('click', respondToMouseClick.bind(this));
 }
 
 /**
@@ -96,6 +99,31 @@ PixiCanvas.prototype.render = function () {
  */
 PixiCanvas.prototype.reset = function () {
 
+};
+
+PixiCanvas.prototype.respondToMouseClick = function () {
+    // CALCULATE THE ROW,COL OF THE CLICK
+    var canvasCoords = this.getRelativeCoords(event);
+    var clickCol = Math.floor(canvasCoords.x/cellLength);
+    var clickRow = Math.floor(canvasCoords.y/cellLength);
+
+    // hardcoded pattern for now
+    var pattern [5, 5, 6, 6, 7, 7];
+
+    // Go through pattern and fill grid
+    for (var i = 0; i < pixels.length; i += 2) {
+        var col = clickCol + pixels[i];
+        var row = clickRow + pixels[i+1];
+    }
+
+    // RENDER THE GAME IMMEDIATELY
+    renderGame();
+};
+
+PixiCanvas.prototype.getRelativeCoords = function () {
+    return (event.offsetX !== undefined && event.offsetY !== undefined) ?
+        { x: event.offsetX, y: event.offsetY } :
+        { x: event.layerX, y: event.layerY };
 };
 
 /**
