@@ -12,13 +12,16 @@ var PixiCanvas = function (element, size) {
     // parent of canvas
     this.element = element;
 
+    // recalculated when rendering
+    this.cellLength = 0;
+
     switch (size) {
         case 'small':
             this.size = {
                 width: 36,
                 height: 18
             };
-        break;
+            break;
 
 
         case 'medium':
@@ -26,14 +29,20 @@ var PixiCanvas = function (element, size) {
                 width: 48,
                 height: 27
             };
-        break;
+            break;
 
         case 'large':
             this.size = {
                 width: 80,
                 height: 45
             };
-        break;
+            break;
+
+        default:
+            this.size = {
+                width: 48,
+                height: 27
+            }
     }
 
     //Create the renderer
@@ -128,20 +137,17 @@ PixiCanvas.prototype.reset = function () {
 PixiCanvas.prototype.respondToMouseClick = function () {
     // CALCULATE THE ROW,COL OF THE CLICK
     var canvasCoords = this.getRelativeCoords(event);
-    var clickCol = Math.floor(canvasCoords.x/cellLength);
-    var clickRow = Math.floor(canvasCoords.y/cellLength);
+    var clickCol = Math.floor(canvasCoords.x/this.cellLength);
+    var clickRow = Math.floor(canvasCoords.y/this.cellLength);
 
     // hardcoded pattern for now
-    var pattern = [5, 5, 6, 6, 7, 7];
+    var pixels = [5, 5, 6, 6, 7, 7];
 
     // Go through pattern and fill grid
     for (var i = 0; i < pixels.length; i += 2) {
         var col = clickCol + pixels[i];
         var row = clickRow + pixels[i+1];
     }
-
-    // RENDER THE GAME IMMEDIATELY
-    renderGame();
 };
 
 PixiCanvas.prototype.getRelativeCoords = function () {
@@ -160,11 +166,11 @@ PixiCanvas.prototype.renderGrid = function () {
     var lineWidth = 1;
 
     // consistent canvas size regardless of device
-    var cellLength = this.renderer.width / this.size.width;
+    this.cellLength = this.renderer.width / this.size.width;
 
     // VERTICAL LINES
     for (var i = 0; i < this.renderer.width; i++) {
-        var x1 = i * cellLength;
+        var x1 = i * this.cellLength;
         var y1 = 0;
         var x2 = x1;
         var y2 = this.renderer.height;
@@ -179,7 +185,7 @@ PixiCanvas.prototype.renderGrid = function () {
     // HORIZONTAL LINES
     for (var j = 0; j < this.renderer.height; j++) {
         var x1 = 0;
-        var y1 = j * cellLength;
+        var y1 = j * this.cellLength;
         var x2 = this.renderer.width;
         var y2 = y1;
 
