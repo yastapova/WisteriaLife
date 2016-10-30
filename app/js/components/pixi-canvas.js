@@ -10,7 +10,7 @@ var PixiCanvas = function (element) {
 
     // parent of canvas
     this.element = element;
-    this.cellLength = 10;
+    this.cellLength = 15;
 
     //Create the renderer
     this.renderer = PIXI.autoDetectRenderer(1280, 720, {
@@ -39,7 +39,7 @@ var PixiCanvas = function (element) {
     }.bind(this));
 
     // canvas click event
-    this.renderer.view.addEventListener('click', respondToMouseClick.bind(this));
+    this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
 }
 
 /**
@@ -108,7 +108,7 @@ PixiCanvas.prototype.respondToMouseClick = function () {
     var clickRow = Math.floor(canvasCoords.y/cellLength);
 
     // hardcoded pattern for now
-    var pattern [5, 5, 6, 6, 7, 7];
+    var pattern = [5, 5, 6, 6, 7, 7];
 
     // Go through pattern and fill grid
     for (var i = 0; i < pixels.length; i += 2) {
