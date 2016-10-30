@@ -5,12 +5,36 @@
  * Manages all rendering
  *
  * @param {jQuery object} parent element of canvas
+ * @param [String] size (small, medium, large)
  */
-var PixiCanvas = function (element) {
+var PixiCanvas = function (element, size) {
 
     // parent of canvas
     this.element = element;
-    this.cellLength = 15;
+
+    switch (size) {
+        case 'small':
+            this.size = {
+                width: 36,
+                height: 18
+            };
+        break;
+
+
+        case 'medium':
+            this.size = {
+                width: 48,
+                height: 27
+            };
+        break;
+
+        case 'large':
+            this.size = {
+                width: 80,
+                height: 45
+            };
+        break;
+    }
 
     //Create the renderer
     this.renderer = PIXI.autoDetectRenderer(1280, 720, {
@@ -135,9 +159,12 @@ PixiCanvas.prototype.renderGrid = function () {
     var strokeColor = 0xAAAAAA;
     var lineWidth = 1;
 
+    // consistent canvas size regardless of device
+    var cellLength = this.renderer.width / this.size.width;
+
     // VERTICAL LINES
     for (var i = 0; i < this.renderer.width; i++) {
-        var x1 = i * this.cellLength;
+        var x1 = i * cellLength;
         var y1 = 0;
         var x2 = x1;
         var y2 = this.renderer.height;
@@ -152,7 +179,7 @@ PixiCanvas.prototype.renderGrid = function () {
     // HORIZONTAL LINES
     for (var j = 0; j < this.renderer.height; j++) {
         var x1 = 0;
-        var y1 = j * this.cellLength;
+        var y1 = j * cellLength;
         var x2 = this.renderer.width;
         var y2 = y1;
 

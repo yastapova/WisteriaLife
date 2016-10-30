@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-        <title>Level Editor - Wisteria Life</title>
+        <title>Gameplay - Wisteria Life</title>
 
         <meta name="theme-color" content="#c9a0dc">
 
@@ -28,7 +28,7 @@
         <script>
             // start canvas
             $(document).ready(function () {
-                var canvas = new PixiCanvas($('#editor-canvas'), 'medium');
+                var canvas = new PixiCanvas($('#gameplay-canvas'), 'large');
             });
         </script>
     </head>
@@ -87,23 +87,22 @@
             <!-- Page Content goes here -->
             <div id="gameplay-screen" class="container-inner" align="center">
                 <div class="toolbar top">
-                    <div class="toolbar-content">
-                        <div class="padder2">
-                            <form action="#">
-                                <span class="range-field" id="timeline">
-                                    <input type="range" id="test5" min="0" max="100" />
-                                </span>
-                            </form>
+                    <span class="toolbar-content">
+                        <div class="padder">
+                            <div class="progress">
+                                <div class="determinate" style="width: 70%"></div>
+                            </div>
                         </div>
                         <span class="toolbar-text">0:30</span>
-                    </div>
+                    </span>
                 </div>
-                <div class="canvas" id="editor-canvas">
+                <div class="canvas" id="gameplay-canvas">
+
                 </div>
                 <div class="toolbar bottom">
                     <span class="toolbar-content">
                         <div class="bottom align">
-                            <i class="material-icons clear-cell">backspace</i>
+                            <a href="pause.html"><i class="material-icons play">pause</i></a>
                         </div>
                         <!-- Dropdown Trigger -->
                         <div class="bottom align">
@@ -126,42 +125,23 @@
                             <li><a href="#!">Caltrops</a></li>
                             <li><a href="#!">Wall &nwarr;</a></li>
                             <li><a href="#!">Wall &nearr;</a></li>
-                        </ul>
 
-                        <!-- Switch -->
-                        <div class="bottom align">
-                            <div class="switch">
-                                <label>
-                                    <span class="enemy-swatch"><i class="material-icons">stop</i></span>
-                                <input type="checkbox">
-                                <span class="lever"></span>
-                                    <span class="friendly-swatch"><i class="material-icons">stop</i></span>
-                                </label>
-                            </div>
-                        </div>
+                        </ul>
 
                         <!-- Dropdown Trigger -->
                         <div class="bottom align">
-                            <a class='dropdown-button btn small' href='#' data-activates='zoom'>Zoom</a>
+                            <a class='dropdown-button btn small' href='#' data-activates='powerups'>Powerups</a>
                         </div>
 
                         <!-- Dropdown Structure -->
-                        <ul id='zoom' class='dropdown-content'>
-                            <li><a href="#!">Small</a></li>
-                            <li><a href="#!">Medium</a></li>
-                            <li><a href="#!">Large</a></li>
+                        <ul id='powerups' class='dropdown-content'>
+                            <li><a href="#!">Reduce Time</a></li>
+                            <li><a href="#!">Reduce Enemy Spawns</a></li>
+                            <li><a href="#!">Void Cell</a></li>
                         </ul>
 
                         <div class="bottom align">
-                            <i class="material-icons clear-cell">message</i>
-                        </div>
-
-                        <div class="bottom align">
-                            <a href="save-level.html"><i class="material-icons clear-cell">save</i></a>
-                        </div>
-
-                        <div class="bottom align">
-                            <a href="private-custom-levels.html"><i class="material-icons clear-cell">delete_forever</i></a>
+                            <a href="victory.html"><i class="material-icons lock">lock</i></a>
                         </div>
                     </span>
                 </div>
