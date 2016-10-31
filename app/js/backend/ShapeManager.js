@@ -1,8 +1,8 @@
-/* 
+/*
  * ShapeManager.js
- * 
+ *
  * Manager for shapes
- * 
+ *
  */
 
 var ShapeManager = function(shapes, listOfShapes) {
@@ -41,5 +41,7 @@ ShapeManager.prototype.getListOfShapes = function() {
 };
 
 ShapeManager.prototype.initShapes = function () {
-    
+
 };
+
+module.exports = ShapeManager;

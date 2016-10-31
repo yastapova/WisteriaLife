@@ -3,14 +3,33 @@ var concat = require('gulp-concat');
 var serve = require('gulp-serve');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var uglify = require('gulp-uglify');
+var browserify = require('browserify');
 
 // default task
 gulp.task('default', ['roboto', 'scripts', 'scripts:watch', 'serve', 'sass', 'sass:watch']);
 
+// browserify backend code
+gulp.task('browserify', function () {
+    var b = browserify({
+        entries: 'index.js', // Only need initial file, browserify finds the deps
+        debug: true        // Enable sourcemaps
+    });
+    return b.bundle()
+        .pipe(source('index.js'))
+        .pipe(buffer())
+        .pipe(uglify())
+
+        .pipe(gulp.dest('./app/js/browserify/'));
+});
+
 // concatenate all our scripts
-gulp.task('scripts', function() {
+gulp.task('scripts', ['browserify'], function() {
     return gulp.src([
             './app/js/util.js',
+            './app/js/browserify/*.js',
             './app/js/screens/Screen.js',
             './app/js/*/*.js',
             './app/js/main.js'
@@ -21,7 +40,7 @@ gulp.task('scripts', function() {
 
 // automatically concat scripts on change
 gulp.task('scripts:watch', function() {
-    gulp.watch('./app/js/**/*.js', ['scripts']);
+    gulp.watch(['./app/js/**/*.js', "!./app/js/browserify/*.js"], ['scripts']);
 });
 
 // copy materialize

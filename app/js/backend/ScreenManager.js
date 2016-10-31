@@ -1,8 +1,8 @@
-/* 
+/*
  * ScreenManager.js
- * 
+ *
  * Manager for screens
- * 
+ *
  */
 
 var ScreenManager = function(screenManager) {
@@ -49,9 +49,11 @@ ScreenManager.prototype.setScreen = function(currentScreen) {
 };
 
 ScreenManager.prototype.initializeScreens = function() {
-    
+
 };
 
 ScreenManager.prototype.back = function() {
-    
+
 };
+
+module.exports = ScreenManager;

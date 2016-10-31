@@ -1,4 +1,4 @@
-/* 
+/*
  * Powerup.js
  * Defines a Powerup object given a mapping of powerup attributes and an effect function
  */
@@ -15,3 +15,4 @@ var Powerup = function(powerupAttrObj, effect) {
     this.effect = effect;
 };
 
+module.exports = Powerup;

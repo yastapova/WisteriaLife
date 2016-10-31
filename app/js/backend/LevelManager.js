@@ -1,8 +1,8 @@
-/* 
+/*
  * LevelManager.js
- * 
+ *
  * Manages a level
- * 
+ *
  */
 
 var LevelManager = function(customLevel) {
@@ -15,9 +15,11 @@ var LevelManager = function(customLevel) {
 };
 
 LevelManager.prototype.loadLevel = function(id) {
-  
+
 };
 
 LevelManager.prototype.loadCustomLevel = function(id) {
-    
+
 };
+
+module.exports = LevelManager;

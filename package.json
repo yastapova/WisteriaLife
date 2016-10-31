@@ -3,7 +3,12 @@
   "version": "1.0.0",
   "description": "Wisteria Life - Game of Life",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node start.js"
+  },
+  "engines": {
+    "node": ">=6.9.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yastapova/WisteriaLife.git"
@@ -15,11 +20,20 @@
   },
   "homepage": "https://github.com/yastapova/WisteriaLife#readme",
   "devDependencies": {
+    "browserify": "^13.1.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-sass": "^2.3.2",
     "gulp-serve": "^1.4.0",
     "gulp-sourcemaps": "^2.2.0",
-    "materialize-css": "^0.97.7"
+    "gulp-uglify": "^2.0.0",
+    "materialize-css": "^0.97.7",
+    "uglify": "^0.1.5",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "vinyl-transform": "^1.0.0"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
   }
 }

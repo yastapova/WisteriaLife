@@ -1,8 +1,8 @@
-/* 
+/*
  * Shape.js
- * 
+ *
  * Defines a Shape
- * 
+ *
  */
 
 var Shape = function(name, thumbnail, cells) {
@@ -71,3 +71,5 @@ Shape.prototype.getThumbnail = function() {
 Shape.prototype.getCells = function() {
     return this.cells;
 };
+
+module.exports = Shape;

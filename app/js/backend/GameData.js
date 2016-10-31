@@ -1,6 +1,6 @@
-/* 
+/*
  * GameData.js
- * Defines a GameData obj 
+ * Defines a GameData obj
  */
 
  /*
@@ -12,3 +12,5 @@ var GameData = function() {
     this.currentLevel = 0;
     this.customLevelsIds = [];
 };
+
+module.exports = GameData;

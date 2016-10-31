@@ -1,8 +1,8 @@
-/* 
+/*
  * Level.js
- * 
+ *
  * Defines a level
- * 
+ *
  */
 
 var Level = function(level) {
@@ -98,3 +98,4 @@ Level.prototype.setWistbux = function() {
     return this.wistbux;
 };
 
+module.exports = Level;

@@ -50,3 +50,5 @@ GameLogicManager.prototype.resume = function() {
 GameLogicManager.prototype.reset = function() {
 
 }
+
+module.exports = GameLogicManager;

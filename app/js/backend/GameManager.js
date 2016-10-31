@@ -61,3 +61,5 @@ GameManager.prototype.back = function () {}
 GameManager.prototype.checkIsLoggedIn = function () {
     return false;
 }
+
+module.exports = GameManager;

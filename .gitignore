@@ -3,3 +3,6 @@ node_modules
 /nbproject/private/
 /app/dist/
 /app/sass/materialize/
+/app/js/browserify/
+*.iml
+/.idea/

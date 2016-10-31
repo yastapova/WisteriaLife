@@ -4,3 +4,6 @@ var User = function(name, avatar, id, gameData) {
     this.id = id;
     this.gameData = gameData;
 };
+
+
+module.exports = User;
