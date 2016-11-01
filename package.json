@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "description": "Wisteria Life - Game of Life",
   "main": "index.js",
-  "scripts": {
-    "start": "node start.js"
-  },
+  "scripts": {},
   "engines": {
     "node": ">=6.9.1"
   },
