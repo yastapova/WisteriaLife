@@ -1,3 +1,6 @@
+
+var screen = require('Screen');
+
 var VictoryScreen = function(id, level, user) {
     this.level = level;
     this.user = user;
@@ -11,7 +14,7 @@ VictoryScreen.prototype.load = function() {
 };
 
 VictoryScreen.prototype.hide = function() {
-    
+
 };
 
 VictoryScreen.prototype.share = function() {
@@ -21,3 +24,5 @@ VictoryScreen.prototype.share = function() {
 VictoryScreen.prototype.replay = function() {
 
 }
+
+module.exports = VictoryScreen;

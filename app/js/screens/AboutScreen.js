@@ -1,13 +1,14 @@
-/* 
+/*
  * AboutScreen.js
  * AboutScreen object
  */
+var Screen = require('Screen');
 
  /*
   * construct a AboutScreen obj with given id
   */
 var AboutScreen = function(id) {
-    Screen.call(this,id);   
+    Screen.call(this,id);
 };
 
 inherits(AboutScreen, Screen);
@@ -20,5 +21,7 @@ AboutScreen.prototype.load = function() {
 };
 
 AboutScreen.prototype.hide = function() {
-    
+
 };
+
+module.exports = AboutScreen;

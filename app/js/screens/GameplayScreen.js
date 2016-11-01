@@ -1,11 +1,16 @@
+
+var screen = require('Screen');
+
+var GameLogicManager = require('../backend/GameLogicManager');
+
 var gameplayScreen = function(id, level) {
     this.level = level;
-    this.gameLogicManager = GameLogicManager();
+    this.gameLogicManager = new GameLogicManager();
     this.allowedShapes = this.level.getAllowedShapes();
     this.time = this.level.getTime();
     this.messageMap = this.level.getMessageMap();
     this.enemySpawns = this.level.getEnemySpawns();
-    screen.call(this,id);   
+    screen.call(this,id);
 };
 
 inherits(gameplayScreen, screen);
@@ -15,7 +20,7 @@ gameplayScreen.prototype.load = function() {
 };
 
 gameplayScreen.prototype.hide = function() {
-    
+
 };
 
 gameplayScreen.prototype.addShape = function(shape) {
@@ -32,5 +37,7 @@ gameplayScreen.prototype.reduceTime = function(time) {
 }
 
 gameplayScreen.prototype.reduceEnemy = function(num) {
-    
+
 }
+
+module.exports = GameplayScreen;

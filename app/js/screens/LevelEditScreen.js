@@ -1,3 +1,6 @@
+
+var screen = require('Screen');
+
 var LevelEditScreen = function(id, level) {
     this.level = level;
     this.renderGrid = [];
@@ -8,7 +11,7 @@ var LevelEditScreen = function(id, level) {
 inherits(LevelEditScreen, screen);
 
 LevelEditScreen.prototype.load = function() {
-	
+
 };
 
 LevelEditScreen.prototype.hide = function() {
@@ -26,3 +29,5 @@ LevelEditScreen.prototype.isValidCell = function() {
 LevelEditScreen.prototype.getRelativeCoords = function() {
 
 }
+
+module.exports = LevelEditScreen;

@@ -7,40 +7,58 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
 var browserify = require('browserify');
+var cleanCSS = require('gulp-clean-css');
 
 // default task
-gulp.task('default', ['roboto', 'scripts', 'scripts:watch', 'serve', 'sass', 'sass:watch']);
+gulp.task('default', ['roboto', 'browserify', 'scripts:watch', 'serve', 'sass', 'sass:watch']);
 
-// browserify backend code
+// run before deploying
+gulp.task('deploy', ['roboto', 'browserify:prod', 'sass:prod']);
+
+// browserify for node style requires
 gulp.task('browserify', function () {
     var b = browserify({
-        entries: 'index.js', // Only need initial file, browserify finds the deps
-        debug: true        // Enable sourcemaps
+        entries: './app/js/main.js', // Only need initial file, browserify finds the deps
+        debug: true,
+        paths: [
+            './node_modules',
+            './app/js/backend',
+            './app/js/components',
+            './app/js/screens'
+        ]
     });
     return b.bundle()
-        .pipe(source('index.js'))
+        .pipe(source('wisteria.js'))
+		.pipe(sourcemaps.write())
+        .pipe(buffer())
+        // .pipe(uglify())
+
+        .pipe(gulp.dest('./app/dist/js/'));
+});
+
+// browserify - production - no sourcemap and minified
+gulp.task('browserify:prod', function () {
+    var b = browserify({
+        entries: './app/js/main.js', // Only need initial file, browserify finds the deps
+        debug: true,
+        paths: [
+            './node_modules',
+            './app/js/backend',
+            './app/js/components',
+            './app/js/screens'
+        ]
+    });
+    return b.bundle()
+        .pipe(source('wisteria.js'))
         .pipe(buffer())
         .pipe(uglify())
 
-        .pipe(gulp.dest('./app/js/browserify/'));
-});
-
-// concatenate all our scripts
-gulp.task('scripts', ['browserify'], function() {
-    return gulp.src([
-            './app/js/util.js',
-            './app/js/browserify/*.js',
-            './app/js/screens/Screen.js',
-            './app/js/*/*.js',
-            './app/js/main.js'
-        ])
-        .pipe(concat('wisteria.js'))
         .pipe(gulp.dest('./app/dist/js/'));
 });
 
 // automatically concat scripts on change
 gulp.task('scripts:watch', function() {
-    gulp.watch(['./app/js/**/*.js', "!./app/js/browserify/*.js"], ['scripts']);
+    gulp.watch(['./app/js/**/*.js'], ['browserify']);
 });
 
 // copy materialize
@@ -55,6 +73,15 @@ gulp.task('sass', function() {
 		.pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
 		.pipe(sourcemaps.write())
+        .pipe(gulp.dest('./app/dist/css'));
+});
+
+// production scss - minified and no sourcemap
+gulp.task('sass:prod', function() {
+    return gulp.src(['./app/sass/**/*.scss', '!./app/sass/materialize/*.scss'])
+		.pipe(sourcemaps.init())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(cleanCSS())
         .pipe(gulp.dest('./app/dist/css'));
 });
 

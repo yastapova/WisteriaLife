@@ -136,3 +136,5 @@ Canvas.prototype.renderGrid = function () {
         this.canvas.stroke();
     }
 };
+
+module.exports = Canvas;

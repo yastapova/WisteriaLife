@@ -3,6 +3,8 @@
  * Defines an initializes all the powerups in the game
  */
 
+var Powerup = require('Powerup');
+
  /*
   * powerupsMap is a Map<string, powerup>
   */

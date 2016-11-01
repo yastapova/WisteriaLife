@@ -197,3 +197,5 @@ PixiCanvas.prototype.renderGrid = function () {
     }
 
 };
+
+module.exports = PixiCanvas;

@@ -85,3 +85,5 @@ DropdownMenu.prototype = {
 
     }
 };
+
+module.exports = DropdownMenu;

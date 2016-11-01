@@ -2,6 +2,7 @@
  * gameMap.js
  * Map region select screen
  */
+var screen = require('Screen');
 
 var gameMap = function (id) {
     screen.call(this, id);
@@ -26,3 +27,5 @@ gameMap.prototype.load = function () {
 gameMap.prototype.hide = function () {
 
 };
+
+module.exports = GameMapScreen;

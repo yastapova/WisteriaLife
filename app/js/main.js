@@ -1,15 +1,60 @@
 /**
+ * Primary frontend script
  * main.js
  *
- *   Includes all of the objects
- *   Starts the game
- *   Pixi renderer object
+ * Wisteria Life
  *
- * Added last in the concatenation
+ * Depends on Browserify for node.js style requires
  */
 
+// include backend components
+var GameData = require('GameData');
+var GameLogicManager = require('GameLogicManager');
+var GameManager = require('GameManager');
+var Level = require('Level');
+var LevelManager = require('LevelManager');
+var Powerup = require('Powerup');
+var PowerupManager = require('PowerupManager');
+var ScreenManager = require('ScreenManager');
+var Shape = require('Shape');
+var ShapeManager = require('ShapeManager');
+var User = require('User');
+
+// include screens
+var Screen = require('Screen');
+var AboutScreen = require('AboutScreen');
+var AdScreen = require('AdScreen');
+var DefeatScreen = require('DefeatScreen');
+var GameMapScreen = require('GameMapScreen');
+var GameplayScreen = require('GameplayScreen');
+var LevelEditScreen = require('LevelEditScreen');
+var LevelSelectScreen = require('LevelSelectScreen');
+var LevelStoryScreen = require('LevelStoryScreen');
+var PauseScreen = require('PauseScreen');
+var PrivateCustomLevelsScreen = require('PrivateCustomLevelsScreen');
+var PublicCustomLevelsScreen = require('PublicCustomLevelsScreen');
+var SaveLevelScreen = require('SaveLevelScreen');
+var SplashScreen = require('SplashScreen');
+var StoreScreen = require('StoreScreen');
+var VictoryScreen = require('VictoryScreen');
+
+var DropdownMenu = require('overflow');
+var PixiCanvas = require('pixi-canvas');
+var Canvas = require('canvas');
+
 var gameManager = new GameManager();
-var renderer; // TODO
+
+/**
+ * Child inherits from parent
+ * Sets the child's prototype equal to the parent's
+ *
+ * @param child child object
+ * @param parent parent object
+ */
+function inherits(child, parent) {
+    child.prototype = Object.create(parent.prototype);
+    child.prototype.constructor = parent;
+}
 
 /**
  * Instantiate navbar events
@@ -26,3 +71,5 @@ $(document).ready(function () {
 
     var menu = new DropdownMenu(menuElements);
 });
+
+module.exports = inherits;

@@ -1,11 +1,12 @@
-/* 
+/*
  * LevelStoryScreen.js
  * LevelStoryScreen object
  */
+var screen = require('Screen');
 
 /*
  * Construct a LevelStoryScreen with given id
- * 
+ *
  */
 
 var LevelStoryScreen = function(id, level) {
@@ -18,11 +19,11 @@ var LevelStoryScreen = function(id, level) {
     screen.call(this, id, level);
 };
 
-inherits(LevelStoryScreen, screen); 
+inherits(LevelStoryScreen, screen);
 
 /*
  * Override the load and hide of the parent screen
- * 
+ *
  */
 
 LevelStoryScreen.prototype.load = function() {
@@ -30,5 +31,7 @@ LevelStoryScreen.prototype.load = function() {
 };
 
 LevelStoryScreen.prototype.hide = function() {
-    
+
 };
+
+module.exports = LevelStoryScreen;

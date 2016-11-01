@@ -29,3 +29,5 @@ screen.prototype.load = function() {
 screen.prototype.hide = function() {
 
 };
+
+module.exports = screen;
