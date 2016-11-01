@@ -16,7 +16,7 @@ gulp.task('default', ['roboto', 'browserify', 'scripts:watch', 'serve', 'sass', 
 gulp.task('deploy', ['roboto', 'browserify:prod', 'sass:prod']);
 
 // browserify for node style requires
-gulp.task('browserify', function () {
+gulp.task('browserify', function() {
     var b = browserify({
         entries: './app/js/main.js', // Only need initial file, browserify finds the deps
         debug: true,
@@ -27,21 +27,21 @@ gulp.task('browserify', function () {
             './app/js/screens'
         ],
         insertGlobalVars: { // global inherits function
-            inherits: function (file, dir) {
+            inherits: function(file, dir) {
                 return 'require("inherits")';
             }
         }
     });
     return b.bundle()
         .pipe(source('wisteria.js'))
-		.pipe(sourcemaps.write())
+        .pipe(sourcemaps.write())
         .pipe(buffer())
 
-        .pipe(gulp.dest('./app/dist/js/'));
+    .pipe(gulp.dest('./app/dist/js/'));
 });
 
 // browserify - production - no sourcemap and minified
-gulp.task('browserify:prod', function () {
+gulp.task('browserify:prod', function() {
     var b = browserify({
         entries: './app/js/main.js', // Only need initial file, browserify finds the deps
         debug: true,
@@ -52,7 +52,7 @@ gulp.task('browserify:prod', function () {
             './app/js/screens'
         ],
         insertGlobalVars: { // global inherits function
-            inherits: function (file, dir) {
+            inherits: function(file, dir) {
                 return 'require("inherits")';
             }
         }
@@ -62,7 +62,7 @@ gulp.task('browserify:prod', function () {
         .pipe(buffer())
         .pipe(uglify())
 
-        .pipe(gulp.dest('./app/dist/js/'));
+    .pipe(gulp.dest('./app/dist/js/'));
 });
 
 // automatically concat scripts on change
@@ -79,16 +79,16 @@ gulp.task('materialize', function() {
 // compile scss files
 gulp.task('sass', function() {
     return gulp.src(['./app/sass/**/*.scss', '!./app/sass/materialize/*.scss'])
-		.pipe(sourcemaps.init())
+        .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-		.pipe(sourcemaps.write())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./app/dist/css'));
 });
 
 // production scss - minified and no sourcemap
 gulp.task('sass:prod', function() {
     return gulp.src(['./app/sass/**/*.scss', '!./app/sass/materialize/*.scss'])
-		.pipe(sourcemaps.init())
+        .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(cleanCSS())
         .pipe(gulp.dest('./app/dist/css'));

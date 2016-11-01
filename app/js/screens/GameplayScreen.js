@@ -1,7 +1,7 @@
 
 var screen = require('Screen');
 
-var GameLogicManager = require('../backend/GameLogicManager');
+var GameLogicManager = require('GameLogicManager');
 
 var gameplayScreen = function(id, level) {
     this.level = level;
