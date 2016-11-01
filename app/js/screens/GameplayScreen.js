@@ -40,4 +40,4 @@ gameplayScreen.prototype.reduceEnemy = function(num) {
 
 }
 
-module.exports = GameplayScreen;
+module.exports = gameplayScreen;

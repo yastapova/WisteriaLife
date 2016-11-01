@@ -17,7 +17,7 @@ var DropdownMenu = function (menu, gm) {
     this.loginout = menu.loginout;
 
     // use gm if provided, otherwise, use global
-    this.gameManager = gm ? gm : gameManager;
+    this.gameManager = gm;
 
     // set click events on all menu items
     this.back.on('click', function () {

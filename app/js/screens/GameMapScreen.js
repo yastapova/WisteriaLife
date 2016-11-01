@@ -28,4 +28,4 @@ gameMap.prototype.hide = function () {
 
 };
 
-module.exports = GameMapScreen;
+module.exports = gameMap;

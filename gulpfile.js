@@ -25,7 +25,12 @@ gulp.task('browserify', function () {
             './app/js/backend',
             './app/js/components',
             './app/js/screens'
-        ]
+        ],
+        insertGlobalVars: { // global inherits function
+            inherits: function (file, dir) {
+                return 'require("inherits")';
+            }
+        }
     });
     return b.bundle()
         .pipe(source('wisteria.js'))

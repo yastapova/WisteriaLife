@@ -54,10 +54,6 @@ Level.prototype.setImage = function(image) {
     this.image = image;
 };
 
-Level.prototype.setWistbux = function(wistbux) {
-    this.wistbux = wistbux;
-};
-
 Level.prototype.getName = function() {
     return this.name;
 };

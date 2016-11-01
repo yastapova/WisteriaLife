@@ -69,7 +69,9 @@ $(document).ready(function () {
         loginout: $('#drop-loginout')
     };
 
-    var menu = new DropdownMenu(menuElements);
+    var menu = new DropdownMenu(menuElements, gameManager);
 });
 
-module.exports = inherits;
+module.exports = {
+    inherits: inherits
+}
