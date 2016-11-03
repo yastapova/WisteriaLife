@@ -7,14 +7,13 @@
 var DropdownMenu = function (menu, gm) {
 
     // set dropdown event
-    menu.vert.dropdown();
+    menu.activate.dropdown();
 
     // set DOM elements
     this.back = menu.back;
     this.store = menu.store;
     this.mute = menu.mute;
     this.about = menu.about;
-    this.loginout = menu.loginout;
 
     // use gm if provided, otherwise, use global
     this.gameManager = gm;
@@ -34,10 +33,6 @@ var DropdownMenu = function (menu, gm) {
 
     this.about.on('click', function () {
         this.handleAboutButton();
-    }.bind(this));
-
-    this.loginout.on('click', function () {
-        this.handleLoginoutButton();
     }.bind(this));
 }
 
@@ -68,20 +63,6 @@ DropdownMenu.prototype = {
      * Handle about button
      */
     handleAboutButton: function () {
-
-    },
-
-    /**
-     * Handle loginout button
-     */
-    handleLoginoutButton: function () {
-
-    },
-
-    /**
-     * Switch between login and logout buttons
-     */
-    toggleLoginout: function () {
 
     }
 };
