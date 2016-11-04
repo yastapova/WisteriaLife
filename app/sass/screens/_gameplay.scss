@@ -1,5 +1,9 @@
 #gameplay-screen {
     height: 100%;
+
+     @media screen and (orientation:portrait) {
+         display: none;
+     }
 }
 
 .toolbar {

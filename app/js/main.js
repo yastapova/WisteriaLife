@@ -39,6 +39,7 @@ var StoreScreen = require('StoreScreen');
 var VictoryScreen = require('VictoryScreen');
 
 var DropdownMenu = require('overflow');
+var UserMenu = require('UserMenu');
 var PixiCanvas = require('pixi-canvas');
 var Canvas = require('canvas');
 
@@ -61,7 +62,7 @@ function inherits(child, parent) {
  */
 $(document).ready(function () {
     var menuElements = {
-        vert: $('#hamburger-vert'),
+        activate: $('#hamburger-vert'),
         back: $('#drop-back'),
         store: $('#drop-store'),
         mute: $('#drop-mute'),
@@ -70,6 +71,13 @@ $(document).ready(function () {
     };
 
     var menu = new DropdownMenu(menuElements, gameManager);
+
+    var userMenuElements = {
+        activate: $('#user-menu'),
+        loginout: $('#drop-loginout')
+    };
+
+    var userMenu = new UserMenu(userMenuElements);
 });
 
 module.exports = {

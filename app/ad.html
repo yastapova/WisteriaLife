@@ -30,17 +30,43 @@
             <div id="wisteria-nav" class="nav-wrapper">
                 <ul id="nav-mobile" class="left">
                     <li id="account">
-                        <a href="mobile.html">
+                        <a href="#!" id="user-menu" data-activates="user-dropdown">
                             <i class="material-icons left">person</i>
                             R. Boxman</a>
                     </li>
                 </ul>
-                <a href="#" id="logo" class="brand-logo center"></a>
+
+                <div id="user-dropdown" class="dropdown-content card">
+
+                    <div id="user-dropdown-inner">
+                        <div id="user-dropdown-header" class="cf">
+                            <div id="user-icon"><i class="material-icons">person</i></div>
+                            <div id="user-title">
+                                <span class="user-name">R. Boxman</span>
+                                <span class="user-level">Level 4</span>
+                            </div>
+                        </div>
+
+                        <div id="user-action" class="cf">
+                            <a href="#!" id="profile-link" class="waves-effect btn-flat">
+                                Profile
+                            </a>
+
+                            <a href="#!" id="drop-loginout">
+                                <i class="material-icons">power_settings_new</i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <a href="/" id="logo" class="brand-logo center"></a>
                 <ul id="nav-mobile" class="right">
                     <li id="wistbux">
                         <a href="#">
                             <i class="material-icons left">attach_money</i>
-                            9,999</a>
+                            9,999
+                        </a>
                     </li>
 
                     <!-- Hamburger Menu - TODO -->
@@ -53,34 +79,21 @@
 
                 <ul id="hamburger-dropdown" class="dropdown-content">
                     <li>
-                        <a href="#!" id="drop-back">
-                            <i class="material-icons">arrow_back</i>
-                        </a>
+                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
                     </li>
                     <li>
-                        <a href="/store.html" id="drop-store">
-                            <i class="material-icons">store</i>
-                        </a>
+                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
                     </li>
                     <li>
-                        <a href="#!" id="drop-mute">
-                            <i class="material-icons">volume_mute</i>
-                        </a>
+                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
                     </li>
                     <li>
-                        <a href="/about.html" id="drop-about">
-                            <i class="material-icons">info</i>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#!" id="drop-loginout">
-                            <i class="material-icons">power_settings_new</i>
-                        </a>
+                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
                     </li>
                 </ul>
             </div>
         </nav>
+
         <!-- Screen Section -->
         <div class="container">
             <!-- Test Ad being an overlay -->
@@ -92,7 +105,7 @@
                 </a>
                 <img id="ad" src="/img/far-beyond.jpg">
             </div>
-            
+
             <div id="level-story-screen" class="container-inner">
                 <div align="center">
                     <h2 id="level-story-title">The Rise of the Scarlet</h2>
