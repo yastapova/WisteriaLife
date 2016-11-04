@@ -78,6 +78,11 @@ $(document).ready(function () {
     };
 
     var userMenu = new UserMenu(userMenuElements);
+
+    // temporary fix Only
+    var canvasElement = $('#gameplay-canvas').length != 0 ? $('#gameplay-canvas') : $('#editor-canvas');
+    var canvas = new PixiCanvas(canvasElement, 'medium');
+    var canvas2 = new PixiCanvas(canvasElement, 'medium');
 });
 
 module.exports = {

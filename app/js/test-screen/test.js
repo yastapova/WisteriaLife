@@ -27,3 +27,8 @@ console.log(testA.name);
 
 testA.name = "Test A Name";
 console.log(testA.name);
+
+module.exports = {
+    TestA: TestA,
+    TestB: TestB
+};

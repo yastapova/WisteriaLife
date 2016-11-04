@@ -29,6 +29,10 @@ gulp.task('browserify', function() {
         insertGlobalVars: { // global inherits function
             inherits: function(file, dir) {
                 return 'require("inherits")';
+            },
+
+            PixiCanvas: function(file, dir) {
+                return 'require("pixi-canvas")';
             }
         }
     });
@@ -54,6 +58,10 @@ gulp.task('browserify:prod', function() {
         insertGlobalVars: { // global inherits function
             inherits: function(file, dir) {
                 return 'require("inherits")';
+            },
+
+            PixiCanvas: function(file, dir) {
+                return 'require("pixi-canvas")';
             }
         }
     });
