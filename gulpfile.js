@@ -54,7 +54,8 @@ gulp.task('browserify:prod', function() {
             './node_modules',
             './app/js/backend',
             './app/js/components',
-            './app/js/screens'
+            './app/js/screens',
+            './app/js/test-screen'
         ],
         insertGlobalVars: { // global inherits function
             inherits: function(file, dir) {
