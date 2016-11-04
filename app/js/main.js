@@ -43,6 +43,9 @@ var UserMenu = require('UserMenu');
 var PixiCanvas = require('pixi-canvas');
 var Canvas = require('canvas');
 
+/*
+ * Test Screens
+ */
 var TestA = require('test').TestA;
 var TestB = require('test').TestB;
 
@@ -86,18 +89,6 @@ $(document).ready(function () {
     var canvasElement = $('#gameplay-canvas').length != 0 ? $('#gameplay-canvas') : $('#editor-canvas');
     var canvas = new PixiCanvas(canvasElement, 'medium');
     var canvas2 = new PixiCanvas(canvasElement, 'medium');
-
-
-    var testB = new TestB();
-    console.log(testB.getName());
-    console.log(testB.getScreen());
-
-    var testA = new TestA();
-    console.log(testA.getName());
-    console.log(testA.name);
-
-    testA.name = "Test A Name";
-    console.log(testA.name);
 });
 
 module.exports = {
