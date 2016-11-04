@@ -17,17 +17,6 @@ TestB.prototype.getScreen = function () {
     return this.screen;
 }
 
-var testB = new TestB();
-console.log(testB.getName());
-console.log(testB.getScreen());
-
-var testA = new TestA();
-console.log(testA.getName());
-console.log(testA.name);
-
-testA.name = "Test A Name";
-console.log(testA.name);
-
 module.exports = {
     TestA: TestA,
     TestB: TestB
