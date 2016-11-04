@@ -1,0 +1,228 @@
+{
+    "regions": [
+        {
+            "name": "The Revolting River",
+            "img": "revolting-river.jpg",
+            "levels": [
+                {
+                    "name": "Level 1",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 2",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 3",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 4",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 5",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 6",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 7",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 8",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 9",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 10",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                }               
+            ]            
+        },
+        {
+            "name": "The Putrid Plateau",
+            "img": "putrid-plateau.jpg",
+            "levels": [
+                {
+                    "name": "Level 11",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 12",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 13",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 14",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 15",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 16",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 17",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 18",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 19",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 20",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                } 
+            ]
+        },
+        {
+            "name": "The Malignant Marsh",
+            "img": "malignant-marsh.jpg",
+            "levels": [
+                {
+                    "name": "Level 21",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 22",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 23",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 24",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 25",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 26",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 27",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 28",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 29",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 30",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                }  
+            ]
+        },
+        {
+            "name": "The Abysmal Abyss",
+            "img": "abysmal-abyss.jpg",
+            "levels": [
+                {
+                    "name": "Level 31",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 32",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 33",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 34",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 35",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 36",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 37",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 38",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 39",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 40",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                }
+            ]
+        }
+    ]
+}
