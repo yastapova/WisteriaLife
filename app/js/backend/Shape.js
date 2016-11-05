@@ -5,71 +5,23 @@
  *
  */
 
-var Shape = function(name, thumbnail, cells) {
-    if(name === undefined && thumbnail === undefined && cells === undefined) {
-        this.name = undefined;
-        this.thumbnail = undefined;
-        this.cells = undefined;
-    }
-    else if(name === undefined && thumbnail === undefined) {
-        this.name = undefined;
-        this.thumbnail = undefined;
-        this.cells = cells;
-    }
-    else if(name === undefined && cells === undefined) {
-        this.name = undefined;
-        this.thumbnail = thumbnail;
-        this.cells = undefined;
-    }
-    else if(thumbnail === undefined && cells === undefined) {
-        this.name = name;
-        this.thumbnail = thumbnail;
-        this.cells = cells;
-    }
-    else if(name === undefined) {
-        this.name = undefined;
-        this.thumbnail = thumbnail;
-        this.cells = cells;
-    }
-    else if(thumbnail === undefined) {
-        this.name = name;
-        this.thumbnail = undefined;
-        this.cells = cells;
-    }
-    else if(cells === undefined) {
-        this.name = name;
-        this.thumbnail = thumbnail;
-        this.cells = undefined;
-    }
-    else {
-    this.name = name;
-    this.thumbnail = thumbnail;
-    this.cells = cells;
-    }
-};
+var Shape = function (shapeAtrrObj) {
+	this.name = shapeAtrrObj.name;
+	this.pixelsArray = this.convertToPixelsArray(shapeAtrrObj.coordinates);
+}
 
-Shape.prototype.setName = function(name) {
-    this.name = name;
-};
-
-Shape.prototype.setThumbnail = function(thumbnail) {
-    this.thumbnail = thumbnail;
-};
-
-Shape.prototype.setCells = function(cells) {
-    this.cells = cells;
-};
-
-Shape.prototype.getName = function() {
-    return this.name;
-};
-
-Shape.prototype.getThumbnail = function() {
-    return this.thumbnail;
-};
-
-Shape.prototype.getCells = function() {
-    return this.cells;
-};
+/*
+ * Initializes the pixels array from the coordinates in the shapeAtrrObj
+ */
+Shape.prototype.convertToPixelsArray = function (coordinates) {
+	var pixels = new Array();
+	var pixelsArrayCounter = 0;
+	for (var i = 0; i < coordinates.length; i++) {
+		pixels[pixelsArrayCounter] = coordinates[i].x;
+		pixels[pixelsArrayCounter + 1] = coordinates[i].y;
+		pixelsArrayCounter += 2;
+	}
+	return pixels;
+}
 
 module.exports = Shape;

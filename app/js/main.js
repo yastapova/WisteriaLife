@@ -75,6 +75,33 @@ $(document).ready(function () {
         loginout: $('#drop-loginout')
     };
 
+var gameManager = new GameManager();
+
+/**
+ * Child inherits from parent
+ * Sets the child's prototype equal to the parent's
+ *
+ * @param child child object
+ * @param parent parent object
+ */
+function inherits(child, parent) {
+    child.prototype = Object.create(parent.prototype);
+    child.prototype.constructor = parent;
+}
+
+/**
+ * Instantiate navbar events
+ */
+$(document).ready(function () {
+    var menuElements = {
+        activate: $('#hamburger-vert'),
+        back: $('#drop-back'),
+        store: $('#drop-store'),
+        mute: $('#drop-mute'),
+        about: $('#drop-about'),
+        loginout: $('#drop-loginout')
+    };
+
     var menu = new DropdownMenu(menuElements, gameManager);
 
     var userMenuElements = {
