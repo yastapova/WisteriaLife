@@ -6,7 +6,7 @@
     "rules": "storage.rules"
   },
   "hosting": {
-    "public": "app",
+    "public": "app/public/",
     "ignore": [
       "firebase.json",
       "database-rules.json",
