@@ -22,10 +22,10 @@ gulp.task('browserify', function() {
         debug: true,
         paths: [
             './node_modules',
-            './app/js/backend',
+            // './app/js/backend', // disabled for files to be consistent with node.js
             './app/js/components',
-            './app/js/screens',
-            './app/js/test-screen'
+            // './app/js/screens',
+            // './app/js/test-screen'
         ],
         insertGlobalVars: { // global inherits function
             inherits: function(file, dir) {
@@ -52,9 +52,9 @@ gulp.task('browserify:prod', function() {
         debug: true,
         paths: [
             './node_modules',
-            './app/js/backend',
-            './app/js/components',
-            './app/js/screens'
+            // './app/js/backend',
+            // './app/js/components',
+            // './app/js/screens'
         ],
         insertGlobalVars: { // global inherits function
             inherits: function(file, dir) {

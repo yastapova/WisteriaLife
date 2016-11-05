@@ -2,7 +2,7 @@
  * LevelSelectScreen.js
  * LevelSelectScreen object
  */
-var screen = require('Screen');
+var screen = require('./Screen');
 
 /*
  * Construct a LevelSelectScreen with given id

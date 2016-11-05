@@ -2,7 +2,7 @@
  * StoreScreen.js
  * StoreScreen object
  */
-var Screen = require('Screen');
+var Screen = require('./Screen');
 
  /*
   * construct a StoreScreen obj with given id

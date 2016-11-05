@@ -1,5 +1,5 @@
 
-var screen = require('Screen');
+var screen = require('./Screen');
 
 var PrivateCustomLevelsScreen = function(id) {
     screen.call(this,id);

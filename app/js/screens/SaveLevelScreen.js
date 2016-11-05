@@ -2,7 +2,7 @@
  * SaveLevelScreen.js
  * SaveLevelScreen object
  */
-var screen = require('Screen');
+var screen = require('./Screen');
 
  /*
   * construct a SaveLevelScreen obj with given id

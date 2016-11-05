@@ -1,8 +1,11 @@
 node_modules
 .DS_Store
 /nbproject/private/
-/app/dist/
+/app/dist/css
+/app/dist/fonts
+/app/dist/js
 /app/sass/materialize/
 /app/js/browserify/
 *.iml
 /.idea/
+/**/*.log

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Welcome - Wisteria Life</title>
+
+    <meta name="theme-color" content="#c9a0dc">
+
+    <!-- jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Materialize -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+    <!-- CSS including Materialize -->
+    <link rel="stylesheet" href="/css/wisteria.css"/>
+
+    <!-- Custom JavaScript -->
+    <script src="/js/wisteria.js"></script>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-storage.js"></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/3.5.0/firebase-messaging.js"></script> -->
+
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCat75uhAGiuBls9VCtvoFP61mG0Aj1tQA",
+        authDomain: "wisteria-life-build1.firebaseapp.com",
+        databaseURL: "https://wisteria-life-build1.firebaseio.com/",
+        storageBucket: "gs://wisteria-life-build1.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
+</head>
+
+<body>
+
+    <% include menu %>
+
+    <div class="container">

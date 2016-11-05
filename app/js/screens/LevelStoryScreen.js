@@ -2,7 +2,7 @@
  * LevelStoryScreen.js
  * LevelStoryScreen object
  */
-var screen = require('Screen');
+var screen = require('./Screen');
 
 /*
  * Construct a LevelStoryScreen with given id

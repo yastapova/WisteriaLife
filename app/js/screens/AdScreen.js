@@ -2,7 +2,7 @@
  * AdScreen.js
  * AdScreen object
  */
-var screen = require('Screen');
+var screen = require('./Screen');
 
 /*
  * Construct an AdScreen with given id

@@ -2,7 +2,7 @@
  * DefeatScreen.js
  * DefeatScreen object
  */
-var screen = require('Screen');
+var screen = require('./Screen');
 
  /*
   * construct a DefeatScreen obj with given id

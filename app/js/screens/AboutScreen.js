@@ -2,7 +2,7 @@
  * AboutScreen.js
  * AboutScreen object
  */
-var Screen = require('Screen');
+var Screen = require('./Screen');
 
  /*
   * construct a AboutScreen obj with given id

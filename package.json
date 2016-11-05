@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Wisteria Life - Game of Life",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node ./bin/www"
+  },
   "engines": {
     "node": ">=6.9.1"
   },
@@ -29,10 +31,16 @@
     "materialize-css": "^0.97.7",
     "uglify": "^0.1.5",
     "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.1.0",
-    "vinyl-transform": "^1.0.0"
+    "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
-    "express": "^4.14.0"
+    "body-parser": "~1.13.2",
+    "cookie-parser": "~1.3.5",
+    "debug": "~2.2.0",
+    "ejs": "~2.3.3",
+    "express": "~4.13.1",
+    "jquery": "^3.1.1",
+    "morgan": "~1.6.1",
+    "serve-favicon": "~2.3.0"
   }
 }

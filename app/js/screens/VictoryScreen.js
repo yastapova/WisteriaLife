@@ -1,5 +1,5 @@
 
-var screen = require('Screen');
+var screen = require('./Screen');
 
 var VictoryScreen = function(id, level, user) {
     this.level = level;

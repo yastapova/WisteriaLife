@@ -1,5 +1,5 @@
 
-var screen = require('Screen');
+var screen = require('./Screen');
 
 var PublicCustomLevelsScreen = function(id, publicCustomLevelsMap) {
     this.publicCustomLevelsMap = publicCustomLevelsMap;

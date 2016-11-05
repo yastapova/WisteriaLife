@@ -1,4 +1,4 @@
-var User = require('User');
+var User = require('./User');
 
 /**
  * GameManager handles the user and saving/loading of data

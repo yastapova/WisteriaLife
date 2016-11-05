@@ -5,46 +5,48 @@
  * Wisteria Life
  *
  * Depends on Browserify for node.js style requires
+ *
+ * This is frontend only.
  */
 
 // include backend components
-var GameData = require('GameData');
-var GameLogicManager = require('GameLogicManager');
-var GameManager = require('GameManager');
-var Level = require('Level');
-var LevelManager = require('LevelManager');
-var Powerup = require('Powerup');
-var PowerupManager = require('PowerupManager');
-var ScreenManager = require('ScreenManager');
-var Shape = require('Shape');
-var ShapeManager = require('ShapeManager');
-var User = require('User');
+var GameData = require('./backend/GameData');
+var GameLogicManager = require('./backend/GameLogicManager');
+var GameManager = require('./backend/GameManager');
+var Level = require('./backend/Level');
+var LevelManager = require('./backend/LevelManager');
+var Powerup = require('./backend/Powerup');
+var PowerupManager = require('./backend/PowerupManager');
+var ScreenManager = require('./backend/ScreenManager');
+var Shape = require('./backend/Shape');
+var ShapeManager = require('./backend/ShapeManager');
+var User = require('./backend/User');
 
 // include screens
-var Screen = require('Screen');
-var AboutScreen = require('AboutScreen');
-var AdScreen = require('AdScreen');
-var DefeatScreen = require('DefeatScreen');
-var GameMapScreen = require('GameMapScreen');
-var GameplayScreen = require('GameplayScreen');
-var LevelEditScreen = require('LevelEditScreen');
-var LevelSelectScreen = require('LevelSelectScreen');
-var LevelStoryScreen = require('LevelStoryScreen');
-var PauseScreen = require('PauseScreen');
-var PrivateCustomLevelsScreen = require('PrivateCustomLevelsScreen');
-var PublicCustomLevelsScreen = require('PublicCustomLevelsScreen');
-var SaveLevelScreen = require('SaveLevelScreen');
-var SplashScreen = require('SplashScreen');
-var StoreScreen = require('StoreScreen');
-var VictoryScreen = require('VictoryScreen');
+var Screen = require('./screens/Screen');
+var AboutScreen = require('./screens/AboutScreen');
+var AdScreen = require('./screens/AdScreen');
+var DefeatScreen = require('./screens/DefeatScreen');
+var GameMapScreen = require('./screens/GameMapScreen');
+var GameplayScreen = require('./screens/GameplayScreen');
+var LevelEditScreen = require('./screens/LevelEditScreen');
+var LevelSelectScreen = require('./screens/LevelSelectScreen');
+var LevelStoryScreen = require('./screens/LevelStoryScreen');
+var PauseScreen = require('./screens/PauseScreen');
+var PrivateCustomLevelsScreen = require('./screens/PrivateCustomLevelsScreen');
+var PublicCustomLevelsScreen = require('./screens/PublicCustomLevelsScreen');
+var SaveLevelScreen = require('./screens/SaveLevelScreen');
+var SplashScreen = require('./screens/SplashScreen');
+var StoreScreen = require('./screens/StoreScreen');
+var VictoryScreen = require('./screens/VictoryScreen');
 
-var DropdownMenu = require('overflow');
-var UserMenu = require('UserMenu');
-var PixiCanvas = require('pixi-canvas');
-var Canvas = require('canvas');
+var DropdownMenu = require('./components/overflow');
+var UserMenu = require('./components/UserMenu');
+var PixiCanvas = require('./components/pixi-canvas');
+var Canvas = require('./components/canvas');
 
-var TestA = require('test').TestA;
-var TestB = require('test').TestB;
+var TestA = require('./test-screen/test').TestA;
+var TestB = require('./test-screen/test').TestB;
 
 var gameManager = new GameManager();
 
@@ -86,7 +88,6 @@ $(document).ready(function () {
     var canvasElement = $('#gameplay-canvas').length != 0 ? $('#gameplay-canvas') : $('#editor-canvas');
     var canvas = new PixiCanvas(canvasElement, 'medium');
     var canvas2 = new PixiCanvas(canvasElement, 'medium');
-
 
     var testB = new TestB();
     console.log(testB.getName());

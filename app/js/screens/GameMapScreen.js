@@ -2,7 +2,7 @@
  * gameMap.js
  * Map region select screen
  */
-var screen = require('Screen');
+var screen = require('./Screen');
 
 var gameMap = function (id) {
     screen.call(this, id);

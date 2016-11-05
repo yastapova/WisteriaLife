@@ -1,5 +1,5 @@
 
-var screen = require('Screen');
+var screen = require('./Screen');
 
 var LevelEditScreen = function(id, level) {
     this.level = level;

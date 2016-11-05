@@ -2,7 +2,7 @@
  * PauseScreen.js
  * PauseScreen object
  */
-var screen = require('Screen');
+var screen = require('./Screen');
 
 /*
  * Construct a PauseScreen with given id
