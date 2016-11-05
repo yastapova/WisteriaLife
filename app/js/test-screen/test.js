@@ -1,20 +1,20 @@
-var TestA = function () {
-	this.name = "Test A Screen";
+var TestA = function() {
+    this.name = "Test A Screen";
 };
 
-TestA.prototype.getName = function () {
-	return this.name;
+TestA.prototype.getName = function() {
+    return this.name;
 };
 
-var TestB = function () {
-	this.name = "Test B Screen";
-	this.screen = "Extend";
+var TestB = function() {
+    this.name = "Test B Screen";
+    this.screen = "Extend";
 };
 
 inherits(TestB, TestA);
 
-TestB.prototype.getScreen = function () {
-	return this.screen;
+TestB.prototype.getScreen = function() {
+    return this.screen;
 };
 
 var testB = new TestB();
@@ -41,6 +41,6 @@ var LevelManager = new LevelManager();
 LevelManager.loadLevel(1);
 
 module.exports = {
-	TestA: TestA,
-	TestB: TestB,
+    TestA: TestA,
+    TestB: TestB,
 };

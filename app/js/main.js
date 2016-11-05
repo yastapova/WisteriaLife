@@ -86,7 +86,7 @@ function inherits(child, parent) {
  *
  * All screen specific events should be moved to load() methods
  */
-$(document).ready(function () {
+$(document).ready(function() {
     var menuElements = {
         activate: $('#hamburger-vert'),
         back: $('#drop-back'),
