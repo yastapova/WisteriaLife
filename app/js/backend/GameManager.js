@@ -16,9 +16,15 @@ var GameManager = function () {
     this.mute = false;
 };
 
-// GameManager.prototype.getInstance = function(){
-// 	return this;
-// };
+/**
+ * Singleton-like
+ */
+GameManager.getGameManager = function () {
+	if (!GameManager.gameManager) {
+		GameManager.gameManager = new GameManager();
+	}
+	return GameManager.gameManager;
+};
 
 /**
  * Initialize user object, based on login status
