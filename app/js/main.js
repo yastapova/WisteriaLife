@@ -19,6 +19,7 @@ var ScreenManager = require('ScreenManager');
 var Shape = require('Shape');
 var ShapeManager = require('ShapeManager');
 var User = require('User');
+var Region = require("Region");
 
 // include screens
 var Screen = require('Screen');
