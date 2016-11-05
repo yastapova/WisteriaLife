@@ -1,10 +1,10 @@
 {
     "powerups": [{
-        "name": "Extra Time",
+        "name": "Reduce Time",
         "type": "Magic",
         "description": "Reduce remaining survival time by 5-10 sec.",
         "price": 100,
-        "thumbnail": "extratime.png"
+        "thumbnail": "reducetime.png"
     }, {
         "name": "Stop Spawn",
         "type": "Magic",
