@@ -52,8 +52,8 @@ var Canvas = require('./components/canvas');
 /*
  * Test Screens
  */
-// var TestA = require('./test-screen/test').TestA;
-// var TestB = require('./test-screen/test').TestB;
+var TestA = require('./test-screen/test').TestA;
+var TestB = require('./test-screen/test').TestB;
 
 
 // Initialize Firebase
