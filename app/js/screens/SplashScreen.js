@@ -4,13 +4,17 @@
  */
 var screen = require('./Screen');
 
- var splashScreen = function (id, buttons) {
-     this.id = id;
-     this.buttons = buttons;
- }
+var splashScreen = function (id, buttons) {
+ this.id = id;
+ this.buttons = buttons;
+}
 
- splashScreen.prototype.checkUser = function () {
+splashScreen.prototype.load = function () {
+    console.log("Splash screen load called");
+}
 
- }
+splashScreen.prototype.checkUser = function () {
 
- module.exports = splashScreen;
+}
+
+module.exports = splashScreen;

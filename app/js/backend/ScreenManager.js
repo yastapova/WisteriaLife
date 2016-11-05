@@ -45,6 +45,7 @@ var ScreenManager = function (currentScreen) {
 
     // load and display the current screen
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
+    console.log(this.screen);
     this.screen.load();
 };
 

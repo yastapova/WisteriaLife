@@ -52,8 +52,8 @@ var Canvas = require('./components/canvas');
 /*
  * Test Screens
  */
-var TestA = require('./test-screen/test').TestA;
-var TestB = require('./test-screen/test').TestB;
+// var TestA = require('./test-screen/test').TestA;
+// var TestB = require('./test-screen/test').TestB;
 
 
 // Initialize Firebase
@@ -69,8 +69,6 @@ var firebase = require("firebase");
 
 firebase.initializeApp(config);
 
-var gameManager = new GameManager();
-
 /**
  * Child inherits from parent
  * Sets the child's prototype equal to the parent's
@@ -85,6 +83,8 @@ function inherits(child, parent) {
 
 /**
  * Instantiate navbar events
+ *
+ * All screen specific events should be moved to load() methods
  */
 $(document).ready(function () {
     var menuElements = {
@@ -105,21 +105,23 @@ $(document).ready(function () {
 
     var userMenu = new UserMenu(userMenuElements);
 
+    /**
+     * ALL CODE BELOW THIS IS FOR TESTING Only
+     * All this should happen elsewhere
+     * TODO - remove all this
+     */
+
+    // singleton game manager
+    var gameManager = GameManager.getGameManager();
+
+    console.log('%cTesting GameManager', 'color: #c9a0dc; font-size: x-large');
+    console.log(gameManager);
+    console.log('%c=====', 'color: #c9a0dc; font-size: x-large');
+
     // temporary fix Only
     var canvasElement = $('#gameplay-canvas').length != 0 ? $('#gameplay-canvas') : $('#editor-canvas');
     var canvas = new PixiCanvas(canvasElement, 'medium');
     var canvas2 = new PixiCanvas(canvasElement, 'medium');
-
-    var testB = new TestB();
-    console.log(testB.getName());
-    console.log(testB.getScreen());
-
-    var testA = new TestA();
-    console.log(testA.getName());
-    console.log(testA.name);
-
-    testA.name = "Test A Name";
-    console.log(testA.name);
 });
 
 module.exports = {
