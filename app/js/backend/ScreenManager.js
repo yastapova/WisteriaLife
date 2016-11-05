@@ -35,7 +35,7 @@ var ScreenManager = function (currentScreen) {
         splash: SplashScreen,
         store: StoreScreen,
         victory: VictoryScreen
-    }
+    };
 
     // default screen: splash
     this.currentScreen = currentScreen && currentScreen in this.screenMap

@@ -49,13 +49,6 @@ var UserMenu = require('./components/UserMenu');
 var PixiCanvas = require('./components/pixi-canvas');
 var Canvas = require('./components/canvas');
 
-/*
- * Test Screens
- */
-var TestA = require('./test-screen/test').TestA;
-var TestB = require('./test-screen/test').TestB;
-
-
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyBNCeWYe5TnqjvSIL9ieykBn59Zn3Aa0q0",
@@ -105,6 +98,12 @@ $(document).ready(function() {
 
     var userMenu = new UserMenu(userMenuElements);
 
+    /*
+     * Test Screens
+     */
+        var TestA = require('./test-screen/test').TestA;
+        var TestB = require('./test-screen/test').TestB;
+
     /**
      * ALL CODE BELOW THIS IS FOR TESTING Only
      * All this should happen elsewhere
@@ -119,11 +118,11 @@ $(document).ready(function() {
     console.log('%c=====', 'color: #c9a0dc; font-size: x-large');
 
     // temporary fix Only
-    var canvasElement = $('#gameplay-canvas').length != 0 ? $('#gameplay-canvas') : $('#editor-canvas');
+    var canvasElement = $('#gameplay-canvas').length !== 0 ? $('#gameplay-canvas') : $('#editor-canvas');
     var canvas = new PixiCanvas(canvasElement, 'medium');
     var canvas2 = new PixiCanvas(canvasElement, 'medium');
 });
 
 module.exports = {
     inherits: inherits
-}
+};

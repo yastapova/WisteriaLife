@@ -1,7 +1,6 @@
-
 var screen = require('./Screen');
-
 var GameLogicManager = require('../backend/GameLogicManager');
+var GameManager = require('../backend/GameManager');
 
 var gameplayScreen = function(id, level) {
     this.level = level;
@@ -26,6 +25,9 @@ gameplayScreen.prototype.displayMessage = function(){};
  */
 gameplayScreen.prototype.addShape = function(shape) {
     // get the powerups manager to execute the powerup callback
+    var gameManager = GameManager.getGameManager();
+    var powerup = gameManager.powerupManager.powerupsMap.get(shape);
+    powerup.effect(this.level);
 };
 
 /**
