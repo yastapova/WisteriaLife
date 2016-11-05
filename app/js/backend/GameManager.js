@@ -1,11 +1,24 @@
 var User = require('User');
+var ScreenManager = require('ScreenManager');
+var PowerupManager = require('PowerupManager');
+var ShapeManager = require('ShapeManager');
+var LevelManager = require('LevelManager');
 
 /**
  * GameManager handles the user and saving/loading of data
  */
 var GameManager = function () {
-    this.user = undefined;
-}
+	this.screenManager = new ScreenManager();
+	this.powerupManager = new PowerupManager();
+	this.shapeManager = new ShapeManager();
+	this.levelManager = new LevelManager();
+    this.user = new User();
+    this.mute = false;
+};
+
+// GameManager.prototype.getInstance = function(){
+// 	return this;
+// };
 
 /**
  * Initialize user object, based on login status
