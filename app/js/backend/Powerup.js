@@ -11,7 +11,7 @@ var Powerup = function(powerupAttrObj, effect) {
     this.type = powerupAttrObj.type;
     this.description = powerupAttrObj.description;
     this.price = powerupAttrObj.price;
-    this.thumbnail = powerupAttrObj.thumbnail
+    this.thumbnail = powerupAttrObj.thumbnail;
     this.effect = effect;
 };
 
