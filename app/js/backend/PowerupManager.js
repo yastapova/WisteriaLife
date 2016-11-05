@@ -1,6 +1,6 @@
 /*
  * PowerupManager.js
- * Defines an initializes all the powerups in the game
+ * Defines and initializes all the powerups in the game
  */
 
 var Powerup = require('./Powerup');
@@ -19,8 +19,7 @@ PowerupManager.prototype.initPowerupsMap = function () {
 	$.getJSON(powerupsFile, function (data) {
 		console.log("loading from data powerups.json");
 		this.loadJSONData(data);
-	}
-		.bind(this));
+	}.bind(this));
 }
 
 /*
@@ -29,7 +28,6 @@ PowerupManager.prototype.initPowerupsMap = function () {
  * TO DO: add the effect functions.
  */
 PowerupManager.prototype.loadJSONData = function (data) {
-
 	for (var i = 0; i < data.powerups.length; i++) {
 		var powerupData = data.powerups[i];
 		var powerupAttrObj = {

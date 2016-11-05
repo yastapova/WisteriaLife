@@ -25,6 +25,10 @@ var User = require('./backend/User');
 // include screens
 var Screen = require('./screens/Screen');
 var AboutScreen = require('./screens/AboutScreen');
+
+// include screens
+var Screen = require('./screens/Screen');
+var AboutScreen = require('./screens/AboutScreen');
 var AdScreen = require('./screens/AdScreen');
 var DefeatScreen = require('./screens/DefeatScreen');
 var GameMapScreen = require('./screens/GameMapScreen');
@@ -45,8 +49,11 @@ var UserMenu = require('./components/UserMenu');
 var PixiCanvas = require('./components/pixi-canvas');
 var Canvas = require('./components/canvas');
 
-var TestA = require('./test-screen/test').TestA;
-var TestB = require('./test-screen/test').TestB;
+/*
+ * Test Screens
+ */
+var TestA = require('test').TestA;
+var TestB = require('test').TestB;
 
 var gameManager = new GameManager();
 
@@ -74,6 +81,20 @@ $(document).ready(function () {
         about: $('#drop-about'),
         loginout: $('#drop-loginout')
     };
+
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBNCeWYe5TnqjvSIL9ieykBn59Zn3Aa0q0",
+    authDomain: "wisteria-life-build2.firebaseapp.com",
+    databaseURL: "https://wisteria-life-build2.firebaseio.com",
+    storageBucket: "wisteria-life-build2.appspot.com",
+    messagingSenderId: "103993744321"
+};
+
+var firebase = require("firebase");
+
+firebase.initializeApp(config);
 
 var gameManager = new GameManager();
 

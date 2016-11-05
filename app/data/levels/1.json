@@ -1,14 +1,14 @@
 {
-	"1": {
+	"level": {
         "grid" : "small",
         "time" : 30,
-        "enemy zone" : [
+        "enemyZone" : [
             {
                 "start" : 0,
                 "end" : 15
             }
         ],
-        "shapes" : [
+        "allowedShapes" : [
             {
                 "shape" : "infantryn",
                 "quantity" : 5
@@ -36,7 +36,7 @@
                 "message" : "The unit will move accordingly"
             }
         ],
-        "enemy spawns" : [
+        "enemySpawns" : [
             {                            
                 "time" : 30,
                 "shapes" : [
@@ -76,7 +76,7 @@
                 ]
             }
         ],  
-        "defense" : [
+        "defenseStructures" : [
             {
                 "name" : "tower",
                 "coordinates" : {

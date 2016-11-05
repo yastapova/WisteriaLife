@@ -5,93 +5,68 @@
  *
  */
 
-var Level = function(level) {
-    this.name = level.name;
-    this.id = level.id;
-    this.storyline = level.storyline;
-    this.grid = level.grid;
-    this.allowedShapes = level.allowedShapes;
-    this.time = level.time;
-    this.messageMap = level.messageMap;
-    this.enemySpawns = level.enemySpawns;
-    this.image = level.image;
-    this.wistbux = level.wistbux;
+var Level = function(levelAttrObj) {
+    //this.name = level.name;
+    this.id = levelAttrObj.id;
+    //this.storyline = level.storyline;
+    this.grid = levelAttrObj.grid;
+    this.time = levelAttrObj.time;
+    this.enemyZone = levelAttrObj.enemyZone;
+    this.allowedShapes = levelAttrObj.allowedShapes;
+    this.messageMap = this.convertToMessageMap(levelAttrObj.messages);
+    this.enemySpawns = this.convertToEnemySpawnMap(levelAttrObj.enemySpawns);
+    this.defenseStructures = levelAttrObj.defenseStructures;
+    //this.image = level.image;
+    //this.wistbux = level.wistbux;
 };
 
-Level.prototype.setName = function(name) {
-    this.name = name;
-};
+/*
+ * Initializes the messageMap from the messages array in the shapeAtrrObj
+ */
+Level.prototype.convertToMessageMap = function (messages) {
+	// var pixels = new Array();
+	// var pixelsArrayCounter = 0;
+	// for (var i = 0; i < coordinates.length; i++) {
+		// pixels[pixelsArrayCounter] = coordinates[i].x;
+		// pixels[pixelsArrayCounter + 1] = coordinates[i].y;
+		// pixelsArrayCounter += 2;
+	// }
+	// return pixels;
+}
 
-Level.prototype.setId = function(id) {
-    this.id = id;
-};
+/*
+ * Initializes the enemySpawnMap array from the enemry spawns array in the shapeAtrrObj
+ */
+Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
+	// var pixels = new Array();
+	// var pixelsArrayCounter = 0;
+	// for (var i = 0; i < coordinates.length; i++) {
+		// pixels[pixelsArrayCounter] = coordinates[i].x;
+		// pixels[pixelsArrayCounter + 1] = coordinates[i].y;
+		// pixelsArrayCounter += 2;
+	// }
+	// return pixels;
+}
 
-Level.prototype.setStoryline = function(storyline) {
-    this.storyline = storyline;
-};
-
-Level.prototype.setGrid = function(grid) {
-    this.grid = grid;
-};
-
-Level.prototype.setAllowedShapes = function(allowedShapes) {
-    this.allowedShapes = allowedShapes;
-};
-
-Level.prototype.setTime = function(time) {
-    this.time = time;
-};
-
-Level.prototype.setMessageMap = function(messageMap) {
-    this.messageMap = messageMap;
-};
-
-Level.prototype.setEnemySpawns = function(enemySpawns) {
-    this.enemySpawns = enemySpawns;
-};
-
-Level.prototype.setImage = function(image) {
-    this.image = image;
-};
-
-Level.prototype.getName = function() {
-    return this.name;
-};
-
-Level.prototype.getId = function() {
-    return this.id;
-};
-
-Level.prototype.getStoryline = function() {
-    return this.storyline;
-};
-
-Level.prototype.getGrid = function() {
-    return this.grid;
-};
-
-Level.prototype.getAllowedShapes = function() {
-    return this.allowedShapes;
-};
-
-Level.prototype.getTime = function() {
-    return this.time;
-};
-
-Level.prototype.getMessageMap = function() {
-    return this.messageMap;
-};
-
-Level.prototype.getEnemySpawns = function() {
-    return this.enemySpawns;
-};
-
-Level.prototype.getImage = function() {
-    return this.image;
-};
-
-Level.prototype.setWistbux = function() {
-    return this.wistbux;
+/*
+ * Get the wistbux reward for given level. Does not check to see if level is custom or not.
+ */
+Level.prototype.getWistbux = function() {
+    var wistbux = 0; 
+    if(id < 11){
+        wistbux += 5;
+    }else if(id < 21){
+        wistbux += 10;
+    }else if(id < 31){
+        wistbux += 15;
+    }
+    else{
+        wistbux += 20;
+    }
+    if(id % 10 == 0){
+        wistbux *=2;
+    }
+    return wistbux;
 };
 
 module.exports = Level;
