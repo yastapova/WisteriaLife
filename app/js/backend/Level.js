@@ -11,7 +11,7 @@ var Level = function(levelAttrObj) {
     this.allowedShapes = levelAttrObj.allowedShapes;    
     this.defenseStructures = levelAttrObj.defenseStructures;
     this.messageMap = new Map();
-    this.enemySpawns = new Map();
+    this.enemySpawnsMap = new Map();
     this.convertToMessageMap(levelAttrObj.messages);
     this.convertToEnemySpawnMap(levelAttrObj.enemySpawns);
 };
@@ -32,7 +32,7 @@ Level.prototype.convertToMessageMap = function (messages) {
  */
 Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
 	for(var i = 0; i < enemySpawns.length; i++){
-        this.enemySpawnMap.set(enemySpawns.time, enemySpawns.shapes);
+        this.enemySpawnsMap.set(enemySpawns.time, enemySpawns.shapes);
     }
 };
 

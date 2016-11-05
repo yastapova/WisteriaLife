@@ -60,7 +60,7 @@ LevelManager.prototype.loadJSONDataLevel = function (data) {
         time : levelObj.time,
         enemyZone : levelObj.enemyZone,
         allowedShapes : levelObj.allowedShapes,
-        messageMap : levelObj.messages,
+        messages : levelObj.messages,
         enemySpawns : levelObj.enemySpawns,
         defenseStructures : levelObj.defenseStructures
     };

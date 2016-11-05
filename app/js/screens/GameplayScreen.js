@@ -5,11 +5,7 @@ var GameLogicManager = require('../backend/GameLogicManager');
 
 var gameplayScreen = function(id, level) {
     this.level = level;
-    this.gameLogicManager = new GameLogicManager();
-    this.allowedShapes = this.level.getAllowedShapes();
-    this.time = this.level.getTime();
-    this.messageMap = this.level.getMessageMap();
-    this.enemySpawns = this.level.getEnemySpawns();
+    this.gameLogicManager = new GameLogicManager(level);
     screen.call(this,id);
 };
 
@@ -23,21 +19,28 @@ gameplayScreen.prototype.hide = function() {
 
 };
 
+gameplayScreen.prototype.displayMessage = function(){};
+
+/**
+ * Add a shape to the level's allowed shapesand increment its quantity by 1
+ */
 gameplayScreen.prototype.addShape = function(shape) {
+    // get the powerups manager to execute the powerup callback
+};
 
-}
+/**
+ * Reduce the remaing time by a given amount. This can also affect enemy spawns if
+ * they were scheduled to spawn within the time range that was removed.
+ */
+gameplayScreen.prototype.reduceTime = function() {
+    // get the powerups manager to execute the powerup callback
+};
 
-gameplayScreen.prototype.reduceTime = function(time) {
-    if(this.time - time <= 0) {
-        this.time = 0;
-    }
-    else {
-        this.time = this.time - time;
-    }
-}
-
-gameplayScreen.prototype.reduceEnemy = function(num) {
-
-}
+/**
+ * Delete the next enemy spawn.
+ */
+gameplayScreen.prototype.stopSpawn = function(num) {
+    // get the powerups manager to execute the powerup callback
+};
 
 module.exports = gameplayScreen;
