@@ -28,6 +28,9 @@ console.log(testA.name);
 testA.name = "Test A Name";
 console.log(testA.name);
 
+// Note - this only works on frontend
+// on backend code, the full relative path must be provided
+// require('../backend/PowerupManager')
 var PowerupManager = require('PowerupManager');
 var ShapeManager = require('ShapeManager');
 

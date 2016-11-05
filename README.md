@@ -20,12 +20,20 @@ To start the project, run the following:
 gulp
 ```
 
-This will concatenate all the JavaScript files, compile the SCSS files, and start a local server on port 3000.
+This will concatenate all the JavaScript files and compile the SCSS files.
 
 This will also start a file watch that will automatically recompile SCSS files and
-process JavaScript files whenever a change is saved. There is no need to restart the server.
+process JavaScript files whenever a change is saved.
 
 Source maps are generated for ease of debugging.
+
+Then, in another terminal instance, run the following to start a server on port 3000:
+
+```
+npm start
+```
+
+This will be combined in the future.
 
 ## Deploy Project
 Before deploying the project, run the following:

@@ -1,21 +1,21 @@
 /*
  * LevelManager.js
  *
- * Defines and initializes all the region level data in the game. 
+ * Defines and initializes all the region level data in the game.
  * Inidividual levels are loaded on demand.
  *
  */
 
- var Region = require('Region');
- var Level = require('Level');
- 
+ var Region = require('./Region');
+ var Level = require('./Level');
+
 var LevelManager = function() {
     this.regionsMap = new Map();
     this.initRegionsMap();
     // For loading descriptions and imgs of private user custom levels later
     //this.privateCustomLevelsMap = new Map();
     //this.initPrivateCustomLevelsMap();
-    
+
     // For loading descriptions and imgs of public user custom levels later. These have authors
     //this.publicCustomLevelsMap = new Map();
     //this.initPublicCustomLevelsMap();
@@ -40,7 +40,7 @@ LevelManager.prototype.loadJSONDataRegion = function (data) {
 		var regionAttrObj = {
 			name: regionData.name,
 			img: regionData.img,
-			levels: regionData.levels	
+			levels: regionData.levels
 		}
         this.regionsMap.set(regionData.name, new Region(regionAttrObj));
 	}

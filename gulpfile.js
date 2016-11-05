@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var concat = require('gulp-concat');
-var serve = require('gulp-serve');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
@@ -10,7 +9,7 @@ var browserify = require('browserify');
 var cleanCSS = require('gulp-clean-css');
 
 // default task
-gulp.task('default', ['roboto', 'browserify', 'scripts:watch', 'serve', 'sass', 'sass:watch']);
+gulp.task('default', ['roboto', 'browserify', 'scripts:watch', 'sass', 'sass:watch']);
 
 // run before deploying
 gulp.task('deploy', ['roboto', 'browserify:prod', 'sass:prod']);
@@ -22,10 +21,10 @@ gulp.task('browserify', function() {
         debug: true,
         paths: [
             './node_modules',
-            // './app/js/backend', // disabled for files to be consistent with node.js
+            './app/js/backend',
             './app/js/components',
-            // './app/js/screens',
-            // './app/js/test-screen'
+            './app/js/screens',
+            './app/js/test-screen'
         ],
         insertGlobalVars: { // global inherits function
             inherits: function(file, dir) {
@@ -52,9 +51,10 @@ gulp.task('browserify:prod', function() {
         debug: true,
         paths: [
             './node_modules',
-            // './app/js/backend',
-            // './app/js/components',
-            // './app/js/screens'
+            './app/js/backend',
+            './app/js/components',
+            './app/js/screens',
+            './app/js/test-screen'
         ],
         insertGlobalVars: { // global inherits function
             inherits: function(file, dir) {
@@ -113,6 +113,3 @@ gulp.task('roboto', function() {
 gulp.task('sass:watch', function() {
     gulp.watch('./app/sass/**/*.scss', ['sass']);
 });
-
-// quick server
-gulp.task('serve', serve('app'));

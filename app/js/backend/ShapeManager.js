@@ -5,8 +5,8 @@
  *
  */
 
-var Shape = require('Shape');
- 
+var Shape = require('./Shape');
+
 var ShapeManager = function() {
     this.shapesMap = new Map();
     this.initShapesMap();
