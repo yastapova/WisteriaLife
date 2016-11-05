@@ -111,7 +111,7 @@ PowerupManager.prototype.useShapePowerup = function(level) {
 
 /**
  * Use a reduce time powerup. 
- * @param lvel the level obj to use the reduce time powerup on
+ * @param level the level obj to use the reduce time powerup on
  */
 PowerupManager.prototype.useReduceTimePowerup = function(level) {
 	if(level.time - 5 <= 0){
