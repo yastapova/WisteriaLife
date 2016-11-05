@@ -19,8 +19,11 @@ gameplayScreen.prototype.hide = function() {
 
 };
 
+/**
+ * Add a shape to the level's allowed shapesand increment its quantity by 1
+ */
 gameplayScreen.prototype.addShape = function(shape) {
-
+    // get the powerups manager to execute the powerup callback
 };
 
 /**
@@ -31,6 +34,9 @@ gameplayScreen.prototype.reduceTime = function() {
     // get the powerups manager to execute the powerup callback
 };
 
+/**
+ * Delete the next enemy spawn.
+ */
 gameplayScreen.prototype.stopSpawn = function(num) {
     // get the powerups manager to execute the powerup callback
 };
