@@ -53,8 +53,8 @@ app.use(express.static(path.join(__dirname, 'app/dist')));
  * Wisteria Life
  * App/Screens Routing
  */
-var routes = require('./app/routes');
-app.use('/', routes);
+var screens = require('./app/screen-controller');
+app.use('/', screens);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -70,9 +70,10 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
-        res.render('error', {
+        res.render('404', {
             message: err.message,
-            error: err
+            error: err,
+            title: 'Page Not Found'
         });
     });
 }
@@ -81,9 +82,10 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('error', {
+    res.render('404', {
         message: err.message,
-        error: {}
+        error: {},
+        title: 'Page Not Found'
     });
 });
 
