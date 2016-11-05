@@ -5,17 +5,108 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
+/* Home page - Splash Screen. */
 router.get('/', function(req, res, next) {
-    console.log("Test");
     res.render('index', {
-        title: 'Express'
+        title: 'Welcome'
     });
 });
 
-router.get('/test', function(req, res, next) {
-    res.render('index', {
-        title: 'Express'
+/* About Screen. */
+router.get('/about', function(req, res, next) {
+    res.render('about', {
+        title: 'About'
+    });
+});
+
+/* Ad. */
+router.get('/ad', function(req, res, next) {
+    res.render('ad', {
+        title: 'Ad'
+    });
+});
+
+/* Defeat. */
+router.get('/defeat', function(req, res, next) {
+    res.render('defeat', {
+        title: 'Defeat'
+    });
+});
+
+/* Gameplay. */
+router.get('/gameplay', function(req, res, next) {
+    res.render('gameplay', {
+        title: 'Gameplay'
+    });
+});
+
+/* Level Editor. */
+router.get('/level-editor', function(req, res, next) {
+    res.render('level-editor', {
+        title: 'Level Editor'
+    });
+});
+
+/* Level Story. */
+router.get('/level-story', function(req, res, next) {
+    res.render('level-story', {
+        title: 'Level Story'
+    });
+});
+
+/* Level Select. */
+router.get('/level-select', function(req, res, next) {
+    res.render('level-select', {
+        title: 'Level Select'
+    });
+});
+
+/* Map. */
+router.get('/map', function(req, res, next) {
+    res.render('map', {
+        title: 'Map'
+    });
+});
+
+/* Pause. */
+router.get('/pause', function(req, res, next) {
+    res.render('pause', {
+        title: 'Pause'
+    });
+});
+
+/* Public Custom Levels. */
+router.get('/public-custom-levels', function(req, res, next) {
+    res.render('public-custom-levels', {
+        title: 'Public Custom Levels'
+    });
+});
+
+/* Private Custom Levels. */
+router.get('/private-custom-levels', function(req, res, next) {
+    res.render('private-custom-levels', {
+        title: 'Private Custom Levels'
+    });
+});
+
+/* Save Level. */
+router.get('/save-level', function(req, res, next) {
+    res.render('save-level', {
+        title: 'Save Level'
+    });
+});
+
+/* Store. */
+router.get('/store', function(req, res, next) {
+    res.render('store', {
+        title: 'Store'
+    });
+});
+
+/* Victory. */
+router.get('/victory', function(req, res, next) {
+    res.render('victory', {
+        title: 'Victory'
     });
 });
 

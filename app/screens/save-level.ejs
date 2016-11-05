@@ -1,302 +1,197 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<% include partials/header %>
+    <!-- Page Content goes here -->
 
-        <title>Save - Wisteria Life</title>
-
-        <meta name="theme-color" content="#c9a0dc">
-
-        <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-        <!-- Material Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-        <!-- Materialize CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
-        <link rel="stylesheet" href="dist/css/wisteria.css"/>
-        <script src="dist/js/wisteria.js"></script>
-
-        <script>
-            // start canvas
-            $(document).ready(function() {
-                var canvas = new Canvas($('#editor-canvas'));
-            });
-        </script>
-    </head>
-
-    <body>
-
-        <!-- Global Nav Bar -->
-        <nav>
-            <div id="wisteria-nav" class="nav-wrapper">
-                <ul id="nav-mobile" class="left">
-                    <li id="account">
-                        <a href="#!" id="user-menu" data-activates="user-dropdown">
-                            <i class="material-icons left">person</i>
-                            R. Boxman</a>
-                    </li>
-                </ul>
-
-                <div id="user-dropdown" class="dropdown-content card">
-
-                    <div id="user-dropdown-inner">
-                        <div id="user-dropdown-header" class="cf">
-                            <div id="user-icon"><i class="material-icons">person</i></div>
-                            <div id="user-title">
-                                <span class="user-name">R. Boxman</span>
-                                <span class="user-level">Level 4</span>
-                            </div>
-                        </div>
-
-                        <div id="user-action" class="cf">
-                            <a href="#!" id="profile-link" class="waves-effect btn-flat">
-                                Profile
-                            </a>
-
-                            <a href="#!" id="drop-loginout">
-                                <i class="material-icons">power_settings_new</i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <a href="/" id="logo" class="brand-logo center"></a>
-                <ul id="nav-mobile" class="right">
-                    <li id="wistbux">
-                        <a href="#">
-                            <i class="material-icons left">attach_money</i>
-                            9,999
-                        </a>
-                    </li>
-
-                    <!-- Hamburger Menu - TODO -->
-                    <li id="hamburger">
-                        <a href="#!" id="hamburger-vert" data-activates="hamburger-dropdown">
-                            <i class="material-icons">more_vert</i>
-                        </a>
-                    </li>
-                </ul>
-
-                <ul id="hamburger-dropdown" class="dropdown-content">
-                    <li>
-                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
-                    </li>
-                    <li>
-                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
-                    </li>
-                    <li>
-                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
-                    </li>
-                    <li>
-                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Screen Section -->
-        <div class="container">
-            <!-- Page Content goes here -->
-
-            <div id="about-save-level-screen" class="container-inner screen-overlay">
-                <div class="row">
-                    <!--
-                        Don't put a placeholder text
-                        Materialize makes a nice animation w/o one
-                    -->
-                    <div class="input-field col s6 offset-s3">
-                        <input id="level_title" type="text" class="validate" length="75">
-                        <label for="level_title">Level Title &nbsp;
-                            <small>Give your level an exciting name.</small>
-                        </label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-field col s6 offset-s3">
-                        <textarea id="level_description" class="materialize-textarea validate" length="500"></textarea>
-                        <label for="level_description">Level Description &nbsp;
-                            <small>Give your creation a story!</small>
-                        </label>
-                    </div>
-                    <div class="col s6 offset-s3">
-                        <label for="ally_units">Ally Units</label>
-                    </br>
-                </div>
-                <div class="col s6 offset-s3" id="save_ally_units">
-                    <label class="units" for="tower">Tower</label>
-                    <span class="range-field">
-                        <input type="range" id="tower_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="blockade">Blockade</label>
-                    <span class="range-field">
-                        <input type="range" id="blockad_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="caltrops">Caltrops</label>
-                    <span class="range-field">
-                        <input type="range" id="caltrops_num" min="0" max="25"/>
-                    </span>
-
-                    <label class="units" for="archernw">Archer &nwarr;</label>
-                    <span class="range-field">
-                        <input type="range" id="archernw_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="archerne">Archer &nearr;</label>
-                    <span class="range-field">
-                        <input type="range" id="archerne_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="archerse">Archer &searr;</label>
-                    <span class="range-field">
-                        <input type="range" id="archerse_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="archersw">Archer &swarr;</label>
-                    <span class="range-field">
-                        <input type="range" id="archersw_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="infantryw">Infantry &larr;</label>
-                    <span class="range-field">
-                        <input type="range" id="infantryw_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="infantryn">Infantry &uarr;</label>
-                    <span class="range-field">
-                        <input type="range" id="infantryn_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="infantrye">Infantry &rarr;</label>
-                    <span class="range-field">
-                        <input type="range" id="infantrye_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="blockade">Infantry &darr;</label>
-                    <span class="range-field">
-                        <input type="range" id="infantrys_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="wallbackward">Wall &nearr;</label>
-                    <span class="range-field">
-                        <input type="range" id="wallbackward_num" min="0" max="25"/>
-                    </span>
-                    <label class="units" for="wallforward">Wall &nwarr;</label>
-                    <span class="range-field">
-                        <input type="range" id="wallforward_num" min="0" max="25"/>
-                    </span>
-                </div>
-                <div class="input-field col s6 offset-s3">
-                    <p>
-                        <input id="save-public" type="checkbox" checked="checked">
-                        <label for="save-public">Public</label>
-                    </p>
-                </div>
-                <div class="col s6 offset-s3 center-buttons">
-                    <button class="btn waves-effect waves-purple" type="submit">Save</button>
-                    <a href="level-editor.html" class="btn waves-effect waves-purple" type="submit">Cancel</a>
-                </div>
+    <div id="about-save-level-screen" class="container-inner screen-overlay">
+        <div class="row">
+            <!--
+                Don't put a placeholder text
+                Materialize makes a nice animation w/o one
+            -->
+            <div class="input-field col s6 offset-s3">
+                <input id="level_title" type="text" class="validate" length="75">
+                <label for="level_title">Level Title &nbsp;
+                    <small>Give your level an exciting name.</small>
+                </label>
             </div>
         </div>
-        <div id="gameplay-screen" class="container-inner" align="center">
-            <div class="toolbar top">
-                <span class="toolbar-content">
-                    <!-- <div class="padder">
-                        </div> -->
-                    <span class="toolbar-text">0:30</span>
-                </span>
+        <div class="row">
+            <div class="input-field col s6 offset-s3">
+                <textarea id="level_description" class="materialize-textarea validate" length="500"></textarea>
+                <label for="level_description">Level Description &nbsp;
+                    <small>Give your creation a story!</small>
+                </label>
             </div>
-            <div class="canvas">
-                <canvas id="editor-canvas" class="game-canvas"></canvas>
-            </div>
-            <div class="toolbar bottom">
-                <span class="toolbar-content">
-                    <div class="bottom align">
-                        <i class="material-icons clear-cell">backspace</i>
-                    </div>
-                    <!-- Dropdown Trigger -->
-                    <div class="bottom align">
-                        <a class='dropdown-button btn small' href='#' data-activates='shapes'>Shapes</a>
-                    </div>
+            <div class="col s6 offset-s3">
+                <label for="ally_units">Ally Units</label>
+            </br>
+        </div>
+        <div class="col s6 offset-s3" id="save_ally_units">
+            <label class="units" for="tower">Tower</label>
+            <span class="range-field">
+                <input type="range" id="tower_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="blockade">Blockade</label>
+            <span class="range-field">
+                <input type="range" id="blockad_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="caltrops">Caltrops</label>
+            <span class="range-field">
+                <input type="range" id="caltrops_num" min="0" max="25"/>
+            </span>
 
-                    <!-- Dropdown Structure -->
-                    <ul id='shapes' class='dropdown-content'>
-                        <li>
-                            <a href="#!">Archer &nwarr;</a>
-                        </li>
-                        <li>
-                            <a href="#!">Archer &nearr;</a>
-                        </li>
-                        <li>
-                            <a href="#!">Archer &swarr;</a>
-                        </li>
-                        <li>
-                            <a href="#!">Archer &searr;</a>
-                        </li>
-                        <li>
-                            <a href="#!">Infantry &uarr;</a>
-                        </li>
-                        <li>
-                            <a href="#!">Infantry &darr;</a>
-                        </li>
-                        <li>
-                            <a href="#!">Infantry &rarr;</a>
-                        </li>
-                        <li>
-                            <a href="#!">Infantry &larr;</a>
-                        </li>
-                    </ul>
-
-                    <!-- Switch -->
-                    <div class="bottom align">
-                        <div class="switch">
-                            <label>
-                                <span class="enemy-swatch">
-                                    <i class="material-icons">stop</i>
-                                </span>
-                                <input type="checkbox">
-                                <span class="lever"></span>
-                                <span class="friendly-swatch">
-                                    <i class="material-icons">stop</i>
-                                </span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Dropdown Trigger -->
-                    <div class="bottom align">
-                        <a class='dropdown-button btn small' href='#' data-activates='zoom'>Zoom</a>
-                    </div>
-
-                    <!-- Dropdown Structure -->
-                    <ul id='zoom' class='dropdown-content'>
-                        <li>
-                            <a href="#!">Small</a>
-                        </li>
-                        <li>
-                            <a href="#!">Medium</a>
-                        </li>
-                        <li>
-                            <a href="#!">Large</a>
-                        </li>
-                    </ul>
-
-                    <div class="bottom align">
-                        <i class="material-icons clear-cell">message</i>
-                    </div>
-
-                    <div class="bottom align">
-                        <a href="save-level.html">
-                            <i class="material-icons clear-cell">save</i>
-                        </a>
-                    </div>
-
-                    <div class="bottom align">
-                        <a href="private-custom-levels.html">
-                            <i class="material-icons clear-cell">delete_forever</i>
-                        </a>
-                    </div>
-                </span>
-            </div>
+            <label class="units" for="archernw">Archer &nwarr;</label>
+            <span class="range-field">
+                <input type="range" id="archernw_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="archerne">Archer &nearr;</label>
+            <span class="range-field">
+                <input type="range" id="archerne_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="archerse">Archer &searr;</label>
+            <span class="range-field">
+                <input type="range" id="archerse_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="archersw">Archer &swarr;</label>
+            <span class="range-field">
+                <input type="range" id="archersw_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="infantryw">Infantry &larr;</label>
+            <span class="range-field">
+                <input type="range" id="infantryw_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="infantryn">Infantry &uarr;</label>
+            <span class="range-field">
+                <input type="range" id="infantryn_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="infantrye">Infantry &rarr;</label>
+            <span class="range-field">
+                <input type="range" id="infantrye_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="blockade">Infantry &darr;</label>
+            <span class="range-field">
+                <input type="range" id="infantrys_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="wallbackward">Wall &nearr;</label>
+            <span class="range-field">
+                <input type="range" id="wallbackward_num" min="0" max="25"/>
+            </span>
+            <label class="units" for="wallforward">Wall &nwarr;</label>
+            <span class="range-field">
+                <input type="range" id="wallforward_num" min="0" max="25"/>
+            </span>
+        </div>
+        <div class="input-field col s6 offset-s3">
+            <p>
+                <input id="save-public" type="checkbox" checked="checked">
+                <label for="save-public">Public</label>
+            </p>
+        </div>
+        <div class="col s6 offset-s3 center-buttons">
+            <button class="btn waves-effect waves-purple" type="submit">Save</button>
+            <a href="level-editor.html" class="btn waves-effect waves-purple" type="submit">Cancel</a>
         </div>
     </div>
-</body>
-</html>
+</div>
+<div id="gameplay-screen" class="container-inner" align="center">
+    <div class="toolbar top">
+        <span class="toolbar-content">
+            <!-- <div class="padder">
+                </div> -->
+            <span class="toolbar-text">0:30</span>
+        </span>
+    </div>
+    <div class="canvas">
+        <canvas id="editor-canvas" class="game-canvas"></canvas>
+    </div>
+    <div class="toolbar bottom">
+        <span class="toolbar-content">
+            <div class="bottom align">
+                <i class="material-icons clear-cell">backspace</i>
+            </div>
+            <!-- Dropdown Trigger -->
+            <div class="bottom align">
+                <a class='dropdown-button btn small' href='#' data-activates='shapes'>Shapes</a>
+            </div>
+
+            <!-- Dropdown Structure -->
+            <ul id='shapes' class='dropdown-content'>
+                <li>
+                    <a href="#!">Archer &nwarr;</a>
+                </li>
+                <li>
+                    <a href="#!">Archer &nearr;</a>
+                </li>
+                <li>
+                    <a href="#!">Archer &swarr;</a>
+                </li>
+                <li>
+                    <a href="#!">Archer &searr;</a>
+                </li>
+                <li>
+                    <a href="#!">Infantry &uarr;</a>
+                </li>
+                <li>
+                    <a href="#!">Infantry &darr;</a>
+                </li>
+                <li>
+                    <a href="#!">Infantry &rarr;</a>
+                </li>
+                <li>
+                    <a href="#!">Infantry &larr;</a>
+                </li>
+            </ul>
+
+            <!-- Switch -->
+            <div class="bottom align">
+                <div class="switch">
+                    <label>
+                        <span class="enemy-swatch">
+                            <i class="material-icons">stop</i>
+                        </span>
+                        <input type="checkbox">
+                        <span class="lever"></span>
+                        <span class="friendly-swatch">
+                            <i class="material-icons">stop</i>
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Dropdown Trigger -->
+            <div class="bottom align">
+                <a class='dropdown-button btn small' href='#' data-activates='zoom'>Zoom</a>
+            </div>
+
+            <!-- Dropdown Structure -->
+            <ul id='zoom' class='dropdown-content'>
+                <li>
+                    <a href="#!">Small</a>
+                </li>
+                <li>
+                    <a href="#!">Medium</a>
+                </li>
+                <li>
+                    <a href="#!">Large</a>
+                </li>
+            </ul>
+
+            <div class="bottom align">
+                <i class="material-icons clear-cell">message</i>
+            </div>
+
+            <div class="bottom align">
+                <a href="save-level.html">
+                    <i class="material-icons clear-cell">save</i>
+                </a>
+            </div>
+
+            <div class="bottom align">
+                <a href="private-custom-levels.html">
+                    <i class="material-icons clear-cell">delete_forever</i>
+                </a>
+            </div>
+        </span>
+    </div>
+</div>
+
+<% include partials/footer %>

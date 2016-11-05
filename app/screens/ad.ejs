@@ -1,126 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<% include partials/header %>
+<!-- Test Ad being an overlay -->
 
-        <title>Story - Wisteria Life</title>
+<!-- Page Content goes here -->
+<div id="ad-screen" class="container-inner screen-overlay">
+    <a href="gameplay.html">
+        <i class="material-icons close">close</i>
+    </a>
+    <img id="ad" src="/img/far-beyond.jpg">
+</div>
 
-        <meta name="theme-color" content="#c9a0dc">
-
-        <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-        <!-- Material Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-        <!-- Materialize CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
-        <link rel="stylesheet" href="dist/css/wisteria.css"/>
-        <script src="dist/js/wisteria.js"></script>
-    </head>
-
-    <body>
-
-        <!-- Global Nav Bar -->
-        <nav>
-            <div id="wisteria-nav" class="nav-wrapper">
-                <ul id="nav-mobile" class="left">
-                    <li id="account">
-                        <a href="#!" id="user-menu" data-activates="user-dropdown">
-                            <i class="material-icons left">person</i>
-                            R. Boxman</a>
-                    </li>
-                </ul>
-
-                <div id="user-dropdown" class="dropdown-content card">
-
-                    <div id="user-dropdown-inner">
-                        <div id="user-dropdown-header" class="cf">
-                            <div id="user-icon"><i class="material-icons">person</i></div>
-                            <div id="user-title">
-                                <span class="user-name">R. Boxman</span>
-                                <span class="user-level">Level 4</span>
-                            </div>
-                        </div>
-
-                        <div id="user-action" class="cf">
-                            <a href="#!" id="profile-link" class="waves-effect btn-flat">
-                                Profile
-                            </a>
-
-                            <a href="#!" id="drop-loginout">
-                                <i class="material-icons">power_settings_new</i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <a href="/" id="logo" class="brand-logo center"></a>
-                <ul id="nav-mobile" class="right">
-                    <li id="wistbux">
-                        <a href="#">
-                            <i class="material-icons left">attach_money</i>
-                            9,999
-                        </a>
-                    </li>
-
-                    <!-- Hamburger Menu - TODO -->
-                    <li id="hamburger">
-                        <a href="#!" id="hamburger-vert" data-activates="hamburger-dropdown">
-                            <i class="material-icons">more_vert</i>
-                        </a>
-                    </li>
-                </ul>
-
-                <ul id="hamburger-dropdown" class="dropdown-content">
-                    <li>
-                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
-                    </li>
-                    <li>
-                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
-                    </li>
-                    <li>
-                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
-                    </li>
-                    <li>
-                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Screen Section -->
-        <div class="container">
-            <!-- Test Ad being an overlay -->
-
-            <!-- Page Content goes here -->
-            <div id="ad-screen" class="container-inner screen-overlay">
-                <a href="gameplay.html">
-                    <i class="material-icons close">close</i>
-                </a>
-                <img id="ad" src="/img/far-beyond.jpg">
-            </div>
-
-            <div id="level-story-screen" class="container-inner">
-                <div align="center">
-                    <h2 id="level-story-title">The Rise of the Scarlet</h2>
-                    <p id="level-story-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a orci non massa sodales aliquam eget vitae nunc. Sed at tortor sed elit mattis auctor. Nulla erat odio, molestie eu nunc ut, ultrices ultrices nisl.
-                        Quisque rutrum ornare tempus. Nam facilisis sollicitudin neque sit amet laoreet. Duis dapibus vel metus sed porta. Nulla condimentum magna in feugiat egestas. Praesent quis lorem condimentum, luctus lectus et, pharetra massa. Nulla commodo magna
-                        ante, eu rutrum nulla bibendum maximus. Nam fringilla sem ut libero cursus ultricies. Curabitur tincidunt accumsan nunc quis porttitor. Fusce consectetur sapien in magna condimentum, in efficitur ante varius. Morbi porttitor egestas iaculis. Praesent
-                        id euismod arcu. Suspendisse dignissim euismod enim, et suscipit nibh eleifend quis.</p><br><br><br><br>
-                    <div id="level-story-buttons">
-                        <a href="#" id="story-start" class="waves-effect waves-light btn-large">Start</a>
-                    </div>
-                </div>
-                <div align="right">
-                    <h2 id="level-story-number">Level 1</h2>
-                </div>
-            </div>
+<div id="level-story-screen" class="container-inner">
+    <div align="center">
+        <h2 id="level-story-title">The Rise of the Scarlet</h2>
+        <p id="level-story-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a orci non massa sodales aliquam eget vitae nunc. Sed at tortor sed elit mattis auctor. Nulla erat odio, molestie eu nunc ut, ultrices ultrices nisl.
+            Quisque rutrum ornare tempus. Nam facilisis sollicitudin neque sit amet laoreet. Duis dapibus vel metus sed porta. Nulla condimentum magna in feugiat egestas. Praesent quis lorem condimentum, luctus lectus et, pharetra massa. Nulla commodo magna
+            ante, eu rutrum nulla bibendum maximus. Nam fringilla sem ut libero cursus ultricies. Curabitur tincidunt accumsan nunc quis porttitor. Fusce consectetur sapien in magna condimentum, in efficitur ante varius. Morbi porttitor egestas iaculis. Praesent
+            id euismod arcu. Suspendisse dignissim euismod enim, et suscipit nibh eleifend quis.</p><br><br><br><br>
+        <div id="level-story-buttons">
+            <a href="#" id="story-start" class="waves-effect waves-light btn-large">Start</a>
         </div>
-    </body>
-</html>
+    </div>
+    <div align="right">
+        <h2 id="level-story-number">Level 1</h2>
+    </div>
+</div>
+
+<% include partials/footer %>

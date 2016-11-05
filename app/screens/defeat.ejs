@@ -1,179 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<% include partials/header %>
+<!-- Page Content goes here -->
+<div id="defeat-pause-victory-screen" class="container-inner screen-overlay">
+    <div class="center-all">
+        <span id="defeat-pause-victory-title">DEFEAT!</span>
+        <span class="defeat-pause-victory-note">
+            <span class="defeat-pause-victory-text">Perhaps a Powerup?</span>
+            <a href="/store.html" id="drop-store"><i class="material-icons store">store</i></a>
+        </span>
+        <span class="defeat-pause-victory-icons">
+            <a href="level-select.html"><i class="material-icons back">play_arrow</i></a>
+            <a href="gameplay.html"><i class="material-icons replay">replay</i></a>
+            <a><i class="material-icons share">share</i></a>
+            <a><i class="material-icons disabled">play_arrow</i></a>
+        </span>
+    </div>
+</div>
 
-        <title>Defeat - Wisteria Life</title>
-
-        <meta name="theme-color" content="#c9a0dc">
-
-        <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-        <!-- Material Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-        <!-- Materialize CSS -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
-        <link rel="stylesheet" href="dist/css/wisteria.css"/>
-        <script src="dist/js/wisteria.js"></script>
-        <script>
-            // start canvas
-            $(document).ready(function () {
-                var canvas = new Canvas($('#gameplay-canvas'));
-            });
-        </script>
-    </head>
-
-    <body>
-
-        <!-- Global Nav Bar -->
-        <nav>
-            <div id="wisteria-nav" class="nav-wrapper">
-                <ul id="nav-mobile" class="left">
-                    <li id="account">
-                        <a href="#!" id="user-menu" data-activates="user-dropdown">
-                            <i class="material-icons left">person</i>
-                            R. Boxman</a>
-                    </li>
-                </ul>
-
-                <div id="user-dropdown" class="dropdown-content card">
-
-                    <div id="user-dropdown-inner">
-                        <div id="user-dropdown-header" class="cf">
-                            <div id="user-icon"><i class="material-icons">person</i></div>
-                            <div id="user-title">
-                                <span class="user-name">R. Boxman</span>
-                                <span class="user-level">Level 4</span>
-                            </div>
-                        </div>
-
-                        <div id="user-action" class="cf">
-                            <a href="#!" id="profile-link" class="waves-effect btn-flat">
-                                Profile
-                            </a>
-
-                            <a href="#!" id="drop-loginout">
-                                <i class="material-icons">power_settings_new</i>
-                            </a>
-                        </div>
-                    </div>
-
-                </div>
-
-                <a href="/" id="logo" class="brand-logo center"></a>
-                <ul id="nav-mobile" class="right">
-                    <li id="wistbux">
-                        <a href="#">
-                            <i class="material-icons left">attach_money</i>
-                            9,999
-                        </a>
-                    </li>
-
-                    <!-- Hamburger Menu - TODO -->
-                    <li id="hamburger">
-                        <a href="#!" id="hamburger-vert" data-activates="hamburger-dropdown">
-                            <i class="material-icons">more_vert</i>
-                        </a>
-                    </li>
-                </ul>
-
-                <ul id="hamburger-dropdown" class="dropdown-content">
-                    <li>
-                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
-                    </li>
-                    <li>
-                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
-                    </li>
-                    <li>
-                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
-                    </li>
-                    <li>
-                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Screen Section -->
-        <div class="container">
-            <!-- Page Content goes here -->
-            <div id="defeat-pause-victory-screen" class="container-inner screen-overlay">
-                <div class="center-all">
-                    <span id="defeat-pause-victory-title">DEFEAT!</span>
-                    <span class="defeat-pause-victory-note">
-                        <span class="defeat-pause-victory-text">Perhaps a Powerup?</span>
-                        <a href="/store.html" id="drop-store"><i class="material-icons store">store</i></a>
-                    </span>
-                    <span class="defeat-pause-victory-icons">
-                        <a href="level-select.html"><i class="material-icons back">play_arrow</i></a>
-                        <a href="gameplay.html"><i class="material-icons replay">replay</i></a>
-                        <a><i class="material-icons share">share</i></a>
-                        <a><i class="material-icons disabled">play_arrow</i></a>
-                    </span>
+<!-- GAMEPLAY SCREEN -->
+<div id="gameplay-screen" class="container-inner" align="center">
+    <div class="toolbar top">
+        <span class="toolbar-content">
+            <div class="padder">
+                <div class="progress">
+                    <div class="determinate" style="width: 70%"></div>
                 </div>
             </div>
-
-            <!-- GAMEPLAY SCREEN -->
-            <div id="gameplay-screen" class="container-inner" align="center">
-                <div class="toolbar top">
-                    <span class="toolbar-content">
-                        <div class="padder">
-                            <div class="progress">
-                                <div class="determinate" style="width: 70%"></div>
-                            </div>
-                        </div>
-                        <span class="toolbar-text">0:30</span>
-                    </span>
-                </div>
-                <div class="canvas">
-                    <canvas id="gameplay-canvas" class="game-canvas"></canvas>
-                </div>
-                <div class="toolbar bottom">
-                    <span class="toolbar-content">
-                        <div class="bottom align">
-                            <a href="pause.html"><i class="material-icons play">pause</i></a>
-                        </div>
-                        <!-- Dropdown Trigger -->
-                        <div class="bottom align">
-                            <a class='dropdown-button btn small' href='#' data-activates='shapes'>Shapes</a>
-                        </div>
-
-                        <!-- Dropdown Structure -->
-                        <ul id='shapes' class='dropdown-content'>
-                            <li><a href="#!">Archer &nwarr;</a></li>
-                            <li><a href="#!">Archer &nearr;</a></li>
-                            <li><a href="#!">Archer &swarr;</a></li>
-                            <li><a href="#!">Archer &searr;</a></li>
-                            <li><a href="#!">Infantry &uarr;</a></li>
-                            <li><a href="#!">Infantry &darr;</a></li>
-                            <li><a href="#!">Infantry &rarr;</a></li>
-                            <li><a href="#!">Infantry &larr;</a></li>
-                        </ul>
-
-                        <!-- Dropdown Trigger -->
-                        <div class="bottom align">
-                            <a class='dropdown-button btn small' href='#' data-activates='powerups'>Powerups</a>
-                        </div>
-
-                        <!-- Dropdown Structure -->
-                        <ul id='powerups' class='dropdown-content'>
-                            <li><a href="#!">Reduce Time</a></li>
-                            <li><a href="#!">Reduce Enemy Spawns</a></li>
-                            <li><a href="#!">Void Cell</a></li>
-                        </ul>
-
-                        <div class="bottom align">
-                            <a href="victory.html"><i class="material-icons lock">lock</i></a>
-                        </div>
-                    </span>
-                </div>
+            <span class="toolbar-text">0:30</span>
+        </span>
+    </div>
+    <div class="canvas">
+        <canvas id="gameplay-canvas" class="game-canvas"></canvas>
+    </div>
+    <div class="toolbar bottom">
+        <span class="toolbar-content">
+            <div class="bottom align">
+                <a href="pause.html"><i class="material-icons play">pause</i></a>
             </div>
-        </div>
-    </body>
-</html>
+            <!-- Dropdown Trigger -->
+            <div class="bottom align">
+                <a class='dropdown-button btn small' href='#' data-activates='shapes'>Shapes</a>
+            </div>
+
+            <!-- Dropdown Structure -->
+            <ul id='shapes' class='dropdown-content'>
+                <li><a href="#!">Archer &nwarr;</a></li>
+                <li><a href="#!">Archer &nearr;</a></li>
+                <li><a href="#!">Archer &swarr;</a></li>
+                <li><a href="#!">Archer &searr;</a></li>
+                <li><a href="#!">Infantry &uarr;</a></li>
+                <li><a href="#!">Infantry &darr;</a></li>
+                <li><a href="#!">Infantry &rarr;</a></li>
+                <li><a href="#!">Infantry &larr;</a></li>
+            </ul>
+
+            <!-- Dropdown Trigger -->
+            <div class="bottom align">
+                <a class='dropdown-button btn small' href='#' data-activates='powerups'>Powerups</a>
+            </div>
+
+            <!-- Dropdown Structure -->
+            <ul id='powerups' class='dropdown-content'>
+                <li><a href="#!">Reduce Time</a></li>
+                <li><a href="#!">Reduce Enemy Spawns</a></li>
+                <li><a href="#!">Void Cell</a></li>
+            </ul>
+
+            <div class="bottom align">
+                <a href="victory.html"><i class="material-icons lock">lock</i></a>
+            </div>
+        </span>
+    </div>
+</div>
+
+<% include partials/footer %>

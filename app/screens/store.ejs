@@ -1,499 +1,399 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-        <title>Store - Wisteria Life</title>
-
-        <meta name="theme-color" content="#c9a0dc">
-
-        <!-- jQuery -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-        <!-- Material Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-
-        <!-- Materialize -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
-        <!-- CSS including Materialize -->
-        <link rel="stylesheet" href="dist/css/wisteria.css"/>
-
-        <!-- Custom JavaScript -->
-        <script src="dist/js/wisteria.js"></script>
-    </head>
-
-    <body>
-
-        <!-- Global Nav Bar -->
-        <nav>
-            <div id="wisteria-nav" class="nav-wrapper">
-                <ul id="nav-mobile" class="left">
-                    <li id="account">
-                        <a href="#!" id="user-menu" data-activates="user-dropdown">
-                            <i class="material-icons left">person</i>
-                            R. Boxman</a>
-                    </li>
-                </ul>
-
-                <div id="user-dropdown" class="dropdown-content card">
-
-                    <div id="user-dropdown-inner">
-                        <div id="user-dropdown-header" class="cf">
-                            <div id="user-icon"><i class="material-icons">person</i></div>
-                            <div id="user-title">
-                                <span class="user-name">R. Boxman</span>
-                                <span class="user-level">Level 4</span>
-                            </div>
-                        </div>
-
-                        <div id="user-action" class="cf">
-                            <a href="#!" id="profile-link" class="waves-effect btn-flat">
-                                Profile
-                            </a>
-
-                            <a href="#!" id="drop-loginout">
-                                <i class="material-icons">power_settings_new</i>
-                            </a>
-                        </div>
+<% include partials/header %>
+<!-- Page Content goes here -->
+<div id="store-screen" class="container-inner cards">
+    <div class="row">
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">whatshot</i>
+                        </span>
+                        <span class="card-title">Extra Time</span>
                     </div>
-
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/extratime.png"></img>
+                        <span class="card-desc">Reduce remaining survival time by 5-10 sec.</span>
+                    </div>
                 </div>
-
-                <a href="/" id="logo" class="brand-logo center"></a>
-                <ul id="nav-mobile" class="right">
-                    <li id="wistbux">
-                        <a href="#">
-                            <i class="material-icons left">attach_money</i>
-                            9,999
-                        </a>
-                    </li>
-
-                    <!-- Hamburger Menu - TODO -->
-                    <li id="hamburger">
-                        <a href="#!" id="hamburger-vert" data-activates="hamburger-dropdown">
-                            <i class="material-icons">more_vert</i>
-                        </a>
-                    </li>
-                </ul>
-
-                <ul id="hamburger-dropdown" class="dropdown-content">
-                    <li>
-                        <a href="#!" id="drop-back"><i class="material-icons">arrow_back</i></a>
-                    </li>
-                    <li>
-                        <a href="/store.html" id="drop-store"><i class="material-icons">store</i></a>
-                    </li>
-                    <li>
-                        <a href="#!" id="drop-mute"><i class="material-icons">volume_mute</i></a>
-                    </li>
-                    <li>
-                        <a href="/about.html" id="drop-about"><i class="material-icons">info</i></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-
-        <!-- Screen Section -->
-        <div class="container">
-            <!-- Page Content goes here -->
-            <div id="store-screen" class="container-inner cards">
-                <div class="row">
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">whatshot</i>
-                                    </span>
-                                    <span class="card-title">Extra Time</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/extratime.png"></img>
-                                    <span class="card-desc">Reduce remaining survival time by 5-10 sec.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="extratime">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">whatshot</i>
-                                    </span>
-                                    <span class="card-title">Stop Spawn</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/stopspawn.png"></img>
-                                    <span class="card-desc">Reduce the number of enemies about to spawn in the next few seconds.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="stopspawn">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">whatshot</i>
-                                    </span>
-                                    <span class="card-title">Void Cell</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/void.png"></img>
-                                    <span class="card-desc">Void a cell so that they are no longer involved in the physics of the this world.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="void">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Tower</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/tower.png"></img>
-                                    <span class="card-desc">A non-moving 2x2 cell square.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="tower">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Blockade</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/blockade.png"></img>
-                                    <span class="card-desc">A stationary defense unit that repeatedly changes shape.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="blockade">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Shield</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/shield.png"></img>
-                                    <span class="card-desc">A stationary defense unit that repeatedly changes shape.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Caltrops</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/caltrops.png"></img>
-                                    <span class="card-desc">A unit that explodes into several stable structures.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Archer &nwarr;</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/archernw.png"></img>
-                                    <span class="card-desc">A unit moving diagonally northwest.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Archer &nearr;</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/archerne.png"></img>
-                                    <span class="card-desc">A unit moving diagonally northeast.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Archer &searr;</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/archerse.png"></img>
-                                    <span class="card-desc">A unit moving diagonally southeast.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Archer &swarr;</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/archersw.png"></img>
-                                    <span class="card-desc">A unit moving diagonally souhtwest.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Infantry &larr;</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/infantryw.png"></img>
-                                    <span class="card-desc">A unit moving linearly west.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Infantry &uarr;</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/infantryn.png"></img>
-                                    <span class="card-desc">A unit moving linearly north.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Infantry &rarr;</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/infantrye.png"></img>
-                                    <span class="card-desc">A unit moving linearly east.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Infantry &darr;</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/infantrys.png"></img>
-                                    <span class="card-desc">A unit moving linearly south.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Wall &nearr;</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/wallforward.png"></img>
-                                    <span class="card-desc">A stationary defense unit that does not change shape.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col s6 m4">
-                        <div class="card">
-                            <div class="card-content">
-                                <div class="type-powerup">
-                                    <span class="card-icon">
-                                        <i class="material-icons">widgets</i>
-                                    </span>
-                                    <span class="card-title">Wall &nwarr;</span>
-                                </div>
-                                <div class="icon-description cf">
-                                    <img src="./img/powerups/wallbackward.png"></img>
-                                    <span class="card-desc">A stationary defense unit that does not change shape.</span>
-                                </div>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" data-powerup="shield">Buy</a>
-                                <span class="wistbux">
-                                    <strike>W</strike>
-                                </span>
-                                <span id="price">100</span>
-                            </div>
-                        </div>
-                    </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="extratime">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
                 </div>
             </div>
         </div>
-    </body>
-</html>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">whatshot</i>
+                        </span>
+                        <span class="card-title">Stop Spawn</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/stopspawn.png"></img>
+                        <span class="card-desc">Reduce the number of enemies about to spawn in the next few seconds.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="stopspawn">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">whatshot</i>
+                        </span>
+                        <span class="card-title">Void Cell</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/void.png"></img>
+                        <span class="card-desc">Void a cell so that they are no longer involved in the physics of the this world.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="void">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Tower</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/tower.png"></img>
+                        <span class="card-desc">A non-moving 2x2 cell square.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="tower">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Blockade</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/blockade.png"></img>
+                        <span class="card-desc">A stationary defense unit that repeatedly changes shape.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="blockade">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Shield</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/shield.png"></img>
+                        <span class="card-desc">A stationary defense unit that repeatedly changes shape.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Caltrops</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/caltrops.png"></img>
+                        <span class="card-desc">A unit that explodes into several stable structures.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Archer &nwarr;</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/archernw.png"></img>
+                        <span class="card-desc">A unit moving diagonally northwest.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Archer &nearr;</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/archerne.png"></img>
+                        <span class="card-desc">A unit moving diagonally northeast.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Archer &searr;</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/archerse.png"></img>
+                        <span class="card-desc">A unit moving diagonally southeast.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Archer &swarr;</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/archersw.png"></img>
+                        <span class="card-desc">A unit moving diagonally souhtwest.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Infantry &larr;</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/infantryw.png"></img>
+                        <span class="card-desc">A unit moving linearly west.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Infantry &uarr;</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/infantryn.png"></img>
+                        <span class="card-desc">A unit moving linearly north.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Infantry &rarr;</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/infantrye.png"></img>
+                        <span class="card-desc">A unit moving linearly east.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Infantry &darr;</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/infantrys.png"></img>
+                        <span class="card-desc">A unit moving linearly south.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Wall &nearr;</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/wallforward.png"></img>
+                        <span class="card-desc">A stationary defense unit that does not change shape.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+        <div class="col s6 m4">
+            <div class="card">
+                <div class="card-content">
+                    <div class="type-powerup">
+                        <span class="card-icon">
+                            <i class="material-icons">widgets</i>
+                        </span>
+                        <span class="card-title">Wall &nwarr;</span>
+                    </div>
+                    <div class="icon-description cf">
+                        <img src="./img/powerups/wallbackward.png"></img>
+                        <span class="card-desc">A stationary defense unit that does not change shape.</span>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a href="#" data-powerup="shield">Buy</a>
+                    <span class="wistbux">
+                        <strike>W</strike>
+                    </span>
+                    <span id="price">100</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include partials/footer %>
