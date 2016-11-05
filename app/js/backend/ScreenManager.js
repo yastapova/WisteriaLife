@@ -6,10 +6,10 @@
  */
 
 var ScreenManager = function(screenManager) {
-    this.currentScreen = screenManager.currentScreen;
-    this.lastLegalScreen = screenManager.lastLegalScreen;
-    this.nextScreen = screenManager.nextScreen;
-    this.screenMap = screenManager.screenMap;
+    // this.currentScreen = screenManager.currentScreen;
+    // this.lastLegalScreen = screenManager.lastLegalScreen;
+    // this.nextScreen = screenManager.nextScreen;
+    // this.screenMap = screenManager.screenMap;
 };
 
 ScreenManager.prototype.setCurrentScreen = function(currentScreen) {
