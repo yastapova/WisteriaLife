@@ -1,14 +1,11 @@
-/*
+var Region = require('Region');
+var Level = require('Level');
+/**
  * LevelManager.js
  *
  * Defines and initializes all the region level data in the game.
  * Inidividual levels are loaded on demand.
- *
  */
-
- var Region = require('./Region');
- var Level = require('./Level');
-
 var LevelManager = function() {
     this.regionsMap = new Map();
     this.initRegionsMap();
@@ -21,6 +18,9 @@ var LevelManager = function() {
     //this.initPublicCustomLevelsMap();
 };
 
+/**
+ * Initialize the regions map with regionName: String to region:Region mapping
+ */
 LevelManager.prototype.initRegionsMap = function () {
 	console.log("Init regions map called.");
 	var regionsFile = "/data/regions.json";
@@ -28,11 +28,12 @@ LevelManager.prototype.initRegionsMap = function () {
 		console.log("loading from data regions.json");
 		this.loadJSONDataRegion(data);
 	}.bind(this));
-}
+};
 
-/*
+/**
  * Create a regionAttrObj from the objs in the json file
  * and map the regions accordingly.
+ * @param  data JSON data
  */
 LevelManager.prototype.loadJSONDataRegion = function (data) {
 	for (var i = 0; i < data.regions.length; i++) {
@@ -40,15 +41,17 @@ LevelManager.prototype.loadJSONDataRegion = function (data) {
 		var regionAttrObj = {
 			name: regionData.name,
 			img: regionData.img,
-			levels: regionData.levels
-		}
+			levels: regionData.levels	
+		};
         this.regionsMap.set(regionData.name, new Region(regionAttrObj));
 	}
-}
+};
 
-/*
+/**
  * Create a levelAttrObj from the level obj in the json file
  * and return it
+ * @param  data JSON data
+ * @return the leveLAttrObj that will be used for initializing a Level
  */
 LevelManager.prototype.loadJSONDataLevel = function (data) {
     var levelObj = data.level;
@@ -62,8 +65,13 @@ LevelManager.prototype.loadJSONDataLevel = function (data) {
         defenseStructures : levelObj.defenseStructures
     };
     return levelAttrObj;
-}
+};
 
+/**
+ * Load a level with given id
+ * @param  id integer denoting the id of the level
+ * @return the level object with the given id
+ */
 LevelManager.prototype.loadLevel = function(id) {
     console.log("Load level called for id: " + id);
 	var levelFile = "/data/levels/" + id + ".json";
@@ -75,9 +83,11 @@ LevelManager.prototype.loadLevel = function(id) {
 	}.bind(this));
 };
 
-/*
-* Initialize the private custom levels non game data fields
-*/
+
+/**
+ * Initialize the private custom levels non game data fields
+ * @return {[type]} [description]
+ */
 LevelManager.prototype.initPrivateCustomLevelsMap = function () {
 	console.log("Init private custom levels map called.");
 	// var regionsFile = "/data/regions.json";
@@ -85,11 +95,12 @@ LevelManager.prototype.initPrivateCustomLevelsMap = function () {
 		// console.log("loading from data regions.json");
 		// this.loadJSONDataRegion(data);
 	// }.bind(this));
-}
+};
 
-/*
-* Initialize the public custom levels non game data fields
-*/
+/**
+ * Initialize the public custom levels non game data fields
+ * @return {[type]} [description]
+ */
 LevelManager.prototype.initPublicCustomLevelsMap = function () {
 	console.log("Init public custom levels map called.");
 	// var regionsFile = "/data/regions.json";
@@ -97,13 +108,15 @@ LevelManager.prototype.initPublicCustomLevelsMap = function () {
 		// console.log("loading from data regions.json");
 		// this.loadJSONDataRegion(data);
 	// }.bind(this));
-}
+};
 
+/**
+ * Load a custom level with given id
+ * @param  id integer denoting the id of the level
+ * @return the level object with the given id
+ */
 LevelManager.prototype.loadCustomLevel = function(id) {
 
 };
-
-var LevelManager = new LevelManager();
-LevelManager.loadLevel(1);
 
 module.exports = LevelManager;
