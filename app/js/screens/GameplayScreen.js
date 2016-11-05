@@ -5,7 +5,7 @@ var GameLogicManager = require('GameLogicManager');
 
 var gameplayScreen = function(id, level) {
     this.level = level;
-    this.gameLogicManager = new GameLogicManager();
+    this.gameLogicManager = new GameLogicManager(level);
     screen.call(this,id);
 };
 
