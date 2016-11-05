@@ -1,9 +1,8 @@
 node_modules
 .DS_Store
 /nbproject/private/
-/app/dist/css
-/app/dist/fonts
-/app/dist/js
+/app/public/css
+/app/public/js
 /app/sass/materialize/
 /app/js/browserify/
 *.iml

@@ -9,10 +9,10 @@ var browserify = require('browserify');
 var cleanCSS = require('gulp-clean-css');
 
 // default task
-gulp.task('default', ['roboto', 'browserify', 'scripts:watch', 'sass', 'sass:watch']);
+gulp.task('default', ['browserify', 'scripts:watch', 'sass', 'sass:watch']);
 
 // run before deploying
-gulp.task('deploy', ['roboto', 'browserify:prod', 'sass:prod']);
+gulp.task('deploy', ['browserify:prod', 'sass:prod']);
 
 // browserify for node style requires
 gulp.task('browserify', function() {
@@ -41,7 +41,7 @@ gulp.task('browserify', function() {
         .pipe(sourcemaps.write())
         .pipe(buffer())
 
-    .pipe(gulp.dest('./app/dist/js/'));
+    .pipe(gulp.dest('./app/public/js/'));
 });
 
 // browserify - production - no sourcemap and minified
@@ -71,7 +71,7 @@ gulp.task('browserify:prod', function() {
         .pipe(buffer())
         .pipe(uglify())
 
-    .pipe(gulp.dest('./app/dist/js/'));
+    .pipe(gulp.dest('./app/public/js/'));
 });
 
 // automatically concat scripts on change
@@ -91,7 +91,7 @@ gulp.task('sass', function() {
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./app/dist/css'));
+        .pipe(gulp.dest('./app/public/css'));
 });
 
 // production scss - minified and no sourcemap
@@ -100,13 +100,7 @@ gulp.task('sass:prod', function() {
         .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
         .pipe(cleanCSS())
-        .pipe(gulp.dest('./app/dist/css'));
-});
-
-// move roboto font
-gulp.task('roboto', function() {
-    return gulp.src('./app/fonts/**/*.*')
-        .pipe(gulp.dest('./app/dist/fonts'));
+        .pipe(gulp.dest('./app/public/css'));
 });
 
 // automatically recompile scss on change
