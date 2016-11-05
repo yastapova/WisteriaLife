@@ -1,33 +1,39 @@
+'use strict';
 /*
- * screen.js
+ * Screen.js
  *
  * Defines a screen
  *
  */
 
-var screen = function(id) {
-    if(id === undefined) {
-        this.id = undefined;
-    }
-    else {
-        this.id = id;
-    }
-};
-
-screen.prototype.setId = function(id) {
+/**
+ * Screen is the parent of all screens
+ * @param {string} id       ID of screen (<url>/id)
+ * @param {boolean} overlay whether or not its an overlay over existing screen
+ */
+var Screen = function (id, overlay) {
     this.id = id;
+    this.overlay = overlay;
 };
 
-screen.prototype.getId = function() {
-    return this.id;
+/**
+ * Load and replace container with new screen
+ */
+Screen.prototype.load = function () {
+    /*
+        - $.get HTML page
+        - Get #container-inner from fetched page
+        - if overlay
+            - append container to current #container
+        - else
+            - replace #container contents to new #container-inner
+
+        - History push (update URL/title, push to browser history)
+
+
+        Called from child's load method,
+        followed by each child's specific functionality
+     */
 };
 
-screen.prototype.load = function() {
-
-};
-
-screen.prototype.hide = function() {
-
-};
-
-module.exports = screen;
+module.exports = Screen;

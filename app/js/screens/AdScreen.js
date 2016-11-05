@@ -2,7 +2,7 @@
  * AdScreen.js
  * AdScreen object
  */
-var screen = require('./Screen');
+var Screen = require('./Screen');
 
 /*
  * Construct an AdScreen with given id
@@ -10,26 +10,13 @@ var screen = require('./Screen');
  */
 
 var AdScreen = function(id, timer, image) {
-    if(timer === undefined && image === undefined) {
-        this.timer = undefined;
-        this.image = undefined;
-    }
-    else if(timer === undefined) {
-        this.timer = undefined;
-        this.image = image;
-    }
-    else if(image === undefined) {
-        this.timer = timer;
-        this.image = undefined;
-    }
-    else {
-        this.timer = timer;
-        this.image = image;
-    }
-    screen.call(this, id, timer, image);
+    Screen.call(this, true);
+
+    this.timer = timer;
+    this.image = image;
 };
 
-inherits(AdScreen, screen);
+inherits(AdScreen, Screen);
 
 /*
  * Override the load and hide of the parent screen
