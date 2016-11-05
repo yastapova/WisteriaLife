@@ -68,6 +68,10 @@ $large-height-up: "only screen and (min-height : #{$large-height-up})" !default;
     clear: both;
 }
 
+.strike {
+    text-decoration: line-through;
+}
+
 /* Start Global Wisteria Life CSS */
 
 body {

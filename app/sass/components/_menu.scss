@@ -26,16 +26,15 @@ nav {
         color: $primary-color;
     }
 
+    #user-menu {
+        font-size: 1.2rem;
+    }
+
     #user-dropdown {
         width: 100px;
         min-width: 200px;
         height: 115px;
         overflow: hidden;
-        margin-top: $navbar-height-mobile;
-
-        @media #{$medium-and-up} {
-            margin-top: $navbar-height;
-        }
 
         #user-dropdown-header {
             vertical-align: middle;
@@ -101,6 +100,20 @@ nav {
                     line-height: 25px;
                     height: 25px;
                 }
+            }
+        }
+    }
+
+    #nav-wistbux {
+        vertical-align: middle;
+
+        .wistbux {
+            font-size: 1.8rem;
+            vertical-align: middle;
+
+            &+span {
+                vertical-align: middle;
+                font-size: 1.2rem;
             }
         }
     }
