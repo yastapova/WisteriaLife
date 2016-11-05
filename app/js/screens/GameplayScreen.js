@@ -19,6 +19,8 @@ gameplayScreen.prototype.hide = function() {
 
 };
 
+gameplayScreen.prototype.displayMessage = function(){};
+
 /**
  * Add a shape to the level's allowed shapesand increment its quantity by 1
  */
