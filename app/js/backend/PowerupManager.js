@@ -24,7 +24,6 @@ PowerupManager.prototype.initPowerupsMap = function () {
 /**
  * Create a powerupAttrObj from the objs in the json file
  * and map the powerup accordingly.
- * TO DO: add the effect functions.
  * @param data JSON data
  */
 PowerupManager.prototype.loadJSONData = function (data) {
