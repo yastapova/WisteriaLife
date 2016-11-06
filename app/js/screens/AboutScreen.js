@@ -18,6 +18,7 @@ inherits(AboutScreen, Screen);
  */
 AboutScreen.prototype.init = function () {
     console.log("About screen load called");
+    $('.collapsible').collapsible();
 };
 
 AboutScreen.prototype.hide = function () {
