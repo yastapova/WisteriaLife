@@ -73,8 +73,6 @@ var ScreenManager = function (currentScreen) {
 
         var href = $(this).attr("href");
 
-        console.log(href);
-
         // non-event and internal links only
         if (href.indexOf('#!') == -1 && (
             href.indexOf(document.domain) > -1 || href.indexOf(':') === -1)
@@ -106,7 +104,8 @@ ScreenManager.prototype.switchScreens = function (screen) {
  * Back button
  */
 ScreenManager.prototype.back = function () {
-    history.popstate();
+    console.log("Back!");
+    history.back();
 
     // TODO - restricting where the user can go back to
 };

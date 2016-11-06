@@ -60,13 +60,12 @@ Screen.prototype.load = function (initScreen) {
                 // don't pushstate if going back (popstate)
                 if (!history.state || history.state.screen != this.id) {
                     // set browser URL
-                    history.pushState({screen: this.id}, '', screenSwitch);
-
-                    // set browser title
-                    // https://bugs.webkit.org/show_bug.cgi?id=43730
-                    // https://bugzilla.mozilla.org/show_bug.cgi?id=585653
-                    document.title = $(data).filter('title').text();
+                    history.pushState({screen: this.id}, '', '/' + screenSwitch);
                 }
+                // set browser title
+                // https://bugs.webkit.org/show_bug.cgi?id=43730
+                // https://bugzilla.mozilla.org/show_bug.cgi?id=585653
+                document.title = $(data).filter('title').text();
 
                 console.log('Loading screen complete! ' + this.id);
 

@@ -55,8 +55,8 @@ $(document).ready(function() {
         loginout: $('#drop-loginout')
     };
 
-    var UserMenu = require('UserMenu');
-    var menu = new UserMenu(menuElements, gameManager);
+    var OverflowMenu = require('OverflowMenu');
+    var menu = new OverflowMenu(menuElements);
 
     var userMenuElements = {
         activate: $('#user-menu'),

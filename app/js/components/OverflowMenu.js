@@ -4,7 +4,7 @@
  * @constructor
  * @param {Object} menu map of menu jQuery DOM elements
  */
-var DropdownMenu = function (menu, gm) {
+var OverflowMenu = function (menu) {
 
     // set dropdown event
     menu.activate.dropdown();
@@ -14,9 +14,6 @@ var DropdownMenu = function (menu, gm) {
     this.store = menu.store;
     this.mute = menu.mute;
     this.about = menu.about;
-
-    // use gm if provided, otherwise, use global
-    this.gameManager = gm;
 
     // set click events on all menu items
     this.back.on('click', function () {
@@ -36,13 +33,12 @@ var DropdownMenu = function (menu, gm) {
     }.bind(this));
 }
 
-DropdownMenu.prototype = {
+OverflowMenu.prototype = {
     /**
      * Handle back button
      */
     handleBackButton: function () {
-        console.log("Back button pressed!");
-        window.history.back(); //temporary only
+        require('GameManager').getGameManager().screenManager.back();
     },
 
     /**
@@ -67,4 +63,4 @@ DropdownMenu.prototype = {
     }
 };
 
-module.exports = DropdownMenu;
+module.exports = OverflowMenu;
