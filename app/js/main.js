@@ -29,18 +29,6 @@ var firebase = require("firebase");
 firebase.initializeApp(config);
 
 /**
- * Child inherits from parent
- * Sets the child's prototype equal to the parent's
- *
- * @param child child object
- * @param parent parent object
- */
-function inherits(child, parent) {
-    child.prototype = Object.create(parent.prototype);
-    child.prototype.constructor = parent;
-}
-
-/**
  * Instantiate navbar events
  *
  * All screen specific events should be moved to load() methods
@@ -80,7 +68,3 @@ $(document).ready(function() {
     console.log(gameManager);
     console.log('%c=====', 'color: #c9a0dc; font-size: x-large');
 });
-
-module.exports = {
-    inherits: inherits
-};
