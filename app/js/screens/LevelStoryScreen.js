@@ -27,6 +27,7 @@ inherits(LevelStoryScreen, screen);
  */
 
 LevelStoryScreen.prototype.init = function() {
+    console.log("Level story screen init called");
 
 };
 

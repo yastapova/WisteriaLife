@@ -69,14 +69,8 @@ $(document).ready(function() {
     /*
      * Test Screens
      */
-        var TestA = require('./test-screen/test').TestA;
-        var TestB = require('./test-screen/test').TestB;
-
-    /**
-     * ALL CODE BELOW THIS IS FOR TESTING Only
-     * All this should happen elsewhere
-     * TODO - remove all this
-     */
+    var TestA = require('./test-screen/test').TestA;
+    var TestB = require('./test-screen/test').TestB;
 
     // singleton game manager
     var GameManager = require('GameManager');
@@ -85,13 +79,6 @@ $(document).ready(function() {
     console.log('%cTesting GameManager', 'color: #c9a0dc; font-size: x-large');
     console.log(gameManager);
     console.log('%c=====', 'color: #c9a0dc; font-size: x-large');
-
-    // temporary fix Only
-
-    var canvasElement = $('#gameplay-canvas').length !== 0 ? $('#gameplay-canvas') : $('#editor-canvas');
-    var PixiCanvas = require('pixi-canvas');
-    var canvas = new PixiCanvas(canvasElement, 'medium');
-    var canvas2 = new PixiCanvas(canvasElement, 'medium');
 });
 
 module.exports = {

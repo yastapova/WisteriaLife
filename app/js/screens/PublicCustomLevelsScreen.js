@@ -9,6 +9,7 @@ var PublicCustomLevelsScreen = function(id, publicCustomLevelsMap) {
 inherits(PublicCustomLevelsScreen, screen);
 
 PublicCustomLevelsScreen.prototype.init = function() {
+    console.log("Public custom levels screen init called");
 
 };
 

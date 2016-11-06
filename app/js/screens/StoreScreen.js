@@ -17,6 +17,7 @@ inherits(StoreScreen, Screen);
  * Override the load and hide of the parent screen
  */
 StoreScreen.prototype.init = function() {
+    console.log("Store screen init called");
 
 };
 

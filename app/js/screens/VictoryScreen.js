@@ -10,6 +10,7 @@ var VictoryScreen = function(id, level, user) {
 inherits(VictoryScreen, screen);
 
 VictoryScreen.prototype.init = function() {
+    console.log("Victory screen init called");
 
 };
 

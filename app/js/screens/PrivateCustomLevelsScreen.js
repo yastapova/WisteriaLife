@@ -8,6 +8,7 @@ var PrivateCustomLevelsScreen = function(id) {
 inherits(PrivateCustomLevelsScreen, screen);
 
 PrivateCustomLevelsScreen.prototype.init = function() {
+    console.log("Private custom levels screen init called");
 
 };
 

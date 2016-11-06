@@ -17,7 +17,7 @@ inherits(AboutScreen, Screen);
  * Override the load and hide of the parent screen
  */
 AboutScreen.prototype.init = function () {
-    console.log("About screen load called");
+    console.log("About screen init called");
     $('.collapsible').collapsible();
 };
 

@@ -10,7 +10,7 @@ var Screen = require('./Screen');
  */
 
 var AdScreen = function(id, timer, image) {
-    Screen.call(this, true);
+    Screen.call(this, id, true);
 
     this.timer = timer;
     this.image = image;
@@ -24,6 +24,7 @@ inherits(AdScreen, Screen);
  */
 
 AdScreen.prototype.init = function() {
+    console.log("Ad screen init called");
 
 };
 

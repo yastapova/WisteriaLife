@@ -17,15 +17,6 @@ inherits(SplashScreen, Screen);
  */
 SplashScreen.prototype.init = function() {
     console.log("Splash screen init called");
-
-    // testing only
-    $('#splash-play').click(function (e) {
-        e.preventDefault();
-
-        var gameManager = require('GameManager').getGameManager();
-
-        gameManager.screenManager.switchScreens('map');
-    });
 }
 
 SplashScreen.prototype.checkUser = function() {

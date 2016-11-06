@@ -34,7 +34,11 @@ var GameLogicManager = function(level) {
     var RIGHT = 7;
     var CENTER = 8;
 
-    var canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
+    // don't call DOM things here, it won't work since constructors are called
+    // before page loads
+    //
+    // do it in each screen's init() method
+    //var canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
 
     var cellLookup;
     var allowedShapes;
@@ -62,27 +66,27 @@ GameLogicManager.prototype.initCellLookup = function()
 {
     // WE'LL PUT ALL THE VALUES IN HERE
     cellLookup = new Array();
-    
+
     // TOP LEFT
     var topLeftArray        = new Array( 1, 0,  1,  1,  0,  1);
     cellLookup[TOP_LEFT]    = new CellType(3, topLeftArray);
-    
+
     // TOP RIGHT
     var topRightArray       = new Array(-1, 0, -1,  1,  0,  1);
     cellLookup[TOP_RIGHT]   = new CellType(3, topRightArray);
-    
+
     // BOTTOM LEFT
     var bottomLeftArray     = new Array( 1, 0,  1, -1, 0, -1);
     cellLookup[BOTTOM_LEFT] = new CellType(3, bottomLeftArray);
-    
+
     // BOTTOM RIGHT
     var bottomRightArray    = new Array(-1, 0, -1, -1, 0, -1);
     cellLookup[BOTTOM_RIGHT]= new CellType(3, bottomRightArray);
-    
-    // TOP 
+
+    // TOP
     var topArray            = new Array(-1, 0, -1, 1, 0, 1, 1, 1, 1, 0);
     cellLookup[TOP]         = new CellType(5, topArray);
-    
+
     // BOTTOM
     var bottomArray         = new Array(-1, 0, -1, -1, 0, -1, 1, -1, 1, 0);
     cellLookup[BOTTOM]      = new CellType(5, bottomArray);
@@ -94,7 +98,7 @@ GameLogicManager.prototype.initCellLookup = function()
     // RIGHT
     var rightArray          = new Array(0, -1, -1, -1, -1, 0, -1, 1, 0, 1);
     cellLookup[RIGHT]       = new CellType(5, rightArray);
-    
+
     // CENTER
     var centerArray         = new Array(-1, -1, -1, 0, -1, 1, 0, 1, 1, 1, 1, 0, 1, -1, 0, -1);
     cellLookup[CENTER]      = new CellType(8, centerArray);
@@ -132,13 +136,13 @@ GameLogicManager.prototype.placeShape = function(shape) {
 
 GameLogicManager.prototype.isValidCell = function() {
     // IS IT OUTSIDE THE GRID?
-    if (    (row < 0) || 
+    if (    (row < 0) ||
             (col < 0) ||
             (row >= gridHeight) ||
             (col >= gridWidth))
     {
         return false;
-    }    
+    }
     // IT'S INSIDE THE GRID
     else
     {
@@ -164,13 +168,13 @@ GameLogicManager.prototype.reset = function() {
     renderGrid = new Array();
     defenseGrid = new Array();
     ghostGrid = new Array();
-    
+
     // INIT THE CELLS IN THE GRID
     for (var i = 0; i < gridHeight; i++)
         {
             for (var j = 0; j < gridWidth; j++)
                 {
-                    setGridCell(updateGrid, i, j, this.level.grid[i][j]); 
+                    setGridCell(updateGrid, i, j, this.level.grid[i][j]);
                     setGridCell(renderGrid, i, j, this.level.grid[i][j]);
                 }
         }

@@ -17,6 +17,7 @@ inherits(DefeatScreen, Screen);
  * Override the load and hide of the parent screen
  */
 DefeatScreen.prototype.init = function() {
+    console.log("Defeat screen init called");
 
 };
 

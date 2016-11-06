@@ -27,6 +27,7 @@ inherits(PauseScreen, screen);
  */
 
 PauseScreen.prototype.init = function() {
+    console.log("Pause screen init called");
 
 };
 

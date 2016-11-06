@@ -11,6 +11,7 @@
 
 /**
  * Starts a screen manager
+ * Sets up the initial screen
  * @param {string} current [optional] current screen, default splash
  */
 var ScreenManager = function (currentScreen) {
@@ -24,20 +25,21 @@ var ScreenManager = function (currentScreen) {
 
     // reference all the screens
     this.screenMap = {
-        about: AboutScreen,
-        ad: AdScreen,
-        defeat: DefeatScreen,
-        map: GameMapScreen,
-        gameplay: GameplayScreen,
-        levelEdit: LevelEditScreen,
-        levelStory: LevelStoryScreen,
-        pauseScreen: PauseScreen,
-        privateLevels: PrivateCustomLevelsScreen,
-        publicLevels: PublicCustomLevelsScreen,
-        saveLevel: SaveLevelScreen,
-        splash: SplashScreen,
-        store: StoreScreen,
-        victory: VictoryScreen
+        'about': AboutScreen,
+        'ad': AdScreen,
+        'defeat': DefeatScreen,
+        'map': GameMapScreen,
+        'gameplay': GameplayScreen,
+        'level-editor': LevelEditScreen,
+        'level-select': LevelSelectScreen,
+        'level-story': LevelStoryScreen,
+        'pause': PauseScreen,
+        'private-custom-levels': PrivateCustomLevelsScreen,
+        'public-custom-levels': PublicCustomLevelsScreen,
+        'save-level': SaveLevelScreen,
+        'splash': SplashScreen,
+        'store': StoreScreen,
+        'victory': VictoryScreen
     };
 
     // default screen: splash
@@ -46,17 +48,44 @@ var ScreenManager = function (currentScreen) {
 
     var properties = null; // TODO
 
+    /**
+     * Popstate / Back Button
+     */
+    $(window).on('popstate', function (e) {
+        if (history.state !== null)
+            // read state ID that was pushed when switching originally
+            this.switchScreens(history.state.screen);
+    }.bind(this));
+
     // load and display the current screen
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
+
+    // set initial state (for going back later)
+    var screenSwitch = this.currentScreen == 'splash' ? '' : this.currentScreen;
+    history.replaceState({screen: this.id}, '', screenSwitch);
+
     this.screen.init(); // first screen doesn't need to load, just init
 
-    // testing only
-    $('#drop-about').click(function (e) {
-        e.preventDefault();
 
-        var gameManager = require('GameManager').getGameManager();
+    var self = this; // need "this" inside callback, but can't bind here
+    // use switchScreens() for all internal links
+    $(document).on('click', 'a', function (e) {
 
-        gameManager.screenManager.switchScreens('about');
+        var href = $(this).attr("href");
+
+        console.log(href);
+
+        // non-event and internal links only
+        if (href.indexOf('#!') == -1 && (
+            href.indexOf(document.domain) > -1 || href.indexOf(':') === -1)
+        ) {
+
+            e.preventDefault(); // prevent link from working normally
+
+            var newScreen = $(this)[0].pathname.replace(/^\//, "");
+            newScreen = newScreen == '' ? 'splash' : newScreen;
+            self.switchScreens(newScreen);
+        }
     });
 };
 
@@ -77,7 +106,9 @@ ScreenManager.prototype.switchScreens = function (screen) {
  * Back button
  */
 ScreenManager.prototype.back = function () {
+    history.popstate();
 
+    // TODO - restricting where the user can go back to
 };
 
 // require all screens

@@ -4,14 +4,19 @@ var GameManager = require('../backend/GameManager');
 
 var gameplayScreen = function(id, level) {
     this.level = level;
+
     this.gameLogicManager = new GameLogicManager(level);
+
     screen.call(this,id);
 };
 
 inherits(gameplayScreen, screen);
 
 gameplayScreen.prototype.init = function() {
+    console.log("Gameplay screen init called");
 
+    var PixiCanvas = require('pixi-canvas');
+    var canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
 };
 
 gameplayScreen.prototype.hide = function() {

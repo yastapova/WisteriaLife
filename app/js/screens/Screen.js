@@ -29,7 +29,7 @@ Screen.prototype.load = function (initScreen) {
     /*
         - $.get HTML page
         - Get #container-inner from fetched page
-        - if overlay
+        - if overlay (TODO overlay not implemented yet)
             - append container to current #container
         - else
             - replace #container contents to new #container-inner
@@ -51,14 +51,22 @@ Screen.prototype.load = function (initScreen) {
     $.get('/' + screenSwitch, '', function (data) {
 
         this.container.fadeOut('fast', function () {
+
+            // replace current container with new screen's container
             this.container.html($(data).filter('#main-container').html());
 
             this.container.fadeIn('fast', function() {
-                // set browser URL
-                history.pushState({id: this.id}, '', screenSwitch);
 
-                // set browser title
-                document.title = $(data).filter('title').text();
+                // don't pushstate if going back (popstate)
+                if (!history.state || history.state.screen != this.id) {
+                    // set browser URL
+                    history.pushState({screen: this.id}, '', screenSwitch);
+
+                    // set browser title
+                    // https://bugs.webkit.org/show_bug.cgi?id=43730
+                    // https://bugzilla.mozilla.org/show_bug.cgi?id=585653
+                    document.title = $(data).filter('title').text();
+                }
 
                 console.log('Loading screen complete! ' + this.id);
 
