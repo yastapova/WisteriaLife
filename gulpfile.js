@@ -25,11 +25,10 @@ gulp.task('browserify', function() {
             './app/js/components',
             './app/js/screens',
             './app/js/test-screen',
-            './app/js'
         ],
         insertGlobalVars: { // global inherits function
             inherits: function(file, dir) {
-                return 'require("main").inherits';
+                return 'require("inherits")';
             }
         }
     });
@@ -51,12 +50,11 @@ gulp.task('browserify:prod', function() {
             './app/js/backend',
             './app/js/components',
             './app/js/screens',
-            './app/js/test-screen',
-            './app/js'
+            './app/js/test-screen'
         ],
         insertGlobalVars: { // global inherits function
             inherits: function(file, dir) {
-                return 'require("main").inherits';
+                return 'require("inherits")';
             }
         }
     });
