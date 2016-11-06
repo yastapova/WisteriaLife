@@ -23,7 +23,7 @@ inherits(AdScreen, Screen);
  *
  */
 
-AdScreen.prototype.load = function() {
+AdScreen.prototype.init = function() {
 
 };
 

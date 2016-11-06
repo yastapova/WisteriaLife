@@ -7,7 +7,7 @@ var PrivateCustomLevelsScreen = function(id) {
 
 inherits(PrivateCustomLevelsScreen, screen);
 
-PrivateCustomLevelsScreen.prototype.load = function() {
+PrivateCustomLevelsScreen.prototype.init = function() {
 
 };
 

@@ -9,7 +9,7 @@ var VictoryScreen = function(id, level, user) {
 
 inherits(VictoryScreen, screen);
 
-VictoryScreen.prototype.load = function() {
+VictoryScreen.prototype.init = function() {
 
 };
 

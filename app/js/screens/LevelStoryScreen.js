@@ -26,7 +26,7 @@ inherits(LevelStoryScreen, screen);
  *
  */
 
-LevelStoryScreen.prototype.load = function() {
+LevelStoryScreen.prototype.init = function() {
 
 };
 

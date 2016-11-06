@@ -10,7 +10,7 @@ var LevelEditScreen = function(id, level) {
 
 inherits(LevelEditScreen, screen);
 
-LevelEditScreen.prototype.load = function() {
+LevelEditScreen.prototype.init = function() {
 
 };
 

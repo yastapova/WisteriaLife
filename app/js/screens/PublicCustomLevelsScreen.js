@@ -8,7 +8,7 @@ var PublicCustomLevelsScreen = function(id, publicCustomLevelsMap) {
 
 inherits(PublicCustomLevelsScreen, screen);
 
-PublicCustomLevelsScreen.prototype.load = function() {
+PublicCustomLevelsScreen.prototype.init = function() {
 
 };
 

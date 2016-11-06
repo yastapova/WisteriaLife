@@ -16,7 +16,7 @@ inherits(StoreScreen, Screen);
 /*
  * Override the load and hide of the parent screen
  */
-StoreScreen.prototype.load = function() {
+StoreScreen.prototype.init = function() {
 
 };
 

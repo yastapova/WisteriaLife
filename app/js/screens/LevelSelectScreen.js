@@ -26,7 +26,7 @@ inherits(LevelSelectScreen, screen);
  *
  */
 
-LevelSelectScreen.prototype.load = function() {
+LevelSelectScreen.prototype.init = function() {
 
 };
 

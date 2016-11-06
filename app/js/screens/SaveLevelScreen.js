@@ -16,7 +16,7 @@ inherits(SaveLevelScreen, Screen);
 /*
  * Override the load and hide of the parent screen
  */
-SaveLevelScreen.prototype.load = function() {
+SaveLevelScreen.prototype.init = function() {
 
 };
 

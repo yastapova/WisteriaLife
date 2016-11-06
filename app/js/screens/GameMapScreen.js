@@ -20,8 +20,8 @@ gameMap.prototype.loadAvailableLevels = function () {
 /*
  * Override the load and hide of the parent screen
  */
-gameMap.prototype.load = function () {
-
+gameMap.prototype.init = function () {
+    console.log("Game map init called!");
 };
 
 gameMap.prototype.hide = function () {

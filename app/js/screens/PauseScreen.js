@@ -26,7 +26,7 @@ inherits(PauseScreen, screen);
  *
  */
 
-PauseScreen.prototype.load = function() {
+PauseScreen.prototype.init = function() {
 
 };
 

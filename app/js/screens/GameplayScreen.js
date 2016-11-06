@@ -11,7 +11,7 @@ var gameplayScreen = function(id, level) {
 
 inherits(gameplayScreen, screen);
 
-gameplayScreen.prototype.load = function() {
+gameplayScreen.prototype.init = function() {
 
 };
 

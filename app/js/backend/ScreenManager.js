@@ -4,6 +4,9 @@
  *
  * Manager for screens
  *
+ * Splash screen is a special case.
+ * All other pages go to their corresponding URL.
+ *
  */
 
 /**
@@ -24,7 +27,7 @@ var ScreenManager = function (currentScreen) {
         about: AboutScreen,
         ad: AdScreen,
         defeat: DefeatScreen,
-        gameMap: GameMapScreen,
+        map: GameMapScreen,
         gameplay: GameplayScreen,
         levelEdit: LevelEditScreen,
         levelStory: LevelStoryScreen,
@@ -39,14 +42,22 @@ var ScreenManager = function (currentScreen) {
 
     // default screen: splash
     this.currentScreen = currentScreen && currentScreen in this.screenMap
-                            ? current : 'splash';
+                            ? currentScreen : 'splash';
 
     var properties = null; // TODO
 
     // load and display the current screen
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
-    console.log(this.screen);
-    this.screen.load();
+    this.screen.init(); // first screen doesn't need to load, just init
+
+    // testing only
+    $('#drop-about').click(function (e) {
+        e.preventDefault();
+
+        var gameManager = require('GameManager').getGameManager();
+
+        gameManager.screenManager.switchScreens('about');
+    });
 };
 
 ScreenManager.prototype.switchScreens = function (screen) {
@@ -57,9 +68,10 @@ ScreenManager.prototype.switchScreens = function (screen) {
 
     // load and display the current screen
     var properties = null; // TODO
+
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
-    this.screen.load();
-}
+    this.screen.load(this.screen.init);
+};
 
 /**
  * Back button

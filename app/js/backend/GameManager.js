@@ -8,7 +8,10 @@ var LevelManager = require('./LevelManager');
  * GameManager handles the user and saving/loading of data
  */
 var GameManager = function() {
-    this.screenManager = new ScreenManager();
+
+    this.screenManager = new ScreenManager(
+        window.location.pathname.replace(/^\//, "")
+    );
     this.powerupManager = new PowerupManager();
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
