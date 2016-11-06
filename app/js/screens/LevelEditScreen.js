@@ -13,7 +13,7 @@ inherits(LevelEditScreen, screen);
 LevelEditScreen.prototype.init = function() {
     console.log("Level edit screen init called");
 
-    var PixiCanvas = require('pixi-canvas');
+    var PixiCanvas = require('PixiCanvas');
     var canvas = new PixiCanvas($('#editor-canvas'), 'medium');
 
     $('.dropdown-button').dropdown({

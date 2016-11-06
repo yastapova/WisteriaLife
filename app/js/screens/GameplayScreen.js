@@ -15,7 +15,7 @@ inherits(gameplayScreen, screen);
 gameplayScreen.prototype.init = function() {
     console.log("Gameplay screen init called");
 
-    var PixiCanvas = require('pixi-canvas');
+    var PixiCanvas = require('PixiCanvas');
     var canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
 
     $('.dropdown-button').dropdown({
