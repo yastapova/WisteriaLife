@@ -24,7 +24,6 @@ PowerupManager.prototype.initPowerupsMap = function () {
 /**
  * Create a powerupAttrObj from the objs in the json file
  * and map the powerup accordingly.
- * TO DO: add the effect functions.
  * @param data JSON data
  */
 PowerupManager.prototype.loadJSONData = function (data) {
@@ -112,7 +111,7 @@ PowerupManager.prototype.useShapePowerup = function(level) {
 
 /**
  * Use a reduce time powerup. 
- * @param lvel the level obj to use the reduce time powerup on
+ * @param level the level obj to use the reduce time powerup on
  */
 PowerupManager.prototype.useReduceTimePowerup = function(level) {
 	if(level.time - 5 <= 0){
