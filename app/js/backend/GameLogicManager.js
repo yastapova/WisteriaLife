@@ -1,4 +1,5 @@
 var GameLogicManager = function(level) {
+    this.renderGridOld = [];// what was rendered last update loop
     this.renderGrid = [];   // what gets displayed
     this.battleGrid = [];   // friend and foe interactions
     this.defenseGrid = [];  // defense towers only
@@ -120,6 +121,8 @@ GameLogicManager.prototype.start = function(level) {
 }
 
 GameLogicManager.prototype.updateLoop = function() {
+    // check time; end game if zero
+
     for (var i = 0; i < gridHeight; i++)
     {
         for (var j = 0; j < gridWidth; j++)
@@ -129,23 +132,24 @@ GameLogicManager.prototype.updateLoop = function() {
             var index = (i * gridWidth) + j;
             var battleCell = battleGrid[index];
             var defenseCell = defenseGrid[index];
+            var ghostCell = ghostGrid[index];
 
             // CASES
             switch(battleCell) {
                 case BLANK:
                     // decide if to reproduce
-                    break;
-                case VOID:
-                    // do nothing; it is void
+                    var neighbors = calcNumNeighbors(i, j);
                     break;
                 case FRIEND:
                     // decide if to die
+                    var neighbors = calcNumNeighbors(i, j);
                     break;
                 case ENEMY:
                     // decide if to die
+                    var neighbors = calcNumNeighbors(i, j);
                     break;
                 default:
-
+                    // nothing
                     break;
             }
             switch(defenseCell) {
@@ -157,6 +161,17 @@ GameLogicManager.prototype.updateLoop = function() {
                     // nothing
                     break;
             }
+
+            battleCell = battleGrid[index];
+            defenseCell = defenseGrid[index];
+            if(ghostCell !== -2)
+                renderGrid[index] = GHOST;
+            else if(battleCell !== -2)
+                renderGrid[index] = battleCell;
+            else if(defenseCell !== -2)
+                renderGrid[index] = defenseCell;
+            else
+                renderGrid[index] = factionGrid[index];
         }
     } 
 }
@@ -173,7 +188,33 @@ GameLogicManager.prototype.reproduce = function() {
 }
 
 GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
-
+    var numEnemies = 0;
+    var numFriends = 0;
+    
+    // DEPENDING ON THE TYPE OF CELL IT IS WE'LL CHECK
+    // DIFFERENT ADJACENT CELLS
+    var cellType = determineCellType(row, col);
+    var cellsToCheck = cellLookup[cellType];
+    for(var counter = 0; counter < (cellsToCheck.numNeighbors * 2); counter+=2)
+        {
+            var neighborCol = col + cellsToCheck.cellValues[counter];
+            var neighborRow = row + cellsToCheck.cellValues[counter+1];
+            var index = (neighborRow * gridWidth) + neighborCol;
+            var neighborValue = updateGrid[index];
+            // MODIFIED TO ACCOUNT FOR NEW CELL VALUES
+            if(neighborValue === FRIEND)
+            {
+                numFriends += 1;
+            }
+            else if(neighborValue === ENEMY)
+            {
+                numEnemies += 1;
+            }
+        }
+    return {
+        "friends" : numFriends,
+        "enemies" : numEnemies
+    };
 }
 
 GameLogicManager.prototype.placeShape = function(shape) {
