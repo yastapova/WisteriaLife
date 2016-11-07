@@ -3,6 +3,7 @@ var ScreenManager = require('./ScreenManager');
 var PowerupManager = require('./PowerupManager');
 var ShapeManager = require('./ShapeManager');
 var LevelManager = require('./LevelManager');
+var firebase = require("firebase");
 
 /**
  * GameManager handles the user and saving/loading of data
@@ -47,8 +48,6 @@ GameManager.prototype.initFirebase = function() {
         storageBucket: "wisteria-life-build2.appspot.com",
         messagingSenderId: "103993744321"
     };
-
-    var firebase = require("firebase");
 
     firebase.initializeApp(config);
 
