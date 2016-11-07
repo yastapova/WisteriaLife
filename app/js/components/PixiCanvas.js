@@ -123,10 +123,9 @@ PixiCanvas.prototype.resizePixiCanvas = function () {
 PixiCanvas.prototype.render = function () {
 
     // clear canvas first
-    this.reset();
+    // this.reset();
 
-    // render grid LINES
-    this.renderGridLines();
+    this.renderer.render(this.stage);
 };
 
 /**
@@ -150,7 +149,7 @@ PixiCanvas.prototype.calculateCellLocation = function (col, row) {
  * @param {[type]} color [description]
  */
 PixiCanvas.prototype.setCell = function (col, row, color) {
-    console.log(col + " " + row + " " + color);
+    console.log(col + ", " + row + ", " + color);
     var location = this.calculateCellLocation(col, row);
 
     // calculate location of the cell
@@ -184,6 +183,8 @@ PixiCanvas.prototype.respondToMouseClick = function () {
     console.log(gameManager.gameLogicManager);
     var friend = gameManager.gameLogicManager.FRIEND;
     gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend);
+
+    this.render();
 };
 
 PixiCanvas.prototype.getRelativeCoords = function () {
