@@ -17,6 +17,14 @@ var GameManager = function() {
     this.levelManager = new LevelManager();
     this.user = new User();
     this.mute = false;
+    this.loginButton = document.getElementById('splash-login');
+    this.logoutButton = document.getElementById('splash-logout');
+
+    // Listeners for buttons
+
+    this.loginButton.addEventListener('click', this.login.bind(this));
+    this.logoutButton.addEventListener('click', this.logout.bind(this));
+    this.initFirebase();
 };
 
 /**
@@ -27,6 +35,30 @@ GameManager.getGameManager = function() {
         GameManager.gameManager = new GameManager();
     }
     return GameManager.gameManager;
+};
+
+GameManager.prototype.initFirebase = function() {
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBNCeWYe5TnqjvSIL9ieykBn59Zn3Aa0q0",
+        authDomain: "wisteria-life-build2.firebaseapp.com",
+        databaseURL: "https://wisteria-life-build2.firebaseio.com",
+        storageBucket: "wisteria-life-build2.appspot.com",
+        messagingSenderId: "103993744321"
+    };
+
+    var firebase = require("firebase");
+
+    firebase.initializeApp(config);
+
+    // Shortcuts to Firebase SDK features.
+    this.auth = firebase.auth();
+    this.database = firebase.database();
+    this.storage = firebase.storage();
+
+    // Initiates Firebase auth and listen to auth state changes.
+    //this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
 };
 
 /**
@@ -41,12 +73,19 @@ GameManager.prototype.initializeUser = function() {
 /**
  * Login event
  */
-GameManager.prototype.login = function() {}
+GameManager.prototype.login = function() {
+    // Sign in Firebase using popup auth and Google as the identity provider
+    var provider = new firebase.auth.GoogleAuthProvider();
+    this.auth.signInWithPopup(provider);
+};
 
 /**
  * Logout event
  */
-GameManager.prototype.logout = function() {}
+GameManager.prototype.logout = function() {
+    // Sign out of Firebase.
+    this.auth.signOut();
+}
 
 /**
  * Save data to local storage
