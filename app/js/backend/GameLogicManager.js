@@ -279,7 +279,11 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
     };
 }
 
-GameLogicManager.prototype.placeShape = function(clickRow, clickCol, pixels, faction) {
+GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
+    if(currentUnit === null)
+        return;
+    var pixels = currentUnit.pixelsArray;
+
     var zone = this.BLANK;
     if(faction === this.FRIEND || faction === this.OBJECTIVE)
         zone = this.FRIEND_ZONE;
