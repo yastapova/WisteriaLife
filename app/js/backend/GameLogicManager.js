@@ -214,7 +214,8 @@ GameLogicManager.prototype.updateLoop = function() {
 }
 
 GameLogicManager.prototype.renderGridCells = function() {
-
+    console.log(this.renderGrid);
+    console.log(this.renderGridOld);
     for(var i = 0; i < this.gridHeight; i++)
     {
         for(var j = 0; j < this.gridWidth; j++)
@@ -223,8 +224,6 @@ GameLogicManager.prototype.renderGridCells = function() {
             // AND GET ITS CURRENT STATE
             var index = (i * this.gridWidth) + j;
             var renderCell = this.renderGrid[index];
-            console.log(renderCell);
-            console.log(renderGridOld[index]);
             if(renderCell !== this.renderGridOld[index]) {
                 this.canvas.setCell(j, i, this.colors[renderCell]);
             }
@@ -232,6 +231,7 @@ GameLogicManager.prototype.renderGridCells = function() {
     }
 
     this.renderGridOld = this.renderGrid;
+    this.renderGrid = this.renderGrid.slice(0);
 }
 
 GameLogicManager.prototype.reproduce = function(index, neighbors) {
