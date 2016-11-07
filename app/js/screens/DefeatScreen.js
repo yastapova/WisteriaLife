@@ -2,13 +2,14 @@
  * DefeatScreen.js
  * DefeatScreen object
  */
-var screen = require('./Screen');
+var Screen = require('./Screen');
 
  /*
   * construct a DefeatScreen obj with given id
   */
-var DefeatScreen = function(id) {
-    Screen.call(this,id);
+var DefeatScreen = function (id, properties) {
+    this.properties = properties;
+    Screen.call(this, id, true);
 };
 
 inherits(DefeatScreen, Screen);

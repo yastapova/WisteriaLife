@@ -1,13 +1,12 @@
 
-var screen = require('./Screen');
+var Screen = require('./Screen');
 
-var VictoryScreen = function(id, level, user) {
-    this.level = level;
-    this.user = user;
-    screen.call(this,id);
+var VictoryScreen = function (id, properties) {
+    this.properties = properties;
+    Screen.call(this, id, true);
 };
 
-inherits(VictoryScreen, screen);
+inherits(VictoryScreen, Screen);
 
 VictoryScreen.prototype.init = function() {
     console.log("Victory screen init called");
