@@ -5,8 +5,12 @@ var GameLogicManager = function(level) {
     this.defenseGrid = [];  // defense towers only
     this.ghostGrid = [];    // ghost only
     this.factionGrid = [];  // only friend and enemy zone; STATIC
-    this.timer = undefined;
-    this.level = level;
+
+    this.timer = null;
+    this.level = null;
+    this.canvas = null;
+
+    this.paused = true; // game logic starts paused
 
     var gridHeight; //TODO: how to initialize grids?
     var gridWidth;
@@ -16,10 +20,13 @@ var GameLogicManager = function(level) {
     var VOID = -1;
     var FRIEND_ZONE = 0;
     var ENEMY_ZONE = 1;
+
+    // cell types
+    var BLANK = -2;
+    var VOID = -1;
+    var FRIEND_ZONE = 0;
+    var ENEMY_ZONE = 1;
     var FRIEND = 2;
-    var OBJECTIVE = 3;
-    var ENEMY = 4;
-    var GHOST = 5;
 
     // cell colors
     var FRIEND_ZONE_COLOR = 0xffffff;
@@ -28,6 +35,8 @@ var GameLogicManager = function(level) {
     var OBJECTIVE_COLOR = 0x773795;
     var ENEMY_COLOR = 0x94b21c;
     var GHOST_COLOR = 0xa0d1dc;
+    var colors = [null, null, FRIEND_ZONE_COLOR, ENEMY_ZONE_COLOR,
+                  FRIEND_COLOR, OBJECTIVE_COLOR, ENEMY_COLOR, GHOST_COLOR];
 
     // cell location types
     var TOP_LEFT = 0;
@@ -56,8 +65,7 @@ var GameLogicManager = function(level) {
  * cells in the grid, and so we use 9 CellType objects to store which
  * adjacent cells need to be checked when running the simulation.
  */
-function CellType(initNumNeighbors, initCellValues)
-{
+function CellType(initNumNeighbors, initCellValues) {
     this.numNeighbors = initNumNeighbors;
     this.cellValues = initCellValues;
 }
@@ -115,17 +123,39 @@ GameLogicManager.prototype.initShapes = function() {
     allowedShapes = this.level.allowedShapes;
 }
 
+/**
+ * Set the level and canvas being played
+ *
+ * Places defense structures onto the grid
+ * @param {Level} level Level object
+ * @param {PixiCanvas} canvas Canvas being used to render level
+ */
+GameLogicManager.prototype.setLevel = function (level, canvas) {
+    this.level = level;
+    this.canvas = canvas;
+}
 
-GameLogicManager.prototype.start = function(level) {
+/**
+ * Starts the gameplay
+ *
+ * Starts timer
+ */
+GameLogicManager.prototype.start = function () {
+    if (!this.level || !this.canvas)
+        throw "Level and/or canvas not set! Game logic cannot start.";
 
+    // decrease timer by 1 per second
+    setInterval(function () {
+        this.timer--;
+    }.bind(this), 1000);
 }
 
 GameLogicManager.prototype.updateLoop = function() {
-    // check time; end game if zero
+    // TODO check time; end game if zero
 
-    for (var i = 0; i < gridHeight; i++)
+    for(var i = 0; i < gridHeight; i++)
     {
-        for (var j = 0; j < gridWidth; j++)
+        for(var j = 0; j < gridWidth; j++)
         {
             // CALCULATE THE ARRAY INDEX OF THIS CELL
             // AND GET ITS CURRENT STATE
@@ -139,14 +169,17 @@ GameLogicManager.prototype.updateLoop = function() {
                 case BLANK:
                     // decide if to reproduce
                     var neighbors = calcNumNeighbors(i, j);
+                    reproduce(index, neighbors);
                     break;
                 case FRIEND:
                     // decide if to die
                     var neighbors = calcNumNeighbors(i, j);
+                    die(index, FRIEND, neighbors);
                     break;
                 case ENEMY:
                     // decide if to die
                     var neighbors = calcNumNeighbors(i, j);
+                    die(index, ENEMY, neighbors);
                     break;
                 default:
                     // nothing
@@ -173,44 +206,83 @@ GameLogicManager.prototype.updateLoop = function() {
             else
                 renderGrid[index] = factionGrid[index];
         }
-    } 
+    }
 }
 
-GameLogicManager.prototype.updateGrid = function() {
+GameLogicManager.prototype.renderGrid = function() {
     // go through all the boxes in render grid
     // compare to old render grid
     // call pixi only if new render grid is different from old
     // switch old render grid to new
+
+    for(var i = 0; i < gridHeight; i++)
+    {
+        for(var j = 0; j < gridWidth; j++)
+        {
+            // CALCULATE THE ARRAY INDEX OF THIS CELL
+            // AND GET ITS CURRENT STATE
+            var index = (i * gridWidth) + j;
+            var renderCell = renderGrid[index];
+
+            if(renderCell !== renderGridOld[index])
+                // call pixi renderer
+            canvas.setCell(j, i, colors[renderCell]);
+        }
+    }
+
+    renderGridOld = renderGrid;
 }
 
-GameLogicManager.prototype.reproduce = function() {
+GameLogicManager.prototype.reproduce = function(index, neighbors) {
+    var friends = neighbors["friends"];
+    var enemies = neighbors["enemies"];
+    var total = friends + enemies;
+    if(total === 3) {
+        var newType = BLANK;
+        if(enemies > friends)
+            newType = ENEMY;
+        else
+            newType = FRIEND;
+        battleGrid[index] = newType;
+    }
+}
 
+GameLogicManager.prototype.die = function(index, current, neighbors) {
+    var total = neighbors["friends"] + neighbors["enemies"];
+    if(total < 2 || total > 3) {
+        battleGrid[index] = BLANK;
+    }
+    else {
+        // currently do nothing; leave as is
+        // potentially later change this to
+        // get infected or cured based on majority
+    }
 }
 
 GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
     var numEnemies = 0;
     var numFriends = 0;
-    
+
     // DEPENDING ON THE TYPE OF CELL IT IS WE'LL CHECK
     // DIFFERENT ADJACENT CELLS
     var cellType = determineCellType(row, col);
     var cellsToCheck = cellLookup[cellType];
     for(var counter = 0; counter < (cellsToCheck.numNeighbors * 2); counter+=2)
+    {
+        var neighborCol = col + cellsToCheck.cellValues[counter];
+        var neighborRow = row + cellsToCheck.cellValues[counter+1];
+        var index = (neighborRow * gridWidth) + neighborCol;
+        var neighborValue = battleGrid[index];
+        // MODIFIED TO ACCOUNT FOR NEW CELL VALUES
+        if(neighborValue === FRIEND)
         {
-            var neighborCol = col + cellsToCheck.cellValues[counter];
-            var neighborRow = row + cellsToCheck.cellValues[counter+1];
-            var index = (neighborRow * gridWidth) + neighborCol;
-            var neighborValue = updateGrid[index];
-            // MODIFIED TO ACCOUNT FOR NEW CELL VALUES
-            if(neighborValue === FRIEND)
-            {
-                numFriends += 1;
-            }
-            else if(neighborValue === ENEMY)
-            {
-                numEnemies += 1;
-            }
+            numFriends += 1;
         }
+        else if(neighborValue === ENEMY)
+        {
+            numEnemies += 1;
+        }
+    }
     return {
         "friends" : numFriends,
         "enemies" : numEnemies
@@ -242,11 +314,11 @@ GameLogicManager.prototype.getRelativeCoords = function() {
 }
 
 GameLogicManager.prototype.pause = function() {
-
+    this.pause = true;
 }
 
 GameLogicManager.prototype.resume = function() {
-
+    this.pause = false;
 }
 
 GameLogicManager.prototype.reset = function() {
@@ -255,19 +327,20 @@ GameLogicManager.prototype.reset = function() {
     renderGrid = new Array();
     defenseGrid = new Array();
     ghostGrid = new Array();
+    factionGrid = new Array();
 
     // INIT THE CELLS IN THE GRID
-    for (var i = 0; i < gridHeight; i++)
+    for(var i = 0; i < gridHeight; i++)
+    {
+        for(var j = 0; j < gridWidth; j++)
         {
-            for (var j = 0; j < gridWidth; j++)
-                {
-                    setGridCell(battleGrid, i, j, this.level.grid[i][j]);
-                    setGridCell(renderGrid, i, j, this.level.grid[i][j]);
-                }
+            setGridCell(battleGrid, i, j, this.level.grid[i][j]);
+            setGridCell(renderGrid, i, j, this.level.grid[i][j]);
         }
+    }
 
     // RENDER THE CLEARED SCREEN
-    renderGame();
+    renderGrid();   // TODO
 }
 
 /*

@@ -1,22 +1,45 @@
-var screen = require('./Screen');
+var Screen = require('./Screen');
 var GameLogicManager = require('../backend/GameLogicManager');
-var GameManager = require('../backend/GameManager');
+var gameManager = require('../backend/GameManager');
 
-var gameplayScreen = function(id, properties, level) {
-    this.level = level;
+var GamePlayScreen = function (id, properties) {
+    this.level = null;
 
-    this.gameLogicManager = new GameLogicManager(level);
+    this.gameManager = require('GameManager');
+    this.gameLogicManager = this.gameManager.gameLogicManager;
 
-    screen.call(this,id);
+    Screen.call(this, id);
+    console.log(this.gameManager);
+    console.error(this);
 };
 
-inherits(gameplayScreen, screen);
 
-gameplayScreen.prototype.init = function() {
-    console.log("Gameplay screen init called");
+inherits(GamePlayScreen, Screen);
+
+/**
+ * Callback function for setting level from LevelManager loadLevel
+ * @param {Level} level Level object
+ */
+GamePlayScreen.prototype.setLevel = function (level) {
+    console.log(this);
+    this.level = level;
 
     var PixiCanvas = require('PixiCanvas');
     var canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
+
+    this.gameLogicManager.setLevel(level, canvas);
+
+    console.log(this.gameLogicManager);
+}
+
+/**
+ * Setup game logic manager with level and canvas
+ *
+ * Setup all events
+ */
+GamePlayScreen.prototype.init = function () {
+    console.log("Gameplay screen init called");
+
 
     $('.dropdown-button').dropdown({
         constrain_width: false, // Does not change width of dropdown to that of the activator
@@ -25,23 +48,42 @@ gameplayScreen.prototype.init = function() {
         belowOrigin: false, // Displays dropdown below the button
         alignment: 'left' // Displays dropdown with edge aligned to the left of button
     });
+
+
+    console.warn(this);
+
+    // load level, set level callback function
+    this.gameManager.levelManager.loadLevel(1, this.setLevel.bind(this));
+
+    $('#playpause').click(function () {
+        if (this.gameLogicManager.paused)
+            this.gameLogicManager.play(); // resume button is on pause screen
+        else
+            this.gameLogicManager.pause();
+    });
+
+    this.timeDisplay = $('#timer-display')
+    this.timer = setInterval(function () {
+        if (!this.gameLogicManager.paused)
+            this.level.time--;
+        this.timeDisplay.text(this.level.time);
+    }.bind(this), 1000);
 };
 
-gameplayScreen.prototype.hide = function() {
+GamePlayScreen.prototype.hide = function() {
 
 };
 
-gameplayScreen.prototype.displayMessage = function(){};
+GamePlayScreen.prototype.displayMessage = function(){};
 
 /**
  * Apply the powerup on the level
  * @param powerup the name of the power up to use
  */
-gameplayScreen.prototype.usePowerup = function(powerup) {
+GamePlayScreen.prototype.usePowerup = function(powerup) {
     // get the powerups manager to execute the powerup callback
-    var gameManager = GameManager.getGameManager();
     var powerupObj = gameManager.powerupManager.powerupsMap.get(powerup);
     powerupObj.effect(this.level);
 };
 
-module.exports = gameplayScreen;
+module.exports = GamePlayScreen;

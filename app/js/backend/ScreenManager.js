@@ -98,6 +98,8 @@ ScreenManager.prototype.switchScreens = function (screen) {
 
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
     this.screen.load(this.screen.init);
+
+    console.error(require('GameManager'));
 };
 
 /**
