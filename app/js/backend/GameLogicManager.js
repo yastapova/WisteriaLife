@@ -54,7 +54,6 @@ var GameLogicManager = function(level) {
     //this.canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
 
     this.cellLookup;
-    this.allowedShapes;
 }
 
 /*
@@ -114,11 +113,6 @@ GameLogicManager.prototype.initCellLookup = function()
     // CENTER
     this.centerArray             = new Array(-1, -1, -1, 0, -1, 1, 0, 1, 1, 1, 1, 0, 1, -1, 0, -1);
     cellLookup[this.CENTER]      = new CellType(8, this.centerArray);
-}
-
-// Initialize all shapes and fill the menu.
-GameLogicManager.prototype.initShapes = function() {
-    this.allowedShapes = this.level.allowedShapes;
 }
 
 /**
@@ -286,7 +280,11 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
     };
 }
 
-GameLogicManager.prototype.placeShape = function(clickRow, clickCol, pixels, faction) {
+GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
+    if(currentUnit === null)
+        return;
+    var pixels = currentUnit.pixelsArray;
+
     var zone = this.BLANK;
     if(faction === this.FRIEND || faction === this.OBJECTIVE)
         zone = this.FRIEND_ZONE;
