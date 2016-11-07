@@ -137,8 +137,14 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
     this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
     this.factionGrid = new Array(this.gridWidth * this.gridHeight);
-    for(var i = 0; i < this.factionGrid.length; i++)
+    for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
+        this.renderGrid[i] = this.BLANK;
+        this.renderGridOld[i] = this.BLANK;
+        this.battleGrid[i] = this.BLANK;
+        this.defenseGrid[i] = this.BLANK;
+        this.ghostGrid[i] = this.BLANK;
         this.factionGrid[i] = this.FRIEND_ZONE;
+    }
 
 }
 
@@ -208,12 +214,15 @@ GameLogicManager.prototype.updateLoop = function() {
 
             battleCell = this.battleGrid[index];
             defenseCell = this.defenseGrid[index];
-            if(ghostCell !== -2)
+            if(ghostCell !== this.BLANK)
                 this.renderGrid[index] = this.GHOST;
-            else if(battleCell !== -2)
+            else if(battleCell !== this.BLANK)
                 this.renderGrid[index] = battleCell;
-            else if(defenseCell !== -2)
+            else if(defenseCell !== this.BLANK)
                 this.renderGrid[index] = defenseCell;
+            else if(this.renderGrid[index] !== this.BLANK)
+                // do nothing; keep this cell
+                continue;
             else
                 this.renderGrid[index] = this.factionGrid[index];
         }
@@ -357,6 +366,14 @@ GameLogicManager.prototype.reset = function() {
     this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
     this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
     this.factionGrid = new Array(this.gridWidth * this.gridHeight);
+    for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
+        this.renderGrid[i] = this.BLANK;
+        this.renderGridOld[i] = this.BLANK;
+        this.battleGrid[i] = this.BLANK;
+        this.defenseGrid[i] = this.BLANK;
+        this.ghostGrid[i] = this.BLANK;
+        this.factionGrid[i] = this.FRIEND_ZONE;
+    }
 
     this.paused = true;
 
