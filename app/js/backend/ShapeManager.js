@@ -35,4 +35,13 @@ ShapeManager.prototype.loadJSONData = function(data){
     }
 };
 
+/**
+ * Look up shape object in the map
+ * @param  {String} name name of Shape
+ * @return {Shape}      Shape object
+ */
+ShapeManager.prototype.getShape = function (name) {
+    return this.shapesMap.get(name);
+}
+
 module.exports = ShapeManager;
