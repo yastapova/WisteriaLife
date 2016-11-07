@@ -54,15 +54,14 @@ LevelManager.prototype.loadJSONDataRegion = function (data) {
  * @return the leveLAttrObj that will be used for initializing a Level
  */
 LevelManager.prototype.loadJSONDataLevel = function (data) {
-    var levelObj = data.level;
 	var levelAttrObj = {
-        grid : levelObj.grid,
-        time : levelObj.time,
-        enemyZone : levelObj.enemyZone,
-        allowedShapes : levelObj.allowedShapes,
-        messages : levelObj.messages,
-        enemySpawns : levelObj.enemySpawns,
-        defenseStructures : levelObj.defenseStructures
+        grid : data.grid,
+        time : data.time,
+        enemyZone : data.enemyZone,
+        allowedShapes : data.allowedShapes,
+        messages : data.messages,
+        enemySpawns : data.enemySpawns,
+        defenseStructures : data.defenseStructures
     };
     return levelAttrObj;
 };

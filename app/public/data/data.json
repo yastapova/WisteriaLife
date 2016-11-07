@@ -1,0 +1,964 @@
+{
+    "powerups": [{
+        "name": "Reduce Time",
+        "type": "Magic",
+        "description": "Reduce remaining survival time by 5-10 sec.",
+        "price": 100,
+        "thumbnail": "reducetime.png"
+    }, {
+        "name": "Stop Spawn",
+        "type": "Magic",
+        "description": "Reduce the number of enemies about to spawn in the next few seconds.",
+        "price": 100,
+        "thumbnail": "stopspawn.png"
+    }, {
+        "name": "Void Cell",
+        "type": "Magic",
+        "description": "Void a cell so that they are no longer involved in the physics of the this world.",
+        "price": 100,
+        "thumbnail": "voidcell.png"
+    }, {
+        "name": "Tower",
+        "type": "Shape",
+        "description": "A non-moving 2x2 cell square.",
+        "price": 100,
+        "thumbnail": "tower.png"
+    }, {
+        "name": "Blockade",
+        "type": "Shape",
+        "description": "A stationary defense unit that repeatedly changes shape.",
+        "price": 100,
+        "thumbnail": "blockade.png"
+    }, {
+        "name": "Shield",
+        "type": "Shape",
+        "description": "A stationary defense unit that repeatedly changes shape.",
+        "price": 100,
+        "thumbnail": "shild.png"
+    }, {
+        "name": "Caltrops",
+        "type": "Shape",
+        "description": "A unit that explodes into several stable structures.",
+        "price": 100,
+        "thumbnail": "caltrops.png"
+    }, {
+        "name": "Archer NW",
+        "type": "Shape",
+        "description": "A unit moving diagonally northwest.",
+        "price": 100,
+        "thumbnail": "archernw.png"
+    }, {
+        "name": "Archer NE",
+        "type": "Shape",
+        "description": "A unit moving diagonally northwest.",
+        "price": 100,
+        "thumbnail": "archerne.png"
+    }, {
+        "name": "Archer SE",
+        "type": "Shape",
+        "description": "A unit moving diagonally southeast.",
+        "price": 100,
+        "thumbnail": "archerse.png"
+    }, {
+        "name": "Archer SW",
+        "type": "Shape",
+        "description": "A unit moving diagonally southwest.",
+        "price": 100,
+        "thumbnail": "archersw.png"
+    }, {
+        "name": "Infantry W",
+        "type": "Shape",
+        "description": "A unit moving linearly west.",
+        "price": 100,
+        "thumbnail": "infantryw.png"
+    }, {
+        "name": "Infantry N",
+        "type": "Shape",
+        "description": "A unit moving linearly north.",
+        "price": 100,
+        "thumbnail": "infantryn.png"
+    }, {
+        "name": "Infantry E",
+        "type": "Shape",
+        "description": "A unit moving linearly east.",
+        "price": 100,
+        "thumbnail": "infantrye.png"
+    }, {
+        "name": "Infantry S",
+        "type": "Shape",
+        "description": "A unit moving linearly south.",
+        "price": 100,
+        "thumbnail": "infantrys.png"
+    }, {
+        "name": "Wall Backward",
+        "type": "Shape",
+        "description": "A stationary defense unit that does not change shape.",
+        "price": 100,
+        "thumbnail": "wallbackward.png"
+    }, {
+        "name": "Wall Forward",
+        "type": "Shape",
+        "description": "A stationary defense unit that does not change shape.",
+        "price": 100,
+        "thumbnail": "wallforward.png"
+    }],
+    "regions": [
+        {
+            "name": "The Revolting River",
+            "img": "revolting-river.jpg",
+            "levels": [
+                {
+                    "name": "Level 1",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 2",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 3",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 4",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 5",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 6",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 7",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 8",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 9",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 10",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                }               
+            ]            
+        },
+        {
+            "name": "The Putrid Plateau",
+            "img": "putrid-plateau.jpg",
+            "levels": [
+                {
+                    "name": "Level 11",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 12",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 13",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 14",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 15",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 16",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 17",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 18",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 19",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 20",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                } 
+            ]
+        },
+        {
+            "name": "The Malignant Marsh",
+            "img": "malignant-marsh.jpg",
+            "levels": [
+                {
+                    "name": "Level 21",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 22",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 23",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 24",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 25",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 26",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 27",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 28",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 29",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 30",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                }  
+            ]
+        },
+        {
+            "name": "The Abysmal Abyss",
+            "img": "abysmal-abyss.jpg",
+            "levels": [
+                {
+                    "name": "Level 31",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 32",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 33",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 34",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 35",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 36",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 37",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 38",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 39",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                },
+                {
+                    "name": "Level 40",
+                    "img": "placeholder.png",
+                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                }
+            ]
+        }
+    ],
+    "shapes" : [
+        {
+            "name" : "void",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 0
+                }
+            ]
+        },
+        {
+            "name" : "tower",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "x": 1,
+                    "y": 1
+                }
+            ]
+        },
+        {
+            "name" : "blockade",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "x": 2,
+                    "y": 0
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                },
+                {
+                    "x": 4,
+                    "y": 0
+                },
+                {
+                    "x": 5,
+                    "y": 0
+                },
+                {
+                    "x": 6,
+                    "y": 0
+                },
+                {
+                    "x": 7,
+                    "y": 0
+                },
+                {
+                    "x": 8,
+                    "y": 0
+                },
+                {
+                    "x": 9,
+                    "y": 0
+                },
+                {
+                    "x": 10,
+                    "y": 0
+                }
+            ]
+        },
+        {
+            "name" : "shield",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "x": 0,
+                    "y": 2
+                },
+                {
+                    "x": 0,
+                    "y": 4
+                },
+                {
+                    "x": 0,
+                    "y": 5
+                },
+                {
+                    "x": 1,
+                    "y": 1
+                },
+                {
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "x": 1,
+                    "y": 4
+                },
+                {
+                    "x": 1,
+                    "y": 5
+                },
+                {
+                    "x": 2,
+                    "y": 0
+                },
+                {
+                    "x": 2,
+                    "y": 2
+                },
+                {
+                    "x": 2,
+                    "y": 4
+                },
+                {
+                    "x": 2,
+                    "y": 6
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                },
+                {
+                    "x": 3,
+                    "y": 2
+                },
+                {
+                    "x": 3,
+                    "y": 4
+                },
+                {
+                    "x": 3,
+                    "y": 6
+                },
+                {
+                    "x": 4,
+                    "y": 0
+                },
+                {
+                    "x": 4,
+                    "y": 1
+                },
+                {
+                    "x": 4,
+                    "y": 5
+                },
+                {
+                    "x": 4,
+                    "y": 6
+                }
+            ]
+        },
+        {
+            "name" : "caltrops",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "x": 1,
+                    "y": 1
+                },
+                {
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "x": 2,
+                    "y": 0
+                },
+                {
+                    "x": 2,
+                    "y": 2
+                },
+                {
+                    "x": 3,
+                    "y": 1
+                }
+            ]
+        },
+        {
+            "name" : "archernw",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "x": 0,
+                    "y": 2
+                },
+                {
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "x": 2,
+                    "y": 1
+                }
+            ]
+        },
+        {
+            "name" : "archerne",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "x": 0,
+                    "y": 2
+                },
+                {
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "x": 3,
+                    "y": 2
+                }
+            ]
+        },
+        {
+            "name" : "archerse",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                },
+                {
+                    "x": 3,
+                    "y": 1
+                },
+                {
+                    "x": 3,
+                    "y": 2
+                }
+            ]
+        },
+        {
+            "name" : "archersw",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "x": 2,
+                    "y": 0
+                },
+                {
+                    "x": 2,
+                    "y": 1
+                }
+            ]
+        },
+        {
+            "name" : "infantryw",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "x": 1,
+                    "y": 4
+                },
+                {
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "x": 2,
+                    "y": 0
+                },
+                {
+                    "x": 2,
+                    "y": 4
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                },
+                {
+                    "x": 3,
+                    "y": 1
+                },
+                {
+                    "x": 3,
+                    "y": 2
+                },
+                {
+                    "x": 3,
+                    "y": 3
+                }
+            ]
+        },
+        {
+            "name" : "infantryn",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "x": 0,
+                    "y": 2
+                },
+                {
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "x": 1,
+                    "y": 3
+                },
+                {
+                    "x": 2,
+                    "y": 0
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                },
+                {
+                    "x": 4,
+                    "y": 1
+                },
+                {
+                    "x": 4,
+                    "y": 3
+                }
+            ]
+        },
+        {
+            "name" : "infantrye",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "x": 0,
+                    "y": 2
+                },
+                {
+                    "x": 0,
+                    "y": 3
+                },
+                {
+                    "x": 0,
+                    "y": 4
+                },
+                {
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "x": 1,
+                    "y": 4
+                },
+                {
+                    "x": 2,
+                    "y": 4
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                },
+                {
+                    "x": 3,
+                    "y": 3
+                }
+            ]
+        },
+        {
+            "name" : "infantrys",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 0
+                },
+                {
+                    "x": 0,
+                    "y": 2
+                },
+                {
+                    "x": 1,
+                    "y": 3
+                },
+                {
+                    "x": 2,
+                    "y": 3
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                },
+                {
+                    "x": 3,
+                    "y": 4
+                },
+                {
+                    "x": 4,
+                    "y": 1
+                },
+                {
+                    "x": 4,
+                    "y": 2
+                },
+                {
+                    "x": 4,
+                    "y": 3
+                }
+            ]
+        },
+        {
+            "name" : "wallbackward",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 1
+                },
+                {
+                    "x": 1,
+                    "y": 0
+                },
+                {
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "x": 2,
+                    "y": 1
+                },
+                {
+                    "x": 2,
+                    "y": 3
+                },
+                {
+                    "x": 3,
+                    "y": 2
+                },
+                {
+                    "x": 3,
+                    "y": 4
+                },
+                {
+                    "x": 4,
+                    "y": 3
+                }                
+            ]
+        },
+        {
+            "name" : "wallforward",
+            "coordinates" : [
+                {
+                    "x": 0,
+                    "y": 3
+                },
+                {
+                    "x": 1,
+                    "y": 2
+                },
+                {
+                    "x": 1,
+                    "y": 4
+                },
+                {
+                    "x": 2,
+                    "y": 1
+                },
+                {
+                    "x": 2,
+                    "y": 3
+                },
+                {
+                    "x": 3,
+                    "y": 0
+                },
+                {
+                    "x": 3,
+                    "y": 2
+                },
+                {
+                    "x": 4,
+                    "y": 1
+                }                
+            ]
+        }
+    ],
+    "levels" : [
+        {            
+            "grid" : "small",
+            "time" : 30,
+            "enemyZone" : [
+                {
+                    "start" : 0,
+                    "end" : 15
+                }
+            ],
+            "allowedShapes" : [
+                {
+                    "shape" : "infantryn",
+                    "quantity" : 5
+                },
+                {
+                    "shape" : "archernw",
+                    "quantity" : 5
+                }
+            ],
+            "messages" : [
+                {
+                    "time" : 30,
+                    "message" : "Welcome to Wisteria Life"
+                },
+                {
+                    "time" : 28,
+                    "message" : "Please select a unit from the units drop down to begin"
+                },
+                {
+                    "time" : 26,
+                    "message" : "Drag the unit over the grid and release when you want to place it"
+                },
+                {
+                    "time" : 24,
+                    "message" : "The unit will move accordingly"
+                }
+            ],
+            "enemySpawns" : [
+                {                            
+                    "time" : 30,
+                    "shapes" : [
+                        {
+                            "name" : "infantryn",
+                            "coordinates" : {
+                                "x" : 0,
+                                "y" : 0
+                            } 
+                        },
+                        {
+                            "name" : "infantrye",
+                            "coordinates" : {
+                                "x" : 5,
+                                "y" : 5
+                            } 
+                        }
+                    ]
+                },
+                {                            
+                    "time" : 25,
+                    "shapes" : [
+                        {
+                            "name" : "infantryn",
+                            "coordinates" : {
+                                "x" : 0,
+                                "y" : 0
+                            } 
+                        },
+                        {
+                            "name" : "infantrye",
+                            "coordinates" : {
+                                "x" : 5,
+                                "y" : 5
+                            } 
+                        }
+                    ]
+                }
+            ],  
+            "defenseStructures" : [
+                {
+                    "name" : "tower",
+                    "coordinates" : {
+                        "x" : 10,
+                        "y" : 10
+                    } 
+                },
+                {
+                    "name" : "tower",
+                    "coordinates" : {
+                        "x" : 15,
+                        "y" : 15
+                    } 
+                }
+            ]
+        }
+    ]
+}
