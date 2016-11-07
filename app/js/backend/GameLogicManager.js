@@ -12,14 +12,14 @@ var GameLogicManager = function(level) {
     var gridWidth;
 
     // cell types
-    var BLANK = -2;
-    var VOID = -1;
-    var FRIEND_ZONE = 0;
-    var ENEMY_ZONE = 1;
-    var FRIEND = 2;
-    var OBJECTIVE = 3;
-    var ENEMY = 4;
-    var GHOST = 5;
+    var BLANK = 0;
+    var VOID = 1;
+    var FRIEND_ZONE = 2;
+    var ENEMY_ZONE = 3;
+    var FRIEND = 4;
+    var OBJECTIVE = 5;
+    var ENEMY = 6;
+    var GHOST = 7;
 
     // cell colors
     var FRIEND_ZONE_COLOR = 0xffffff;
@@ -28,6 +28,8 @@ var GameLogicManager = function(level) {
     var OBJECTIVE_COLOR = 0x773795;
     var ENEMY_COLOR = 0x94b21c;
     var GHOST_COLOR = 0xa0d1dc;
+    var colors = [null, null, FRIEND_ZONE_COLOR, ENEMY_ZONE_COLOR,
+                  FRIEND_COLOR, OBJECTIVE_COLOR, ENEMY_COLOR, GHOST_COLOR];
 
     // cell location types
     var TOP_LEFT = 0;
@@ -121,7 +123,7 @@ GameLogicManager.prototype.start = function(level) {
 }
 
 GameLogicManager.prototype.updateLoop = function() {
-    // check time; end game if zero
+    // TODO check time; end game if zero
 
     for(var i = 0; i < gridHeight; i++)
     {
@@ -176,14 +178,32 @@ GameLogicManager.prototype.updateLoop = function() {
             else
                 renderGrid[index] = factionGrid[index];
         }
-    } 
+    }
+    renderGrid();
 }
 
-GameLogicManager.prototype.updateGrid = function() {
+GameLogicManager.prototype.renderGrid = function() {
     // go through all the boxes in render grid
     // compare to old render grid
     // call pixi only if new render grid is different from old
     // switch old render grid to new
+
+    for(var i = 0; i < gridHeight; i++)
+    {
+        for(var j = 0; j < gridWidth; j++)
+        {
+            // CALCULATE THE ARRAY INDEX OF THIS CELL
+            // AND GET ITS CURRENT STATE
+            var index = (i * gridWidth) + j;
+            var renderCell = renderGrid[index];
+
+            if(renderCell !== renderGridOld[index])
+                // call pixi renderer
+            canvas.setCell(j, i, colors[renderCell]);
+        }
+    }
+
+    renderGridOld = renderGrid;
 }
 
 GameLogicManager.prototype.reproduce = function(index, neighbors) {
@@ -225,7 +245,7 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
         var neighborCol = col + cellsToCheck.cellValues[counter];
         var neighborRow = row + cellsToCheck.cellValues[counter+1];
         var index = (neighborRow * gridWidth) + neighborCol;
-        var neighborValue = updateGrid[index];
+        var neighborValue = battleGrid[index];
         // MODIFIED TO ACCOUNT FOR NEW CELL VALUES
         if(neighborValue === FRIEND)
         {
@@ -280,6 +300,7 @@ GameLogicManager.prototype.reset = function() {
     renderGrid = new Array();
     defenseGrid = new Array();
     ghostGrid = new Array();
+    factionGrid = new Array();
 
     // INIT THE CELLS IN THE GRID
     for(var i = 0; i < gridHeight; i++)
@@ -292,7 +313,7 @@ GameLogicManager.prototype.reset = function() {
     }
 
     // RENDER THE CLEARED SCREEN
-    renderGame();   // TODO
+    renderGrid();   // TODO
 }
 
 /*
