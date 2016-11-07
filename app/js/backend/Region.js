@@ -5,10 +5,10 @@
  *
  */
 
-var Region = function (regionAtrrObj) {
-	this.name = regionAtrrObj.name;
-	this.img = regionAtrrObj.img;
-    this.levelsArray = regionAtrrObj.levels;
-}
+var Region = function (regionAttrObj) {
+	this.name = regionAttrObj.name;
+	this.img = regionAttrObj.img;
+    this.levelsArray = regionAttrObj.levels;
+};
 
 module.exports = Region;
