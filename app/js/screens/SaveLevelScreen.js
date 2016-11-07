@@ -7,8 +7,9 @@ var Screen = require('./Screen');
  /*
   * construct a SaveLevelScreen obj with given id
   */
-var SaveLevelScreen = function(id) {
-    Screen.call(this,id);
+var SaveLevelScreen = function (id, properties) {
+    this.properties = properties;
+    Screen.call(this, id, true);
 };
 
 inherits(SaveLevelScreen, Screen);

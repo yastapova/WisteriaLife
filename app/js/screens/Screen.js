@@ -44,38 +44,54 @@ Screen.prototype.load = function (initScreen) {
     // special case url for splash screen
     var screenSwitch = this.id == 'splash' ? '' : this.id;
 
-    this.loader.fadeIn('fast');
+    if (!this.overlay)
+        this.loader.fadeIn('fast');
 
     console.log('Loading screen ' + this.id);
 
     $.get('/' + screenSwitch, '', function (data) {
 
-        this.container.fadeOut('fast', function () {
+        // if overlay, only add the container (don't replace)
+        // and don't push history
+        if (this.overlay) {
 
-            // replace current container with new screen's container
-            this.container.html($(data).filter('#main-container').html());
+            this.container.prepend($(data).filter('#main-container').html());
 
-            this.container.fadeIn('fast', function() {
+            document.title = $(data).filter('title').text();
 
-                // don't pushstate if going back (popstate)
-                if (!history.state || history.state.screen != this.id) {
-                    // set browser URL
-                    history.pushState({screen: this.id}, '', '/' + screenSwitch);
-                }
-                // set browser title
-                // https://bugs.webkit.org/show_bug.cgi?id=43730
-                // https://bugzilla.mozilla.org/show_bug.cgi?id=585653
-                document.title = $(data).filter('title').text();
+            console.log('Loading overlay screen complete! ' + this.id);
 
-                console.log('Loading screen complete! ' + this.id);
+            // initialize overlay screen
+            initScreen.bind(this)();
 
-                this.loader.fadeOut('fast');
+        } else {
+            this.container.fadeOut('fast', function () {
 
-                // initialize screen
-                initScreen.bind(this)();
-            }.bind(this))
+                // replace current container with new screen's container
+                this.container.html($(data).filter('#main-container').html());
 
-        }.bind(this));
+                this.container.fadeIn('fast', function() {
+
+                    // don't pushstate if going back (popstate)
+                    if (!history.state || history.state.screen != this.id) {
+                        // set browser URL
+                        history.pushState({screen: this.id}, '', '/' + screenSwitch);
+                    }
+                    // set browser title
+                    // https://bugs.webkit.org/show_bug.cgi?id=43730
+                    // https://bugzilla.mozilla.org/show_bug.cgi?id=585653
+                    document.title = $(data).filter('title').text();
+
+                    console.log('Loading screen complete! ' + this.id);
+
+                    this.loader.fadeOut('fast');
+
+                    // initialize screen
+                    initScreen.bind(this)();
+                }.bind(this))
+
+            }.bind(this));
+        }
 
     }.bind(this), 'html');
 };

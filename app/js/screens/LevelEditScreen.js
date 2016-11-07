@@ -1,14 +1,14 @@
 
-var screen = require('./Screen');
+var Screen = require('./Screen');
 
 var LevelEditScreen = function(id, level) {
     this.level = level;
     this.renderGrid = [];
     this.defenseGrid = [];
-    screen.call(this,id);
+    Screen.call(this,id);
 };
 
-inherits(LevelEditScreen, screen);
+inherits(LevelEditScreen, Screen);
 
 LevelEditScreen.prototype.init = function() {
     console.log("Level edit screen init called");
