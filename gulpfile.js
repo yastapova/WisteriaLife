@@ -7,6 +7,7 @@ var buffer = require('vinyl-buffer');
 var uglify = require('gulp-uglify');
 var browserify = require('browserify');
 var cleanCSS = require('gulp-clean-css');
+var gutil = require('gulp-util');
 
 // default task
 gulp.task('default', ['browserify', 'scripts:watch', 'sass', 'sass:watch']);
@@ -33,11 +34,17 @@ gulp.task('browserify', function() {
         }
     });
     return b.bundle()
+        .on('error', function(err){
+            gutil.log(gutil.colors.bgRed(err.message));
+            gutil.beep();
+            // end this stream
+            this.emit('end');
+        })
         .pipe(source('wisteria.js'))
         .pipe(sourcemaps.write())
         .pipe(buffer())
 
-    .pipe(gulp.dest('./app/public/js/'));
+    .pipe(gulp.dest('./app/public/js/'))
 });
 
 // browserify - production - no sourcemap and minified
