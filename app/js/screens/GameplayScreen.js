@@ -65,9 +65,15 @@ GamePlayScreen.prototype.init = function () {
     // update timer once per second
     this.timeDisplay = $('#timer-display')
     this.timer = setInterval(function () {
-        if (!this.gameLogicManager.paused)
+        if (!this.gameLogicManager.paused) {
             this.level.time--;
+            if (this.level.time == 0) {
+                this.gameLogicManager.pause();
+                this.gameManager.screenManager.switchScreens('defeat');
+            }
+        }
         this.setTimeDisplay(this.level.time);
+
     }.bind(this), 1000);
 
     // update current shape
