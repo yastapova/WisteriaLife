@@ -54,7 +54,8 @@ GamePlayScreen.prototype.init = function () {
             self.gameLogicManager.start(); // resume button is on pause screen
 
             $(this).attr('href', 'pause');
-            $(this).find('i').text('pause');
+            $(this).find('i').removeClass('play').removeClass('mdi-play');
+            $(this).find('i').addClass('pause').addClass('mdi-pause');
 
             return false; // prevent event bubbling
         } else
@@ -88,7 +89,7 @@ GamePlayScreen.prototype.setTimeDisplay = function (seconds) {
     var minutes = Math.floor(seconds / 60);
     seconds = seconds % 60;
 
-    this.timeDisplay.text(minutes + ':' + seconds);
+    this.timeDisplay.text(minutes + ':' + (seconds < 10 ? '0' : '') + seconds);
 };
 
 GamePlayScreen.prototype.hide = function() {
