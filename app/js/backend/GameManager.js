@@ -3,6 +3,7 @@ var ScreenManager = require('./ScreenManager');
 var PowerupManager = require('./PowerupManager');
 var ShapeManager = require('./ShapeManager');
 var LevelManager = require('./LevelManager');
+var firebase = require("firebase");
 
 /**
  * GameManager handles the user and saving/loading of data
@@ -55,6 +56,17 @@ GameManager.getGameManager = function() {
 * Setup shortcuts to Firebase features and initiate firebase authentication
 */
 GameManager.prototype.initFirebase = function() {
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBNCeWYe5TnqjvSIL9ieykBn59Zn3Aa0q0",
+        authDomain: "wisteria-life-build2.firebaseapp.com",
+        databaseURL: "https://wisteria-life-build2.firebaseio.com",
+        storageBucket: "wisteria-life-build2.appspot.com",
+        messagingSenderId: "103993744321"
+    };
+
+    firebase.initializeApp(config);
 
     // Shortcuts to Firebase SDK features.
     this.auth = firebase.auth();

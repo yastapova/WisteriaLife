@@ -1,96 +1,94 @@
 {
-	"level": {
-        "grid" : "small",
-        "time" : 30,
-        "enemyZone" : [
-            {
-                "start" : 0,
-                "end" : 15
-            }
-        ],
-        "allowedShapes" : [
-            {
-                "shape" : "infantryn",
-                "quantity" : 5
-            },
-            {
-                "shape" : "archernw",
-                "quantity" : 5
-            }
-        ],
-        "messages" : [
-            {
-                "time" : 30,
-                "message" : "Welcome to Wisteria Life"
-            },
-            {
-                "time" : 28,
-                "message" : "Please select a unit from the units drop down to begin"
-            },
-            {
-                "time" : 26,
-                "message" : "Drag the unit over the grid and release when you want to place it"
-            },
-            {
-                "time" : 24,
-                "message" : "The unit will move accordingly"
-            }
-        ],
-        "enemySpawns" : [
-            {                            
-                "time" : 30,
-                "shapes" : [
-                    {
-                        "name" : "infantryn",
-                        "coordinates" : {
-                            "x" : 0,
-                            "y" : 0
-                        } 
-                    },
-                    {
-                        "name" : "infantrye",
-                        "coordinates" : {
-                            "x" : 5,
-                            "y" : 5
-                        } 
-                    }
-                ]
-            },
-            {                            
-                "time" : 25,
-                "shapes" : [
-                    {
-                        "name" : "infantryn",
-                        "coordinates" : {
-                            "x" : 0,
-                            "y" : 0
-                        } 
-                    },
-                    {
-                        "name" : "infantrye",
-                        "coordinates" : {
-                            "x" : 5,
-                            "y" : 5
-                        } 
-                    }
-                ]
-            }
-        ],  
-        "defenseStructures" : [
-            {
-                "name" : "tower",
-                "coordinates" : {
-                    "x" : 10,
-                    "y" : 10
-                } 
-            },
-            {
-                "name" : "tower",
-                "coordinates" : {
-                    "x" : 15,
-                    "y" : 15
-                } 
-            }
-        ]
-    }
+    "grid" : "small",
+    "time" : 30,
+    "enemyZone" : [
+        {
+            "start" : 0,
+            "end" : 15
+        }
+    ],
+    "allowedShapes" : [
+        {
+            "shape" : "infantryn",
+            "quantity" : 5
+        },
+        {
+            "shape" : "archernw",
+            "quantity" : 5
+        }
+    ],
+    "messages" : [
+        {
+            "time" : 30,
+            "message" : "Welcome to Wisteria Life"
+        },
+        {
+            "time" : 28,
+            "message" : "Please select a unit from the units drop down to begin"
+        },
+        {
+            "time" : 26,
+            "message" : "Drag the unit over the grid and release when you want to place it"
+        },
+        {
+            "time" : 24,
+            "message" : "The unit will move accordingly"
+        }
+    ],
+    "enemySpawns" : [
+        {                            
+            "time" : 30,
+            "shapes" : [
+                {
+                    "name" : "infantryn",
+                    "coordinates" : {
+                        "x" : 0,
+                        "y" : 0
+                    } 
+                },
+                {
+                    "name" : "infantrye",
+                    "coordinates" : {
+                        "x" : 5,
+                        "y" : 5
+                    } 
+                }
+            ]
+        },
+        {                            
+            "time" : 25,
+            "shapes" : [
+                {
+                    "name" : "infantryn",
+                    "coordinates" : {
+                        "x" : 0,
+                        "y" : 0
+                    } 
+                },
+                {
+                    "name" : "infantrye",
+                    "coordinates" : {
+                        "x" : 5,
+                        "y" : 5
+                    } 
+                }
+            ]
+        }
+    ],  
+    "defenseStructures" : [
+        {
+            "name" : "tower",
+            "coordinates" : {
+                "x" : 10,
+                "y" : 10
+            } 
+        },
+        {
+            "name" : "tower",
+            "coordinates" : {
+                "x" : 15,
+                "y" : 15
+            } 
+        }
+    ]
 }
