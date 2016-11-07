@@ -16,17 +16,14 @@ var GameLogicManager = function(level) {
     var gridWidth;
 
     // cell types
-    var BLANK = -2;
-    var VOID = -1;
-    var FRIEND_ZONE = 0;
-    var ENEMY_ZONE = 1;
-
-    // cell types
-    var BLANK = -2;
-    var VOID = -1;
-    var FRIEND_ZONE = 0;
-    var ENEMY_ZONE = 1;
-    var FRIEND = 2;
+    var BLANK = 0;
+    var VOID = 1;
+    var FRIEND_ZONE = 2;
+    var ENEMY_ZONE = 3;
+    var FRIEND = 4;
+    var OBJECTIVE = 5;
+    var ENEMY = 6;
+    var GHOST = 7;
 
     // cell colors
     var FRIEND_ZONE_COLOR = 0xffffff;
