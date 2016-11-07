@@ -1,6 +1,17 @@
 {
   "rules": {
-    ".read": "true",
+  	"levels": {
+      ".read": true
+    },
+    "powerups": {
+      ".read": true
+    },
+    "regions": {
+      ".read": true
+    },
+    "shapes": {
+      ".read": true
+    },
     ".write": "auth != null"
   }
 }
