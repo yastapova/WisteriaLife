@@ -125,6 +125,18 @@ GameLogicManager.prototype.initCellLookup = function()
 GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.level = level;
     this.canvas = canvas;
+    this.gridWidth = this.canvas.size.width;
+    this.gridHeight = this.canvas.size.height;
+
+    this.battleGrid = new Array(this.gridWidth * this.gridHeight);
+    this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
+    this.renderGrid = new Array(this.gridWidth * this.gridHeight);
+    this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
+    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
+    this.factionGrid = new Array(this.gridWidth * this.gridHeight);
+    for(var i = 0; i < this.factionGrid.length; i++)
+        this.factionGrid[i] = this.FRIEND_ZONE;
+
 }
 
 /**
@@ -201,7 +213,7 @@ GameLogicManager.prototype.updateLoop = function() {
     }
 }
 
-GameLogicManager.prototype.renderGrid = function() {
+GameLogicManager.prototype.renderGridCells = function() {
     // go through all the boxes in render grid
     // compare to old render grid
     // call pixi only if new render grid is different from old
@@ -216,8 +228,10 @@ GameLogicManager.prototype.renderGrid = function() {
             var index = (i * this.gridWidth) + j;
             var renderCell = this.renderGrid[index];
 
-            if(renderCell !== this.renderGridOld[index])
-                canvas.setCell(j, i, this.colors[renderCell]);
+            if(renderCell !== this.renderGridOld[index]) {
+                console.log("yes2");
+                this.canvas.setCell(j, i, this.colors[renderCell]);
+            }
         }
     }
 
@@ -281,9 +295,10 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
 }
 
 GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
-    if(currentUnit === null)
+    if(this.currentUnit === null) {
         return;
-    var pixels = currentUnit.pixelsArray;
+    }
+    var pixels = this.currentUnit.pixelsArray;
 
     var zone = this.BLANK;
     if(faction === this.FRIEND || faction === this.OBJECTIVE)
@@ -306,10 +321,11 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
         }
     }
 
-    this.renderGrid();
+    console.log(this.renderGrid);
+    this.renderGridCells();
 }
 
-GameLogicManager.prototype.isValidCell = function() {
+GameLogicManager.prototype.isValidCell = function(row, col) {
     // IS IT OUTSIDE THE GRID?
     if(    (row < 0) ||
             (col < 0) ||
@@ -335,12 +351,12 @@ GameLogicManager.prototype.resume = function() {
 
 GameLogicManager.prototype.reset = function() {
     // RESET ALL THE DATA STRUCTURES TOO
-    this.battleGrid = new Array();
-    this.renderGridOld =  new Array();
-    this.renderGrid = new Array();
-    this.defenseGrid = new Array();
-    this.ghostGrid = new Array();
-    this.factionGrid = new Array();
+    this.battleGrid = new Array(this.gridWidth * this.gridHeight);
+    this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
+    this.renderGrid = new Array(this.gridWidth * this.gridHeight);
+    this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
+    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
+    this.factionGrid = new Array(this.gridWidth * this.gridHeight);
 
     this.paused = true;
 
@@ -355,7 +371,7 @@ GameLogicManager.prototype.reset = function() {
     }
 
     // RENDER THE CLEARED SCREEN
-    this.renderGrid();
+    this.renderGridCells();
 }
 
 /*
