@@ -41,7 +41,7 @@ LevelManager.prototype.loadJSONDataRegion = function (data) {
 		var regionAttrObj = {
 			name: regionData.name,
 			img: regionData.img,
-			levels: regionData.levels	
+			levels: regionData.levels
 		};
         this.regionsMap.set(regionData.name, new Region(regionAttrObj));
 	}
@@ -68,17 +68,18 @@ LevelManager.prototype.loadJSONDataLevel = function (data) {
 
 /**
  * Load a level with given id
- * @param  id integer denoting the id of the level
+ * @param {integer} id          integer denoting the id of the level
+ * @param {function} setLevel   callback function to set level
  * @return the level object with the given id
  */
-LevelManager.prototype.loadLevel = function(id) {
+LevelManager.prototype.loadLevel = function (id, setLevel) {
     console.log("Load level called for id: " + id);
 	var levelFile = "/data/levels/" + id + ".json";
 	$.getJSON(levelFile, function (data) {
 		console.log("loading from data levels: " + levelFile);
         var levelAttrObj = this.loadJSONDataLevel(data);
         levelAttrObj.id = id;
-		return new Level(levelAttrObj) ;
+        setLevel(new Level(levelAttrObj));
 	}.bind(this));
 };
 

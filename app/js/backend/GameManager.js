@@ -1,15 +1,15 @@
 var User = require('./User');
 var ScreenManager = require('./ScreenManager');
 var PowerupManager = require('./PowerupManager');
+var GameLogicManager = require('./GameLogicManager');
 var ShapeManager = require('./ShapeManager');
 var LevelManager = require('./LevelManager');
 var firebase = require("firebase");
-
 /**
  * GameManager handles the user and saving/loading of data
  */
 var GameManager = function() {
-
+    this.initFirebase();
     this.screenManager = new ScreenManager(
         window.location.pathname.replace(/^\//, "")
     );
@@ -17,17 +17,17 @@ var GameManager = function() {
     this.powerupManager = new PowerupManager();
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
+    this.gameLogicManager = new GameLogicManager();
     this.user = new User();
     this.mute = false;
-
-    this.loginButton = document.getElementById('splash-login');
-    this.logoutButton = document.getElementById('splash-logout');
-
-    // Listeners for buttons
-
-    this.loginButton.addEventListener('click', this.login.bind(this));
-    this.logoutButton.addEventListener('click', this.logout.bind(this));
-    this.initFirebase();
+    // this.loginButton = document.getElementById('splash-login');
+    // this.logoutButton = document.getElementById('splash-logout');
+    //
+    // // Listeners for buttons
+    //
+    // this.loginButton.addEventListener('click', this.login.bind(this));
+    // this.logoutButton.addEventListener('click', this.logout.bind(this));
+    // this.initFirebase();
 };
 
 /**
@@ -44,7 +44,6 @@ GameManager.getGameManager = function() {
 * Setup shortcuts to Firebase features and initiate firebase authentication
 */
 GameManager.prototype.initFirebase = function() {
-
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyBNCeWYe5TnqjvSIL9ieykBn59Zn3Aa0q0",
@@ -72,7 +71,7 @@ GameManager.prototype.initFirebase = function() {
 GameManager.prototype.initializeUser = function() {
     user = new User("Mystery Boxman");
     return user;
-}
+};
 
 /**
  * Login event
@@ -89,37 +88,37 @@ GameManager.prototype.login = function() {
 GameManager.prototype.logout = function() {
     // Sign out of Firebase.
     firebase.auth().signOut();
-}
+};
 
 /**
  * Save data to local storage
  */
-GameManager.prototype.saveToLocalStorage = function() {}
+GameManager.prototype.saveToLocalStorage = function() {};
 
 /**
  * Load data from local storage
  */
-GameManager.prototype.loadFromLocalStorage = function() {}
+GameManager.prototype.loadFromLocalStorage = function() {};
 
 /**
  * Save local storage to server
  */
-GameManager.prototype.saveToServer = function() {}
+GameManager.prototype.saveToServer = function() {};
 
 /**
  * Load data from server
  */
-GameManager.prototype.loadFromServer = function() {}
+GameManager.prototype.loadFromServer = function() {};
 
 /**
  * Mute all sounds
  */
-GameManager.prototype.mute = function() {}
+GameManager.prototype.mute = function() {};
 
 /**
  * Return to the previous screen if eligible
  */
-GameManager.prototype.back = function() {}
+GameManager.prototype.back = function() {};
 
 /**
  * Is user logged in?
@@ -127,6 +126,6 @@ GameManager.prototype.back = function() {}
  */
 GameManager.prototype.checkIsLoggedIn = function() {
     return false;
-}
+};
 
-module.exports = GameManager;
+module.exports = GameManager.getGameManager();

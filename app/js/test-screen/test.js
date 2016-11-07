@@ -38,7 +38,7 @@ var LevelManager = require('LevelManager');
 var PowerupManager = new PowerupManager();
 var ShapeManager = new ShapeManager();
 var LevelManager = new LevelManager();
-LevelManager.loadLevel(1);
+LevelManager.loadLevel(1, function(){});
 
 module.exports = {
     TestA: TestA,

@@ -5,21 +5,28 @@ var GameLogicManager = function(level) {
     this.defenseGrid = [];  // defense towers only
     this.ghostGrid = [];    // ghost only
     this.factionGrid = [];  // only friend and enemy zone; STATIC
-    this.timer = undefined;
-    this.level = level;
+
+    this.timer = null;
+    this.level = null;
+    this.canvas = null;
+
+    this.paused = true; // game logic starts paused
 
     var gridHeight; //TODO: how to initialize grids?
     var gridWidth;
 
     // cell types
-    var BLANK = 0;
-    var VOID = 1;
-    var FRIEND_ZONE = 2;
-    var ENEMY_ZONE = 3;
-    var FRIEND = 4;
-    var OBJECTIVE = 5;
-    var ENEMY = 6;
-    var GHOST = 7;
+    var BLANK = -2;
+    var VOID = -1;
+    var FRIEND_ZONE = 0;
+    var ENEMY_ZONE = 1;
+
+    // cell types
+    var BLANK = -2;
+    var VOID = -1;
+    var FRIEND_ZONE = 0;
+    var ENEMY_ZONE = 1;
+    var FRIEND = 2;
 
     // cell colors
     var FRIEND_ZONE_COLOR = 0xffffff;
@@ -58,8 +65,7 @@ var GameLogicManager = function(level) {
  * cells in the grid, and so we use 9 CellType objects to store which
  * adjacent cells need to be checked when running the simulation.
  */
-function CellType(initNumNeighbors, initCellValues)
-{
+function CellType(initNumNeighbors, initCellValues) {
     this.numNeighbors = initNumNeighbors;
     this.cellValues = initCellValues;
 }
@@ -117,9 +123,31 @@ GameLogicManager.prototype.initShapes = function() {
     allowedShapes = this.level.allowedShapes;
 }
 
+/**
+ * Set the level and canvas being played
+ *
+ * Places defense structures onto the grid
+ * @param {Level} level Level object
+ * @param {PixiCanvas} canvas Canvas being used to render level
+ */
+GameLogicManager.prototype.setLevel = function (level, canvas) {
+    this.level = level;
+    this.canvas = canvas;
+}
 
-GameLogicManager.prototype.start = function(level) {
+/**
+ * Starts the gameplay
+ *
+ * Starts timer
+ */
+GameLogicManager.prototype.start = function () {
+    if (!this.level || !this.canvas)
+        throw "Level and/or canvas not set! Game logic cannot start.";
 
+    // decrease timer by 1 per second
+    setInterval(function () {
+        this.timer--;
+    }.bind(this), 1000);
 }
 
 GameLogicManager.prototype.updateLoop = function() {
@@ -179,7 +207,6 @@ GameLogicManager.prototype.updateLoop = function() {
                 renderGrid[index] = factionGrid[index];
         }
     }
-    renderGrid();
 }
 
 GameLogicManager.prototype.renderGrid = function() {
@@ -234,7 +261,7 @@ GameLogicManager.prototype.die = function(index, current, neighbors) {
 GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
     var numEnemies = 0;
     var numFriends = 0;
-    
+
     // DEPENDING ON THE TYPE OF CELL IT IS WE'LL CHECK
     // DIFFERENT ADJACENT CELLS
     var cellType = determineCellType(row, col);
@@ -307,11 +334,11 @@ GameLogicManager.prototype.getRelativeCoords = function() {
 }
 
 GameLogicManager.prototype.pause = function() {
-
+    this.pause = true;
 }
 
 GameLogicManager.prototype.resume = function() {
-
+    this.pause = false;
 }
 
 GameLogicManager.prototype.reset = function() {

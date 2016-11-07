@@ -22,7 +22,7 @@ var Level = function(levelAttrObj) {
  */
 Level.prototype.convertToMessageMap = function (messages) {
 	for(var i = 0; i < messages.length; i++){
-        this.messageMap.set(messages.time, messages.message);
+        this.messageMap.set(messages[i].time, messages[i].message);
     }
 };
 
@@ -32,7 +32,7 @@ Level.prototype.convertToMessageMap = function (messages) {
  */
 Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
 	for(var i = 0; i < enemySpawns.length; i++){
-        this.enemySpawnsMap.set(enemySpawns.time, enemySpawns.shapes);
+        this.enemySpawnsMap.set(enemySpawns[i].time, enemySpawns[i].shapes);
     }
 };
 

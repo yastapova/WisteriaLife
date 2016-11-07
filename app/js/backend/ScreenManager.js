@@ -46,8 +46,6 @@ var ScreenManager = function (currentScreen) {
     this.currentScreen = currentScreen && currentScreen in this.screenMap
                             ? currentScreen : 'splash';
 
-    var properties = null; // TODO
-
     /**
      * Popstate / Back Button
      */
@@ -56,15 +54,6 @@ var ScreenManager = function (currentScreen) {
             // read state ID that was pushed when switching originally
             this.switchScreens(history.state.screen);
     }.bind(this));
-
-    // load and display the current screen
-    this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
-
-    // set initial state (for going back later)
-    var screenSwitch = this.currentScreen == 'splash' ? '' : this.currentScreen;
-    history.replaceState({screen: this.id}, '', screenSwitch);
-
-    this.screen.init(); // first screen doesn't need to load, just init
 
 
     var self = this; // need "this" inside callback, but can't bind here
@@ -87,6 +76,22 @@ var ScreenManager = function (currentScreen) {
     });
 };
 
+/**
+ * Setup the initial screen
+ * Cannot be done in constructor because some screens rely on game manager
+ * Game manager relies on screen manager
+ */
+ScreenManager.prototype.setupInitScreen = function () {
+    // load and display the current screen
+    this.screen = new this.screenMap[this.currentScreen](this.currentScreen, null);
+
+    // set initial state (for going back later)
+    var screenSwitch = this.currentScreen == 'splash' ? '' : this.currentScreen;
+    history.replaceState({screen: this.id}, '', screenSwitch);
+
+    this.screen.init(); // first screen doesn't need to load, just init
+}
+
 ScreenManager.prototype.switchScreens = function (screen) {
 
     // screen should be valid, otherwise go to splash
@@ -98,6 +103,8 @@ ScreenManager.prototype.switchScreens = function (screen) {
 
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
     this.screen.load(this.screen.init);
+
+    console.error(require('GameManager'));
 };
 
 /**
