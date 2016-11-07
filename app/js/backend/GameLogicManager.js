@@ -150,8 +150,12 @@ GameLogicManager.prototype.start = function () {
 
     // decrease timer by 1 per second
     setInterval(function () {
-        this.timer--;
-    }.bind(this), 1000);
+        if (!this.gameLogicManager.paused) {
+            this.updateLoop();
+            this.renderGridCells();
+            this.level.time--;
+        }
+    }.bind(this), 500);
 }
 
 GameLogicManager.prototype.updateLoop = function() {
