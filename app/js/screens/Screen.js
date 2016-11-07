@@ -71,8 +71,6 @@ Screen.prototype.load = function (initScreen) {
 
                 this.loader.fadeOut('fast');
 
-                console.log(this);
-
                 // initialize screen
                 initScreen.bind(this)();
             }.bind(this))
