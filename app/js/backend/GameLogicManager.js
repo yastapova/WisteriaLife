@@ -214,10 +214,6 @@ GameLogicManager.prototype.updateLoop = function() {
 }
 
 GameLogicManager.prototype.renderGridCells = function() {
-    // go through all the boxes in render grid
-    // compare to old render grid
-    // call pixi only if new render grid is different from old
-    // switch old render grid to new
 
     for(var i = 0; i < this.gridHeight; i++)
     {
@@ -227,7 +223,8 @@ GameLogicManager.prototype.renderGridCells = function() {
             // AND GET ITS CURRENT STATE
             var index = (i * this.gridWidth) + j;
             var renderCell = this.renderGrid[index];
-
+            console.log(renderCell);
+            console.log(renderGridOld[index]);
             if(renderCell !== this.renderGridOld[index]) {
                 console.log("yes2");
                 this.canvas.setCell(j, i, this.colors[renderCell]);
