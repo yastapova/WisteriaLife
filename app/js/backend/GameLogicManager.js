@@ -150,14 +150,13 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
 GameLogicManager.prototype.start = function () {
     if (!this.level || !this.canvas)
         throw "Level and/or canvas not set! Game logic cannot start.";
-    
+
     this.paused = false;
     // decrease timer by 1 per second
     setInterval(function () {
         if (!this.paused) {
             this.updateLoop();
             this.renderGridCells();
-            this.level.time--;
         }
     }.bind(this), 500);
 }
@@ -312,8 +311,8 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
 
     for (var i = 0; i < pixels.length; i += 2)
     {
-        var col = clickCol + pixels[i];
-        var row = clickRow + pixels[i+1];
+        var col = clickCol + pixels[i+1];
+        var row = clickRow + pixels[i];
         // VERIFY THAT THIS CELL CAN BE PLACED ON
         if(this.getGridCell(this.factionGrid, row, col) === zone &&
            this.getGridCell(this.battleGrid, row, col) !== this.VOID)

@@ -14,6 +14,7 @@
 var Screen = function (id, overlay) {
     this.id = id;
     this.overlay = overlay;
+    this.overlayElement = null;
 
     // constants - main container will never change
     this.container = $('#main-container');
@@ -56,6 +57,9 @@ Screen.prototype.load = function (initScreen) {
         if (this.overlay) {
 
             this.container.prepend($(data).filter('#main-container').html());
+
+            // save element to easily hide later
+            this.overlayElement = this.container.children().first();
 
             document.title = $(data).filter('title').text();
 

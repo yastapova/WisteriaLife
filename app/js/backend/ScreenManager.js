@@ -105,8 +105,13 @@ ScreenManager.prototype.switchScreens = function (screen) {
     this.screen.load(this.screen.init);
 };
 
-ScreenManager.prototype.hideScreen = function () {
-
+/**
+ * Hide overlay screen
+ * @param  {Screen} screen Screen to remove
+ */
+ScreenManager.prototype.hideScreen = function (screen) {
+    if (screen.overlayElement)
+        screen.overlayElement.remove();
 }
 
 /**

@@ -42,6 +42,6 @@ ShapeManager.prototype.loadJSONData = function(data){
  */
 ShapeManager.prototype.getShape = function (name) {
     return this.shapesMap.get(name);
-}
+};
 
 module.exports = ShapeManager;

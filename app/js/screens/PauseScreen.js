@@ -3,7 +3,6 @@
  * PauseScreen object
  */
 var Screen = require('./Screen');
-var gameManager = require('GameManager');
 
 /*
  * Construct a PauseScreen with given id
@@ -26,9 +25,10 @@ PauseScreen.prototype.init = function() {
     console.log("Pause screen init called");
 
     $('#resume-button').on('click', function () {
+        var gameManager = require('GameManager');
         gameManager.gameLogicManager.resume();
-
-    });
+        gameManager.screenManager.hideScreen(this);
+    }.bind(this));
 
 };
 
