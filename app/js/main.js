@@ -15,19 +15,6 @@
 var TestA = require('./test-screen/test').TestA;
 var TestB = require('./test-screen/test').TestB;
 
-// Initialize Firebase
-var config = {
-    apiKey: "AIzaSyBNCeWYe5TnqjvSIL9ieykBn59Zn3Aa0q0",
-    authDomain: "wisteria-life-build2.firebaseapp.com",
-    databaseURL: "https://wisteria-life-build2.firebaseio.com",
-    storageBucket: "wisteria-life-build2.appspot.com",
-    messagingSenderId: "103993744321"
-};
-
-var firebase = require("firebase");
-
-firebase.initializeApp(config);
-
 /**
  * Instantiate navbar events
  *
