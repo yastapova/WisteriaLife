@@ -1,5 +1,7 @@
 var Region = require('Region');
 var Level = require('Level');
+var firebase = require("firebase");
+
 /**
  * LevelManager.js
  *
@@ -8,7 +10,7 @@ var Level = require('Level');
  */
 var LevelManager = function() {
     this.regionsMap = new Map();
-    this.initRegionsMap();
+    this.loadRegions();
     // For loading descriptions and imgs of private user custom levels later
     //this.privateCustomLevelsMap = new Map();
     //this.initPrivateCustomLevelsMap();
@@ -18,16 +20,12 @@ var LevelManager = function() {
     //this.initPublicCustomLevelsMap();
 };
 
-/**
- * Initialize the regions map with regionName: String to region:Region mapping
- */
-LevelManager.prototype.initRegionsMap = function () {
-	console.log("Init regions map called.");
-	var regionsFile = "/data/regions.json";
-	$.getJSON(regionsFile, function (data) {
-		console.log("loading from data regions.json");
-		this.loadJSONDataRegion(data);
-	}.bind(this));
+// Loads the regions from firebase
+LevelManager.prototype.loadRegions = function() { 
+    // Reference to the /regions/ database path
+    firebase.database().ref('regions').once('value', function (snapshot) {
+        this.loadJSONDataRegion(snapshot.val());
+    }.bind(this));
 };
 
 /**
@@ -36,8 +34,8 @@ LevelManager.prototype.initRegionsMap = function () {
  * @param  data JSON data
  */
 LevelManager.prototype.loadJSONDataRegion = function (data) {
-	for (var i = 0; i < data.regions.length; i++) {
-		var regionData = data.regions[i];
+	for (var i = 0; i < data.length; i++) {
+		var regionData = data[i];
 		var regionAttrObj = {
 			name: regionData.name,
 			img: regionData.img,
@@ -74,13 +72,12 @@ LevelManager.prototype.loadJSONDataLevel = function (data) {
  */
 LevelManager.prototype.loadLevel = function (id, setLevel) {
     console.log("Load level called for id: " + id);
-	var levelFile = "/data/levels/" + id + ".json";
-	$.getJSON(levelFile, function (data) {
-		console.log("loading from data levels: " + levelFile);
-        var levelAttrObj = this.loadJSONDataLevel(data);
+    // Reference to the /levels/ database path
+    firebase.database().ref('levels').once('value', function (snapshot) {
+        var levelAttrObj = this.loadJSONDataLevel(snapshot.val()[id - 1]);
         levelAttrObj.id = id;
         setLevel(new Level(levelAttrObj));
-	}.bind(this));
+    }.bind(this));
 };
 
 
