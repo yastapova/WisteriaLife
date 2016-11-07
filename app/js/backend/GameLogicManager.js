@@ -226,7 +226,6 @@ GameLogicManager.prototype.renderGridCells = function() {
             console.log(renderCell);
             console.log(renderGridOld[index]);
             if(renderCell !== this.renderGridOld[index]) {
-                console.log("yes2");
                 this.canvas.setCell(j, i, this.colors[renderCell]);
             }
         }
