@@ -1,5 +1,6 @@
 var Powerup = require('./Powerup');
 var firebase = require("firebase");
+
 /**
  * PowerupManager.js
  * Defines and initializes all the powerups in the game

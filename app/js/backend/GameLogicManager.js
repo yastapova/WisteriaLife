@@ -9,21 +9,22 @@ var GameLogicManager = function(level) {
     this.timer = null;
     this.level = null;
     this.canvas = null;
+    this.currentUnit = null;
 
     this.paused = true; // game logic starts paused
 
-    var gridHeight; //TODO: how to initialize grids?
-    var gridWidth;
+    this.gridHeight; //TODO: how to initialize grids?
+    this.gridWidth;
 
     // cell types
-    var BLANK = 0;
-    var VOID = 1;
-    var FRIEND_ZONE = 2;
-    var ENEMY_ZONE = 3;
-    var FRIEND = 4;
-    var OBJECTIVE = 5;
-    var ENEMY = 6;
-    var GHOST = 7;
+    this.BLANK = 0;
+    this.VOID = 1;
+    this.FRIEND_ZONE = 2;
+    this.ENEMY_ZONE = 3;
+    this.FRIEND = 4;
+    this.OBJECTIVE = 5;
+    this.ENEMY = 6;
+    this.GHOST = 7;
 
     // cell colors
     var FRIEND_ZONE_COLOR = 0xffffff;
@@ -32,28 +33,27 @@ var GameLogicManager = function(level) {
     var OBJECTIVE_COLOR = 0x773795;
     var ENEMY_COLOR = 0x94b21c;
     var GHOST_COLOR = 0xa0d1dc;
-    var colors = [null, null, FRIEND_ZONE_COLOR, ENEMY_ZONE_COLOR,
-                  FRIEND_COLOR, OBJECTIVE_COLOR, ENEMY_COLOR, GHOST_COLOR];
+    this.colors = [null, null, FRIEND_ZONE_COLOR, ENEMY_ZONE_COLOR,
+                   FRIEND_COLOR, OBJECTIVE_COLOR, ENEMY_COLOR, GHOST_COLOR];
 
     // cell location types
-    var TOP_LEFT = 0;
-    var TOP_RIGHT = 1;
-    var BOTTOM_LEFT = 2;
-    var BOTTOM_RIGHT = 3;
-    var TOP = 4;
-    var BOTTOM = 5;
-    var LEFT = 6;
-    var RIGHT = 7;
-    var CENTER = 8;
+    this.TOP_LEFT = 0;
+    this.TOP_RIGHT = 1;
+    this.BOTTOM_LEFT = 2;
+    this.BOTTOM_RIGHT = 3;
+    this.TOP = 4;
+    this.BOTTOM = 5;
+    this.LEFT = 6;
+    this.RIGHT = 7;
+    this.CENTER = 8;
 
     // don't call DOM things here, it won't work since constructors are called
     // before page loads
     //
     // do it in each screen's init() method
-    //var canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
+    //this.canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
 
-    var cellLookup;
-    var allowedShapes;
+    this.cellLookup;
 }
 
 /*
@@ -79,45 +79,40 @@ GameLogicManager.prototype.initCellLookup = function()
     cellLookup = new Array();
 
     // TOP LEFT
-    var topLeftArray        = new Array( 1, 0,  1,  1,  0,  1);
-    cellLookup[TOP_LEFT]    = new CellType(3, topLeftArray);
+    this.topLeftArray           = new Array( 1, 0,  1,  1,  0,  1);
+    cellLookup[this.TOP_LEFT]   = new CellType(3, this.topLeftArray);
 
     // TOP RIGHT
-    var topRightArray       = new Array(-1, 0, -1,  1,  0,  1);
-    cellLookup[TOP_RIGHT]   = new CellType(3, topRightArray);
+    this.topRightArray           = new Array(-1, 0, -1,  1,  0,  1);
+    cellLookup[this.TOP_RIGHT]   = new CellType(3, this.topRightArray);
 
     // BOTTOM LEFT
-    var bottomLeftArray     = new Array( 1, 0,  1, -1, 0, -1);
-    cellLookup[BOTTOM_LEFT] = new CellType(3, bottomLeftArray);
+    this.bottomLeftArray         = new Array( 1, 0,  1, -1, 0, -1);
+    cellLookup[this.BOTTOM_LEFT] = new CellType(3, this.bottomLeftArray);
 
     // BOTTOM RIGHT
-    var bottomRightArray    = new Array(-1, 0, -1, -1, 0, -1);
-    cellLookup[BOTTOM_RIGHT]= new CellType(3, bottomRightArray);
+    this.bottomRightArray        = new Array(-1, 0, -1, -1, 0, -1);
+    cellLookup[this.BOTTOM_RIGHT]= new CellType(3, this.bottomRightArray);
 
     // TOP
-    var topArray            = new Array(-1, 0, -1, 1, 0, 1, 1, 1, 1, 0);
-    cellLookup[TOP]         = new CellType(5, topArray);
+    this.topArray                = new Array(-1, 0, -1, 1, 0, 1, 1, 1, 1, 0);
+    cellLookup[this.TOP]         = new CellType(5, this.topArray);
 
     // BOTTOM
-    var bottomArray         = new Array(-1, 0, -1, -1, 0, -1, 1, -1, 1, 0);
-    cellLookup[BOTTOM]      = new CellType(5, bottomArray);
+    this.bottomArray             = new Array(-1, 0, -1, -1, 0, -1, 1, -1, 1, 0);
+    cellLookup[this.BOTTOM]      = new CellType(5, this.bottomArray);
 
     // LEFT
-    var leftArray           = new Array(0, -1, 1, -1, 1, 0, 1, 1, 0, 1);
-    cellLookup[LEFT]        = new CellType(5, leftArray);
+    this.leftArray               = new Array(0, -1, 1, -1, 1, 0, 1, 1, 0, 1);
+    cellLookup[this.LEFT]        = new CellType(5, this.leftArray);
 
     // RIGHT
-    var rightArray          = new Array(0, -1, -1, -1, -1, 0, -1, 1, 0, 1);
-    cellLookup[RIGHT]       = new CellType(5, rightArray);
+    this.rightArray              = new Array(0, -1, -1, -1, -1, 0, -1, 1, 0, 1);
+    cellLookup[this.RIGHT]       = new CellType(5, this.rightArray);
 
     // CENTER
-    var centerArray         = new Array(-1, -1, -1, 0, -1, 1, 0, 1, 1, 1, 1, 0, 1, -1, 0, -1);
-    cellLookup[CENTER]      = new CellType(8, centerArray);
-}
-
-// Initialize all shapes and fill the menu.
-GameLogicManager.prototype.initShapes = function() {
-    allowedShapes = this.level.allowedShapes;
+    this.centerArray             = new Array(-1, -1, -1, 0, -1, 1, 0, 1, 1, 1, 1, 0, 1, -1, 0, -1);
+    cellLookup[this.CENTER]      = new CellType(8, this.centerArray);
 }
 
 /**
@@ -130,6 +125,18 @@ GameLogicManager.prototype.initShapes = function() {
 GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.level = level;
     this.canvas = canvas;
+    this.gridWidth = this.canvas.size.width;
+    this.gridHeight = this.canvas.size.height;
+
+    this.battleGrid = new Array(this.gridWidth * this.gridHeight);
+    this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
+    this.renderGrid = new Array(this.gridWidth * this.gridHeight);
+    this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
+    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
+    this.factionGrid = new Array(this.gridWidth * this.gridHeight);
+    for(var i = 0; i < this.factionGrid.length; i++)
+        this.factionGrid[i] = this.FRIEND_ZONE;
+
 }
 
 /**
@@ -140,93 +147,87 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
 GameLogicManager.prototype.start = function () {
     if (!this.level || !this.canvas)
         throw "Level and/or canvas not set! Game logic cannot start.";
-
-    // decrease timer by 1 per second
-    setInterval(function () {
-        this.timer--;
-    }.bind(this), 1000);
+    this.paused = false;
 }
 
 GameLogicManager.prototype.updateLoop = function() {
     // TODO check time; end game if zero
 
-    for(var i = 0; i < gridHeight; i++)
+    for(var i = 0; i < this.gridHeight; i++)
     {
-        for(var j = 0; j < gridWidth; j++)
+        for(var j = 0; j < this.gridWidth; j++)
         {
             // CALCULATE THE ARRAY INDEX OF THIS CELL
             // AND GET ITS CURRENT STATE
-            var index = (i * gridWidth) + j;
-            var battleCell = battleGrid[index];
-            var defenseCell = defenseGrid[index];
-            var ghostCell = ghostGrid[index];
+            var index = (i * this.gridWidth) + j;
+            var battleCell = this.battleGrid[index];
+            var defenseCell = this.defenseGrid[index];
+            var ghostCell = this.ghostGrid[index];
 
             // CASES
             switch(battleCell) {
-                case BLANK:
+                case this.BLANK:
                     // decide if to reproduce
-                    var neighbors = calcNumNeighbors(i, j);
-                    reproduce(index, neighbors);
+                    var neighbors = this.calcNumNeighbors(i, j);
+                    this.reproduce(index, neighbors);
                     break;
-                case FRIEND:
+                case this.FRIEND:
                     // decide if to die
-                    var neighbors = calcNumNeighbors(i, j);
-                    die(index, FRIEND, neighbors);
+                    var neighbors = this.calcNumNeighbors(i, j);
+                    this.die(index, FRIEND, neighbors);
                     break;
-                case ENEMY:
+                case this.ENEMY:
                     // decide if to die
-                    var neighbors = calcNumNeighbors(i, j);
-                    die(index, ENEMY, neighbors);
+                    var neighbors = this.calcNumNeighbors(i, j);
+                    this.die(index, ENEMY, neighbors);
                     break;
                 default:
                     // nothing
                     break;
             }
             switch(defenseCell) {
-                case OBJECTIVE:
-                    if(battleCell === ENEMY)
-                        defenseGrid[index] = BLANK;
+                case this.OBJECTIVE:
+                    if(battleCell === this.ENEMY)
+                        this.defenseGrid[index] = this.BLANK;
                     break;
                 default:
                     // nothing
                     break;
             }
 
-            battleCell = battleGrid[index];
-            defenseCell = defenseGrid[index];
+            battleCell = this.battleGrid[index];
+            defenseCell = this.defenseGrid[index];
             if(ghostCell !== -2)
-                renderGrid[index] = GHOST;
+                this.renderGrid[index] = this.GHOST;
             else if(battleCell !== -2)
-                renderGrid[index] = battleCell;
+                this.renderGrid[index] = battleCell;
             else if(defenseCell !== -2)
-                renderGrid[index] = defenseCell;
+                this.renderGrid[index] = defenseCell;
             else
-                renderGrid[index] = factionGrid[index];
+                this.renderGrid[index] = this.factionGrid[index];
         }
     }
 }
 
-GameLogicManager.prototype.renderGrid = function() {
-    // go through all the boxes in render grid
-    // compare to old render grid
-    // call pixi only if new render grid is different from old
-    // switch old render grid to new
-
-    for(var i = 0; i < gridHeight; i++)
+GameLogicManager.prototype.renderGridCells = function() {
+    console.log(this.renderGrid);
+    console.log(this.renderGridOld);
+    for(var i = 0; i < this.gridHeight; i++)
     {
-        for(var j = 0; j < gridWidth; j++)
+        for(var j = 0; j < this.gridWidth; j++)
         {
             // CALCULATE THE ARRAY INDEX OF THIS CELL
             // AND GET ITS CURRENT STATE
-            var index = (i * gridWidth) + j;
-            var renderCell = renderGrid[index];
-
-            if(renderCell !== renderGridOld[index])
-                canvas.setCell(j, i, colors[renderCell]);
+            var index = (i * this.gridWidth) + j;
+            var renderCell = this.renderGrid[index];
+            if(renderCell !== this.renderGridOld[index]) {
+                this.canvas.setCell(j, i, this.colors[renderCell]);
+            }
         }
     }
 
-    renderGridOld = renderGrid;
+    this.renderGridOld = this.renderGrid;
+    this.renderGrid = this.renderGrid.slice(0);
 }
 
 GameLogicManager.prototype.reproduce = function(index, neighbors) {
@@ -234,19 +235,19 @@ GameLogicManager.prototype.reproduce = function(index, neighbors) {
     var enemies = neighbors["enemies"];
     var total = friends + enemies;
     if(total === 3) {
-        var newType = BLANK;
+        var newType = this.BLANK;
         if(enemies > friends)
-            newType = ENEMY;
+            newType = this.ENEMY;
         else
-            newType = FRIEND;
-        battleGrid[index] = newType;
+            newType = this.FRIEND;
+        this.battleGrid[index] = newType;
     }
 }
 
 GameLogicManager.prototype.die = function(index, current, neighbors) {
     var total = neighbors["friends"] + neighbors["enemies"];
     if(total < 2 || total > 3) {
-        battleGrid[index] = BLANK;
+        this.battleGrid[index] = this.BLANK;
     }
     else {
         // currently do nothing; leave as is
@@ -261,20 +262,20 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
 
     // DEPENDING ON THE TYPE OF CELL IT IS WE'LL CHECK
     // DIFFERENT ADJACENT CELLS
-    var cellType = determineCellType(row, col);
-    var cellsToCheck = cellLookup[cellType];
+    var cellType = this.determineCellType(row, col);
+    var cellsToCheck = this.cellLookup[cellType];
     for(var counter = 0; counter < (cellsToCheck.numNeighbors * 2); counter+=2)
     {
         var neighborCol = col + cellsToCheck.cellValues[counter];
         var neighborRow = row + cellsToCheck.cellValues[counter+1];
-        var index = (neighborRow * gridWidth) + neighborCol;
-        var neighborValue = battleGrid[index];
+        var index = (neighborRow * this.gridWidth) + neighborCol;
+        var neighborValue = this.battleGrid[index];
         // MODIFIED TO ACCOUNT FOR NEW CELL VALUES
-        if(neighborValue === FRIEND)
+        if(neighborValue === this.FRIEND)
         {
             numFriends += 1;
         }
-        else if(neighborValue === ENEMY)
+        else if(neighborValue === this.ENEMY)
         {
             numEnemies += 1;
         }
@@ -285,37 +286,43 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
     };
 }
 
-GameLogicManager.prototype.placeShape = function(clickRow, clickCol, pixels, faction) {
-    var zone = BLANK;
-    if(faction === FRIEND || faction === OBJECTIVE)
-        zone = FRIEND_ZONE;
-    else if(faction === ENEMY)
-        zone = ENEMY_ZONE;
+GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
+    if(this.currentUnit === null) {
+        return;
+    }
+    var pixels = this.currentUnit.pixelsArray;
+
+    var zone = this.BLANK;
+    if(faction === this.FRIEND || faction === this.OBJECTIVE)
+        zone = this.FRIEND_ZONE;
+    else if(faction === this.ENEMY)
+        zone = this.ENEMY_ZONE;
     else
-        zone = FRIEND_ZONE;
+        zone = this.FRIEND_ZONE;
 
     for (var i = 0; i < pixels.length; i += 2)
     {
         var col = clickCol + pixels[i];
         var row = clickRow + pixels[i+1];
         // VERIFY THAT THIS CELL CAN BE PLACED ON
-        if(getGridCell(factionGrid, row, col) === zone &&
-                getGridCell(battleGrid, row, col) !== VOID)
+        if(this.getGridCell(this.factionGrid, row, col) === zone &&
+           this.getGridCell(this.battleGrid, row, col) !== this.VOID)
         {
-            setGridCell(battleGrid, row, col, faction);
-            setGridCell(renderGrid, row, col, faction);
+            this.setGridCell(this.battleGrid, row, col, faction);
+            this.setGridCell(this.renderGrid, row, col, faction);
         }
     }
 
-    this.renderGrid();
+    console.log(this.renderGrid);
+    this.renderGridCells();
 }
 
-GameLogicManager.prototype.isValidCell = function() {
+GameLogicManager.prototype.isValidCell = function(row, col) {
     // IS IT OUTSIDE THE GRID?
-    if (    (row < 0) ||
+    if(    (row < 0) ||
             (col < 0) ||
-            (row >= gridHeight) ||
-            (col >= gridWidth))
+            (row >= this.gridHeight) ||
+            (col >= this.gridWidth))
     {
         return false;
     }
@@ -326,41 +333,37 @@ GameLogicManager.prototype.isValidCell = function() {
     }
 }
 
-GameLogicManager.prototype.getRelativeCoords = function() {
-
-}
-
 GameLogicManager.prototype.pause = function() {
-    this.pause = true;
+    this.paused = true;
 }
 
 GameLogicManager.prototype.resume = function() {
-    this.pause = false;
+    this.paused = false;
 }
 
 GameLogicManager.prototype.reset = function() {
     // RESET ALL THE DATA STRUCTURES TOO
-    battleGrid = new Array();
-    renderGridOld =  new Array();
-    renderGrid = new Array();
-    defenseGrid = new Array();
-    ghostGrid = new Array();
-    factionGrid = new Array();
+    this.battleGrid = new Array(this.gridWidth * this.gridHeight);
+    this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
+    this.renderGrid = new Array(this.gridWidth * this.gridHeight);
+    this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
+    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
+    this.factionGrid = new Array(this.gridWidth * this.gridHeight);
 
     this.paused = true;
 
     // INIT THE CELLS IN THE GRID
-    for(var i = 0; i < gridHeight; i++)
+    for(var i = 0; i < this.gridHeight; i++)
     {
-        for(var j = 0; j < gridWidth; j++)
+        for(var j = 0; j < this.gridWidth; j++)
         {
-            setGridCell(battleGrid, i, j, this.level.grid[i][j]);
-            setGridCell(renderGrid, i, j, this.level.grid[i][j]);
+            this.setGridCell(this.battleGrid, i, j, this.level.grid[i][j]);
+            this.setGridCell(this.renderGrid, i, j, this.level.grid[i][j]);
         }
     }
 
     // RENDER THE CLEARED SCREEN
-    this.renderGrid();
+    this.renderGridCells();
 }
 
 /*
@@ -369,11 +372,11 @@ GameLogicManager.prototype.reset = function() {
  */
 GameLogicManager.prototype.getGridCell = function(grid, row, col) {
     // IGNORE IF IT'S OUTSIDE THE GRID
-    if (!isValidCell(row, col))
-        {
-            return -1;
-        }
-    var index = (row * gridWidth) + col;
+    if (!this.isValidCell(row, col))
+    {
+        return -1;
+    }
+    var index = (row * this.gridWidth) + col;
     return grid[index];
 }
 
@@ -383,11 +386,11 @@ GameLogicManager.prototype.getGridCell = function(grid, row, col) {
  */
 GameLogicManager.prototype.setGridCell = function(grid, row, col, value) {
     // IGNORE IF IT'S OUTSIDE THE GRID
-    if (!isValidCell(row, col))
+    if(!this.isValidCell(row, col))
     {
         return;
     }
-    var index = (row * gridWidth) + col;
+    var index = (row * this.gridWidth) + col;
     grid[index] = value;
 }
 
@@ -398,15 +401,15 @@ GameLogicManager.prototype.setGridCell = function(grid, row, col, value) {
  * the 9 different types of cells it is.
  */
 GameLogicManager.prototype.determineCellType = function(row, col) {
-    if ((row === 0) && (col === 0))                                 return TOP_LEFT;
-    else if ((row === 0) && (col === (gridWidth-1)))                return TOP_RIGHT;
-    else if ((row === (gridHeight-1)) && (col === 0))               return BOTTOM_LEFT;
-    else if ((row === (gridHeight-1)) && (col === (gridHeight-1)))  return BOTTOM_RIGHT;
-    else if (row === 0)                                             return TOP;
-    else if (col === 0)                                             return LEFT;
-    else if (row === (gridHeight-1))                                return RIGHT;
-    else if (col === (gridWidth-1))                                 return BOTTOM;
-    else                                                            return CENTER;
+    if ((row === 0) && (col === 0))                                           return this.TOP_LEFT;
+    else if ((row === 0) && (col === (this.gridWidth-1)))                     return this.TOP_RIGHT;
+    else if ((row === (this.gridHeight-1)) && (col === 0))                    return this.BOTTOM_LEFT;
+    else if ((row === (this.gridHeight-1)) && (col === (this.gridHeight-1)))  return this.BOTTOM_RIGHT;
+    else if (row === 0)                                                       return this.TOP;
+    else if (col === 0)                                                       return this.LEFT;
+    else if (row === (this.gridHeight-1))                                     return this.RIGHT;
+    else if (col === (this.gridWidth-1))                                      return this.BOTTOM;
+    else                                                                      return this.CENTER;
 }
 
 module.exports = GameLogicManager;

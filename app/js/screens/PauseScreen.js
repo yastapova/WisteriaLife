@@ -2,24 +2,20 @@
  * PauseScreen.js
  * PauseScreen object
  */
-var screen = require('./Screen');
+var Screen = require('./Screen');
+var gameManager = require('GameManager');
 
 /*
  * Construct a PauseScreen with given id
  *
  */
 
-var PauseScreen = function(id, level) {
-    if(level === undefined) {
-        this.level = undefined;
-    }
-    else {
-        this.level = level;
-    }
-    screen.call(this, id, level);
+var PauseScreen = function (id, properties) {
+    this.properties = properties;
+    Screen.call(this, id, true);
 };
 
-inherits(PauseScreen, screen);
+inherits(PauseScreen, Screen);
 
 /*
  * Override the load and hide of the parent screen
@@ -28,6 +24,11 @@ inherits(PauseScreen, screen);
 
 PauseScreen.prototype.init = function() {
     console.log("Pause screen init called");
+
+    $('#resume-button').on('click', function () {
+        gameManager.gameLogicManager.resume();
+
+    });
 
 };
 

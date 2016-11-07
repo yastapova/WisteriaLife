@@ -47,19 +47,35 @@ GamePlayScreen.prototype.init = function () {
     // load level, set level callback function
     this.gameManager.levelManager.loadLevel(1, this.setLevel.bind(this));
 
+    // play pause button event
+    var self = this;
     $('#playpause').click(function () {
-        if (this.gameLogicManager.paused)
-            this.gameLogicManager.play(); // resume button is on pause screen
-        else
-            this.gameLogicManager.pause();
+        if (self.gameLogicManager.paused) {
+            self.gameLogicManager.start(); // resume button is on pause screen
+
+            $(this).attr('href', 'pause');
+            $(this).find('i').text('pause');
+
+            return false; // prevent event bubbling
+        } else
+            self.gameLogicManager.pause();
     });
 
+    // update timer once per second
     this.timeDisplay = $('#timer-display')
     this.timer = setInterval(function () {
         if (!this.gameLogicManager.paused)
             this.level.time--;
         this.setTimeDisplay(this.level.time);
     }.bind(this), 1000);
+
+    // update current shape
+    $('#units li a').on('click', function () {
+        self.gameLogicManager.currentUnit =
+            self.gameManager.shapeManager.getShape(
+                $(this).attr('data-unit')
+            );
+    });
 };
 
 /**
@@ -73,7 +89,7 @@ GamePlayScreen.prototype.setTimeDisplay = function (seconds) {
     seconds = seconds % 60;
 
     this.timeDisplay.text(minutes + ':' + seconds);
-}
+};
 
 GamePlayScreen.prototype.hide = function() {
 
