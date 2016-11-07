@@ -4,6 +4,7 @@ var PowerupManager = require('./PowerupManager');
 var GameLogicManager = require('./GameLogicManager');
 var ShapeManager = require('./ShapeManager');
 var LevelManager = require('./LevelManager');
+var firebase = require("firebase");
 
 /**
  * GameManager handles the user and saving/loading of data
@@ -13,6 +14,7 @@ var GameManager = function() {
     this.screenManager = new ScreenManager(
         window.location.pathname.replace(/^\//, "")
     );
+
     this.powerupManager = new PowerupManager();
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
@@ -33,12 +35,15 @@ var GameManager = function() {
  * Singleton-like
  */
 GameManager.getGameManager = function() {
-    if (typeof GameManager.gameManager === 'undefined') {
+    if (!GameManager.gameManager) {
         GameManager.gameManager = new GameManager();
     }
     return GameManager.gameManager;
 };
 
+/**
+* Setup shortcuts to Firebase features and initiate firebase authentication
+*/
 GameManager.prototype.initFirebase = function() {
 
     // Initialize Firebase
@@ -49,8 +54,6 @@ GameManager.prototype.initFirebase = function() {
         storageBucket: "wisteria-life-build2.appspot.com",
         messagingSenderId: "103993744321"
     };
-
-    var firebase = require("firebase");
 
     firebase.initializeApp(config);
 
@@ -78,7 +81,7 @@ GameManager.prototype.initializeUser = function() {
 GameManager.prototype.login = function() {
     // Sign in Firebase using popup auth and Google as the identity provider
     var provider = new firebase.auth.GoogleAuthProvider();
-    this.auth.signInWithPopup(provider);
+    firebase.auth().signInWithPopup(provider);
 };
 
 /**
@@ -86,7 +89,7 @@ GameManager.prototype.login = function() {
  */
 GameManager.prototype.logout = function() {
     // Sign out of Firebase.
-    this.auth.signOut();
+    firebase.auth().signOut();
 }
 
 /**
