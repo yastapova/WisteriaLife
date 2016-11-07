@@ -1,6 +1,7 @@
 var User = require('./User');
 var ScreenManager = require('./ScreenManager');
 var PowerupManager = require('./PowerupManager');
+var GameLogicManager = require('./GameLogicManager');
 var ShapeManager = require('./ShapeManager');
 var LevelManager = require('./LevelManager');
 
@@ -15,23 +16,24 @@ var GameManager = function() {
     this.powerupManager = new PowerupManager();
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
+    this.gameLogicManager = new GameLogicManager();
     this.user = new User();
     this.mute = false;
-    this.loginButton = document.getElementById('splash-login');
-    this.logoutButton = document.getElementById('splash-logout');
-
-    // Listeners for buttons
-
-    this.loginButton.addEventListener('click', this.login.bind(this));
-    this.logoutButton.addEventListener('click', this.logout.bind(this));
-    this.initFirebase();
+    // this.loginButton = document.getElementById('splash-login');
+    // this.logoutButton = document.getElementById('splash-logout');
+    //
+    // // Listeners for buttons
+    //
+    // this.loginButton.addEventListener('click', this.login.bind(this));
+    // this.logoutButton.addEventListener('click', this.logout.bind(this));
+    // this.initFirebase();
 };
 
 /**
  * Singleton-like
  */
 GameManager.getGameManager = function() {
-    if (!GameManager.gameManager) {
+    if (typeof GameManager.gameManager === 'undefined') {
         GameManager.gameManager = new GameManager();
     }
     return GameManager.gameManager;
@@ -125,4 +127,4 @@ GameManager.prototype.checkIsLoggedIn = function() {
     return false;
 }
 
-module.exports = GameManager;
+module.exports = GameManager.getGameManager();
