@@ -58,9 +58,22 @@ GamePlayScreen.prototype.init = function () {
     this.timer = setInterval(function () {
         if (!this.gameLogicManager.paused)
             this.level.time--;
-        this.timeDisplay.text(this.level.time);
+        this.setTimeDisplay(this.level.time);
     }.bind(this), 1000);
 };
+
+/**
+ * Set Time display
+ * Calculates m:ss format of seconds
+ * @param {int} seconds Time in seconds
+ */
+GamePlayScreen.prototype.setTimeDisplay = function (seconds) {
+
+    var minutes = Math.floor(seconds / 60);
+    seconds = seconds % 60;
+
+    this.timeDisplay.text(minutes + ':' + seconds);
+}
 
 GamePlayScreen.prototype.hide = function() {
 
