@@ -9,8 +9,6 @@ var GamePlayScreen = function (id, properties) {
     this.gameLogicManager = this.gameManager.gameLogicManager;
 
     Screen.call(this, id);
-    console.log(this.gameManager);
-    console.error(this);
 };
 
 
@@ -21,15 +19,12 @@ inherits(GamePlayScreen, Screen);
  * @param {Level} level Level object
  */
 GamePlayScreen.prototype.setLevel = function (level) {
-    console.log(this);
     this.level = level;
 
     var PixiCanvas = require('PixiCanvas');
     var canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
 
     this.gameLogicManager.setLevel(level, canvas);
-
-    console.log(this.gameLogicManager);
 }
 
 /**
@@ -48,9 +43,6 @@ GamePlayScreen.prototype.init = function () {
         belowOrigin: false, // Displays dropdown below the button
         alignment: 'left' // Displays dropdown with edge aligned to the left of button
     });
-
-
-    console.warn(this);
 
     // load level, set level callback function
     this.gameManager.levelManager.loadLevel(1, this.setLevel.bind(this));
