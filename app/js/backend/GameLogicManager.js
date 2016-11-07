@@ -302,7 +302,7 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, pixels, fac
         var col = clickCol + pixels[i];
         var row = clickRow + pixels[i+1];
         // VERIFY THAT THIS CELL CAN BE PLACED ON
-        else if(getGridCell(factionGrid, row, col) === zone &&
+        if(getGridCell(factionGrid, row, col) === zone &&
                 getGridCell(battleGrid, row, col) !== VOID)
         {
             setGridCell(battleGrid, row, col, faction);
@@ -310,7 +310,7 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, pixels, fac
         }
     }
     
-    renderGrid();
+    this.renderGrid();
 }
 
 GameLogicManager.prototype.isValidCell = function() {
@@ -344,10 +344,13 @@ GameLogicManager.prototype.resume = function() {
 GameLogicManager.prototype.reset = function() {
     // RESET ALL THE DATA STRUCTURES TOO
     battleGrid = new Array();
+    renderGridOld =  new Array();
     renderGrid = new Array();
     defenseGrid = new Array();
     ghostGrid = new Array();
     factionGrid = new Array();
+
+    this.paused = true;
 
     // INIT THE CELLS IN THE GRID
     for(var i = 0; i < gridHeight; i++)
@@ -360,7 +363,7 @@ GameLogicManager.prototype.reset = function() {
     }
 
     // RENDER THE CLEARED SCREEN
-    renderGrid();
+    this.renderGrid();
 }
 
 /*
