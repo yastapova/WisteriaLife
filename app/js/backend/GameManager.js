@@ -88,7 +88,7 @@ GameManager.prototype.login = function() {
  */
 GameManager.prototype.logout = function() {
     // Sign out of Firebase.
-    firebase.auth.signOut();
+    firebase.auth().signOut();
 }
 
 /**
