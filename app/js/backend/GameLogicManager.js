@@ -198,8 +198,7 @@ GameLogicManager.prototype.renderGrid = function() {
             var renderCell = renderGrid[index];
 
             if(renderCell !== renderGridOld[index])
-                // call pixi renderer
-            canvas.setCell(j, i, colors[renderCell]);
+                canvas.setCell(j, i, colors[renderCell]);
         }
     }
 
@@ -262,8 +261,29 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
     };
 }
 
-GameLogicManager.prototype.placeShape = function(shape) {
+GameLogicManager.prototype.placeShape = function(clickRow, clickCol, pixels, faction) {
+    var zone = BLANK;
+    if(faction === FRIEND || faction === OBJECTIVE)
+        zone = FRIEND_ZONE;
+    else if(faction === ENEMY)
+        zone = ENEMY_ZONE;
+    else
+        zone = FRIEND_ZONE;
 
+    for (var i = 0; i < pixels.length; i += 2)
+    {
+        var col = clickCol + pixels[i];
+        var row = clickRow + pixels[i+1];
+        // VERIFY THAT THIS CELL CAN BE PLACED ON
+        else if(getGridCell(factionGrid, row, col) === zone &&
+                getGridCell(battleGrid, row, col) !== VOID)
+        {
+            setGridCell(battleGrid, row, col, faction);
+            setGridCell(renderGrid, row, col, faction);
+        }
+    }
+    
+    renderGrid();
 }
 
 GameLogicManager.prototype.isValidCell = function() {
@@ -313,7 +333,7 @@ GameLogicManager.prototype.reset = function() {
     }
 
     // RENDER THE CLEARED SCREEN
-    renderGrid();   // TODO
+    renderGrid();
 }
 
 /*
