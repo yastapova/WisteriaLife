@@ -9,14 +9,28 @@ var LevelManager = require('./LevelManager');
  */
 var GameManager = function() {
 
+    // Initialize Firebase
+
+    var config = {
+        apiKey: "AIzaSyBNCeWYe5TnqjvSIL9ieykBn59Zn3Aa0q0",
+        authDomain: "wisteria-life-build2.firebaseapp.com",
+        databaseURL: "https://wisteria-life-build2.firebaseio.com",
+        storageBucket: "wisteria-life-build2.appspot.com",
+        messagingSenderId: "103993744321"
+    };
+
+    firebase.initializeApp(config);
+
     this.screenManager = new ScreenManager(
         window.location.pathname.replace(/^\//, "")
     );
+
     this.powerupManager = new PowerupManager();
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
     this.user = new User();
     this.mute = false;
+
     this.loginButton = document.getElementById('splash-login');
     this.logoutButton = document.getElementById('splash-logout');
 
@@ -37,20 +51,10 @@ GameManager.getGameManager = function() {
     return GameManager.gameManager;
 };
 
+/**
+* Setup shortcuts to Firebase features and initiate firebase authentication
+*/
 GameManager.prototype.initFirebase = function() {
-
-    // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyBNCeWYe5TnqjvSIL9ieykBn59Zn3Aa0q0",
-        authDomain: "wisteria-life-build2.firebaseapp.com",
-        databaseURL: "https://wisteria-life-build2.firebaseio.com",
-        storageBucket: "wisteria-life-build2.appspot.com",
-        messagingSenderId: "103993744321"
-    };
-
-    var firebase = require("firebase");
-
-    firebase.initializeApp(config);
 
     // Shortcuts to Firebase SDK features.
     this.auth = firebase.auth();
@@ -76,7 +80,7 @@ GameManager.prototype.initializeUser = function() {
 GameManager.prototype.login = function() {
     // Sign in Firebase using popup auth and Google as the identity provider
     var provider = new firebase.auth.GoogleAuthProvider();
-    this.auth.signInWithPopup(provider);
+    firebase.auth().signInWithPopup(provider);
 };
 
 /**
