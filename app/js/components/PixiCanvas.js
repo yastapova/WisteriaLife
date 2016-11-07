@@ -112,7 +112,7 @@ PixiCanvas.prototype.resizePixiCanvas = function () {
     this.renderer.resize(canvasDimensions.width, canvasDimensions.height);
 
     // resized canvas, so need to reset and re-render
-    this.render();
+    this.renderGridLines();
 };
 
 /**
@@ -124,7 +124,7 @@ PixiCanvas.prototype.render = function () {
     this.reset();
 
     // render grid LINES
-    this.renderGrid();
+    this.renderGridLines();
 };
 
 /**
@@ -133,6 +133,37 @@ PixiCanvas.prototype.render = function () {
 PixiCanvas.prototype.reset = function () {
 
 };
+
+PixiCanvas.prototype.calculateCellLocation = function (col, row) {
+    return {
+        x: col * this.cellLength,
+        y: row * this.cellLength
+    }
+};
+
+/**
+ * Set grid cell with specified color
+ * @param {[type]} col   [description]
+ * @param {[type]} row   [description]
+ * @param {[type]} color [description]
+ */
+PixiCanvas.prototype.setCell = function (col, row, color) {
+
+    var location = this.calculateCellLocation(col, row);
+
+    // calculate location of the cell
+    var rect = new PIXI.Graphics();
+    rect.beginFill(color);
+
+    // set the line style to have a width of 5 and set the color to red
+    rect.lineStyle(1, 0xAAAAAA);
+
+    // draw a rectangle
+    rect.drawRect(location.x, location.y, this.cellLength, this.cellLength);
+
+    this.stage.addChild(rect);
+
+}
 
 PixiCanvas.prototype.respondToMouseClick = function () {
     // CALCULATE THE ROW,COL OF THE CLICK
@@ -159,7 +190,7 @@ PixiCanvas.prototype.getRelativeCoords = function () {
 /**
  * Render the basic grid
  */
-PixiCanvas.prototype.renderGrid = function () {
+PixiCanvas.prototype.renderGridLines = function () {
 
     // SET THE PROPER COLOR
     var strokeColor = 0xAAAAAA;
