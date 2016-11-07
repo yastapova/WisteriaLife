@@ -1,12 +1,17 @@
 var GameLogicManager = function(level) {
-    this.renderGrid = [];
-    this.updateGrid = [];
-    this.defenseGrid = [];
-    this.ghostGrid = [];
+    this.renderGrid = [];   // what gets displayed
+    this.battleGrid = [];   // friend and foe interactions
+    this.defenseGrid = [];  // defense towers only
+    this.ghostGrid = [];    // ghost only
+    this.factionGrid = [];  // only friend and enemy zone; STATIC
     this.timer = undefined;
     this.level = level;
 
+    var gridHeight; //TODO: how to initialize grids?
+    var gridWidth;
+
     // cell types
+    var BLANK = -2;
     var VOID = -1;
     var FRIEND_ZONE = 0;
     var ENEMY_ZONE = 1;
@@ -16,12 +21,12 @@ var GameLogicManager = function(level) {
     var GHOST = 5;
 
     // cell colors
-    var FRIEND_ZONE_COLOR = "#ffffff";
-    var ENEMY_ZONE_COLOR = "696969";
-    var FRIEND_COLOR = "#c9a0dc";
-    var OBJECTIVE_COLOR = "#773795";
-    var ENEMY_COLOR = "#94b21c";
-    var GHOST_COLOR = "A0D1DC";
+    var FRIEND_ZONE_COLOR = 0xffffff;
+    var ENEMY_ZONE_COLOR = 0x696969;
+    var FRIEND_COLOR = 0xc9a0dc;
+    var OBJECTIVE_COLOR = 0x773795;
+    var ENEMY_COLOR = 0x94b21c;
+    var GHOST_COLOR = 0xa0d1dc;
 
     // cell location types
     var TOP_LEFT = 0;
@@ -115,11 +120,52 @@ GameLogicManager.prototype.start = function(level) {
 }
 
 GameLogicManager.prototype.updateLoop = function() {
+    for (var i = 0; i < gridHeight; i++)
+    {
+        for (var j = 0; j < gridWidth; j++)
+        {
+            // CALCULATE THE ARRAY INDEX OF THIS CELL
+            // AND GET ITS CURRENT STATE
+            var index = (i * gridWidth) + j;
+            var battleCell = battleGrid[index];
+            var defenseCell = defenseGrid[index];
 
+            // CASES
+            switch(battleCell) {
+                case BLANK:
+                    // decide if to reproduce
+                    break;
+                case VOID:
+                    // do nothing; it is void
+                    break;
+                case FRIEND:
+                    // decide if to die
+                    break;
+                case ENEMY:
+                    // decide if to die
+                    break;
+                default:
+
+                    break;
+            }
+            switch(defenseCell) {
+                case OBJECTIVE:
+                    if(battleCell === ENEMY)
+                        defenseGrid[index] = BLANK;
+                    break;
+                default:
+                    // nothing
+                    break;
+            }
+        }
+    } 
 }
 
 GameLogicManager.prototype.updateGrid = function() {
-
+    // go through all the boxes in render grid
+    // compare to old render grid
+    // call pixi only if new render grid is different from old
+    // switch old render grid to new
 }
 
 GameLogicManager.prototype.reproduce = function() {
@@ -164,7 +210,7 @@ GameLogicManager.prototype.resume = function() {
 
 GameLogicManager.prototype.reset = function() {
     // RESET ALL THE DATA STRUCTURES TOO
-    updateGrid = new Array();
+    battleGrid = new Array();
     renderGrid = new Array();
     defenseGrid = new Array();
     ghostGrid = new Array();
@@ -174,7 +220,7 @@ GameLogicManager.prototype.reset = function() {
         {
             for (var j = 0; j < gridWidth; j++)
                 {
-                    setGridCell(updateGrid, i, j, this.level.grid[i][j]);
+                    setGridCell(battleGrid, i, j, this.level.grid[i][j]);
                     setGridCell(renderGrid, i, j, this.level.grid[i][j]);
                 }
         }
