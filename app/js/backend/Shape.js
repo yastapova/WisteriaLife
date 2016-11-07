@@ -3,14 +3,14 @@
  * Defines a Shape
  * @param shapeAttrObj the Object containing all the attrbiutes required to initialize a shape
  */
-var Shape = function (shapeAtrrObj) {
-	this.name = shapeAtrrObj.name;
+var Shape = function (shapeAttrObj) {
+	this.name = shapeAttrObj.name;
 	this.pixelsArray = [];
-	this.convertToPixelsArray(shapeAtrrObj.coordinates);
+	this.convertToPixelsArray(shapeAttrObj.coordinates);
 };
 
 /**
- * Initializes the pixels array from the coordinates in the shapeAtrrObj
+ * Initializes the pixels array from the coordinates in the shapeAttrObj
  * @param  coordinates the array of coordinate objects to convert to a single array
  */
 Shape.prototype.convertToPixelsArray = function (coordinates) {
