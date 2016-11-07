@@ -61,7 +61,13 @@ GameManager.prototype.initFirebase = function() {
     this.storage = firebase.storage();
 
     // Initiates Firebase auth and listen to auth state changes.
-    //this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
+    this.auth.onAuthStateChanged(function(user) {
+	  if (user) {
+	    // User is signed in.
+	  } else {
+	    // No user is signed in.
+	  }
+	});
 };
 
 /**
