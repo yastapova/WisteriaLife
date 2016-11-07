@@ -48,11 +48,17 @@ GamePlayScreen.prototype.init = function () {
     this.gameManager.levelManager.loadLevel(1, this.setLevel.bind(this));
 
     // play pause button event
+    var self = this;
     $('#playpause').click(function () {
-        if (this.gameLogicManager.paused)
-            this.gameLogicManager.play(); // resume button is on pause screen
-        else
-            this.gameLogicManager.pause();
+        if (self.gameLogicManager.paused) {
+            self.gameLogicManager.start(); // resume button is on pause screen
+
+            $(this).attr('href', 'pause');
+            $(this).find('i').text('pause');
+
+            return false; // prevent event bubbling
+        } else
+            self.gameLogicManager.pause();
     });
 
     // update timer once per second
@@ -64,7 +70,6 @@ GamePlayScreen.prototype.init = function () {
     }.bind(this), 1000);
 
     // update current shape
-    var self = this;
     $('#units li a').on('click', function () {
         self.gameLogicManager.currentUnit =
             self.gameManager.shapeManager.getShape(

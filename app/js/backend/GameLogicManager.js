@@ -147,11 +147,7 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
 GameLogicManager.prototype.start = function () {
     if (!this.level || !this.canvas)
         throw "Level and/or canvas not set! Game logic cannot start.";
-
-    // decrease timer by 1 per second
-    setInterval(function () {
-        this.timer--;
-    }.bind(this), 1000);
+    this.paused = false;
 }
 
 GameLogicManager.prototype.updateLoop = function() {
@@ -338,11 +334,11 @@ GameLogicManager.prototype.isValidCell = function(row, col) {
 }
 
 GameLogicManager.prototype.pause = function() {
-    this.pause = true;
+    this.paused = true;
 }
 
 GameLogicManager.prototype.resume = function() {
-    this.pause = false;
+    this.paused = false;
 }
 
 GameLogicManager.prototype.reset = function() {

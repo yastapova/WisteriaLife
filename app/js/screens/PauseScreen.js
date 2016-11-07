@@ -3,6 +3,7 @@
  * PauseScreen object
  */
 var Screen = require('./Screen');
+var gameManager = require('GameManager');
 
 /*
  * Construct a PauseScreen with given id
@@ -23,6 +24,11 @@ inherits(PauseScreen, Screen);
 
 PauseScreen.prototype.init = function() {
     console.log("Pause screen init called");
+
+    $('#resume-button').on('click', function () {
+        gameManager.gameLogicManager.resume();
+
+    });
 
 };
 

@@ -63,7 +63,7 @@ var ScreenManager = function (currentScreen) {
         var href = $(this).attr("href");
 
         // non-event and internal links only
-        if (href.indexOf('#!') == -1 && (
+        if (href.indexOf('#') == -1 && (
             href.indexOf(document.domain) > -1 || href.indexOf(':') === -1)
         ) {
 
@@ -104,6 +104,10 @@ ScreenManager.prototype.switchScreens = function (screen) {
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
     this.screen.load(this.screen.init);
 };
+
+ScreenManager.prototype.hideScreen = function () {
+
+}
 
 /**
  * Back button
