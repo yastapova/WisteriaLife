@@ -9,6 +9,7 @@ var GameLogicManager = function(level) {
     this.timer = null;
     this.level = null;
     this.canvas = null;
+    this.currentUnit = null;
 
     this.paused = true; // game logic starts paused
 

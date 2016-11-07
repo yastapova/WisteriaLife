@@ -8,8 +8,6 @@ var GamePlayScreen = function (id, properties) {
     this.gameManager = require('GameManager');
     this.gameLogicManager = this.gameManager.gameLogicManager;
 
-    this.currentUnit = null;
-
     Screen.call(this, id);
 };
 
@@ -68,7 +66,7 @@ GamePlayScreen.prototype.init = function () {
     // update current shape
     var self = this;
     $('#units li a').on('click', function () {
-        self.currentUnit =
+        self.gameLogicManager.currentUnit =
             self.gameManager.shapeManager.getShape(
                 $(this).attr('data-unit')
             );
