@@ -84,7 +84,7 @@ GamePlayScreen.prototype.setTimeDisplay = function (seconds) {
     seconds = seconds % 60;
 
     this.timeDisplay.text(minutes + ':' + seconds);
-}
+};
 
 GamePlayScreen.prototype.hide = function() {
 
