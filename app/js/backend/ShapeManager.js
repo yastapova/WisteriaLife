@@ -1,4 +1,5 @@
 var Shape = require('Shape');
+var firebase = require("firebase");
 
 /**
  * ShapeManager.js
@@ -7,18 +8,14 @@ var Shape = require('Shape');
  */
 var ShapeManager = function() {
     this.shapesMap = new Map();
-    this.initShapesMap();
+    this.loadShapes();
 };
 
-/**
- * intializes the shapesMap with name:String to shape:Shape mapping
- */
-ShapeManager.prototype.initShapesMap = function(){
-    console.log("Init shapes map called.");
-    var shapesFile = "/data/shapes.json";
-    $.getJSON(shapesFile, function(data){
-        console.log("loading from data shapes.json");
-        this.loadJSONData(data);
+// Loads the shapes from firebase
+ShapeManager.prototype.loadShapes = function() { 
+    // Reference to the /shapes/ database path
+    firebase.database().ref('shapes').once('value', function (snapshot) {
+        this.loadJSONData(snapshot.val());
     }.bind(this));
 };
 
@@ -28,8 +25,8 @@ ShapeManager.prototype.initShapesMap = function(){
  * @param data the JSON data
  */
 ShapeManager.prototype.loadJSONData = function(data){
-    for (var i = 0; i < data.shapes.length;i++){
-        var shapeData = data.shapes[i];
+    for (var i = 0; i < data.length;i++){
+        var shapeData = data[i];
         var shapeAttrObj = {
             name : shapeData.name,
             coordinates : shapeData.coordinates
@@ -37,5 +34,14 @@ ShapeManager.prototype.loadJSONData = function(data){
         this.shapesMap.set(shapeData.name, new Shape(shapeAttrObj));
     }
 };
+
+/**
+ * Look up shape object in the map
+ * @param  {String} name name of Shape
+ * @return {Shape}      Shape object
+ */
+ShapeManager.prototype.getShape = function (name) {
+    return this.shapesMap.get(name);
+}
 
 module.exports = ShapeManager;

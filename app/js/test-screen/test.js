@@ -31,14 +31,14 @@ console.log(testA.name);
 // Note - this only works on frontend
 // on backend code, the full relative path must be provided
 // require('../backend/PowerupManager')
-var PowerupManager = require('PowerupManager');
-var ShapeManager = require('ShapeManager');
-var LevelManager = require('LevelManager');
+// var PowerupManager = require('PowerupManager');
+// var ShapeManager = require('ShapeManager');
+// var LevelManager = require('LevelManager');
 
-//var PowerupManager = new PowerupManager();
-var ShapeManager = new ShapeManager();
-var LevelManager = new LevelManager();
-LevelManager.loadLevel(1, function(){});
+// var PowerupManager = new PowerupManager();
+// var ShapeManager = new ShapeManager();
+// var LevelManager = new LevelManager();
+// LevelManager.loadLevel(1, function(){});
 
 module.exports = {
     TestA: TestA,

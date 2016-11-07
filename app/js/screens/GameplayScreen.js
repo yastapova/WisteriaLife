@@ -8,6 +8,8 @@ var GamePlayScreen = function (id, properties) {
     this.gameManager = require('GameManager');
     this.gameLogicManager = this.gameManager.gameLogicManager;
 
+    this.currentUnit = null;
+
     Screen.call(this, id);
 };
 
@@ -47,6 +49,7 @@ GamePlayScreen.prototype.init = function () {
     // load level, set level callback function
     this.gameManager.levelManager.loadLevel(1, this.setLevel.bind(this));
 
+    // play pause button event
     $('#playpause').click(function () {
         if (this.gameLogicManager.paused)
             this.gameLogicManager.play(); // resume button is on pause screen
@@ -54,12 +57,22 @@ GamePlayScreen.prototype.init = function () {
             this.gameLogicManager.pause();
     });
 
+    // update timer once per second
     this.timeDisplay = $('#timer-display')
     this.timer = setInterval(function () {
         if (!this.gameLogicManager.paused)
             this.level.time--;
         this.setTimeDisplay(this.level.time);
     }.bind(this), 1000);
+
+    // update current shape
+    var self = this;
+    $('#units li a').on('click', function () {
+        self.currentUnit =
+            self.gameManager.shapeManager.getShape(
+                $(this).attr('data-unit')
+            );
+    });
 };
 
 /**
