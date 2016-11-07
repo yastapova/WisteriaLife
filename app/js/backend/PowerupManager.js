@@ -1,24 +1,20 @@
 var Powerup = require('./Powerup');
-
+var firebase = require("firebase");
 /**
  * PowerupManager.js
  * Defines and initializes all the powerups in the game
  */
 var PowerupManager = function () {
 	this.powerupsMap = new Map();
-	this.initPowerupsMap();
+	this.loadPowerups();
 };
 
-/**
- * intializes the powerupsMap with name:String to powerup:Powerup mapping
- */
-PowerupManager.prototype.initPowerupsMap = function () {
-	console.log("Init powerup map called.");
-	var powerupsFile = "/data/powerups.json";
-	$.getJSON(powerupsFile, function (data) {
-		console.log("loading from data powerups.json");
-		this.loadJSONData(data);
-	}.bind(this));
+// Loads the powerups from firebase
+PowerupManager.prototype.loadPowerups = function() { 
+	// Reference to the /powerups/ database path
+	firebase.database().ref('powerups').once('value', function (snapshot) {
+  		this.loadJSONData(snapshot.val());
+  	}.bind(this));
 };
 
 /**
@@ -27,8 +23,8 @@ PowerupManager.prototype.initPowerupsMap = function () {
  * @param data JSON data
  */
 PowerupManager.prototype.loadJSONData = function (data) {
-	for (var i = 0; i < data.powerups.length; i++) {
-		var powerupData = data.powerups[i];
+	for (var i = 0; i < data.length; i++) {
+		var powerupData = data[i];
 		var powerupAttrObj = {
 			name: powerupData.name,
 			type: powerupData.type,
