@@ -306,7 +306,7 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, pixels, fac
             setGridCell(renderGrid, row, col, faction);
         }
     }
-    
+
     this.renderGrid();
 }
 

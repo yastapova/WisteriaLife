@@ -35,7 +35,7 @@ var PowerupManager = require('PowerupManager');
 var ShapeManager = require('ShapeManager');
 var LevelManager = require('LevelManager');
 
-var PowerupManager = new PowerupManager();
+//var PowerupManager = new PowerupManager();
 var ShapeManager = new ShapeManager();
 var LevelManager = new LevelManager();
 LevelManager.loadLevel(1, function(){});
