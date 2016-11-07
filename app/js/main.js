@@ -50,7 +50,6 @@ $(document).ready(function() {
     // singleton game manager
     var gameManager = require('GameManager');
 
-    console.log('%cTesting GameManager', 'color: #c9a0dc; font-size: x-large');
-    console.log(gameManager);
-    console.log('%c=====', 'color: #c9a0dc; font-size: x-large');
+    // setup initial screen
+    gameManager.screenManager.setupInitScreen();
 });
