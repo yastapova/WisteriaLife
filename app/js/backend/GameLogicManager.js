@@ -1,3 +1,5 @@
+'use strict';
+
 var GameLogicManager = function(level) {
     this.renderGridOld = [];// what was rendered last update loop
     this.renderGrid = [];   // what gets displayed
@@ -54,6 +56,7 @@ var GameLogicManager = function(level) {
     //this.canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
 
     this.cellLookup;
+    this.initCellLookup();
 }
 
 /*
@@ -76,43 +79,43 @@ function CellType(initNumNeighbors, initCellValues) {
 GameLogicManager.prototype.initCellLookup = function()
 {
     // WE'LL PUT ALL THE VALUES IN HERE
-    cellLookup = new Array();
+    this.cellLookup = new Array();
 
     // TOP LEFT
     this.topLeftArray           = new Array( 1, 0,  1,  1,  0,  1);
-    cellLookup[this.TOP_LEFT]   = new CellType(3, this.topLeftArray);
+    this.cellLookup[this.TOP_LEFT]   = new CellType(3, this.topLeftArray);
 
     // TOP RIGHT
     this.topRightArray           = new Array(-1, 0, -1,  1,  0,  1);
-    cellLookup[this.TOP_RIGHT]   = new CellType(3, this.topRightArray);
+    this.cellLookup[this.TOP_RIGHT]   = new CellType(3, this.topRightArray);
 
     // BOTTOM LEFT
     this.bottomLeftArray         = new Array( 1, 0,  1, -1, 0, -1);
-    cellLookup[this.BOTTOM_LEFT] = new CellType(3, this.bottomLeftArray);
+    this.cellLookup[this.BOTTOM_LEFT] = new CellType(3, this.bottomLeftArray);
 
     // BOTTOM RIGHT
     this.bottomRightArray        = new Array(-1, 0, -1, -1, 0, -1);
-    cellLookup[this.BOTTOM_RIGHT]= new CellType(3, this.bottomRightArray);
+    this.cellLookup[this.BOTTOM_RIGHT]= new CellType(3, this.bottomRightArray);
 
     // TOP
     this.topArray                = new Array(-1, 0, -1, 1, 0, 1, 1, 1, 1, 0);
-    cellLookup[this.TOP]         = new CellType(5, this.topArray);
+    this.cellLookup[this.TOP]         = new CellType(5, this.topArray);
 
     // BOTTOM
     this.bottomArray             = new Array(-1, 0, -1, -1, 0, -1, 1, -1, 1, 0);
-    cellLookup[this.BOTTOM]      = new CellType(5, this.bottomArray);
+    this.cellLookup[this.BOTTOM]      = new CellType(5, this.bottomArray);
 
     // LEFT
     this.leftArray               = new Array(0, -1, 1, -1, 1, 0, 1, 1, 0, 1);
-    cellLookup[this.LEFT]        = new CellType(5, this.leftArray);
+    this.cellLookup[this.LEFT]        = new CellType(5, this.leftArray);
 
     // RIGHT
     this.rightArray              = new Array(0, -1, -1, -1, -1, 0, -1, 1, 0, 1);
-    cellLookup[this.RIGHT]       = new CellType(5, this.rightArray);
+    this.cellLookup[this.RIGHT]       = new CellType(5, this.rightArray);
 
     // CENTER
     this.centerArray             = new Array(-1, -1, -1, 0, -1, 1, 0, 1, 1, 1, 1, 0, 1, -1, 0, -1);
-    cellLookup[this.CENTER]      = new CellType(8, this.centerArray);
+    this.cellLookup[this.CENTER]      = new CellType(8, this.centerArray);
 }
 
 /**
@@ -182,12 +185,12 @@ GameLogicManager.prototype.updateLoop = function() {
                 case this.FRIEND:
                     // decide if to die
                     var neighbors = this.calcNumNeighbors(i, j);
-                    this.die(index, FRIEND, neighbors);
+                    this.die(index, this.FRIEND, neighbors);
                     break;
                 case this.ENEMY:
                     // decide if to die
                     var neighbors = this.calcNumNeighbors(i, j);
-                    this.die(index, ENEMY, neighbors);
+                    this.die(index, this.ENEMY, neighbors);
                     break;
                 default:
                     // nothing
@@ -218,8 +221,6 @@ GameLogicManager.prototype.updateLoop = function() {
 }
 
 GameLogicManager.prototype.renderGridCells = function() {
-    console.log(this.renderGrid);
-    console.log(this.renderGridOld);
     for(var i = 0; i < this.gridHeight; i++)
     {
         for(var j = 0; j < this.gridWidth; j++)
@@ -321,7 +322,6 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
         }
     }
 
-    console.log(this.renderGrid);
     this.renderGridCells();
 }
 
