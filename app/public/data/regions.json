@@ -5,9 +5,9 @@
             "img": "revolting-river.jpg",
             "levels": [
                 {
-                    "name": "Level 1",
-                    "img": "placeholder.png",
-                    "storyline" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "                    
+                    "name": "The Green Slime",
+                    "img": "1.jpg",
+                    "storyline" : "Your country has prospered with peace and wealth for decades under your leadership and the tutelage of your advisor, The Great Razy DaZel. One day, as you are busily going over your inventory, you hear an explosion in the direction of The Great Razy DaZel's lab. But before you can find out what is going on, you hear the warhorns sound."                    
                 },
                 {
                     "name": "Level 2",
