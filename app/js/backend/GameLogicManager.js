@@ -4,7 +4,6 @@ var GameLogicManager = function(level) {
     this.renderGridOld = [];// what was rendered last update loop
     this.renderGrid = [];   // what gets displayed
     this.battleGrid = [];   // friend and foe interactions
-    this.battleGridNew = [];// updated battle grid
     this.defenseGrid = [];  // defense towers only
     this.ghostGrid = [];    // ghost only
     this.factionGrid = [];  // only friend and enemy zone; STATIC
@@ -142,7 +141,6 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
         this.renderGrid[i] = this.BLANK;
         this.renderGridOld[i] = this.BLANK;
         this.battleGrid[i] = this.BLANK;
-        this.battleGridNew[i] = this.BLANK;
         this.defenseGrid[i] = this.BLANK;
         this.ghostGrid[i] = this.BLANK;
         this.factionGrid[i] = this.FRIEND_ZONE;
@@ -214,7 +212,7 @@ GameLogicManager.prototype.updateLoop = function() {
                     break;
             }
 
-            battleCell = this.battleGridNew[index];
+            battleCell = this.battleGrid[index];
             defenseCell = this.defenseGrid[index];
             if(ghostCell !== this.BLANK)
                 this.renderGrid[index] = this.GHOST;
@@ -222,15 +220,13 @@ GameLogicManager.prototype.updateLoop = function() {
                 this.renderGrid[index] = battleCell;
             else if(defenseCell !== this.BLANK)
                 this.renderGrid[index] = defenseCell;
-            // else if(this.renderGrid[index] !== this.BLANK)
-            //     // do nothing; keep this cell
-            //     continue;
+            else if(this.renderGrid[index] !== this.BLANK)
+                // do nothing; keep this cell
+                continue;
             else
                 this.renderGrid[index] = this.factionGrid[index];
         }
     }
-    this.battleGrid = this.battleGridNew.slice(0);
-    this.battleGridNew = this.battleGridNew.slice(0);
 }
 
 GameLogicManager.prototype.renderGridCells = function() {
@@ -250,6 +246,8 @@ GameLogicManager.prototype.renderGridCells = function() {
 
     this.renderGridOld = this.renderGrid;
     this.renderGrid = this.renderGrid.slice(0);
+
+    this.canvas.render();
 }
 
 GameLogicManager.prototype.reproduce = function(index, neighbors) {
@@ -262,16 +260,14 @@ GameLogicManager.prototype.reproduce = function(index, neighbors) {
             newType = this.ENEMY;
         else
             newType = this.FRIEND;
-        this.battleGridNew[index] = newType;
+        this.battleGrid[index] = newType;
     }
-    // new updates are screwing up current calculations
-    // make another grid!
 }
 
 GameLogicManager.prototype.die = function(index, current, neighbors) {
     var total = neighbors["friends"] + neighbors["enemies"];
     if(total < 2 || total > 3) {
-        this.battleGridNew[index] = this.BLANK;
+        this.battleGrid[index] = this.BLANK;
     }
     else {
         // currently do nothing; leave as is
@@ -333,7 +329,6 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
            this.getGridCell(this.battleGrid, row, col) !== this.VOID)
         {
             this.setGridCell(this.battleGrid, row, col, faction);
-            this.setGridCell(this.battleGridNew, row, col, faction);
             this.setGridCell(this.renderGrid, row, col, faction);
         }
     }
@@ -368,7 +363,6 @@ GameLogicManager.prototype.resume = function() {
 GameLogicManager.prototype.reset = function() {
     // RESET ALL THE DATA STRUCTURES TOO
     this.battleGrid = new Array(this.gridWidth * this.gridHeight);
-    this.battleGridNew = new Array(this.gridWidth * this.gridHeight);
     this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
     this.renderGrid = new Array(this.gridWidth * this.gridHeight);
     this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
@@ -378,7 +372,6 @@ GameLogicManager.prototype.reset = function() {
         this.renderGrid[i] = this.BLANK;
         this.renderGridOld[i] = this.BLANK;
         this.battleGrid[i] = this.BLANK;
-        this.battleGridNew[i] = this.BLANK;
         this.defenseGrid[i] = this.BLANK;
         this.ghostGrid[i] = this.BLANK;
         this.factionGrid[i] = this.FRIEND_ZONE;
