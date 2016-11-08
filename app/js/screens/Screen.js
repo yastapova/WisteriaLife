@@ -23,10 +23,10 @@ var Screen = function (id, overlay) {
 
 /**
  * Load and replace screen with new screen
- * @param  {function} initScreen callback when screen is done loading
- *                               this should be a function that sets screen specific events
+ *
+ * When finished, the screen's implemented init() method is a callback.
  */
-Screen.prototype.load = function (initScreen) {
+Screen.prototype.load = function () {
     /*
         - $.get HTML page
         - Get #container-inner from fetched page
@@ -90,8 +90,12 @@ Screen.prototype.load = function (initScreen) {
 
                     this.loader.fadeOut('fast');
 
+                    // scroll to top
+                    $('html, body').animate({ scrollTop: 0 }, 'fast');
+
                     // initialize screen
-                    initScreen.bind(this)();
+                    // initScreen.bind(this)();
+                    this.init();
                 }.bind(this))
 
             }.bind(this));

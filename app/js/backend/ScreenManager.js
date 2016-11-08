@@ -105,7 +105,7 @@ ScreenManager.prototype.switchScreens = function (screen) {
     var properties = null; // TODO
 
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
-    this.screen.load(this.screen.init);
+    this.screen.load();
 
     // stop timers if not an overlay
     if (!this.screen.overlay) {
