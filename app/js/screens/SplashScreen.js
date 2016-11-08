@@ -25,6 +25,7 @@ SplashScreen.prototype.init = function() {
     var gameManager = require('GameManager');
     this.loginButton.on('click', gameManager.login.bind(this));
     this.logoutButton.on('click', gameManager.logout.bind(this));
+    gameManager.auth.onAuthStateChanged(gameManager.onAuthStateChanged.bind(gameManager));
 };
 
 SplashScreen.prototype.checkUser = function() {
