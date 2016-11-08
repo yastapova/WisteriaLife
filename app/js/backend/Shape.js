@@ -5,21 +5,7 @@
  */
 var Shape = function (shapeAttrObj) {
 	this.name = shapeAttrObj.name;
-	this.pixelsArray = [];
-	this.convertToPixelsArray(shapeAttrObj.coordinates);
-};
-
-/**
- * Initializes the pixels array from the coordinates in the shapeAttrObj
- * @param  coordinates the array of coordinate objects to convert to a single array
- */
-Shape.prototype.convertToPixelsArray = function (coordinates) {
-	var pixelsArrayCounter = 0;
-	for (var i = 0; i < coordinates.length; i++) {
-		this.pixelsArray[pixelsArrayCounter] = coordinates[i].x;
-		this.pixelsArray[pixelsArrayCounter + 1] = coordinates[i].y;
-		pixelsArrayCounter += 2;
-	}
+	this.pixelsArray = shapeAttrObj.coordinates;
 };
 
 module.exports = Shape;
