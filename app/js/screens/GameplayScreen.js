@@ -24,7 +24,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
     this.totalTime = this.level.time;
 
     var PixiCanvas = require('PixiCanvas');
-    var canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
+    var canvas = new PixiCanvas($('#gameplay-canvas'), this.level.grid);
 
     this.gameLogicManager.setLevel(level, canvas);
 }
