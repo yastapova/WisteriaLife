@@ -11,6 +11,9 @@ $small-screen: 799px !default;
 $medium-screen: 1023px !default;
 $large-screen: 1200px !default;
 
+$navbar-height-mobile: 35px;
+$navbar-height: 54px;
+
 @import 'materialize/materialize';
 
 /*
@@ -27,6 +30,7 @@ $primary-color: #c9a0dc;
 $primary-dark: #773795;
 $enemy-color: #94b21c;
 $enemy-light: #ADBF63;
+$highlight-color: #26a69a;
 
 // Small heights
 $small-height: 400px;
@@ -85,7 +89,11 @@ a {
     @include transition(all 0.3s linear);
 }
 
-.materialize-toast {
+#toast-container {
+    z-index: 2;
+}
+
+.wisteria-toast {
     background-color: $primary-color;
 }
 

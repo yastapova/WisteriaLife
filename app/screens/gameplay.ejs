@@ -1,64 +1,71 @@
 <% include partials/header %>
 <!-- Page Content goes here -->
-<div id="gameplay-screen" class="container-inner" align="center">
-    <div class="toolbar top">
-        <span class="toolbar-content">
-            <div class="padder">
-                <div class="progress">
-                    <div class="determinate" style="width: 70%"></div>
+<div id="gameplay-screen" class="container-inner">
+
+    <div class="gameplay-toolbar toolbar-top">
+        <div class="toolbar-content">
+            <div class="progress">
+                <div id="time-bar" class="determinate" style="width: 0%"></div>
+            </div>
+
+            <div id="timer-display">
+                <span id="current-time">0:00</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gameplay Canvas - filled in by Pixi -->
+    <div class="canvas" id="gameplay-canvas"></div>
+
+    <div class="gameplay-toolbar toolbar-bottom">
+        <div class="toolbar-content">
+
+            <div id="playpause-button" class="toolbar-item">
+                <a href="#!" id="playpause">
+                    <i class="wisteria-icons play mdi mdi-play"></i>
+                </a>
+            </div>
+
+            <div id="unit-select" class="toolbar-item">
+                <div id="unit-select-menu">
+                    <select>
+                        <option value="" disabled selected>Unit</option>
+                        <option value="archernw" data-icon="/img/powerups/archernw.png">Archer &nwarr;</option>
+                        <option value="archerne" data-icon="/img/powerups/archerne.png">Archer &nearr;</option>
+                        <option value="archersw" data-icon="/img/powerups/archersw.png">Archer &swarr;</option>
+                        <option value="archerse" data-icon="/img/powerups/archerse.png">Archer &searr;</option>
+                        <option value="infantryn" data-icon="/img/powerups/infantryn.png">Infantry &uarr;</option>
+                        <option value="infantrys" data-icon="/img/powerups/infantrys.png">Infantry &darr;</option>
+                        <option value="infantrye" data-icon="/img/powerups/infantrye.png">Infantry &rarr;</option>
+                        <option value="infantryw" data-icon="/img/powerups/infantryw.png">Infantry &larr;</option>
+                        <option value="tower" data-icon="/img/powerups/tower.png">Tower</option>
+                        <option value="blockade" data-icon="/img/powerups/blockade.png">Blockade</option>
+                        <option value="shield" data-icon="/img/powerups/shield.png">Shield</option>
+                        <option value="caltrops" data-icon="/img/powerups/caltrops.png">Caltrops</option>
+                        <option value="wallbackward" data-icon="/img/powerups/wallbackward.png">Wall &nwarr;</option>
+                        <option value="wallforward" data-icon="/img/powerups/wallforward.png">Wall &nearr;</option>
+                    </select>
                 </div>
             </div>
-            <span class="toolbar-text" id="timer-display">0:30</span>
-        </span>
-    </div>
-    <div class="canvas" id="gameplay-canvas">
 
-    </div>
-    <div class="toolbar bottom">
-        <span class="toolbar-content">
-            <div class="bottom align">
-                <a href="#!" id="playpause"><i class="wisteria-icons play mdi mdi-play"></i></a>
-            </div>
-            <!-- Dropdown Trigger -->
-            <div class="bottom align">
-                <a class='dropdown-button btn small' href='#!' data-activates='units'>Units</a>
+            <div id="powerup-select" class="toolbar-item">
+                <div id="powerup-select-menu">
+                    <select>
+                        <option value="" disabled selected>Powerup</option>
+                        <option value="stopspawn">Reduce Enemy Spawn</option>
+                        <option value="reducetime">Reduce Time</option>
+                        <option value="void">Void Cell</option>
+                    </select>
+                </div>
             </div>
 
-            <!-- Dropdown Structure -->
-            <ul id='units' class='dropdown-content'>
-                <li><a data-unit="archernw" href="#!">Archer &nwarr;</a></li>
-                <li><a data-unit="archerne" href="#!">Archer &nearr;</a></li>
-                <li><a data-unit="archersw" href="#!">Archer &swarr;</a></li>
-                <li><a data-unit="archerse" href="#!">Archer &searr;</a></li>
-                <li><a data-unit="infantryn" href="#!">Infantry &uarr;</a></li>
-                <li><a data-unit="infantrys" href="#!">Infantry &darr;</a></li>
-                <li><a data-unit="infantrye" href="#!">Infantry &rarr;</a></li>
-                <li><a data-unit="infantryw" href="#!">Infantry &larr;</a></li>
-                <li><a data-unit="tower" href="#!">Tower</a></li>
-                <li><a data-unit="blockade" href="#!">Blockade</a></li>
-                <li><a data-unit="shield" href="#!">Shield</a></li>
-                <li><a data-unit="caltrops" href="#!">Caltrops</a></li>
-                <li><a data-unit="wallbackward" href="#!">Wall &nwarr;</a></li>
-                <li><a data-unit="wallforward" href="#!">Wall &nearr;</a></li>
-
-            </ul>
-
-            <!-- Dropdown Trigger -->
-            <div class="bottom align">
-                <a class='dropdown-button btn small' href='#!' data-activates='powerups'>Powerups</a>
+            <div id="cheat-button" class="toolbar-item">
+                <a href="#!" id="cheat">
+                    <i class="wisteria-icons play mdi mdi-lock"></i>
+                </a>
             </div>
 
-            <!-- Dropdown Structure -->
-            <ul id='powerups' class='dropdown-content'>
-                <li><a href="#!">Reduce Time</a></li>
-                <li><a href="#!">Reduce Enemy Spawns</a></li>
-                <li><a href="#!">Void Cell</a></li>
-            </ul>
-
-            <div class="bottom align">
-                <a href="victory"><i class="wisteria-icons lock mdi mdi-lock"></i></a>
-            </div>
-        </span>
+        </div>
     </div>
 </div>
 

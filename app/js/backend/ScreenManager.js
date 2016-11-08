@@ -23,6 +23,9 @@ var ScreenManager = function (currentScreen) {
     this.nextScreen = null;
     this.screenMap = null;
 
+    // all app timers
+    this.timers = [];
+
     // reference all the screens
     this.screenMap = {
         'about': AboutScreen,
@@ -103,6 +106,14 @@ ScreenManager.prototype.switchScreens = function (screen) {
 
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
     this.screen.load(this.screen.init);
+
+    // stop timers if not an overlay
+    if (!this.screen.overlay) {
+        for (var i = 0; i < this.timers.length; i++) {
+            clearInterval(this.timers[i]);
+        }
+        this.timers = [];
+    }
 };
 
 /**
