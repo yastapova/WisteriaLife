@@ -20,15 +20,15 @@ var GameManager = function() {
     //this.user = new User();
     this.mute = false;
 
-    // Splash Screen
-
-    this.loginButton = document.getElementById('splash-login');
-    this.logoutButton = document.getElementById('splash-logout');
-
     // Menu Bar
-    this.userLogin = document.getElementById('user-login');
     this.userPic = document.getElementById('user-pic');
     this.userName = document.getElementById('user-name');
+
+    // Dropdown
+    this.userDropName = document.getElementsByClassName('user-name')[0];
+    this.userLevel = document.getElementsByClassName('user-level')[0];
+    this.userIconPic = document.getElementById('user-icon-pic');
+    this.userPicDrop = document.getElementById('user-pic-drop');
 
 };
 
@@ -78,19 +78,29 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         var avatar = user.photoURL;
         var name = user.displayName;
         var id = user.getToken();
-        var gameData = undefined;
-        user = new User(name, avatar, id, gameData);
+        user = new User(name, avatar, id);
+        console.log(user);
 
         // Splash changes
         $('#splash-logout').css('display','block');
         $('#splash-login').css('display', 'none');
 
         // Navbar changes
-        $('#user-login').css('display','none');
         this.userName.textContent = name;
-        $('#user-name').css('display','inline-block');
         this.userPic.style.backgroundImage = 'url(' + (avatar) + ')';
+        $('#user-login').css('display','none');
+        $('#user-name').css('display','inline-block');
         $('#user-pic').css('display','inline-block');
+
+        // Dropdown changes
+        this.userPicDrop.style.backgroundImage = 'url(' + (avatar) + ')';
+        this.userDropName.textContent = name;
+        this.userLevel.textContent = 'Level ' + user.gameData.getCurrentLevel();
+        $('#drop-logout').css('display','block');
+        $('#drop-login').css('display', 'none');
+        $('#user-icon-def').css('display','none');
+        $('#user-icon-pic').css('display','inline-block');
+        $('#user-pic-drop').css('display','inline-block');
 
         return user;
     }
@@ -105,6 +115,16 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         $('#user-login').css('display','block');
         $('#user-name').css('display','none');
         $('#user-pic').css('display','none');
+
+        // Dropdown changes
+        $('#drop-login').css('display','block');
+        $('#drop-logout').css('display', 'none');
+        $('#user-icon-def').css('display','inline-block');
+        $('#user-icon-pic').css('display','none');
+        $('#user-pic-drop').css('display','none');
+        this.userDropName.textContent = "Guest";
+        this.userLevel.textContent = 'Level 0';
+
     }
 };
 

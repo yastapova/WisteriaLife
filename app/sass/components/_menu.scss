@@ -31,12 +31,12 @@ nav {
     }
 
     #user-pic {
-        display:none;
-        width:2.5rem;
-        height:2.5rem;
-        background-size:2.5rem;
-        border-radius:2.2rem;
-        vertical-align:middle;
+        display: none;
+        width:2.2rem;
+        height:2.2rem;
+        background-size:2.2rem;
+        border-radius:2rem;
+        vertical-align:-0.7rem;
         margin-left: 1rem;
     }
 
@@ -55,7 +55,7 @@ nav {
             padding: 10px;
         }
 
-        #user-icon {
+        #user-icon-def {
             width: 50px;
             height: 50px;
             display: inline-block;
@@ -65,6 +65,21 @@ nav {
                 font-size: 3em;
                 vertical-align: middle;
                 line-height: 50px;
+            }
+        }
+
+        #user-icon-pic {
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+            float: left;
+
+            a {
+                width: 2.7em;
+                height: 2.7em;
+                background-size:2.7em;
+                border-radius:1.3em;
+                vertical-align: middle;
             }
         }
 
@@ -106,9 +121,22 @@ nav {
                 }
             }
 
-            #drop-loginout {
+            #drop-login {
                 font-size: 1.5em;
                 float: right;
+                display: none;
+
+                i {
+                    line-height: 25px;
+                    height: 25px;
+                    display:block;
+                }
+            }
+
+            #drop-logout {
+                font-size: 1.5em;
+                float: right;
+                display:none;
 
                 i {
                     line-height: 25px;

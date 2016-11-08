@@ -13,4 +13,8 @@ var GameData = function() {
     this.customLevelsIds = [];
 };
 
+GameData.prototype.getCurrentLevel = function() {
+	return this.currentLevel;
+}
+
 module.exports = GameData;

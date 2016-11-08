@@ -6,7 +6,7 @@
                 <div class="dropdown-button" data-activates="user-dropdown">
                     <a href="#!" id="user-login">
                     <i class="wisteria-icons left mdi mdi-account"></i>
-                    LOGIN</a>
+                    Guest</a>
                     <a href="#!" id="user-pic"></a>
                     <a href="#!" id="user-name"></a>
                 </div>
@@ -17,10 +17,11 @@
 
             <div id="user-dropdown-inner">
                 <div id="user-dropdown-header" class="cf">
-                    <div id="user-icon"><i class="wisteria-icons mdi mdi-account"></i></div>
+                    <div id="user-icon-def"><i class="wisteria-icons mdi mdi-account"></i></div>
+                    <div id="user-icon-pic"><a href="#!" id="user-pic-drop"></a></div>
                     <div id="user-title">
-                        <span class="user-name"></span>
-                        <span class="user-level"></span>
+                        <span class="user-name">Guest</span>
+                        <span class="user-level">Level 0</span>
                     </div>
                 </div>
 
@@ -29,7 +30,9 @@
                         Profile
                     </a>
 
-                    <a href="#!" id="drop-loginout">
+                    <a href="#!" id="drop-login">
+                        <i class="wisteria-icons mdi mdi-login"></i>
+                    <a href="#!" id="drop-logout">
                         <i class="wisteria-icons mdi mdi-power"></i>
                     </a>
                 </div>
