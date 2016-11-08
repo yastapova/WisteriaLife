@@ -122,9 +122,6 @@ PixiCanvas.prototype.resizePixiCanvas = function () {
  */
 PixiCanvas.prototype.render = function () {
 
-    // clear canvas first
-    // this.reset();
-
     this.renderer.render(this.stage);
 };
 
@@ -132,7 +129,9 @@ PixiCanvas.prototype.render = function () {
  * Clear the canvas
  */
 PixiCanvas.prototype.reset = function () {
-
+    for (var child of this.stage.children) {
+        this.stage.removeChild(child);
+    }
 };
 
 PixiCanvas.prototype.calculateCellLocation = function (col, row) {
@@ -170,7 +169,7 @@ PixiCanvas.prototype.respondToMouseClick = function () {
     var canvasCoords = this.getRelativeCoords(event);
     var clickCol = Math.floor(canvasCoords.x/this.cellLength);
     var clickRow = Math.floor(canvasCoords.y/this.cellLength);
-    
+
     var friend = gameManager.gameLogicManager.FRIEND;
     gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend);
 
