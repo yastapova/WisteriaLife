@@ -119,8 +119,8 @@ PixiCanvas.prototype.resizePixiCanvas = function () {
     // resize renderer
     this.renderer.resize(canvasDimensions.width, canvasDimensions.height);
 
-    // resized canvas, so need to reset and re-render
-    this.renderGridLines();
+    // consistent canvas size regardless of device
+    this.cellLength = this.renderer.width / this.size.width;
 };
 
 /**
@@ -135,7 +135,7 @@ PixiCanvas.prototype.render = function () {
  * Clear the canvas
  */
 PixiCanvas.prototype.reset = function () {
-    for (var child of this.stage.children) {
+    for (var child in this.stage.children) {
         this.stage.removeChild(child);
     }
 };
@@ -202,9 +202,6 @@ PixiCanvas.prototype.renderGridLines = function () {
     // SET THE PROPER COLOR
     var strokeColor = 0xAAAAAA;
     var lineWidth = 1;
-
-    // consistent canvas size regardless of device
-    this.cellLength = this.renderer.width / this.size.width;
 
     // VERTICAL LINES
     for (var i = 0; i < this.renderer.width; i++) {

@@ -12,6 +12,12 @@
     display: block;
 }
 
+#user-actions button {
+    margin:10px auto;
+    width:175px;
+    display:none;
+}
+
 @media #{$medium-height-and-down} {
     #splash-title {
         font-size: 3.5em;

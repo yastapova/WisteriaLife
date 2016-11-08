@@ -6,80 +6,130 @@
      }
 }
 
-.toolbar {
-    height: 10%;
-    background: $primary-color;
+/**
+ * All position:fixed elements:
+ *
+ * - navbar (fixed height)
+ * - top toolbar (fixed height)
+ * - canvas (variable fill)
+ * - bottom toolbar (fixed height)
+ */
+
+$toolbar-height: 48px;
+$toolbar-height-mobile: 36px;
+
+#gameplay-canvas {
+    text-align: center;
     width: 100%;
-    position: relative;
-}
+    position: fixed;
+    top: calc(#{$toolbar-height-mobile} + #{$navbar-height-mobile});
+    bottom: $toolbar-height-mobile;
 
-.canvas {
-    height: 80%;
-}
-
-.wisteria-icons.play {
-    color: #26a69a;
-    font-size: 2.3em;
-}
-.wisteria-icons.lock {
-    color: #26a69a;
-    font-size: 2.3em;
-}
-
-.dropdown-button.btn.small {
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 0;
-    padding-bottom: 0;
-    font-size: 0.80rem;
-    height: 25px;
-    line-height: 25px;
-}
-
-.toolbar.bottom .dropdown-content li {
-    min-height: 0px;
-    border-bottom: 1px solid #aaa;
-
-    &:last-child {
-        border-bottom: none;
+    @media #{$medium-and-up} {
+        top: calc(#{$toolbar-height} + #{$navbar-height});
+        bottom: $toolbar-height;
     }
 }
 
-.toolbar.bottom .dropdown-content li>a {
-    font-size: 0.60rem;
-    line-height: 20px;
-    padding: 5px;
+/**
+ * Gameplay Toolbar
+ * Also applies to level editor
+ */
+.gameplay-toolbar {
+    background-color: $primary-color;
+    height: $toolbar-height-mobile;
+    padding: 0 20px;
+    width: 100%;
+    position: fixed;
 
-    @media #{$medium-height-and-up} {
-        font-size: 0.9rem;
+    @media #{$medium-and-up} {
+        height: $toolbar-height;
     }
-}
 
-.bottom.align {
-    display: inline-block;
-    height: 50%;
-    vertical-align: top;
-    margin-left: 5%;
-}
+    .toolbar-item {
+        margin: 0 10px;
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
 
-.progress {
-    margin: 0;
-}
+        a {
+            line-height: $toolbar-height-mobile;
 
-.padder {
-    padding-top: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
+            @media #{$medium-and-up} {
+                line-height: $toolbar-height;
+            }
+        }
 
-.toolbar-text {
-    font-size: 1rem;
-}
+        .wisteria-icons {
+            font-size: 1.5rem;
+            color: $highlight-color;
+            vertical-align: middle;
 
-.toolbar-content {
-    position: absolute;
-    top: 48%;
-    left: 0%;
-    margin-top: -1em;
-    width:100%;
+            @media #{$medium-and-up} {
+                font-size: 2.5rem;;
+            }
+        }
+
+        input {
+            margin: 0;
+        }
+    }
+
+    .toolbar-content {
+        position: relative;
+        height: 100%;
+        text-align: center;
+
+        .progress {
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+            z-index: 5;
+            margin: 0;
+
+            .determinate {
+                @include transition(width 1s linear);
+            }
+        }
+
+        #timer-display {
+            background-color: $primary-color;
+            position: absolute;
+            z-index: 6;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            font-size: 0.85rem;
+
+            @media #{$medium-and-up} {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    // fix for small screens
+    .dropdown-content {
+        max-height: 300px;
+
+        @media #{$medium-and-up} {
+            max-height: 500px;
+        }
+    }
+
+    &.toolbar-top {
+        top: $navbar-height-mobile;
+
+        @media #{$medium-and-up} {
+            top: $navbar-height;
+        }
+    }
+
+    &.toolbar-bottom {
+        bottom: 0px;
+
+        #unit-select-menu {
+            min-width: 200px;
+        }
+    }
 }
