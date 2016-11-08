@@ -152,8 +152,8 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
         this.ghostGrid[i] = this.BLANK;
         // this.factionGrid[i] = this.FRIEND_ZONE;
     }
+    this.renderGrid = this.level.enemyZone;
     this.placeDefenses();
-    console.log(this.level.enemyZone);
     this.renderGridCells();
 }
 
@@ -392,7 +392,6 @@ GameLogicManager.prototype.placeDefenses = function() {
     for(var i = 0; i < defenses.length; i++) {
         var shape = defenses[i].name;
         var coords = defenses[i].coordinates;
-        console.log(gameManager);
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.OBJECTIVE, 
                         shape, this.defenseGrid);
@@ -414,7 +413,6 @@ GameLogicManager.prototype.spawnEnemies = function(spawns) {
         var mob = spawns[i];
         var shape = mob.name;
         var coords = mob.coordinates;
-        console.log(gameManager);
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.ENEMY, shape, null);
     }
