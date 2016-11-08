@@ -7,11 +7,13 @@
  * @param gameData the user's game data
  */
 
-var User = function(name, avatar, id, gameData) {
+var GameData = require('./GameData');
+
+var User = function(name, avatar, id) {
     this.name = name;
     this.avatar = avatar;
     this.id = id;
-    this.gameData = gameData;
+    this.gameData = new GameData();
 };
 
 module.exports = User;
