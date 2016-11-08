@@ -183,7 +183,7 @@ PixiCanvas.prototype.respondToMouseClick = function () {
     var clickRow = Math.floor(canvasCoords.y/this.cellLength);
 
     var friend = gameManager.gameLogicManager.FRIEND;
-    gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend, null);
+    gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend, null, null);
 
     this.render();
 };
