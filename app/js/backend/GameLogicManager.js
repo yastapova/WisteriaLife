@@ -148,6 +148,7 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
         this.factionGrid[i] = this.FRIEND_ZONE;
     }
 
+    this.renderGridCells();
 }
 
 /**
