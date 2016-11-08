@@ -16,7 +16,7 @@ var PowerupManager = function () {
  */
 PowerupManager.prototype.load = function (callback) {
 	this.loadPowerups(callback);
-}
+};
 
 // Loads the powerups from firebase
 PowerupManager.prototype.loadPowerups = function(callback) {
