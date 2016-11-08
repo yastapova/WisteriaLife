@@ -1,4 +1,5 @@
 'use strict';
+var gameManager = require('GameManager');
 
 var GameLogicManager = function(level) {
     this.renderGridOld = [];// what was rendered last update loop
@@ -312,11 +313,16 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
     };
 }
 
-GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
-    if(this.currentUnit === null) {
-        return;
+GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, shape) {
+    if(shape === null) {
+        if(this.currentUnit === null) {
+            return;
+        }
+        else {
+            shape = this.currentUnit;
+        }
     }
-    var pixels = this.currentUnit.pixelsArray;
+    var pixels = shape.pixelsArray;
 
     var zone = this.BLANK;
     if(faction === this.FRIEND || faction === this.OBJECTIVE)
@@ -344,6 +350,25 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
     }
 
     this.renderGridCells();
+}
+
+GameLogicManager.prototype.checkForSpawns = function() {
+    var time = this.level.time;
+    var spawns = this.level.enemySpawnMap.get(time);
+    return spawns;
+}
+
+GameLogicManager.prototype.spawnEnemies = function(spawns) {
+    if(typeof spawns === "undefined")
+        return;
+
+    for(var i = 0; i < spawns.length; i++) {
+        var mob = spawns[i];
+        var shape = mob.name;
+        var coords = mob.coordinates;
+        shape = gameManager.shapeManager.getShape(shape);
+        this.placeShape(coords.y, coords.x, this.ENEMY, shape);
+    }
 }
 
 GameLogicManager.prototype.isValidCell = function(row, col) {
