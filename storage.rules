@@ -1,8 +1,16 @@
 service firebase.storage {
-  match /b/wisteria-life-build1.appspot.com/o {
+  match /b/wisteria-life-build2.appspot.com/o {
     match /{userId}/{timeStamp}/{fileName} {
       allow write: if request.auth.uid == userId;
       allow read;
     }
+    // Partial match for files that start with "images"
+	match /img/regions {
+	   match /{allImages=**} {
+	    // This rule matches one or more path segments (**)
+	    // allImages is a path that contains all segments matched
+	    allow read;
+	  }
+	}
   }
 }
