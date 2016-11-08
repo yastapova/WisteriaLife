@@ -13,6 +13,7 @@ var GameLogicManager = function(level) {
     this.level = null;
     this.canvas = null;
     this.currentUnit = null;
+    this.defensesLeft = 0;
 
     this.paused = true; // game logic starts paused
 
@@ -237,8 +238,10 @@ GameLogicManager.prototype.updateLoop = function() {
             }
             switch(defenseCell) {
                 case this.OBJECTIVE:
-                    if(battleCell === this.ENEMY)
+                    if(battleCell === this.ENEMY) {
                         this.defenseGrid[index] = this.BLANK;
+                        this.defensesLeft--;
+                    }
                     break;
                 default:
                     // nothing
@@ -400,6 +403,7 @@ GameLogicManager.prototype.placeDefenses = function() {
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.OBJECTIVE,
                         shape, this.defenseGrid);
+        this.defensesLeft += 4;
     }
 }
 
@@ -421,6 +425,10 @@ GameLogicManager.prototype.spawnEnemies = function(spawns) {
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.ENEMY, shape, null);
     }
+}
+
+GameLogicManager.prototype.isDead = function() {
+    return !(this.defensesLeft > 0);
 }
 
 GameLogicManager.prototype.isValidCell = function(row, col) {
