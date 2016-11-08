@@ -38,7 +38,7 @@ OverflowMenu.prototype = {
      * Handle back button
      */
     handleBackButton: function () {
-        require('GameManager').getGameManager().screenManager.back();
+        require('GameManager').screenManager.back();
     },
 
     /**
