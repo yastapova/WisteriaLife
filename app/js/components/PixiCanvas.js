@@ -154,7 +154,6 @@ PixiCanvas.prototype.calculateCellLocation = function (col, row) {
  * @param {[type]} color [description]
  */
 PixiCanvas.prototype.setCell = function (col, row, color) {
-    console.log(col + "," + row);
     var location = this.calculateCellLocation(col, row);
 
     // calculate location of the cell
