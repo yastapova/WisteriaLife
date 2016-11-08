@@ -164,12 +164,14 @@ GameLogicManager.prototype.start = function () {
 
     this.paused = false;
     // decrease timer by 1 per second
-    setInterval(function () {
+    this.intervalTimer = setInterval(function () {
         if (!this.paused) {
             this.updateLoop();
             this.renderGridCells();
         }
     }.bind(this), 200);
+
+    require('GameManager').screenManager.timers.push(this.intervalTimer);
 }
 
 GameLogicManager.prototype.updateLoop = function() {

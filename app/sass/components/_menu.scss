@@ -26,8 +26,22 @@ nav {
         color: $primary-color;
     }
 
-    #user-menu {
+    #user-login {
         font-size: 1.2rem;
+    }
+
+    #user-pic {
+        display:none;
+        width:2.5rem;
+        height:2.5rem;
+        background-size:2.5rem;
+        border-radius:2.2rem;
+        vertical-align:middle;
+        margin-left: 1rem;
+    }
+
+    #user-name {
+      font-size: 1.2rem;
     }
 
     #user-dropdown {
@@ -99,6 +113,7 @@ nav {
                 i {
                     line-height: 25px;
                     height: 25px;
+                    display:block;
                 }
             }
         }
