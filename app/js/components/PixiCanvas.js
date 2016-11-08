@@ -47,14 +47,20 @@ var PixiCanvas = function (element, size) {
             }
     }
 
+    // store grid of rendered shapes
+    this.grid = new Array(this.size.width);
+    for (var i = 0; i < this.size.width; i++) {
+        this.grid[i] = new Array(this.size.height);
+    }
+
     //Create the renderer
     this.renderer = PIXI.autoDetectRenderer(1280, 720, {
         antialias: false,
-        transparent: false,
+        transparent: true,
         resolution: 1
     });
     this.renderer.autoResize = true;
-    this.renderer.backgroundColor = 0xeeeeee;
+    // this.renderer.backgroundColor = 0xeeeeee;
 
     //Add the canvas to the HTML document
     element.get(0).appendChild(this.renderer.view);
@@ -159,6 +165,12 @@ PixiCanvas.prototype.setCell = function (col, row, color) {
 
     // draw a rectangle
     rect.drawRect(location.x, location.y, this.cellLength, this.cellLength);
+
+    // replace existing shape at location if exists
+    var oldRect = this.grid[col][row];
+    if (oldRect)
+        this.stage.removeChild(oldRect);
+    this.grid[col][row] = rect;
 
     this.stage.addChild(rect);
 
