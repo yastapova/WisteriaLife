@@ -326,13 +326,16 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
     else
         zone = this.FRIEND_ZONE;
 
+    if(this.getGridCell(this.factionGrid, clickRow, clickCol) !== zone) {
+        return;
+    }
+
     for (var i = 0; i < pixels.length; i += 2)
     {
         var col = clickCol + pixels[i+1];
         var row = clickRow + pixels[i];
         // VERIFY THAT THIS CELL CAN BE PLACED ON
-        if(this.getGridCell(this.factionGrid, row, col) === zone &&
-           this.getGridCell(this.battleGrid, row, col) !== this.VOID)
+        if(this.getGridCell(this.battleGrid, row, col) !== this.VOID)
         {
             this.setGridCell(this.battleGrid, row, col, faction);
             this.setGridCell(this.battleGridNew, row, col, faction);
