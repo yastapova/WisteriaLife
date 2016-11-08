@@ -135,7 +135,7 @@ PixiCanvas.prototype.render = function () {
  * Clear the canvas
  */
 PixiCanvas.prototype.reset = function () {
-    for (var child of this.stage.children) {
+    for (var child in this.stage.children) {
         this.stage.removeChild(child);
     }
 };

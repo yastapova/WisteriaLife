@@ -34,8 +34,8 @@ gulp.task('browserify', function() {
         }
     });
     return b.bundle()
-        .on('error', function(err){
-            gutil.log(gutil.colors.bgRed(err.message));
+        .on('error', function (err){
+            gutil.log(gutil.colors.bgRed(err));
             gutil.beep();
             // end this stream
             this.emit('end');
@@ -66,9 +66,21 @@ gulp.task('browserify:prod', function() {
         }
     });
     return b.bundle()
+        .on('error', function (err){
+            gutil.log(gutil.colors.bgRed(err));
+            gutil.beep();
+            // end this stream
+            this.emit('end');
+        })
         .pipe(source('wisteria.js'))
         .pipe(buffer())
         .pipe(uglify())
+            .on('error', function (err){
+                gutil.log(gutil.colors.bgRed(err));
+                gutil.beep();
+                // end this stream
+                this.emit('end');
+            })
 
     .pipe(gulp.dest('./app/public/js/'));
 });
