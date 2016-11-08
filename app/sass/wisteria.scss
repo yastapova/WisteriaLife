@@ -85,6 +85,10 @@ a {
     @include transition(all 0.3s linear);
 }
 
+.materialize-toast {
+    background-color: $primary-color;
+}
+
 .container {
     width: 100%;
     max-width: 100%;
