@@ -182,11 +182,19 @@ GameLogicManager.prototype.start = function () {
         this.spawnEnemies(spawns);
     }.bind(this), 1000);
 
-    require('GameManager').screenManager.timers.push(this.gameLoopTimer);
+    var gameManager = require('GameManager');
+    gameManager.screenManager.timers.push(this.gameLoopTimer);
+    gameManager.screenManager.timers.push(this.secondTimer);
 }
 
 GameLogicManager.prototype.checkMessage = function () {
-
+    if (this.level.messageMap.has(this.level.time)) {
+        Materialize.toast(
+            this.level.messageMap.get(this.level.time),
+            4000,
+            'wisteria-toast'
+        );
+    }
 };
 
 GameLogicManager.prototype.updateLoop = function() {
