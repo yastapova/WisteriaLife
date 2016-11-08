@@ -177,9 +177,11 @@ GameLogicManager.prototype.start = function () {
     }.bind(this), 200);
 
     this.secondTimer = setInterval(function () {
-        this.checkMessage(); // check and display message if available
-        var spawns = this.checkForSpawns();
-        this.spawnEnemies(spawns);
+        if (!this.paused) {
+            this.checkMessage(); // check and display message if available
+            var spawns = this.checkForSpawns();
+            this.spawnEnemies(spawns);
+        }
     }.bind(this), 1000);
 
     var gameManager = require('GameManager');
@@ -393,7 +395,7 @@ GameLogicManager.prototype.placeDefenses = function() {
         var shape = defenses[i].name;
         var coords = defenses[i].coordinates;
         shape = gameManager.shapeManager.getShape(shape);
-        this.placeShape(coords.y, coords.x, this.OBJECTIVE, 
+        this.placeShape(coords.y, coords.x, this.OBJECTIVE,
                         shape, this.defenseGrid);
     }
 }
