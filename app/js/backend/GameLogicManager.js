@@ -152,6 +152,7 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
         this.ghostGrid[i] = this.BLANK;
         // this.factionGrid[i] = this.FRIEND_ZONE;
     }
+    this.placeDefenses();
     console.log(this.level.enemyZone);
     this.renderGridCells();
 }
@@ -337,7 +338,7 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
     };
 }
 
-GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, shape) {
+GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid) {
     if(shape === null) {
         if(this.currentUnit === null) {
             return;
@@ -345,6 +346,11 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         else {
             shape = this.currentUnit;
         }
+    }
+    var battle = false;
+    if(grid === null) {
+        grid = this.battleGrid;
+        battle = true;
     }
     var pixels = shape.pixelsArray;
 
@@ -367,13 +373,30 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         // VERIFY THAT THIS CELL CAN BE PLACED ON
         if(this.getGridCell(this.battleGrid, row, col) !== this.VOID)
         {
-            this.setGridCell(this.battleGrid, row, col, faction);
-            this.setGridCell(this.battleGridNew, row, col, faction);
+            this.setGridCell(grid, row, col, faction);
+            if(battle)
+                this.setGridCell(this.battleGridNew, row, col, faction);
             this.setGridCell(this.renderGrid, row, col, faction);
         }
     }
 
     this.renderGridCells();
+}
+
+GameLogicManager.prototype.placeDefenses = function() {
+    var defenses = this.level.defenseStructures;
+    if(typeof defenses === "undefined")
+        return;
+    var gameManager = require('GameManager');
+
+    for(var i = 0; i < defenses.length; i++) {
+        var shape = defenses[i].name;
+        var coords = defenses[i].coordinates;
+        console.log(gameManager);
+        shape = gameManager.shapeManager.getShape(shape);
+        this.placeShape(coords.y, coords.x, this.OBJECTIVE, 
+                        shape, this.defenseGrid);
+    }
 }
 
 GameLogicManager.prototype.checkForSpawns = function() {
@@ -393,7 +416,7 @@ GameLogicManager.prototype.spawnEnemies = function(spawns) {
         var coords = mob.coordinates;
         console.log(gameManager);
         shape = gameManager.shapeManager.getShape(shape);
-        this.placeShape(coords.y, coords.x, this.ENEMY, shape);
+        this.placeShape(coords.y, coords.x, this.ENEMY, shape, null);
     }
 }
 
