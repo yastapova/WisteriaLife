@@ -2,7 +2,7 @@
     height:100vh;
 }
 
-#level-story-title {
+.level-story-title {
     font-size: 3rem;
     color: $primary-color;
     text-shadow:
@@ -15,14 +15,14 @@
     margin: 0;
 }
 
-#level-story-description {
+.level-story-description {
     font-size: 1rem;
     color:white;
     margin-left:9em;
     margin-right:9em;
 }
 
-#level-story-number {
+.level-story-number {
     color: white;
     font-size: 2em;
     bottom:0;
