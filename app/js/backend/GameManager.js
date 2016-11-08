@@ -20,14 +20,13 @@ var GameManager = function() {
     this.gameLogicManager = new GameLogicManager();
     this.user = new User();
     this.mute = false;
-    // this.loginButton = document.getElementById('splash-login');
-    // this.logoutButton = document.getElementById('splash-logout');
-    //
-    // // Listeners for buttons
-    //
-    // this.loginButton.addEventListener('click', this.login.bind(this));
-    // this.logoutButton.addEventListener('click', this.logout.bind(this));
-    // this.initFirebase();
+    this.loginButton = document.getElementById('splash-login');
+    this.logoutButton = document.getElementById('splash-logout');
+    
+    // Listeners for buttons
+    
+    this.loginButton.addEventListener('click', this.login.bind(this));
+    this.logoutButton.addEventListener('click', this.logout.bind(this));
 };
 
 /**
@@ -60,23 +59,30 @@ GameManager.prototype.initFirebase = function() {
     this.database = firebase.database();
     this.storage = firebase.storage();
 
-    // Initiates Firebase auth and listen to auth state changes.
-    this.auth.onAuthStateChanged(function(user) {
-	  if (user) {
-	    // User is signed in.
-	  } else {
-	    // No user is signed in.
-	  }
-	});
+    // Initialize Firebase authentication and listen to auth state changes
+    this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
 };
 
 /**
- * Initialize user object, based on login status
- * @return {User} user object
+ * Detects when the user is signed in or out and initializes a user when signed in
+ * @return {User} User object
  */
-GameManager.prototype.initializeUser = function() {
-    user = new User("Mystery Boxman");
-    return user;
+
+GameManager.prototype.onAuthStateChanged = function(user) {
+    if(user) {
+        // User is signed in
+        // Get the avatar and name from the Firebase user object
+        var avatar = user.photoURL;
+        var name = user.displayName;
+        var id = user.getToken();
+        var gameData = undefined;
+        user = new User(name, avatar, id, gameData);
+        return user;
+    }
+    else {
+        // The user is signed out
+
+    }
 };
 
 /**
@@ -131,7 +137,12 @@ GameManager.prototype.back = function() {};
  * @return {boolean} login status
  */
 GameManager.prototype.checkIsLoggedIn = function() {
-    return false;
+    if (firebase.auth().currentUser) {
+        return true;
+    }
+    else {
+        return false;
+    }
 };
 
 module.exports = GameManager.getGameManager();
