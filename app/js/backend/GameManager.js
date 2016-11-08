@@ -18,7 +18,7 @@ var GameManager = function() {
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
     this.gameLogicManager = new GameLogicManager();
-    this.user = new User();
+    //this.user = new User();
     this.mute = false;
     this.loginButton = document.getElementById('splash-login');
     this.logoutButton = document.getElementById('splash-logout');
@@ -77,6 +77,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         var id = user.getToken();
         var gameData = undefined;
         user = new User(name, avatar, id, gameData);
+        console.log(user);
         return user;
     }
     else {
