@@ -65,6 +65,13 @@ GamePlayScreen.prototype.init = function () {
             self.gameLogicManager.pause();
     });
 
+    // cheat button event
+    $('#cheat').click(function () {
+        if (self.gameLogicManager.paused)
+            self.gameLogicManager.start();
+        this.level.time = 0;
+    }.bind(this));
+
     // update timer once per second
     this.timeDisplay = $('#timer-display');
     this.timeBar = $('#time-bar');
@@ -72,6 +79,10 @@ GamePlayScreen.prototype.init = function () {
     this.timer = setInterval(function () {
         if (!this.gameLogicManager.paused) {
             this.level.time--;
+
+            if (this.level.time < 0)
+                this.level.time = 0;
+
             if (this.level.time == 0) {
                 this.gameLogicManager.pause();
                 this.gameManager.screenManager.switchScreens('victory');
@@ -80,6 +91,9 @@ GamePlayScreen.prototype.init = function () {
         this.setTimeDisplay(this.level.time);
 
     }.bind(this), 1000);
+
+    // push timer
+    this.gameManager.screenManager.timers.push(this.timer);
 
     // update current shape
     $('#unit-select-menu select').change(function () {
@@ -113,7 +127,9 @@ GamePlayScreen.prototype.hide = function() {
 
 };
 
-GamePlayScreen.prototype.displayMessage = function(){};
+GamePlayScreen.prototype.displayMessage = function () {
+
+};
 
 /**
  * Apply the powerup on the level

@@ -111,6 +111,7 @@ $toolbar-height-mobile: 36px;
     // fix for small screens
     .dropdown-content {
         max-height: 300px;
+        z-index: 3;
 
         @media #{$medium-and-up} {
             max-height: 500px;
@@ -131,5 +132,7 @@ $toolbar-height-mobile: 36px;
         #unit-select-menu {
             min-width: 200px;
         }
+
+        z-index: 7;
     }
 }

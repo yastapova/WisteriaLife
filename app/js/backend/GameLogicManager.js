@@ -19,6 +19,10 @@ var GameLogicManager = function(level) {
     this.gridHeight; //TODO: how to initialize grids?
     this.gridWidth;
 
+    // game timers - IDs needed to stop timer later on
+    this.gameLoopTimer = 0; // once per frame
+    this.secondTimer = 0; // once per second
+
     // cell types
     this.BLANK = 0;
     this.VOID = 1;
@@ -148,7 +152,8 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
         this.ghostGrid[i] = this.BLANK;
         // this.factionGrid[i] = this.FRIEND_ZONE;
     }
-    console.log(this.level.enemyZone);
+    this.renderGrid = this.level.enemyZone;
+    this.placeDefenses();
     this.renderGridCells();
 }
 
@@ -162,14 +167,37 @@ GameLogicManager.prototype.start = function () {
         throw "Level and/or canvas not set! Game logic cannot start.";
 
     this.paused = false;
-    // decrease timer by 1 per second
-    setInterval(function () {
+
+    // Game Loop Timer
+    this.gameLoopTimer = setInterval(function () {
         if (!this.paused) {
             this.updateLoop();
             this.renderGridCells();
         }
     }.bind(this), 200);
+
+    this.secondTimer = setInterval(function () {
+        if (!this.paused) {
+            this.checkMessage(); // check and display message if available
+            var spawns = this.checkForSpawns();
+            this.spawnEnemies(spawns);
+        }
+    }.bind(this), 1000);
+
+    var gameManager = require('GameManager');
+    gameManager.screenManager.timers.push(this.gameLoopTimer);
+    gameManager.screenManager.timers.push(this.secondTimer);
 }
+
+GameLogicManager.prototype.checkMessage = function () {
+    if (this.level.messageMap.has(this.level.time)) {
+        Materialize.toast(
+            this.level.messageMap.get(this.level.time),
+            4000,
+            'wisteria-toast'
+        );
+    }
+};
 
 GameLogicManager.prototype.updateLoop = function() {
     // TODO check time; end game if zero
@@ -312,11 +340,21 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
     };
 }
 
-GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
-    if(this.currentUnit === null) {
-        return;
+GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid) {
+    if(shape === null) {
+        if(this.currentUnit === null) {
+            return;
+        }
+        else {
+            shape = this.currentUnit;
+        }
     }
-    var pixels = this.currentUnit.pixelsArray;
+    var battle = false;
+    if(grid === null) {
+        grid = this.battleGrid;
+        battle = true;
+    }
+    var pixels = shape.pixelsArray;
 
     var zone = this.BLANK;
     if(faction === this.FRIEND || faction === this.OBJECTIVE)
@@ -337,13 +375,49 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
         // VERIFY THAT THIS CELL CAN BE PLACED ON
         if(this.getGridCell(this.battleGrid, row, col) !== this.VOID)
         {
-            this.setGridCell(this.battleGrid, row, col, faction);
-            this.setGridCell(this.battleGridNew, row, col, faction);
+            this.setGridCell(grid, row, col, faction);
+            if(battle)
+                this.setGridCell(this.battleGridNew, row, col, faction);
             this.setGridCell(this.renderGrid, row, col, faction);
         }
     }
 
     this.renderGridCells();
+}
+
+GameLogicManager.prototype.placeDefenses = function() {
+    var defenses = this.level.defenseStructures;
+    if(typeof defenses === "undefined")
+        return;
+    var gameManager = require('GameManager');
+
+    for(var i = 0; i < defenses.length; i++) {
+        var shape = defenses[i].name;
+        var coords = defenses[i].coordinates;
+        shape = gameManager.shapeManager.getShape(shape);
+        this.placeShape(coords.y, coords.x, this.OBJECTIVE,
+                        shape, this.defenseGrid);
+    }
+}
+
+GameLogicManager.prototype.checkForSpawns = function() {
+    var time = this.level.time;
+    var spawns = this.level.enemySpawnsMap.get(time);
+    return spawns;
+}
+
+GameLogicManager.prototype.spawnEnemies = function(spawns) {
+    if(typeof spawns === "undefined")
+        return;
+    var gameManager = require('GameManager');
+
+    for(var i = 0; i < spawns.length; i++) {
+        var mob = spawns[i];
+        var shape = mob.name;
+        var coords = mob.coordinates;
+        shape = gameManager.shapeManager.getShape(shape);
+        this.placeShape(coords.y, coords.x, this.ENEMY, shape, null);
+    }
 }
 
 GameLogicManager.prototype.isValidCell = function(row, col) {

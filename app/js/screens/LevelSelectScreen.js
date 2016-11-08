@@ -3,6 +3,7 @@
  * LevelSelectScreen object
  */
 var screen = require('./Screen');
+var gameManager = require('../backend/GameManager');
 
 /*
  * Construct a LevelSelectScreen with given id
@@ -28,7 +29,10 @@ inherits(LevelSelectScreen, screen);
 
 LevelSelectScreen.prototype.init = function() {
     console.log("Level select screen init called");
-
+    var regionsMap = require('GameManager').levelManager.regionsMap;
+    $("#region-1-level-1").text(regionsMap.get("The Revolting River").levelsArray[0].name);
+    $("#region-1-level-1-img").attr("src", "img/levels/" + regionsMap.get("The Revolting River").levelsArray[0].img);
+    $("#region-1-level-1-storyline").text(regionsMap.get("The Revolting River").levelsArray[0].storyline);
 };
 
 LevelSelectScreen.prototype.hide = function() {

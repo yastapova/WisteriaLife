@@ -9,15 +9,14 @@ var firebase = require('firebase');
  * GameManager handles the user and saving/loading of data
  */
 var GameManager = function() {
-    this.initFirebase();
-    this.screenManager = new ScreenManager(
-        window.location.pathname.replace(/^\//, "")
-    );
-
+    this.initFirebase();    
     this.powerupManager = new PowerupManager();
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
     this.gameLogicManager = new GameLogicManager();
+    this.screenManager = new ScreenManager(
+        window.location.pathname.replace(/^\//, "")
+    );
     //this.user = new User();
     this.mute = false;
 
