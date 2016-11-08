@@ -59,7 +59,7 @@ Screen.prototype.load = function (initScreen) {
             this.container.prepend($(data).filter('#main-container').html());
 
             // save element to easily hide later
-            this.overlayElement = this.container.children().first();
+            this.overlayElement = this.container.find('.screen-overlay');
 
             document.title = $(data).filter('title').text();
 

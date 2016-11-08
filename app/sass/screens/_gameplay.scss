@@ -29,6 +29,13 @@ $toolbar-height-mobile: 36px;
         top: calc(#{$toolbar-height} + #{$navbar-height});
         bottom: $toolbar-height;
     }
+
+    canvas {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 }
 
 /**
