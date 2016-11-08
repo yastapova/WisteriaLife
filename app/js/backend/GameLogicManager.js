@@ -21,9 +21,9 @@ var GameLogicManager = function(level) {
 
     // cell types
     this.BLANK = 0;
-    this.ENEMY_ZONE = 1;
+    this.VOID = 1;
     this.FRIEND_ZONE = 2;
-    this.VOID = 3;
+    this.ENEMY_ZONE = 3;
     this.FRIEND = 4;
     this.OBJECTIVE = 5;
     this.ENEMY = 6;
