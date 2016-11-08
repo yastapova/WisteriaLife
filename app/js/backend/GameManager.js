@@ -4,7 +4,7 @@ var PowerupManager = require('./PowerupManager');
 var GameLogicManager = require('./GameLogicManager');
 var ShapeManager = require('./ShapeManager');
 var LevelManager = require('./LevelManager');
-var firebase = require("firebase");
+var firebase = require('firebase');
 /**
  * GameManager handles the user and saving/loading of data
  */
@@ -20,8 +20,17 @@ var GameManager = function() {
     this.gameLogicManager = new GameLogicManager();
     //this.user = new User();
     this.mute = false;
+
+    // Splash Screen
+
     this.loginButton = document.getElementById('splash-login');
     this.logoutButton = document.getElementById('splash-logout');
+
+    // Menu Bar
+    this.userLogin = document.getElementById('user-login');
+    this.userPic = document.getElementById('user-pic');
+    this.userName = document.getElementById('user-name');
+
 };
 
 /**
@@ -73,15 +82,30 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         var gameData = undefined;
         user = new User(name, avatar, id, gameData);
 
+        // Splash changes
         $('#splash-logout').css('display','block');
         $('#splash-login').css('display', 'none');
+
+        // Navbar changes
+        $('#user-login').css('display','none');
+        this.userName.textContent = name;
+        $('#user-name').css('display','inline-block');
+        this.userPic.style.backgroundImage = 'url(' + (avatar) + ')';
+        $('#user-pic').css('display','inline-block');
 
         return user;
     }
     else {
         // The user is signed out
+
+        // Splash changes
         $('#splash-logout').css('display','none');
         $('#splash-login').css('display', 'block');
+
+        // Navbar changes
+        $('#user-login').css('display','block');
+        $('#user-name').css('display','none');
+        $('#user-pic').css('display','none');
     }
 };
 
