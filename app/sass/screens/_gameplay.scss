@@ -7,17 +7,43 @@
 }
 
 /**
+ * All position:fixed elements:
+ *
+ * - navbar (fixed height)
+ * - top toolbar (fixed height)
+ * - canvas (variable fill)
+ * - bottom toolbar (fixed height)
+ */
+
+$toolbar-height: 48px;
+$toolbar-height-mobile: 36px;
+
+#gameplay-canvas {
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: calc(#{$toolbar-height-mobile} + #{$navbar-height-mobile});
+    bottom: $toolbar-height-mobile;
+
+    @media #{$medium-and-up} {
+        top: calc(#{$toolbar-height} + #{$navbar-height});
+        bottom: $toolbar-height;
+    }
+}
+
+/**
  * Gameplay Toolbar
  * Also applies to level editor
  */
 .gameplay-toolbar {
     background-color: $primary-color;
-    height: 36px;
+    height: $toolbar-height-mobile;
     padding: 0 20px;
     width: 100%;
+    position: fixed;
 
     @media #{$medium-and-up} {
-        height: 48px;
+        height: $toolbar-height;
     }
 
     .toolbar-item {
@@ -27,17 +53,21 @@
         vertical-align: middle;
 
         a {
-            line-height: 36px;
+            line-height: $toolbar-height-mobile;
 
             @media #{$medium-and-up} {
-                line-height: 48px;
+                line-height: $toolbar-height;
             }
         }
 
         .wisteria-icons {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             color: $highlight-color;
             vertical-align: middle;
+
+            @media #{$medium-and-up} {
+                font-size: 2.5rem;;
+            }
         }
 
         input {
@@ -48,6 +78,7 @@
     .toolbar-content {
         position: relative;
         height: 100%;
+        text-align: center;
 
         .progress {
             top: 50%;
@@ -77,11 +108,24 @@
         }
     }
 
+    // fix for small screens
+    .dropdown-content {
+        max-height: 300px;
+
+        @media #{$medium-and-up} {
+            max-height: 500px;
+        }
+    }
+
     &.toolbar-top {
+        top: $navbar-height-mobile;
+
+        @media #{$medium-and-up} {
+            top: $navbar-height;
+        }
     }
 
     &.toolbar-bottom {
-        position: absolute;
         bottom: 0px;
 
         #unit-select-menu {
