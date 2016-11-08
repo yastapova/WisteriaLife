@@ -22,12 +22,6 @@ var GameManager = function() {
     this.mute = false;
     this.loginButton = document.getElementById('splash-login');
     this.logoutButton = document.getElementById('splash-logout');
-    
-    // Listeners for buttons
-    
-    // this.loginButton.addEventListener('click', this.login.bind(this));
-    // this.logoutButton.addEventListener('click', this.logout.bind(this));
-    // this.initFirebase();
 };
 
 /**
@@ -78,12 +72,16 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         var id = user.getToken();
         var gameData = undefined;
         user = new User(name, avatar, id, gameData);
-        console.log(user);
+
+        $('#splash-logout').css('display','block');
+        $('#splash-login').css('display', 'none');
+
         return user;
     }
     else {
         // The user is signed out
-
+        $('#splash-logout').css('display','none');
+        $('#splash-login').css('display', 'block');
     }
 };
 

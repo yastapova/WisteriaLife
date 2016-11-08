@@ -21,9 +21,9 @@ var GameLogicManager = function(level) {
 
     // cell types
     this.BLANK = 0;
-    this.VOID = 1;
+    this.ENEMY_ZONE = 1;
     this.FRIEND_ZONE = 2;
-    this.ENEMY_ZONE = 3;
+    this.VOID = 3;
     this.FRIEND = 4;
     this.OBJECTIVE = 5;
     this.ENEMY = 6;
@@ -137,7 +137,8 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.renderGrid = new Array(this.gridWidth * this.gridHeight);
     this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
     this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
-    this.factionGrid = new Array(this.gridWidth * this.gridHeight);
+    // this.factionGrid = new Array(this.gridWidth * this.gridHeight);
+    this.factionGrid = this.level.enemyZone;
     for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
         this.renderGrid[i] = this.BLANK;
         this.renderGridOld[i] = this.BLANK;
@@ -145,9 +146,9 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
         this.battleGridNew[i] = this.BLANK;
         this.defenseGrid[i] = this.BLANK;
         this.ghostGrid[i] = this.BLANK;
-        this.factionGrid[i] = this.FRIEND_ZONE;
+        // this.factionGrid[i] = this.FRIEND_ZONE;
     }
-
+    console.log(this.level.enemyZone);
     this.renderGridCells();
 }
 
@@ -167,7 +168,7 @@ GameLogicManager.prototype.start = function () {
             this.updateLoop();
             this.renderGridCells();
         }
-    }.bind(this), 500);
+    }.bind(this), 200);
 }
 
 GameLogicManager.prototype.updateLoop = function() {
