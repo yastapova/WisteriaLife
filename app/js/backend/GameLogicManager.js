@@ -148,6 +148,7 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
         this.factionGrid[i] = this.FRIEND_ZONE;
     }
 
+    this.renderGridCells();
 }
 
 /**
@@ -250,6 +251,8 @@ GameLogicManager.prototype.renderGridCells = function() {
 
     this.renderGridOld = this.renderGrid;
     this.renderGrid = this.renderGrid.slice(0);
+
+    this.canvas.render();
 }
 
 GameLogicManager.prototype.reproduce = function(index, neighbors) {
@@ -264,8 +267,6 @@ GameLogicManager.prototype.reproduce = function(index, neighbors) {
             newType = this.FRIEND;
         this.battleGridNew[index] = newType;
     }
-    // new updates are screwing up current calculations
-    // make another grid!
 }
 
 GameLogicManager.prototype.die = function(index, current, neighbors) {
