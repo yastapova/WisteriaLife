@@ -67,6 +67,8 @@ GamePlayScreen.prototype.init = function () {
 
     // cheat button event
     $('#cheat').click(function () {
+        if (self.gameLogicManager.paused)
+            self.gameLogicManager.start();
         this.level.time = 0;
     }.bind(this));
 
