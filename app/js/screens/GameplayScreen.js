@@ -125,7 +125,9 @@ GamePlayScreen.prototype.hide = function() {
 
 };
 
-GamePlayScreen.prototype.displayMessage = function(){};
+GamePlayScreen.prototype.displayMessage = function () {
+
+};
 
 /**
  * Apply the powerup on the level

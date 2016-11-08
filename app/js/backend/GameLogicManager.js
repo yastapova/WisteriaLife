@@ -19,6 +19,10 @@ var GameLogicManager = function(level) {
     this.gridHeight; //TODO: how to initialize grids?
     this.gridWidth;
 
+    // game timers - IDs needed to stop timer later on
+    this.gameLoopTimer = 0; // once per frame
+    this.secondTimer = 0; // once per second
+
     // cell types
     this.BLANK = 0;
     this.VOID = 1;
@@ -162,16 +166,25 @@ GameLogicManager.prototype.start = function () {
         throw "Level and/or canvas not set! Game logic cannot start.";
 
     this.paused = false;
-    // decrease timer by 1 per second
-    this.intervalTimer = setInterval(function () {
+
+    // Game Loop Timer
+    this.gameLoopTimer = setInterval(function () {
         if (!this.paused) {
             this.updateLoop();
             this.renderGridCells();
         }
     }.bind(this), 200);
 
-    require('GameManager').screenManager.timers.push(this.intervalTimer);
+    this.secondTimer = setInterval(function () {
+        this.checkMessage(); // check and display message if available
+    }.bind(this), 1000);
+
+    require('GameManager').screenManager.timers.push(this.gameLoopTimer);
 }
+
+GameLogicManager.prototype.checkMessage = function () {
+
+};
 
 GameLogicManager.prototype.updateLoop = function() {
     // TODO check time; end game if zero
