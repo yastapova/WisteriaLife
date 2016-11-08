@@ -6,80 +6,86 @@
      }
 }
 
-.toolbar {
-    height: 10%;
-    background: $primary-color;
+/**
+ * Gameplay Toolbar
+ * Also applies to level editor
+ */
+.gameplay-toolbar {
+    background-color: $primary-color;
+    height: 36px;
+    padding: 0 20px;
     width: 100%;
-    position: relative;
-}
 
-.canvas {
-    height: 80%;
-}
-
-.wisteria-icons.play {
-    color: #26a69a;
-    font-size: 2.3em;
-}
-.wisteria-icons.lock {
-    color: #26a69a;
-    font-size: 2.3em;
-}
-
-.dropdown-button.btn.small {
-    padding-left: 5px;
-    padding-right: 5px;
-    padding-top: 0;
-    padding-bottom: 0;
-    font-size: 0.80rem;
-    height: 25px;
-    line-height: 25px;
-}
-
-.toolbar.bottom .dropdown-content li {
-    min-height: 0px;
-    border-bottom: 1px solid #aaa;
-
-    &:last-child {
-        border-bottom: none;
+    @media #{$medium-and-up} {
+        height: 48px;
     }
-}
 
-.toolbar.bottom .dropdown-content li>a {
-    font-size: 0.60rem;
-    line-height: 20px;
-    padding: 5px;
+    .toolbar-item {
+        margin: 0 10px;
+        display: inline-block;
+        height: 100%;
+        vertical-align: middle;
 
-    @media #{$medium-height-and-up} {
-        font-size: 0.9rem;
+        a {
+            line-height: 36px;
+
+            @media #{$medium-and-up} {
+                line-height: 48px;
+            }
+        }
+
+        .wisteria-icons {
+            font-size: 2.5rem;
+            color: $highlight-color;
+            vertical-align: middle;
+        }
+
+        input {
+            margin: 0;
+        }
     }
-}
 
-.bottom.align {
-    display: inline-block;
-    height: 50%;
-    vertical-align: top;
-    margin-left: 5%;
-}
+    .toolbar-content {
+        position: relative;
+        height: 100%;
 
-.progress {
-    margin: 0;
-}
+        .progress {
+            top: 50%;
+            transform: translateY(-50%);
+            position: absolute;
+            z-index: 5;
+            margin: 0;
 
-.padder {
-    padding-top: 0.5rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-}
+            .determinate {
+                @include transition(width 1s linear);
+            }
+        }
 
-.toolbar-text {
-    font-size: 1rem;
-}
+        #timer-display {
+            background-color: $primary-color;
+            position: absolute;
+            z-index: 6;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 10px;
+            font-size: 0.85rem;
 
-.toolbar-content {
-    position: absolute;
-    top: 48%;
-    left: 0%;
-    margin-top: -1em;
-    width:100%;
+            @media #{$medium-and-up} {
+                font-size: 1.2rem;
+            }
+        }
+    }
+
+    &.toolbar-top {
+    }
+
+    &.toolbar-bottom {
+        position: absolute;
+        bottom: 0px;
+
+        #unit-select-menu {
+            min-width: 200px;
+        }
+    }
 }

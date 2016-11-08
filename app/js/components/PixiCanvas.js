@@ -119,8 +119,12 @@ PixiCanvas.prototype.resizePixiCanvas = function () {
     // resize renderer
     this.renderer.resize(canvasDimensions.width, canvasDimensions.height);
 
+    // this.reset();
+
     // resized canvas, so need to reset and re-render
     this.renderGridLines();
+
+    this.render();
 };
 
 /**
