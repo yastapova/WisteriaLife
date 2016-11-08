@@ -1,5 +1,4 @@
 'use strict';
-var gameManager = require('GameManager');
 
 var GameLogicManager = function(level) {
     this.renderGridOld = [];// what was rendered last update loop
@@ -178,6 +177,8 @@ GameLogicManager.prototype.start = function () {
 
     this.secondTimer = setInterval(function () {
         this.checkMessage(); // check and display message if available
+        var spawns = this.checkForSpawns();
+        this.spawnEnemies(spawns);
     }.bind(this), 1000);
 
     require('GameManager').screenManager.timers.push(this.gameLoopTimer);
@@ -369,18 +370,20 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
 
 GameLogicManager.prototype.checkForSpawns = function() {
     var time = this.level.time;
-    var spawns = this.level.enemySpawnMap.get(time);
+    var spawns = this.level.enemySpawnsMap.get(time);
     return spawns;
 }
 
 GameLogicManager.prototype.spawnEnemies = function(spawns) {
     if(typeof spawns === "undefined")
         return;
+    var gameManager = require('GameManager');
 
     for(var i = 0; i < spawns.length; i++) {
         var mob = spawns[i];
         var shape = mob.name;
         var coords = mob.coordinates;
+        console.log(gameManager);
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.ENEMY, shape);
     }
