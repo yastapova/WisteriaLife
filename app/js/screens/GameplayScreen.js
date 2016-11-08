@@ -67,6 +67,8 @@ GamePlayScreen.prototype.init = function () {
 
     // cheat button event
     $('#cheat').click(function () {
+        if (self.gameLogicManager.paused)
+            self.gameLogicManager.start();
         this.level.time = 0;
     }.bind(this));
 
@@ -83,7 +85,14 @@ GamePlayScreen.prototype.init = function () {
 
             if (this.level.time == 0) {
                 this.gameLogicManager.pause();
-                this.gameManager.screenManager.switchScreens('victory');
+                if (this.gameLogicManager.isDead())
+                    this.gameManager.screenManager.switchScreens('defeat');
+                else
+                    this.gameManager.screenManager.switchScreens('victory');
+            }
+            if (this.gameLogicManager.isDead()) {
+                this.gameLogicManager.pause();
+                this.gameManager.screenManager.switchScreens('defeat');
             }
         }
         this.setTimeDisplay(this.level.time);

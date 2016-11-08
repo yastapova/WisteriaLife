@@ -1,24 +1,5 @@
 <% include partials/header %>
 
-<script>
-    window.fbAsyncInit = function() {
-        FB.init({
-            appId      : '579874225545164',
-            xfbml      : true,
-            version    : 'v2.8'
-        });
-    FB.AppEvents.logPageView();
-    };
-
-    (function(d, s, id){
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {return;}
-        js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-
 <!-- Page Content goes here -->
 
 <div id="defeat-pause-victory-screen" class="container-inner screen-overlay">
@@ -32,15 +13,6 @@
             <a href="level-select"><i class="wisteria-icons back mdi mdi-step-backward"></i></a>
             <a href="gameplay"><i class="wisteria-icons replay mdi mdi-replay"></i></a>
             <a id="share" href="#!"><i class="wisteria-icons share mdi mdi-share-variant"></i></a>
-            <script>
-                document.getElementById('share').onclick = function() {
-                    FB.ui({
-                    method: 'share',
-                    display: 'popup',
-                    href: 'https://wisteria-life-build2.appspot.com',
-                    }, function(response){});
-                }
-            </script>
             <a href="level-story"><i class="wisteria-icons next mdi mdi-play"></i></a>
         </span>
     </div>

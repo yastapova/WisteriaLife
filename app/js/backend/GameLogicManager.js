@@ -13,6 +13,7 @@ var GameLogicManager = function(level) {
     this.level = null;
     this.canvas = null;
     this.currentUnit = null;
+    this.defensesLeft = 0;
 
     this.paused = true; // game logic starts paused
 
@@ -135,6 +136,7 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.canvas = canvas;
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
+    this.currentUnit = null;
 
     this.battleGrid = new Array(this.gridWidth * this.gridHeight);
     this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
@@ -174,7 +176,7 @@ GameLogicManager.prototype.start = function () {
             this.updateLoop();
             this.renderGridCells();
         }
-    }.bind(this), 200);
+    }.bind(this), 400);
 
     this.secondTimer = setInterval(function () {
         if (!this.paused) {
@@ -236,8 +238,10 @@ GameLogicManager.prototype.updateLoop = function() {
             }
             switch(defenseCell) {
                 case this.OBJECTIVE:
-                    if(battleCell === this.ENEMY)
+                    if(battleCell === this.ENEMY) {
                         this.defenseGrid[index] = this.BLANK;
+                        this.defensesLeft--;
+                    }
                     break;
                 default:
                     // nothing
@@ -341,6 +345,8 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
 }
 
 GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid) {
+    if(this.paused && faction !== this.OBJECTIVE)
+        return;
     if(shape === null) {
         if(this.currentUnit === null) {
             return;
@@ -397,6 +403,7 @@ GameLogicManager.prototype.placeDefenses = function() {
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.OBJECTIVE,
                         shape, this.defenseGrid);
+        this.defensesLeft += 4;
     }
 }
 
@@ -418,6 +425,10 @@ GameLogicManager.prototype.spawnEnemies = function(spawns) {
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.ENEMY, shape, null);
     }
+}
+
+GameLogicManager.prototype.isDead = function() {
+    return !(this.defensesLeft > 0);
 }
 
 GameLogicManager.prototype.isValidCell = function(row, col) {
@@ -464,6 +475,7 @@ GameLogicManager.prototype.reset = function() {
     }
 
     this.paused = true;
+    this.currentUnit = null;
 
     // INIT THE CELLS IN THE GRID
     for(var i = 0; i < this.gridHeight; i++)

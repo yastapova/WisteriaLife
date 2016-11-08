@@ -8,12 +8,16 @@
         input[type='checkbox']:checked + label {
             opacity: 1;
         }
-        
+
         &:hover {
             input[type='checkbox'] + label {
                 opacity: 1;
             }
         }
+    }
+
+    .wisteria-icons {
+        font-size: 2.2rem;
     }
 }
 
