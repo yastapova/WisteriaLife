@@ -2,9 +2,8 @@
     .card {
 
         &[id$='-card'] {
-            background: transparent url('/img/map-sample-img.jpg')
+            background: transparent url('https://www.google.com/images/spin-32.gif')
                         no-repeat center center;
-            background-size: cover;
         }
 
         .card-content {
