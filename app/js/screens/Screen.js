@@ -66,7 +66,8 @@ Screen.prototype.load = function () {
             console.log('Loading overlay screen complete! ' + this.id);
 
             // initialize overlay screen
-            initScreen.bind(this)();
+            // initScreen.bind(this)();
+            this.init();
 
         } else {
             this.container.fadeOut('fast', function () {

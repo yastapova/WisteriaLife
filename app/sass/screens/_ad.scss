@@ -1,7 +1,7 @@
 #ad-screen {
     padding-top: 0;
     // ad is a special case which overlays even the navbar
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     z-index: 99;
