@@ -47,9 +47,12 @@ $(document).ready(function() {
     var TestA = require('./test-screen/test').TestA;
     var TestB = require('./test-screen/test').TestB;
 
-    // singleton game manager
+    // singleton game manager - first call instantiates it
     var gameManager = require('GameManager');
 
-    // setup initial screen
-    gameManager.screenManager.setupInitScreen();
+    // load game manager resources
+    // setup initial screen when complete
+    gameManager.loadResources(
+        gameManager.screenManager.setupInitScreen.bind(gameManager.screenManager)
+    );
 });

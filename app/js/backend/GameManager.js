@@ -9,7 +9,8 @@ var firebase = require('firebase');
  * GameManager handles the user and saving/loading of data
  */
 var GameManager = function() {
-    this.initFirebase();    
+    this.initFirebase();
+
     this.powerupManager = new PowerupManager();
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
@@ -17,6 +18,16 @@ var GameManager = function() {
     this.screenManager = new ScreenManager(
         window.location.pathname.replace(/^\//, "")
     );
+
+    // classes that need to load resources to be functional
+    this.resources = [];
+    Array.prototype.push.apply(this.resources, [
+        this.powerupManager,
+        this.shapeManager,
+        this.levelManager
+    ]);
+    this.resourcesLoaded = 0;
+
     //this.user = new User();
     this.mute = false;
 
@@ -41,6 +52,37 @@ GameManager.getGameManager = function() {
     }
     return GameManager.gameManager;
 };
+
+/**
+ * Load resources sequence start
+ * @param  {Function} callback callback when ALL resources are done loading
+ */
+GameManager.prototype.loadResources = function (callback) {
+
+    // callback when ALL resources are done loading
+    this.resourcesLoadedCallback = callback;
+
+    for (var i = 0; i < this.resources.length; i++) {
+        // EACH resource will call this.resourceLoaded() when its done
+        this.resources[i].load(this.resourceLoaded.bind(this));
+    }
+};
+
+/**
+ * Callback for a SINGLE resource being complete
+ * Checks if all resources completed, if not, do nothing
+ * If completed, then call the ALL resources done callback
+ * @param  {Function} callback resource complete callback
+ */
+GameManager.prototype.resourceLoaded = function () {
+    // there are multiple async resource loads, so need to count
+    this.resourcesLoaded++;
+
+    // all resources done!
+    if (this.resourcesLoaded == this.resources.length) {
+        this.resourcesLoadedCallback();
+    }
+}
 
 /**
 * Setup shortcuts to Firebase features and initiate firebase authentication

@@ -10,7 +10,6 @@ var firebase = require("firebase");
  */
 var LevelManager = function() {
     this.regionsMap = new Map();
-    this.loadRegions();
     // For loading descriptions and imgs of private user custom levels later
     //this.privateCustomLevelsMap = new Map();
     //this.initPrivateCustomLevelsMap();
@@ -20,11 +19,20 @@ var LevelManager = function() {
     //this.initPublicCustomLevelsMap();
 };
 
+/**
+ * Load resource
+ * @param  {Function} callback
+ *         Success callback function (called when done loading and processing)
+ */
+LevelManager.prototype.load = function (callback) {
+    this.loadRegions(callback);
+}
+
 // Loads the regions from firebase
-LevelManager.prototype.loadRegions = function() { 
+LevelManager.prototype.loadRegions = function(callback) {
     // Reference to the /regions/ database path
     firebase.database().ref('regions').once('value', function (snapshot) {
-        this.loadJSONDataRegion(snapshot.val());
+        this.loadJSONDataRegion(snapshot.val(), callback);
     }.bind(this));
 };
 
@@ -33,7 +41,7 @@ LevelManager.prototype.loadRegions = function() {
  * and map the regions accordingly.
  * @param  data JSON data
  */
-LevelManager.prototype.loadJSONDataRegion = function (data) {
+LevelManager.prototype.loadJSONDataRegion = function (data, callback) {
 	for (var i = 0; i < data.length; i++) {
 		var regionData = data[i];
 		var regionAttrObj = {
@@ -43,6 +51,8 @@ LevelManager.prototype.loadJSONDataRegion = function (data) {
 		};
         this.regionsMap.set(regionData.name, new Region(regionAttrObj));
 	}
+
+    callback();
 };
 
 /**

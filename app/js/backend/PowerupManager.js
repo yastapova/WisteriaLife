@@ -7,14 +7,22 @@ var firebase = require("firebase");
  */
 var PowerupManager = function () {
 	this.powerupsMap = new Map();
-	this.loadPowerups();
 };
 
+/**
+ * Load resource
+ * @param  {Function} callback
+ *         Success callback function (called when done loading and processing)
+ */
+PowerupManager.prototype.load = function (callback) {
+	this.loadPowerups(callback);
+}
+
 // Loads the powerups from firebase
-PowerupManager.prototype.loadPowerups = function() { 
+PowerupManager.prototype.loadPowerups = function(callback) {
 	// Reference to the /powerups/ database path
 	firebase.database().ref('powerups').once('value', function (snapshot) {
-  		this.loadJSONData(snapshot.val());
+  		this.loadJSONData(snapshot.val(), callback);
   	}.bind(this));
 };
 
@@ -23,7 +31,7 @@ PowerupManager.prototype.loadPowerups = function() {
  * and map the powerup accordingly.
  * @param data JSON data
  */
-PowerupManager.prototype.loadJSONData = function (data) {
+PowerupManager.prototype.loadJSONData = function (data, callback) {
 	for (var i = 0; i < data.length; i++) {
 		var powerupData = data[i];
 		var powerupAttrObj = {
@@ -87,6 +95,8 @@ PowerupManager.prototype.loadJSONData = function (data) {
 			break;
 		}
 	}
+
+	callback();
 };
 
 /**
@@ -103,11 +113,11 @@ PowerupManager.prototype.useShapePowerup = function(level) {
 	var shape = {};
 	shape.shape = powerupData.name;
 	shape.quantity = 1;
-	level.allowedShapes.push(shape);		
+	level.allowedShapes.push(shape);
 };
 
 /**
- * Use a reduce time powerup. 
+ * Use a reduce time powerup.
  * @param level the level obj to use the reduce time powerup on
  */
 PowerupManager.prototype.useReduceTimePowerup = function(level) {
@@ -116,7 +126,7 @@ PowerupManager.prototype.useReduceTimePowerup = function(level) {
 	}
 	else{
 		level.time = level.time - 5;
-	}		
+	}
 };
 
 /**
