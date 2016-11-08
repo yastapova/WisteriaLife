@@ -135,6 +135,7 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.canvas = canvas;
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
+    this.currentUnit = null;
 
     this.battleGrid = new Array(this.gridWidth * this.gridHeight);
     this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
@@ -174,7 +175,7 @@ GameLogicManager.prototype.start = function () {
             this.updateLoop();
             this.renderGridCells();
         }
-    }.bind(this), 200);
+    }.bind(this), 400);
 
     this.secondTimer = setInterval(function () {
         this.checkMessage(); // check and display message if available
@@ -339,6 +340,8 @@ GameLogicManager.prototype.calcNumNeighbors = function(row, col) {
 }
 
 GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid) {
+    if(this.paused && faction !== this.OBJECTIVE)
+        return;
     if(shape === null) {
         if(this.currentUnit === null) {
             return;
@@ -462,6 +465,7 @@ GameLogicManager.prototype.reset = function() {
     }
 
     this.paused = true;
+    this.currentUnit = null;
 
     // INIT THE CELLS IN THE GRID
     for(var i = 0; i < this.gridHeight; i++)
