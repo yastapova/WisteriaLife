@@ -17,6 +17,14 @@ inherits(SplashScreen, Screen);
  */
 SplashScreen.prototype.init = function() {
     console.log("Splash screen init called");
+
+    this.loginButton = $('#splash-login');
+    this.logoutButton = $('#splash-logout');
+
+    // Listeners for buttons
+    var gameManager = require('GameManager');
+    this.loginButton.on('click', gameManager.login.bind(this));
+    this.logoutButton.on('click', gameManager.logout.bind(this));
 };
 
 SplashScreen.prototype.checkUser = function() {

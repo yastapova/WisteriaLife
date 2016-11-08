@@ -54,7 +54,8 @@ GamePlayScreen.prototype.init = function () {
             self.gameLogicManager.start(); // resume button is on pause screen
 
             $(this).attr('href', 'pause');
-            $(this).find('i').text('pause');
+            $(this).find('i').removeClass('play').removeClass('mdi-play');
+            $(this).find('i').addClass('pause').addClass('mdi-pause');
 
             return false; // prevent event bubbling
         } else
@@ -64,9 +65,15 @@ GamePlayScreen.prototype.init = function () {
     // update timer once per second
     this.timeDisplay = $('#timer-display')
     this.timer = setInterval(function () {
-        if (!this.gameLogicManager.paused)
+        if (!this.gameLogicManager.paused) {
             this.level.time--;
+            if (this.level.time == 0) {
+                this.gameLogicManager.pause();
+                this.gameManager.screenManager.switchScreens('defeat');
+            }
+        }
         this.setTimeDisplay(this.level.time);
+
     }.bind(this), 1000);
 
     // update current shape
@@ -88,7 +95,7 @@ GamePlayScreen.prototype.setTimeDisplay = function (seconds) {
     var minutes = Math.floor(seconds / 60);
     seconds = seconds % 60;
 
-    this.timeDisplay.text(minutes + ':' + seconds);
+    this.timeDisplay.text(minutes + ':' + (seconds < 10 ? '0' : '') + seconds);
 };
 
 GamePlayScreen.prototype.hide = function() {

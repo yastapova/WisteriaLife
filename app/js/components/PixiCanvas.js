@@ -122,9 +122,6 @@ PixiCanvas.prototype.resizePixiCanvas = function () {
  */
 PixiCanvas.prototype.render = function () {
 
-    // clear canvas first
-    // this.reset();
-
     this.renderer.render(this.stage);
 };
 
@@ -132,7 +129,9 @@ PixiCanvas.prototype.render = function () {
  * Clear the canvas
  */
 PixiCanvas.prototype.reset = function () {
-
+    for (var child of this.stage.children) {
+        this.stage.removeChild(child);
+    }
 };
 
 PixiCanvas.prototype.calculateCellLocation = function (col, row) {
@@ -149,7 +148,6 @@ PixiCanvas.prototype.calculateCellLocation = function (col, row) {
  * @param {[type]} color [description]
  */
 PixiCanvas.prototype.setCell = function (col, row, color) {
-    console.log(col + ", " + row + ", " + color);
     var location = this.calculateCellLocation(col, row);
 
     // calculate location of the cell
@@ -172,15 +170,6 @@ PixiCanvas.prototype.respondToMouseClick = function () {
     var clickCol = Math.floor(canvasCoords.x/this.cellLength);
     var clickRow = Math.floor(canvasCoords.y/this.cellLength);
 
-    // // hardcoded pattern for now
-    // var pixels = [5, 5, 6, 6, 7, 7];
-
-    // // Go through pattern and fill grid
-    // for (var i = 0; i < pixels.length; i += 2) {
-    //     var col = clickCol + pixels[i];
-    //     var row = clickRow + pixels[i+1];
-    // }
-    console.log(gameManager.gameLogicManager);
     var friend = gameManager.gameLogicManager.FRIEND;
     gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend);
 

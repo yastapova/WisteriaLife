@@ -1,7 +1,10 @@
+'use strict';
+
 var GameLogicManager = function(level) {
     this.renderGridOld = [];// what was rendered last update loop
     this.renderGrid = [];   // what gets displayed
     this.battleGrid = [];   // friend and foe interactions
+    this.battleGridNew = [];// updated battle grid
     this.defenseGrid = [];  // defense towers only
     this.ghostGrid = [];    // ghost only
     this.factionGrid = [];  // only friend and enemy zone; STATIC
@@ -54,6 +57,7 @@ var GameLogicManager = function(level) {
     //this.canvas = new PixiCanvas($('#gameplay-canvas'), 'medium');
 
     this.cellLookup;
+    this.initCellLookup();
 }
 
 /*
@@ -76,43 +80,43 @@ function CellType(initNumNeighbors, initCellValues) {
 GameLogicManager.prototype.initCellLookup = function()
 {
     // WE'LL PUT ALL THE VALUES IN HERE
-    cellLookup = new Array();
+    this.cellLookup = new Array();
 
     // TOP LEFT
     this.topLeftArray           = new Array( 1, 0,  1,  1,  0,  1);
-    cellLookup[this.TOP_LEFT]   = new CellType(3, this.topLeftArray);
+    this.cellLookup[this.TOP_LEFT]   = new CellType(3, this.topLeftArray);
 
     // TOP RIGHT
     this.topRightArray           = new Array(-1, 0, -1,  1,  0,  1);
-    cellLookup[this.TOP_RIGHT]   = new CellType(3, this.topRightArray);
+    this.cellLookup[this.TOP_RIGHT]   = new CellType(3, this.topRightArray);
 
     // BOTTOM LEFT
     this.bottomLeftArray         = new Array( 1, 0,  1, -1, 0, -1);
-    cellLookup[this.BOTTOM_LEFT] = new CellType(3, this.bottomLeftArray);
+    this.cellLookup[this.BOTTOM_LEFT] = new CellType(3, this.bottomLeftArray);
 
     // BOTTOM RIGHT
     this.bottomRightArray        = new Array(-1, 0, -1, -1, 0, -1);
-    cellLookup[this.BOTTOM_RIGHT]= new CellType(3, this.bottomRightArray);
+    this.cellLookup[this.BOTTOM_RIGHT]= new CellType(3, this.bottomRightArray);
 
     // TOP
     this.topArray                = new Array(-1, 0, -1, 1, 0, 1, 1, 1, 1, 0);
-    cellLookup[this.TOP]         = new CellType(5, this.topArray);
+    this.cellLookup[this.TOP]         = new CellType(5, this.topArray);
 
     // BOTTOM
     this.bottomArray             = new Array(-1, 0, -1, -1, 0, -1, 1, -1, 1, 0);
-    cellLookup[this.BOTTOM]      = new CellType(5, this.bottomArray);
+    this.cellLookup[this.BOTTOM]      = new CellType(5, this.bottomArray);
 
     // LEFT
     this.leftArray               = new Array(0, -1, 1, -1, 1, 0, 1, 1, 0, 1);
-    cellLookup[this.LEFT]        = new CellType(5, this.leftArray);
+    this.cellLookup[this.LEFT]        = new CellType(5, this.leftArray);
 
     // RIGHT
     this.rightArray              = new Array(0, -1, -1, -1, -1, 0, -1, 1, 0, 1);
-    cellLookup[this.RIGHT]       = new CellType(5, this.rightArray);
+    this.cellLookup[this.RIGHT]       = new CellType(5, this.rightArray);
 
     // CENTER
     this.centerArray             = new Array(-1, -1, -1, 0, -1, 1, 0, 1, 1, 1, 1, 0, 1, -1, 0, -1);
-    cellLookup[this.CENTER]      = new CellType(8, this.centerArray);
+    this.cellLookup[this.CENTER]      = new CellType(8, this.centerArray);
 }
 
 /**
@@ -134,8 +138,15 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
     this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
     this.factionGrid = new Array(this.gridWidth * this.gridHeight);
-    for(var i = 0; i < this.factionGrid.length; i++)
+    for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
+        this.renderGrid[i] = this.BLANK;
+        this.renderGridOld[i] = this.BLANK;
+        this.battleGrid[i] = this.BLANK;
+        this.battleGridNew[i] = this.BLANK;
+        this.defenseGrid[i] = this.BLANK;
+        this.ghostGrid[i] = this.BLANK;
         this.factionGrid[i] = this.FRIEND_ZONE;
+    }
 
 }
 
@@ -147,14 +158,13 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
 GameLogicManager.prototype.start = function () {
     if (!this.level || !this.canvas)
         throw "Level and/or canvas not set! Game logic cannot start.";
-    
+
     this.paused = false;
     // decrease timer by 1 per second
     setInterval(function () {
-        if (!this.gameLogicManager.paused) {
+        if (!this.paused) {
             this.updateLoop();
             this.renderGridCells();
-            this.level.time--;
         }
     }.bind(this), 500);
 }
@@ -183,12 +193,12 @@ GameLogicManager.prototype.updateLoop = function() {
                 case this.FRIEND:
                     // decide if to die
                     var neighbors = this.calcNumNeighbors(i, j);
-                    this.die(index, FRIEND, neighbors);
+                    this.die(index, this.FRIEND, neighbors);
                     break;
                 case this.ENEMY:
                     // decide if to die
                     var neighbors = this.calcNumNeighbors(i, j);
-                    this.die(index, ENEMY, neighbors);
+                    this.die(index, this.ENEMY, neighbors);
                     break;
                 default:
                     // nothing
@@ -204,23 +214,26 @@ GameLogicManager.prototype.updateLoop = function() {
                     break;
             }
 
-            battleCell = this.battleGrid[index];
+            battleCell = this.battleGridNew[index];
             defenseCell = this.defenseGrid[index];
-            if(ghostCell !== -2)
+            if(ghostCell !== this.BLANK)
                 this.renderGrid[index] = this.GHOST;
-            else if(battleCell !== -2)
+            else if(battleCell !== this.BLANK)
                 this.renderGrid[index] = battleCell;
-            else if(defenseCell !== -2)
+            else if(defenseCell !== this.BLANK)
                 this.renderGrid[index] = defenseCell;
+            // else if(this.renderGrid[index] !== this.BLANK)
+            //     // do nothing; keep this cell
+            //     continue;
             else
                 this.renderGrid[index] = this.factionGrid[index];
         }
     }
+    this.battleGrid = this.battleGridNew.slice(0);
+    this.battleGridNew = this.battleGridNew.slice(0);
 }
 
 GameLogicManager.prototype.renderGridCells = function() {
-    console.log(this.renderGrid);
-    console.log(this.renderGridOld);
     for(var i = 0; i < this.gridHeight; i++)
     {
         for(var j = 0; j < this.gridWidth; j++)
@@ -249,14 +262,16 @@ GameLogicManager.prototype.reproduce = function(index, neighbors) {
             newType = this.ENEMY;
         else
             newType = this.FRIEND;
-        this.battleGrid[index] = newType;
+        this.battleGridNew[index] = newType;
     }
+    // new updates are screwing up current calculations
+    // make another grid!
 }
 
 GameLogicManager.prototype.die = function(index, current, neighbors) {
     var total = neighbors["friends"] + neighbors["enemies"];
     if(total < 2 || total > 3) {
-        this.battleGrid[index] = this.BLANK;
+        this.battleGridNew[index] = this.BLANK;
     }
     else {
         // currently do nothing; leave as is
@@ -318,11 +333,11 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction) {
            this.getGridCell(this.battleGrid, row, col) !== this.VOID)
         {
             this.setGridCell(this.battleGrid, row, col, faction);
+            this.setGridCell(this.battleGridNew, row, col, faction);
             this.setGridCell(this.renderGrid, row, col, faction);
         }
     }
 
-    console.log(this.renderGrid);
     this.renderGridCells();
 }
 
@@ -353,11 +368,21 @@ GameLogicManager.prototype.resume = function() {
 GameLogicManager.prototype.reset = function() {
     // RESET ALL THE DATA STRUCTURES TOO
     this.battleGrid = new Array(this.gridWidth * this.gridHeight);
+    this.battleGridNew = new Array(this.gridWidth * this.gridHeight);
     this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
     this.renderGrid = new Array(this.gridWidth * this.gridHeight);
     this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
     this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
     this.factionGrid = new Array(this.gridWidth * this.gridHeight);
+    for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
+        this.renderGrid[i] = this.BLANK;
+        this.renderGridOld[i] = this.BLANK;
+        this.battleGrid[i] = this.BLANK;
+        this.battleGridNew[i] = this.BLANK;
+        this.defenseGrid[i] = this.BLANK;
+        this.ghostGrid[i] = this.BLANK;
+        this.factionGrid[i] = this.FRIEND_ZONE;
+    }
 
     this.paused = true;
 
