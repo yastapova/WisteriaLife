@@ -69,7 +69,7 @@ GamePlayScreen.prototype.init = function () {
             this.level.time--;
             if (this.level.time == 0) {
                 this.gameLogicManager.pause();
-                this.gameManager.screenManager.switchScreens('defeat');
+                this.gameManager.screenManager.switchScreens('victory');
             }
         }
         this.setTimeDisplay(this.level.time);
