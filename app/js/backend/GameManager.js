@@ -20,11 +20,11 @@ var GameManager = function() {
     this.gameLogicManager = new GameLogicManager();
     this.user = new User();
     this.mute = false;
-    // this.loginButton = document.getElementById('splash-login');
-    // this.logoutButton = document.getElementById('splash-logout');
-    //
-    // // Listeners for buttons
-    //
+    this.loginButton = document.getElementById('splash-login');
+    this.logoutButton = document.getElementById('splash-logout');
+    
+    // Listeners for buttons
+    
     // this.loginButton.addEventListener('click', this.login.bind(this));
     // this.logoutButton.addEventListener('click', this.logout.bind(this));
     // this.initFirebase();
