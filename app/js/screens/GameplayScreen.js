@@ -118,12 +118,13 @@ GamePlayScreen.prototype.init = function () {
  */
 GamePlayScreen.prototype.setTimeDisplay = function (seconds) {
 
+    var percent = seconds / this.totalTime * 100;
+
     var minutes = Math.floor(seconds / 60);
     seconds = seconds % 60;
 
     this.timeDisplay.text(minutes + ':' + (seconds < 10 ? '0' : '') + seconds);
 
-    var percent = seconds / this.totalTime * 100;
     this.timeBar.width(percent + "%");
 
     if (percent < 20)
