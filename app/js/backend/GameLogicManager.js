@@ -256,9 +256,6 @@ GameLogicManager.prototype.updateLoop = function() {
                 this.renderGrid[index] = battleCell;
             else if(defenseCell !== this.BLANK)
                 this.renderGrid[index] = defenseCell;
-            // else if(this.renderGrid[index] !== this.BLANK)
-            //     // do nothing; keep this cell
-            //     continue;
             else
                 this.renderGrid[index] = this.factionGrid[index];
         }
