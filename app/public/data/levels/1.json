@@ -1,6 +1,6 @@
 {            
             "grid" : "small",
-            "time" : 30,
+            "time" : 60,
             "enemyZone" : 
                 [  3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
                    3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,3,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,
@@ -34,57 +34,57 @@
             ],
             "messages" : [
                 {
-                    "time" : 28,
+                    "time" : 58,
                     "message" : "Welcome to Wisteria Life"
                 },
                 {
-                    "time" : 26,
+                    "time" : 56,
                     "message" : "Please select a unit from the units drop down to begin"
                 },
                 {
-                    "time" : 24,
+                    "time" : 54,
                     "message" : "Drag the unit over the grid and release when you want to place it"
                 },
                 {
-                    "time" : 22,
+                    "time" : 52,
                     "message" : "The unit will move accordingly"
                 }
             ],
             "enemySpawns" : [
                 {                            
-                    "time" : 28,
+                    "time" : 50,
                     "shapes" : [
-                        {
-                            "name" : "infantryn",
-                            "coordinates" : {
-                                "x" : 0,
-                                "y" : 0
-                            } 
-                        },
                         {
                             "name" : "infantrye",
                             "coordinates" : {
-                                "x" : 5,
+                                "x" : 3,
+                                "y" : 3
+                            } 
+                        },
+                        {
+                            "name" : "archerse",
+                            "coordinates" : {
+                                "x" : 10,
                                 "y" : 5
                             } 
                         }
                     ]
                 },
                 {                            
-                    "time" : 26,
+                    "time" : 25,
                     "shapes" : [
-                        {
-                            "name" : "infantryn",
-                            "coordinates" : {
-                                "x" : 0,
-                                "y" : 0
-                            } 
-                        },
                         {
                             "name" : "infantrye",
                             "coordinates" : {
-                                "x" : 5,
-                                "y" : 5
+                                "x" : 4,
+                                "y" : 12
+                            } 
+                        },
+                        {
+                            "name" : "archerne",
+                            "coordinates" : {
+                                "x" : 10,
+                                "y" : 8
                             } 
                         }
                     ]
@@ -101,8 +101,8 @@
                 {
                     "name" : "tower",
                     "coordinates" : {
-                        "x" : 33,
-                        "y" : 15
+                        "x" : 28,
+                        "y" : 12
                     } 
                 }
             ]
