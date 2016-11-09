@@ -35,19 +35,27 @@
             "messages" : [
                 {
                     "time" : 58,
-                    "message" : "Welcome to Wisteria Life"
+                    "message" : "Welcome to Wisteria Life!"
                 },
                 {
                     "time" : 56,
-                    "message" : "Please select a unit from the units drop down to begin"
+                    "message" : "Please select a unit from the unit drop down to begin."
                 },
                 {
                     "time" : 54,
-                    "message" : "Drag the unit over the grid and release when you want to place it"
+                    "message" : "Move the unit over the grid to place it in the white ally zone. Your units are of the color wisteria."
                 },
                 {
                     "time" : 52,
-                    "message" : "The unit will move accordingly"
+                    "message" : "The objective of the level is to protect your defense structures from enemy invasion."
+                },
+                {
+                    "time" : 50,
+                    "message" : "Watch out! Enemies have spawned! They are the sickly green color."
+                },
+                {
+                    "time" : 48,
+                    "message" : "You win if your defense structures are able to withstand the duration of the battle."
                 }
             ],
             "enemySpawns" : [
