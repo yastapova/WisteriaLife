@@ -26,7 +26,7 @@ var LevelManager = function() {
  */
 LevelManager.prototype.load = function (callback) {
     this.loadRegions(callback);
-}
+};
 
 // Loads the regions from firebase
 LevelManager.prototype.loadRegions = function(callback) {
