@@ -50,6 +50,8 @@ $(document).ready(function() {
     // singleton game manager - first call instantiates it
     var gameManager = require('GameManager');
 
+    $('#container-loader').fadeIn('fast');
+
     // load game manager resources
     // setup initial screen when complete
     gameManager.loadResources(
