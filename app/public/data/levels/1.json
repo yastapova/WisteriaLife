@@ -57,15 +57,15 @@
                         {
                             "name" : "infantrye",
                             "coordinates" : {
-                                "x" : 3,
-                                "y" : 3
+                                "x" : 10,
+                                "y" : 2
                             } 
                         },
                         {
-                            "name" : "archerse",
+                            "name" : "infantrye",
                             "coordinates" : {
                                 "x" : 10,
-                                "y" : 5
+                                "y" : 11
                             } 
                         }
                     ]
@@ -76,15 +76,15 @@
                         {
                             "name" : "infantrye",
                             "coordinates" : {
-                                "x" : 4,
-                                "y" : 12
+                                "x" : 10,
+                                "y" : 2
                             } 
                         },
                         {
-                            "name" : "archerne",
+                            "name" : "infantrye",
                             "coordinates" : {
                                 "x" : 10,
-                                "y" : 8
+                                "y" : 11
                             } 
                         }
                     ]
