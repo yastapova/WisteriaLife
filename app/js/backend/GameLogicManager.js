@@ -389,6 +389,7 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
 }
 
 GameLogicManager.prototype.placeDefenses = function() {
+    this.defensesLeft = 0;
     var defenses = this.level.defenseStructures;
     if(typeof defenses === "undefined")
         return;
@@ -468,7 +469,7 @@ GameLogicManager.prototype.reset = function() {
         this.battleGridNew[i] = this.BLANK;
         this.defenseGrid[i] = this.BLANK;
         this.ghostGrid[i] = this.BLANK;
-        this.factionGrid[i] = this.FRIEND_ZONE;
+        // this.factionGrid[i] = this.FRIEND_ZONE;
     }
 
     this.paused = true;
