@@ -91,10 +91,30 @@ a {
 
 #toast-container {
     z-index: 2;
+
+    @media #{$small-and-down} {
+        min-width: 100%;
+        bottom: 0%;
+    }
+
+    @media #{$medium-only} {
+        left: 5%;
+        bottom: 7%;
+        max-width: 50%;
+    }
+
+    @media #{$large-and-up} {
+        left: 5%;
+        bottom: 7%;
+        top: inherit;
+        right: inherit;
+        max-width: 50%;
+    }
 }
 
 .wisteria-toast {
     background-color: $primary-color;
+    float: left;
 }
 
 .container {
