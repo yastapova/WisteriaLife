@@ -436,19 +436,47 @@
                 },
                 {
                     "time" : 54,
-                    "message" : "Move the unit over the grid to place it in the white ally zone. Your units are of the color wisteria."
+                    "message" : "Move the unit over the grid to place it in the white ally zone."
                 },
                 {
                     "time" : 52,
-                    "message" : "The objective of the level is to protect your defense structures from enemy invasion."
+                    "message" : "Your units are of the color wisteria."
                 },
                 {
                     "time" : 50,
-                    "message" : "Watch out! Enemies have spawned! They are the sickly green color."
+                    "message" : "Watch out! Enemies have spawned!"
                 },
                 {
                     "time" : 48,
-                    "message" : "You win if your defense structures are able to withstand the duration of the battle."
+                    "message" : "Enemy units have a sickly green color."
+                },
+                {
+                    "time" : 46,
+                    "message" : "The objective of the level is to protect your defense structures from enemy invasion."
+                },
+                {
+                    "time" : 44,
+                    "message" : "You can tell them apart as the dark purple color."
+                },
+                {
+                    "time" : 42,
+                    "message" : "You win if your defense structures are able to last the duration of the battle."
+                },
+                {
+                    "time" : 30,
+                    "message" : "Congrats! You've endured the first wave!"
+                },
+                {
+                    "time" : 26,
+                    "message" : "Caution, the second wave of enemies have spawned."
+                },
+                {
+                    "time" : 23,
+                    "message" : "Place your units sparingly so that you have reinforcements when needed."
+                },
+                {
+                    "time" : 20,
+                    "message" : "May you be victorous in battle. Good luck!"
                 }
             ],
             "enemySpawns" : [
@@ -495,7 +523,7 @@
                 {
                     "name" : "tower",
                     "coordinates" : {
-                        "x" : 33,
+                        "x" : 25,
                         "y" : 2
                     } 
                 },
