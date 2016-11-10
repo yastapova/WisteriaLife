@@ -144,7 +144,7 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
     this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
     // this.factionGrid = new Array(this.gridWidth * this.gridHeight);
-    this.factionGrid = this.level.enemyZone;
+    this.factionGrid = this.level.enemyZone.slice(0);
     for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
         this.renderGrid[i] = this.BLANK;
         this.renderGridOld[i] = this.BLANK;
@@ -154,7 +154,7 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
         this.ghostGrid[i] = this.BLANK;
         // this.factionGrid[i] = this.FRIEND_ZONE;
     }
-    this.renderGrid = this.level.enemyZone;
+    this.renderGrid = this.level.enemyZone.slice(0);
     this.placeDefenses();
     this.renderGridCells();
 }
