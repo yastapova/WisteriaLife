@@ -9,10 +9,10 @@
 
 var GameData = require('./GameData');
 
-var User = function(name, avatar, id) {
+var User = function(name, avatar, uid) {
     this.name = name;
     this.avatar = avatar;
-    this.id = id;
+    this.uid = uid;
     this.gameData = new GameData();
 };
 

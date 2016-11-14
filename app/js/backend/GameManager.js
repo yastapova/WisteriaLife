@@ -42,6 +42,7 @@ var GameManager = function() {
 
     // User
     this.user = undefined;
+    this.userWistbux = $('#user-wistbux');
 };
 
 /**
@@ -128,6 +129,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
 	        $('#splash-guest').css('display', 'none');	
+	        $('#splash-play').css('display', 'block');
 
 	        // Dropdown changes
 	        $('#drop-login').css('display','block');
@@ -136,6 +138,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#user-icon-pic').css('display','none');
 	        $('#user-pic-drop').css('display','none');
 	        this.userDropName.textContent = "Guest";
+	        this.writeUserData();
 	    }
     	else{
     		// User is signed in
@@ -143,12 +146,14 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        if(this.user === undefined){
 	        	this.user = new User(user.displayName, user.photoURL, user.uid);
 	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	        	this.writeUserData();
 	        	// Guest wants to log in 
 	        }else if(this.user !== undefined && this.user.name === "Guest"){
 	        	var currentGameData = this.user.gameData;
 	        	this.user = new User(user.displayName, user.photoURL, user.uid);
 	        	this.user.gameData = currentGameData;
 	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	        	this.writeUserData();
 	        }
 	        console.log(user);
 
@@ -156,6 +161,8 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
 	        $('#splash-guest').css('display', 'none');
+	        $('#splash-play').css('display', 'block');
+
 
 	        // Navbar changes
 	        this.userName.textContent = user.displayName;
@@ -178,6 +185,8 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         $('#splash-logout').css('display','none');
         $('#splash-login').css('display', 'block');
         $('#splash-guest').css('display', 'block');
+        $('#splash-play').css('display', 'none');
+
 
         // Navbar changes
         $('#user-login').css('display','block');
@@ -220,6 +229,24 @@ GameManager.prototype.logout = function() {
     firebase.auth().signOut();
     this.screenManager.switchScreens('splash');
     this.user = undefined;
+};
+
+/**
+ * Play event
+ */
+GameManager.prototype.play = function() {
+    // Switch to the map screen
+    this.screenManager.switchScreens('map');
+};
+
+/**
+ * 
+ */
+GameManager.prototype.writeUserData = function () {
+  firebase.database().ref('users/' + this.user.uid).set({
+    username: this.user.name,
+    gameData: this.user.gameData
+  });
 };
 
 /**

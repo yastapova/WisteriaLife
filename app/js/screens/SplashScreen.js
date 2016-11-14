@@ -21,12 +21,14 @@ SplashScreen.prototype.init = function() {
     this.loginButton = $('#splash-login');
     this.guestButton = $('#splash-guest');
     this.logoutButton = $('#splash-logout');
+    this.playButton = $('#splash-play');
 
     // Listeners for buttons
     var gameManager = require('GameManager');
     this.loginButton.on('click', gameManager.login.bind(gameManager));
     this.guestButton.on('click', gameManager.guest.bind(gameManager));
     this.logoutButton.on('click', gameManager.logout.bind(gameManager));
+    this.playButton.on('click', gameManager.play.bind(gameManager));
     gameManager.auth.onAuthStateChanged(gameManager.onAuthStateChanged.bind(gameManager));
 };
 
