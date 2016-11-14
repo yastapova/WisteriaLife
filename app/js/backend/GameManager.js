@@ -143,11 +143,15 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     	else{
     		// User is signed in
 	        // Get the avatar and name from the Firebase user object
-	        if(this.user === undefined){
-	        	this.user = new User(user.displayName, user.photoURL, user.uid);
-	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
-	        	this.writeUserData();
+	        if(this.user === undefined){	        	
+	        	// Check if user already has data
+	        	// TO DO	     
+				var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
+				  var exists = (snapshot.val() !== null);
+				  this.userExistsCallback(user, exists, snapshot.val());
+				}.bind(this));	        
 	        	// Guest wants to log in 
+	        	// TO DO Merging!
 	        }else if(this.user !== undefined && this.user.name === "Guest"){
 	        	var currentGameData = this.user.gameData;
 	        	this.user = new User(user.displayName, user.photoURL, user.uid);
@@ -240,13 +244,29 @@ GameManager.prototype.play = function() {
 };
 
 /**
- * 
+ * Write User Data
  */
 GameManager.prototype.writeUserData = function () {
   firebase.database().ref('users/' + this.user.uid).set({
     username: this.user.name,
     gameData: this.user.gameData
   });
+};
+
+/**
+ * Callback for reading user data from firebase
+ */
+GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
+	this.user = new User(user.displayName, user.photoURL, user.uid); 
+	if(exists){
+		console.log("I exist!");
+		console.log(snapshot);
+		this.user.gameData = snapshot.gameData;
+	}else{
+	  	this.user = new User(user.displayName, user.photoURL, user.uid);
+	  	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+		this.writeUserData();
+	}
 };
 
 /**
