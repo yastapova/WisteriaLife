@@ -81,6 +81,10 @@ var PixiCanvas = function (element, size) {
 
     // canvas click event
     this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
+    this.renderer.view.addEventListener('mousemove', this.respondToMouseMove.bind(this));
+
+    this.prevGhostRow = 0;
+    this.prevGhostCol = 0;
 }
 
 /**
@@ -187,6 +191,23 @@ PixiCanvas.prototype.respondToMouseClick = function () {
 
     this.render();
 };
+
+PixiCanvas.prototype.respondToMouseMove = function () {
+    var canvasCoords = this.getRelativeCoords(event);
+    var clickCol = Math.floor(canvasCoords.x/this.cellLength);
+    var clickRow = Math.floor(canvasCoords.y/this.cellLength);
+
+    var ghost = gameManager.gameLogicManager.GHOST;
+    // var blank = gameManager.gameLogicManager.BLANK;
+    var grid = gameManager.gameLogicManager.ghostGrid;
+    gameManager.gameLogicManager.clearGrid(grid);
+    // gameManager.gameLogicManager.placeShape(this.prevGhostRow, this.prevGhostCol, blank, null, grid);
+    gameManager.gameLogicManager.placeShape(clickRow, clickCol, ghost, null, grid);
+
+    // this.prevGhostCol = clickCol;
+    // this.prevGhostRow = clickRow;
+    // this.render();
+}
 
 PixiCanvas.prototype.getRelativeCoords = function () {
     return (event.offsetX !== undefined && event.offsetY !== undefined) ?
