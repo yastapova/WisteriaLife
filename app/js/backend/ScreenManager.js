@@ -42,6 +42,7 @@ var ScreenManager = function (currentScreen) {
         'save-level': SaveLevelScreen,
         'splash': SplashScreen,
         'store': StoreScreen,
+        'tutorial': TutorialScreen,
         'victory': VictoryScreen
     };
 
@@ -153,6 +154,7 @@ var PublicCustomLevelsScreen = require('../screens/PublicCustomLevelsScreen');
 var SaveLevelScreen = require('../screens/SaveLevelScreen');
 var SplashScreen = require('../screens/SplashScreen');
 var StoreScreen = require('../screens/StoreScreen');
+var TutorialScreen = require('../screens/TutorialScreen');
 var VictoryScreen = require('../screens/VictoryScreen');
 
 module.exports = ScreenManager;
