@@ -156,7 +156,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        	var currentGameData = this.user.gameData;
 	        	this.user = new User(user.displayName, user.photoURL, user.uid);
 	        	this.user.gameData = currentGameData;
-	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	        	this.userLevel.text = 'Level ' + this.user.gameData.currentLevel;
 	        	this.writeUserData();
 	        }
 	        console.log(user);
@@ -262,6 +262,8 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
 		console.log("I exist!");
 		console.log(snapshot);
 		this.user.gameData = snapshot.gameData;
+		this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+		this.userWistbux.text(this.user.gameData.wistbux);
 	}else{
 	  	this.user = new User(user.displayName, user.photoURL, user.uid);
 	  	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
