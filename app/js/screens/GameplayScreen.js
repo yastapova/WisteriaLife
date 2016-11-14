@@ -37,6 +37,8 @@ GamePlayScreen.prototype.setLevel = function (level) {
 GamePlayScreen.prototype.init = function () {
     console.log("Gameplay screen init called");
 
+    this.gameManager.screenManager.switchScreens('tutorial');
+
     $('select').material_select();
 
     $('.dropdown-button').dropdown({

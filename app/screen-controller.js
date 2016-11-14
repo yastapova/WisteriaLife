@@ -103,6 +103,13 @@ router.get('/store', function(req, res, next) {
     });
 });
 
+/* Tutorial. */
+router.get('/tutorial', function(req, res, next) {
+    res.render('tutorial', {
+        title: 'Tutorial'
+    });
+});
+
 /* Victory. */
 router.get('/victory', function(req, res, next) {
     res.render('victory', {
