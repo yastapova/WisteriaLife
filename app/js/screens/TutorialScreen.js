@@ -27,6 +27,7 @@ TutorialScreen.prototype.init = function() {
     $('#tutorial-play').on('click', function () {
     	console.log("clicked button");
         var gameManager = require('GameManager');
+        var gameplayScreen = require('GameplayScreen');
         gameManager.screenManager.hideScreen(this);
     }.bind(this));
 

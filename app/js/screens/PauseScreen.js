@@ -30,6 +30,11 @@ PauseScreen.prototype.init = function() {
         gameManager.screenManager.hideScreen(this);
     }.bind(this));
 
+    $('#help-button').on('click', function () {
+        var gameManager = require('GameManager');
+        gameManager.screenManager.hideScreen(this);
+    }.bind(this));
+
 };
 
 PauseScreen.prototype.hide = function() {
