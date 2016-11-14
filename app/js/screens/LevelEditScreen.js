@@ -53,8 +53,17 @@ LevelEditScreen.prototype.init = function() {
     // Default: 41
     this.gameManager.levelManager.loadLevel(41, this.setLevel.bind(this));
 
-    // update current shape
     var self = this;
+
+    // set initial time and time change event
+    this.timeDisplay = $('#timer-display');
+    this.timeBar = $('#timeline input');
+    this.timeBar.on('change', function () {
+        self.setTimeDisplay($(this).val());
+    });
+    this.timeBar.val(0);
+
+    // update current shape
     $('#unit-select-menu select').change(function () {
         self.gameLogicManager.currentUnit =
             self.gameManager.shapeManager.getShape(
@@ -100,6 +109,21 @@ LevelEditScreen.prototype.init = function() {
         $('#resize-confirm').closeModal();
     }.bind(this));
 
+};
+
+/**
+ * Set Time display
+ * Calculates m:ss format of seconds
+ * @param {int} seconds Time in seconds
+ */
+LevelEditScreen.prototype.setTimeDisplay = function (seconds) {
+
+    var percent = seconds / this.totalTime * 100;
+
+    var minutes = Math.floor(seconds / 60);
+    seconds = seconds % 60;
+
+    this.timeDisplay.text(minutes + ':' + (seconds < 10 ? '0' : '') + seconds);
 };
 
 LevelEditScreen.prototype.hide = function() {
