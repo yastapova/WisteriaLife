@@ -489,6 +489,12 @@ GameLogicManager.prototype.reset = function() {
     this.renderGridCells();
 }
 
+GameLogicManager.prototype.clearGrid = function(grid) {
+    for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
+        grid[i] = this.BLANK;
+    }
+}
+
 /*
  * Accessor method for getting the cell value in the grid at
  * location (row, col).
