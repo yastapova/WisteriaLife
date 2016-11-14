@@ -27,6 +27,21 @@ GamePlayScreen.prototype.setLevel = function (level) {
     var canvas = new PixiCanvas($('#gameplay-canvas'), this.level.grid);
 
     this.gameLogicManager.setLevel(level, canvas);
+    var allowed = Object.keys(this.gameLogicManager.allowedShapesMap);
+
+    $('#unit-select-menu select').append((function () {
+        var shapes = [];
+        for(var i = 0; i < allowed.length; i++)
+        {
+            shapes.push('<option value=\'' + allowed[i] +
+                        '\' data-icon=\'/img/powerups/' + allowed[i] + '.png\'>' +
+                        allowed[i] + 
+                        this.gameLogicManager.allowedShapesMap[allowed[i]] +
+                        '</option>');
+        }
+        return shapes;
+    }.bind(this))());
+    $('select').material_select();
 }
 
 /**

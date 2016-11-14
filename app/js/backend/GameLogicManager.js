@@ -137,6 +137,11 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
     this.currentUnit = null;
+    this.allowedShapesMap = {};
+    var allowed = this.level.allowedShapes;
+    for(var i = 0; i < allowed.length; i++) {
+        this.allowedShapesMap[allowed[i].shape] = allowed[i].quantity;
+    }
 
     this.battleGrid = new Array(this.gridWidth * this.gridHeight);
     this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
@@ -350,6 +355,15 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         }
         else {
             shape = this.currentUnit;
+            if(faction !== this.GHOST) {
+                var val = this.allowedShapesMap[shape.name];
+                if(val > 0) {
+                    this.allowedShapesMap[shape.name]--;
+                }
+                else {
+                    return;
+                }
+            }
         }
     }
     var battle = false;
@@ -487,6 +501,12 @@ GameLogicManager.prototype.reset = function() {
 
     // RENDER THE CLEARED SCREEN
     this.renderGridCells();
+}
+
+GameLogicManager.prototype.clearGrid = function(grid) {
+    for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
+        grid[i] = this.BLANK;
+    }
 }
 
 /*

@@ -28,7 +28,6 @@ var GameManager = function() {
     ]);
     this.resourcesLoaded = 0;
 
-    //this.user = new User();
     this.mute = false;
 
     // Menu Bar
@@ -41,6 +40,8 @@ var GameManager = function() {
     this.userIconPic = document.getElementById('user-icon-pic');
     this.userPicDrop = document.getElementById('user-pic-drop');
 
+    // User
+    this.user = undefined;
 };
 
 /**
@@ -82,22 +83,23 @@ GameManager.prototype.resourceLoaded = function () {
     if (this.resourcesLoaded == this.resources.length) {
         this.resourcesLoadedCallback();
     }
-}
+};
 
 /**
 * Setup shortcuts to Firebase features and initiate firebase authentication
 */
 GameManager.prototype.initFirebase = function() {
     // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyBNCeWYe5TnqjvSIL9ieykBn59Zn3Aa0q0",
-        authDomain: "wisteria-life-build2.firebaseapp.com",
-        databaseURL: "https://wisteria-life-build2.firebaseio.com",
-        storageBucket: "wisteria-life-build2.appspot.com",
-        messagingSenderId: "103993744321"
-    };
+	var config = {
+	    apiKey: "AIzaSyCF30XXggPV9nLf3zBLEYpRUMjG55cQUaE",
+	    authDomain: "wisteria-life-build3.firebaseapp.com",
+	    databaseURL: "https://wisteria-life-build3.firebaseio.com",
+	    storageBucket: "wisteria-life-build3.appspot.com",
+	    messagingSenderId: "581646437875"
+	};
 
-    firebase.initializeApp(config);
+	firebase.initializeApp(config);
+
 
     // Shortcuts to Firebase SDK features.
     this.auth = firebase.auth();
@@ -115,43 +117,67 @@ GameManager.prototype.initFirebase = function() {
 
 GameManager.prototype.onAuthStateChanged = function(user) {
     if(user) {
-        // User is signed in
-        // Get the avatar and name from the Firebase user object
-        var avatar = user.photoURL;
-        var name = user.displayName;
-        var id = user.getToken();
-        user = new User(name, avatar, id);
-        console.log(user);
+    	if(user.isAnonymous){
+    		console.log("I am anonymous!");
+    		if(this.user === undefined){
+	        	this.user = new User("Guest", null, user.uid);
+	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	        }
+    		console.log(user);
+    		// Splash changes
+	        $('#splash-logout').css('display','block');
+	        $('#splash-login').css('display', 'none');
+	        $('#splash-guest').css('display', 'none');	
 
-        // Splash changes
-        $('#splash-logout').css('display','block');
-        $('#splash-login').css('display', 'none');
+	        // Dropdown changes
+	        $('#drop-login').css('display','block');
+	        $('#drop-logout').css('display', 'none');
+	        $('#user-icon-def').css('display','inline-block');
+	        $('#user-icon-pic').css('display','none');
+	        $('#user-pic-drop').css('display','none');
+	        this.userDropName.textContent = "Guest";
+	    }
+    	else{
+    		// User is signed in
+	        // Get the avatar and name from the Firebase user object
+	        if(this.user === undefined){
+	        	this.user = new User(user.displayName, user.photoURL, user.uid);
+	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	        	// Guest wants to log in 
+	        }else if(this.user !== undefined && this.user.name === "Guest"){
+	        	var currentGameData = this.user.gameData;
+	        	this.user = new User(user.displayName, user.photoURL, user.uid);
+	        	this.user.gameData = currentGameData;
+	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	        }
+	        console.log(user);
 
-        // Navbar changes
-        this.userName.textContent = name;
-        this.userPic.style.backgroundImage = 'url(' + (avatar) + ')';
-        $('#user-login').css('display','none');
-        $('#user-name').css('display','inline-block');
-        $('#user-pic').css('display','inline-block');
+	        // Splash changes
+	        $('#splash-logout').css('display','block');
+	        $('#splash-login').css('display', 'none');
+	        $('#splash-guest').css('display', 'none');
 
-        // Dropdown changes
-        this.userPicDrop.style.backgroundImage = 'url(' + (avatar) + ')';
-        this.userDropName.textContent = name;
-        this.userLevel.textContent = 'Level ' + user.gameData.getCurrentLevel();
-        $('#drop-logout').css('display','block');
-        $('#drop-login').css('display', 'none');
-        $('#user-icon-def').css('display','none');
-        $('#user-icon-pic').css('display','inline-block');
-        $('#user-pic-drop').css('display','inline-block');
+	        // Navbar changes
+	        this.userName.textContent = user.displayName;
+	        this.userPic.style.backgroundImage = 'url(' + (user.photoURL) + ')';
+	        $('#user-login').css('display','none');
+	        $('#user-name').css('display','inline-block');
+	        $('#user-pic').css('display','inline-block');
 
-        return user;
-    }
-    else {
-        // The user is signed out
-
-        // Splash changes
+	        // Dropdown changes
+	        this.userPicDrop.style.backgroundImage = 'url(' + (user.photoURL) + ')';
+	        this.userDropName.textContent = name;	        
+	        $('#drop-logout').css('display','block');
+	        $('#drop-login').css('display', 'none');
+	        $('#user-icon-def').css('display','none');
+	        $('#user-icon-pic').css('display','inline-block');
+	        $('#user-pic-drop').css('display','inline-block');
+    	}       
+    }else{
+    	// Splash changes
         $('#splash-logout').css('display','none');
         $('#splash-login').css('display', 'block');
+        $('#splash-guest').css('display', 'block');
 
         // Navbar changes
         $('#user-login').css('display','block');
@@ -164,9 +190,6 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         $('#user-icon-def').css('display','inline-block');
         $('#user-icon-pic').css('display','none');
         $('#user-pic-drop').css('display','none');
-        this.userDropName.textContent = "Guest";
-        this.userLevel.textContent = 'Level 0';
-
     }
 };
 
@@ -177,6 +200,16 @@ GameManager.prototype.login = function() {
     // Sign in Firebase using popup auth and Google as the identity provider
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
+    this.screenManager.switchScreens('map');
+};
+
+/**
+ * Guest login event
+ */
+GameManager.prototype.guest = function() {
+    // Sign in Firebase using guest account
+    firebase.auth().signInAnonymously();
+    this.screenManager.switchScreens('map');
 };
 
 /**
@@ -185,6 +218,8 @@ GameManager.prototype.login = function() {
 GameManager.prototype.logout = function() {
     // Sign out of Firebase.
     firebase.auth().signOut();
+    this.screenManager.switchScreens('splash');
+    this.user = undefined;
 };
 
 /**
