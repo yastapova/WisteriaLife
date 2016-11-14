@@ -84,7 +84,7 @@ LevelManager.prototype.loadLevel = function (id, setLevel) {
     console.log("Load level called for id: " + id);
     // Reference to the /levels/ database path
     firebase.database().ref('levels').once('value', function (snapshot) {
-        var levelAttrObj = this.loadJSONDataLevel(snapshot.val()[id - 1]);
+        var levelAttrObj = this.loadJSONDataLevel(snapshot.val()[id]);
         levelAttrObj.id = id;
         setLevel(new Level(levelAttrObj));
     }.bind(this));
