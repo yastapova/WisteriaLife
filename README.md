@@ -2,15 +2,14 @@
 CSE 308 course project based on the Game of Life
 
 ## System Dependencies
-[Node.js](https://nodejs.org/en/) (4.6.1+) - Used for managing dependencies
-
-More dependencies to be added later.
+[Node.js](https://nodejs.org/en/) (4.6.1+)
 
 ## Setup Project
 To setup project dependencies, run the following:
 
 ```
 npm install
+gulp materialize
 ```
 
 ## Run Project

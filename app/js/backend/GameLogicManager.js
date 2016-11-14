@@ -139,6 +139,7 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.currentUnit = null;
     this.allowedShapesMap = {};
     var allowed = this.level.allowedShapes;
+    if (!allowed) allowed = [];
     for(var i = 0; i < allowed.length; i++) {
         this.allowedShapesMap[allowed[i].shape] = allowed[i].quantity;
     }

@@ -17,6 +17,44 @@ var PixiCanvas = function (element, size) {
     // recalculated when rendering
     this.cellLength = 0;
 
+    //Create the renderer
+    this.renderer = PIXI.autoDetectRenderer(1280, 720, {
+        antialias: false,
+        transparent: true,
+        resolution: 1
+    });
+    this.renderer.autoResize = true;
+    // this.renderer.backgroundColor = 0xeeeeee;
+
+    //Add the canvas to the HTML document
+    element.get(0).appendChild(this.renderer.view);
+
+    //Create a container object called the `stage`
+    this.stage = new PIXI.Container();
+
+    // set dimensions
+    this.setDimensions(size);
+
+    // store grid of rendered shapes
+    this.grid = new Array(this.size.width);
+    for (var i = 0; i < this.size.width; i++) {
+        this.grid[i] = new Array(this.size.height);
+    }
+
+    // resize canvas whenever window resizes
+    $(window).resize(function () {
+        this.resizePixiCanvas();
+    }.bind(this));
+
+    // canvas click event
+    this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
+}
+
+/**
+ * Set the size (number of cells) of grid
+ * @param  {String} size small, medium, or large
+ */
+PixiCanvas.prototype.setDimensions = function (size) {
     switch (size) {
         case 'small':
             this.size = {
@@ -47,28 +85,8 @@ var PixiCanvas = function (element, size) {
             }
     }
 
-    // store grid of rendered shapes
-    this.grid = new Array(this.size.width);
-    for (var i = 0; i < this.size.width; i++) {
-        this.grid[i] = new Array(this.size.height);
-    }
-
-    //Create the renderer
-    this.renderer = PIXI.autoDetectRenderer(1280, 720, {
-        antialias: false,
-        transparent: true,
-        resolution: 1
-    });
-    this.renderer.autoResize = true;
-    // this.renderer.backgroundColor = 0xeeeeee;
-
-    //Add the canvas to the HTML document
-    element.get(0).appendChild(this.renderer.view);
-
-    //Create a container object called the `stage`
-    this.stage = new PIXI.Container();
-
-    // first resize
+    // reset level
+    this.reset();
     this.resizePixiCanvas();
 
     //Tell the `renderer` to `render` the `stage`
@@ -128,7 +146,6 @@ PixiCanvas.prototype.resizePixiCanvas = function () {
  * Render the basic grid
  */
 PixiCanvas.prototype.render = function () {
-
     this.renderer.render(this.stage);
 };
 
@@ -136,8 +153,12 @@ PixiCanvas.prototype.render = function () {
  * Clear the canvas
  */
 PixiCanvas.prototype.reset = function () {
-    for (var child in this.stage.children) {
-        this.stage.removeChild(child);
+    this.stage.children = [];
+
+    // store grid of rendered shapes
+    this.grid = new Array(this.size.width);
+    for (var i = 0; i < this.size.width; i++) {
+        this.grid[i] = new Array(this.size.height);
     }
 };
 

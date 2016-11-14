@@ -20,6 +20,11 @@ inherits(SaveLevelScreen, Screen);
 SaveLevelScreen.prototype.init = function() {
     console.log("Save levels screen init called");
 
+    $('#save-cancel-button').on('click', function () {
+        var gameManager = require('GameManager');
+        gameManager.screenManager.hideScreen(this);
+    }.bind(this));
+
 };
 
 SaveLevelScreen.prototype.hide = function() {

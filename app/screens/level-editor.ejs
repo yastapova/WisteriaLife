@@ -1,85 +1,114 @@
 <% include partials/header %>
 <!-- Page Content goes here -->
-<div id="gameplay-screen" class="container-inner" align="center">
-    <div class="toolbar top">
+<div id="editor-screen" class="container-inner" align="center">
+
+    <div class="gameplay-toolbar toolbar-top">
         <div class="toolbar-content">
-            <div class="padder2">
+            <div class="progress">
                 <form action="#">
                     <span class="range-field" id="timeline">
                         <input type="range" id="test5" min="0" max="100" />
                     </span>
                 </form>
             </div>
-            <span class="toolbar-text">0:30</span>
+
+            <div id="timer-display">
+                <span id="current-time">0:00</span>
+            </div>
         </div>
     </div>
-    <div class="canvas" id="editor-canvas">
-    </div>
-    <div class="toolbar bottom">
-        <span class="toolbar-content">
-            <div class="bottom align">
-                <i class="wisteria-icons clear-cell mdi mdi-backspace"></i>
-            </div>
-            <!-- Dropdown Trigger -->
-            <div class="bottom align">
-                <a class='dropdown-button btn small' href='#!' data-activates='units'>Units</a>
+
+
+    <div class="canvas" id="editor-canvas"></div>
+
+
+    <div class="gameplay-toolbar toolbar-bottom">
+        <div class="toolbar-content">
+
+            <div id="backspace-button" class="toolbar-item">
+                <a href="#!" id="backspace">
+                    <i class="wisteria-icons clear-cell mdi mdi-backspace"></i>
+                </a>
             </div>
 
-            <!-- Dropdown Structure -->
-            <ul id='units' class='dropdown-content'>
-                <li><a href="#!">Archer &nwarr;</a></li>
-                <li><a href="#!">Archer &nearr;</a></li>
-                <li><a href="#!">Archer &swarr;</a></li>
-                <li><a href="#!">Archer &searr;</a></li>
-                <li><a href="#!">Infantry &uarr;</a></li>
-                <li><a href="#!">Infantry &darr;</a></li>
-                <li><a href="#!">Infantry &rarr;</a></li>
-                <li><a href="#!">Infantry &larr;</a></li>
-                <li><a href="#!">Tower</a></li>
-                <li><a href="#!">Blockade</a></li>
-                <li><a href="#!">Shield</a></li>
-                <li><a href="#!">Caltrops</a></li>
-                <li><a href="#!">Wall &nwarr;</a></li>
-                <li><a href="#!">Wall &nearr;</a></li>
-            </ul>
-
-            <!-- Switch -->
-            <div class="bottom align">
+            <div id="faction-switch" class="toolbar-item">
                 <div class="switch">
                     <label>
-                        <span class="enemy-swatch"><i class="wisteria-icons mdi mdi-stop"></i></span>
-                    <input type="checkbox">
-                    <span class="lever"></span>
-                        <span class="friendly-swatch"><i class="wisteria-icons mdi mdi-stop"></i></span>
+                        <span class="enemy-switch">
+                            <i class="wisteria-icons mdi mdi-stop"></i>
+                        </span>
+                        <input type="checkbox">
+                        <span class="lever"></span>
+                        <span class="friendly-switch">
+                            <i class="wisteria-icons mdi mdi-stop"></i>
+                        </span>
                     </label>
                 </div>
             </div>
 
-            <!-- Dropdown Trigger -->
-            <div class="bottom align">
-                <a class='dropdown-button btn small' href='#!' data-activates='zoom'>Zoom</a>
+            <div id="unit-select" class="toolbar-item">
+                <div id="unit-select-menu">
+                    <select>
+                        <option value="" disabled selected>Unit</option>
+                        <option value="archernw" data-icon="/img/powerups/archernw.png">Archer &nwarr;</option>
+                        <option value="archerne" data-icon="/img/powerups/archerne.png">Archer &nearr;</option>
+                        <option value="archersw" data-icon="/img/powerups/archersw.png">Archer &swarr;</option>
+                        <option value="archerse" data-icon="/img/powerups/archerse.png">Archer &searr;</option>
+                        <option value="infantryn" data-icon="/img/powerups/infantryn.png">Infantry &uarr;</option>
+                        <option value="infantrys" data-icon="/img/powerups/infantrys.png">Infantry &darr;</option>
+                        <option value="infantrye" data-icon="/img/powerups/infantrye.png">Infantry &rarr;</option>
+                        <option value="infantryw" data-icon="/img/powerups/infantryw.png">Infantry &larr;</option>
+                        <option value="tower" data-icon="/img/powerups/tower.png">Tower</option>
+                        <option value="blockade" data-icon="/img/powerups/blockade.png">Blockade</option>
+                        <option value="shield" data-icon="/img/powerups/shield.png">Shield</option>
+                        <option value="caltrops" data-icon="/img/powerups/caltrops.png">Caltrops</option>
+                        <option value="wallbackward" data-icon="/img/powerups/wallbackward.png">Wall &nwarr;</option>
+                        <option value="wallforward" data-icon="/img/powerups/wallforward.png">Wall &nearr;</option>
+                    </select>
+                </div>
             </div>
 
-            <!-- Dropdown Structure -->
-            <ul id='zoom' class='dropdown-content'>
-                <li><a href="#!">Small</a></li>
-                <li><a href="#!">Medium</a></li>
-                <li><a href="#!">Large</a></li>
-            </ul>
+           <div id="zoom-select" class="toolbar-item">
+               <div id="zoom-select-menu">
+                   <select>
+                       <option value="" disabled>Zoom Level</option>
+                       <option value="small" selected>Small</option>
+                       <option value="medium">Medium</option>
+                       <option value="large">Large</option>
+                   </select>
+               </div>
+           </div>
 
-            <div class="bottom align">
-                <i class="wisteria-icons clear-cell mdi mdi-message-text"></i>
+            <div id="message-button" class="toolbar-item">
+                <a href="#!">
+                    <i class="wisteria-icons clear-cell mdi mdi-message-text"></i>
+                </a>
             </div>
 
-            <div class="bottom align">
-                <a href="save-level"><i class="wisteria-icons clear-cell mdi mdi-content-save"></i></a>
+            <div id="save-button" class="toolbar-item">
+                <a href="save-level">
+                    <i class="wisteria-icons clear-cell mdi mdi-content-save"></i>
+                </a>
             </div>
 
-            <div class="bottom align">
-                <a href="private-custom-levels"><i class="wisteria-icons clear-cell mdi mdi-delete-forever"></i></a>
+            <div id="delete-button" class="toolbar-item">
+                 <a href="private-custom-levels">
+                     <i class="wisteria-icons clear-cell mdi mdi-delete-forever"></i>
+                 </a>
             </div>
-        </span>
+
+        </div>
     </div>
-</div>
+
+    <div id="resize-confirm" class="modal">
+        <div class="modal-content">
+            <h4>Warning - Change Level Size</h4>
+            <p>Please note that changing the level size will DELETE any unsaved progress on your current level. Are you sure you want to do this? This is irreversible.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" id="resize-yes" class="modal-action waves-effect waves-green btn-flat">Yes I'm Sure</a>
+            <a href="#!" id="resize-no" class="modal-action waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </div>
 
 <% include partials/footer %>

@@ -8,7 +8,7 @@ var Level = function(levelAttrObj) {
     this.grid = levelAttrObj.grid;
     this.time = levelAttrObj.time;
     this.enemyZone = levelAttrObj.enemyZone;
-    this.allowedShapes = levelAttrObj.allowedShapes;    
+    this.allowedShapes = levelAttrObj.allowedShapes;
     this.defenseStructures = levelAttrObj.defenseStructures;
     this.messageMap = new Map();
     this.enemySpawnsMap = new Map();
@@ -21,6 +21,7 @@ var Level = function(levelAttrObj) {
  * @param messages the messages object with time and message attributes
  */
 Level.prototype.convertToMessageMap = function (messages) {
+    if (!messages) return;
 	for(var i = 0; i < messages.length; i++){
         this.messageMap.set(messages[i].time, messages[i].message);
     }
@@ -31,6 +32,7 @@ Level.prototype.convertToMessageMap = function (messages) {
  * @param enemySpawns the enemySpawns object with time and enemy spawn shapes atttributes
  */
 Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
+    if (!enemySpawns) return;
 	for(var i = 0; i < enemySpawns.length; i++){
         this.enemySpawnsMap.set(enemySpawns[i].time, enemySpawns[i].shapes);
     }
@@ -41,7 +43,7 @@ Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
  * @return int the number of wistbux to reward
  */
 Level.prototype.getWistbux = function() {
-    var wistbux = 0; 
+    var wistbux = 0;
     if(id < 11){
         wistbux += 5;
     }else if(id < 21){

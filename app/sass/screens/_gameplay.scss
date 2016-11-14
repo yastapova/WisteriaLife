@@ -142,4 +142,13 @@ $toolbar-height-mobile: 36px;
 
         z-index: 7;
     }
+
+    .wisteria-icons {
+        opacity: 1.0;
+        @include transition(all, 0.3s, linear);
+
+        &:hover {
+            opacity: 0.5;
+        }
+    }
 }
