@@ -30,9 +30,9 @@ TutorialScreen.prototype.init = function() {
         var gameplayScreen = require('GameplayScreen');
         gameManager.screenManager.hideScreen(this);
        	gameManager.gameLogicManager.start();
-        $(gameplayScreen).attr('href', 'pause');
-        $(gameplayScreen).find('i').removeClass('play').removeClass('mdi-play');
-        $(gameplayScreen).find('i').addClass('pause').addClass('mdi-pause');
+        // $(gameplayScreen).attr('href', 'pause');
+        // $(gameplayScreen).find('i').removeClass('play').removeClass('mdi-play');
+        // $(gameplayScreen).find('i').addClass('pause').addClass('mdi-pause');
     }.bind(this));
 
 };
