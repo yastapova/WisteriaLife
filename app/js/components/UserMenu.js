@@ -20,9 +20,9 @@ var UserMenu = function (menu) {
 
     // Listeners for buttons
     var gameManager = require('GameManager');
-    this.loginDropButton.on('click', gameManager.login.bind(this));
-    this.logoutDropButton.on('click', gameManager.logout.bind(this));
-}
+    this.loginDropButton.on('click', gameManager.login.bind(gameManager));
+    this.logoutDropButton.on('click', gameManager.logout.bind(gameManager));
+};
 
 UserMenu.prototype = {
 
