@@ -28,7 +28,6 @@ var GameManager = function() {
     ]);
     this.resourcesLoaded = 0;
 
-    //this.user = new User();
     this.mute = false;
 
     // Menu Bar
@@ -41,6 +40,8 @@ var GameManager = function() {
     this.userIconPic = document.getElementById('user-icon-pic');
     this.userPicDrop = document.getElementById('user-pic-drop');
 
+    // User
+    this.user = undefined;
 };
 
 /**
@@ -118,6 +119,10 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     if(user) {
     	if(user.isAnonymous){
     		console.log("I am anonymous!");
+    		if(this.user === undefined){
+	        	this.user = new User("Guest", null, user.uid);
+	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	        }
     		console.log(user);
     		// Splash changes
 	        $('#splash-logout').css('display','block');
@@ -125,21 +130,26 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#splash-guest').css('display', 'none');	
 
 	        // Dropdown changes
-	        $('#drop-login').css('display','none');
-	        $('#drop-logout').css('display', 'block');
+	        $('#drop-login').css('display','block');
+	        $('#drop-logout').css('display', 'none');
 	        $('#user-icon-def').css('display','inline-block');
 	        $('#user-icon-pic').css('display','none');
 	        $('#user-pic-drop').css('display','none');
 	        this.userDropName.textContent = "Guest";
-	        this.userLevel.textContent = 'Level 0';
 	    }
     	else{
     		// User is signed in
 	        // Get the avatar and name from the Firebase user object
-	        var avatar = user.photoURL;
-	        var name = user.displayName;
-	        var id = user.getToken();
-	        user = new User(name, avatar, id);
+	        if(this.user === undefined){
+	        	this.user = new User(user.displayName, user.photoURL, user.uid);
+	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	        	// Guest wants to log in 
+	        }else if(this.user !== undefined && this.user.name === "Guest"){
+	        	var currentGameData = this.user.gameData;
+	        	this.user = new User(user.displayName, user.photoURL, user.uid);
+	        	this.user.gameData = currentGameData;
+	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	        }
 	        console.log(user);
 
 	        // Splash changes
@@ -148,16 +158,15 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#splash-guest').css('display', 'none');
 
 	        // Navbar changes
-	        this.userName.textContent = name;
-	        this.userPic.style.backgroundImage = 'url(' + (avatar) + ')';
+	        this.userName.textContent = user.displayName;
+	        this.userPic.style.backgroundImage = 'url(' + (user.photoURL) + ')';
 	        $('#user-login').css('display','none');
 	        $('#user-name').css('display','inline-block');
 	        $('#user-pic').css('display','inline-block');
 
 	        // Dropdown changes
-	        this.userPicDrop.style.backgroundImage = 'url(' + (avatar) + ')';
-	        this.userDropName.textContent = name;
-	        this.userLevel.textContent = 'Level ' + user.gameData.getCurrentLevel();
+	        this.userPicDrop.style.backgroundImage = 'url(' + (user.photoURL) + ')';
+	        this.userDropName.textContent = name;	        
 	        $('#drop-logout').css('display','block');
 	        $('#drop-login').css('display', 'none');
 	        $('#user-icon-def').css('display','none');
@@ -181,8 +190,6 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         $('#user-icon-def').css('display','inline-block');
         $('#user-icon-pic').css('display','none');
         $('#user-pic-drop').css('display','none');
-        this.userDropName.textContent = "Guest";
-        this.userLevel.textContent = 'Level 0';
     }
 };
 
@@ -212,6 +219,7 @@ GameManager.prototype.logout = function() {
     // Sign out of Firebase.
     firebase.auth().signOut();
     this.screenManager.switchScreens('splash');
+    this.user = undefined;
 };
 
 /**
