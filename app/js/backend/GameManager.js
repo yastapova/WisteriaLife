@@ -89,15 +89,16 @@ GameManager.prototype.resourceLoaded = function () {
 */
 GameManager.prototype.initFirebase = function() {
     // Initialize Firebase
-    var config = {
-        apiKey: "AIzaSyBNCeWYe5TnqjvSIL9ieykBn59Zn3Aa0q0",
-        authDomain: "wisteria-life-build2.firebaseapp.com",
-        databaseURL: "https://wisteria-life-build2.firebaseio.com",
-        storageBucket: "wisteria-life-build2.appspot.com",
-        messagingSenderId: "103993744321"
-    };
+	var config = {
+	    apiKey: "AIzaSyCF30XXggPV9nLf3zBLEYpRUMjG55cQUaE",
+	    authDomain: "wisteria-life-build3.firebaseapp.com",
+	    databaseURL: "https://wisteria-life-build3.firebaseio.com",
+	    storageBucket: "wisteria-life-build3.appspot.com",
+	    messagingSenderId: "581646437875"
+	};
 
-    firebase.initializeApp(config);
+	firebase.initializeApp(config);
+
 
     // Shortcuts to Firebase SDK features.
     this.auth = firebase.auth();
@@ -143,7 +144,6 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         $('#user-icon-def').css('display','none');
         $('#user-icon-pic').css('display','inline-block');
         $('#user-pic-drop').css('display','inline-block');
-
         return user;
     }
     else {
