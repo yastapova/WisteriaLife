@@ -82,9 +82,6 @@ var PixiCanvas = function (element, size) {
     // canvas click event
     this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
     this.renderer.view.addEventListener('mousemove', this.respondToMouseMove.bind(this));
-
-    this.prevGhostRow = 0;
-    this.prevGhostCol = 0;
 }
 
 /**

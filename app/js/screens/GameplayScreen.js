@@ -35,7 +35,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
         {
             shapes.push('<option value=\'' + allowed[i] +
                         '\' data-icon=\'/img/powerups/' + allowed[i] + '.png\'>' +
-                        allowed[i] + ' ' + 
+                        allowed[i] + 
                         this.gameLogicManager.allowedShapesMap[allowed[i]] +
                         '</option>');
         }
