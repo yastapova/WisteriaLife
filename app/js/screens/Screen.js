@@ -10,11 +10,13 @@
  * Screen is the parent of all screens
  * @param {string} id       ID of screen (<url>/id)
  * @param {boolean} overlay whether or not its an overlay over existing screen
+ * @param {int} property    screen specific property (needed for final part of url)
  */
-var Screen = function (id, overlay) {
+var Screen = function (id, overlay, property) {
     this.id = id;
     this.overlay = overlay;
     this.overlayElement = null;
+    this.property = property;
 
     // constants - main container will never change
     this.container = $('#main-container');
@@ -44,6 +46,10 @@ Screen.prototype.load = function () {
 
     // special case url for splash screen
     var screenSwitch = this.id == 'splash' ? '' : this.id;
+
+    // add specific property to url if avaiable
+    if (this.property)
+        screenSwitch += '/' + this.property;
 
     if (!this.overlay)
         this.loader.fadeIn('fast');

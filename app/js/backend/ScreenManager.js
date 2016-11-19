@@ -75,6 +75,14 @@ var ScreenManager = function (currentScreen) {
 
             var newScreen = $(this)[0].pathname.split(/\//)[1];
             var property = $(this)[0].pathname.split(/\//)[2];
+
+            // if property is undefined, also check for link attributes
+            if (property === undefined)
+                property = $(this).attr('data-level');
+
+            if (property === undefined)
+                property = $(this).attr('data-region');
+
             newScreen = newScreen == '' ? 'splash' : newScreen;
             self.switchScreens(newScreen, property);
         }

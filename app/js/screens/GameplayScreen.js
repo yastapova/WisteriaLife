@@ -13,7 +13,7 @@ var GamePlayScreen = function (id, levelNumber) {
     this.gameManager = require('GameManager');
     this.gameLogicManager = this.gameManager.gameLogicManager;
 
-    Screen.call(this, id);
+    Screen.call(this, id, false, levelNumber);
 };
 
 
