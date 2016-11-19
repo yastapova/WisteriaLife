@@ -2,13 +2,18 @@ var Screen = require('./Screen');
 var GameLogicManager = require('../backend/GameLogicManager');
 var gameManager = require('../backend/GameManager');
 
-var GamePlayScreen = function (id, properties) {
-    this.level = null;
+/**
+ * Gameplay Screen
+ * @param {String} id          Screen name id ("gameplay")
+ * @param {[type]} levelNumber Level number
+ */
+var GamePlayScreen = function (id, levelNumber) {
+    this.levelNumber = levelNumber;
 
     this.gameManager = require('GameManager');
     this.gameLogicManager = this.gameManager.gameLogicManager;
 
-    Screen.call(this, id);
+    Screen.call(this, id, false, levelNumber);
 };
 
 
@@ -19,8 +24,8 @@ inherits(GamePlayScreen, Screen);
  * @param {Level} level Level object
  */
 GamePlayScreen.prototype.setLevel = function (level) {
-    this.level = level;
 
+    this.level = level;
     this.totalTime = this.level.time;
 
     var PixiCanvas = require('PixiCanvas');
@@ -73,7 +78,7 @@ GamePlayScreen.prototype.init = function () {
     });
 
     // load level, set level callback function
-    this.gameManager.levelManager.loadLevel(1, this.setLevel.bind(this));
+    this.gameManager.levelManager.loadLevel(this.levelNumber, this.setLevel.bind(this));
 
     // play pause button event
     var self = this;

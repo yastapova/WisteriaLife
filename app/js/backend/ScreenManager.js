@@ -73,9 +73,18 @@ var ScreenManager = function (currentScreen) {
 
             e.preventDefault(); // prevent link from working normally
 
-            var newScreen = $(this)[0].pathname.replace(/^\//, "");
+            var newScreen = $(this)[0].pathname.split(/\//)[1];
+            var property = $(this)[0].pathname.split(/\//)[2];
+
+            // if property is undefined, also check for link attributes
+            if (property === undefined)
+                property = $(this).attr('data-level');
+
+            if (property === undefined)
+                property = $(this).attr('data-region');
+
             newScreen = newScreen == '' ? 'splash' : newScreen;
-            self.switchScreens(newScreen);
+            self.switchScreens(newScreen, property);
         }
     });
 };
@@ -87,27 +96,27 @@ var ScreenManager = function (currentScreen) {
  */
 ScreenManager.prototype.setupInitScreen = function () {
     // load and display the current screen
-    this.screen = new this.screenMap[this.currentScreen](this.currentScreen, null);
+    var property = window.location.pathname.split(/\//)[2];
+    this.screen = new this.screenMap[this.currentScreen](this.currentScreen, property);
 
     // set initial state (for going back later)
     var screenSwitch = this.currentScreen == 'splash' ? '' : this.currentScreen;
-    history.replaceState({screen: this.id}, '', screenSwitch);
+    history.replaceState({screen: this.id}, '', '/' + screenSwitch +
+        (property ? '/' + property : '' ));
 
     this.screen.init(); // first screen doesn't need to load, just init
 
     $('#container-loader').fadeOut('fast');
 }
 
-ScreenManager.prototype.switchScreens = function (screen) {
+ScreenManager.prototype.switchScreens = function (screen, property) {
 
     // screen should be valid, otherwise go to splash
     this.currentScreen = screen && screen in this.screenMap
                             ? screen : 'splash';
 
     // load and display the current screen
-    var properties = null; // TODO
-
-    this.screen = new this.screenMap[this.currentScreen](this.currentScreen, properties);
+    this.screen = new this.screenMap[this.currentScreen](this.currentScreen, property);
     this.screen.load();
 
     // stop timers if not an overlay

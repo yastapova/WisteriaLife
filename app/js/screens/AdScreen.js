@@ -9,8 +9,8 @@ var Screen = require('./Screen');
  *
  */
 
-var AdScreen = function(id, timer, image) {
-    Screen.call(this, id, true);
+var AdScreen = function(id, level, timer, image) {
+    Screen.call(this, id, true, level);
 
     this.timer = timer;
     this.image = image;

@@ -20,9 +20,10 @@ router.get('/about', function(req, res, next) {
 });
 
 /* Ad. */
-router.get('/ad', function(req, res, next) {
+router.get('/ad/:level(\\d+)', function(req, res, next) {
     res.render('ad', {
-        title: 'Ad'
+        title: 'Ad',
+        level: req.params.level
     });
 });
 
@@ -33,10 +34,11 @@ router.get('/defeat', function(req, res, next) {
     });
 });
 
-/* Gameplay. */
-router.get('/gameplay', function(req, res, next) {
+/* Gameplay.- Level Number */
+router.get('/gameplay/:level(\\d+)', function(req, res, next) {
     res.render('gameplay', {
-        title: 'Gameplay'
+        title: 'Gameplay',
+        level: req.params.level
     });
 });
 
@@ -48,16 +50,18 @@ router.get('/level-editor', function(req, res, next) {
 });
 
 /* Level Story. */
-router.get('/level-story', function(req, res, next) {
+router.get('/level-story/:level(\\d+)', function(req, res, next) {
     res.render('level-story', {
-        title: 'Level Story'
+        title: 'Level Story',
+        level: req.params.level
     });
 });
 
 /* Level Select. */
-router.get('/level-select', function(req, res, next) {
+router.get('/level-select/:region(\\d+)', function(req, res, next) {
     res.render('level-select', {
-        title: 'Level Select'
+        title: 'Level Select',
+        region: req.params.region
     });
 });
 

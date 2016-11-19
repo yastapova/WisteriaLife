@@ -16,7 +16,7 @@ var GameManager = function() {
     this.levelManager = new LevelManager();
     this.gameLogicManager = new GameLogicManager();
     this.screenManager = new ScreenManager(
-        window.location.pathname.replace(/^\//, "")
+        window.location.pathname.split(/\//)[1]
     );
 
     // classes that need to load resources to be functional
@@ -131,6 +131,8 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#splash-guest').css('display', 'none');	
 	        $('#splash-play').css('display', 'block');
 
+	        $('#splash-play').css('display', 'block');
+
 	        // Dropdown changes
 	        $('#drop-login').css('display','none');
 	        $('#drop-login-guest').css('display', 'block');
@@ -147,12 +149,12 @@ GameManager.prototype.onAuthStateChanged = function(user) {
             //this.usertt// 
 	        if(this.user === undefined){	        	
 	        	// Check if user already has data
-	        	// TO DO	     
+	        	// TO DO
 				var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
 				  var exists = (snapshot.val() !== null);
 				  this.userExistsCallback(user, exists, snapshot.val());
-				}.bind(this));	        
-	        	// Guest wants to log in 
+				}.bind(this));
+	        	// Guest wants to log in
 	        	// TO DO Merging!
 	        }else if(this.user !== undefined && this.user.name === "Guest"){
 	        	var currentGameData = this.user.gameData;
@@ -189,7 +191,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#user-icon-def').css('display','none');
 	        $('#user-icon-pic').css('display','inline-block');
 	        $('#user-pic-drop').css('display','inline-block');
-    	}       
+    	}
     }else{
     	// Splash changes
         $('#splash-logout').css('display','none');
@@ -266,7 +268,7 @@ GameManager.prototype.writeUserData = function () {
  * Callback for reading user data from firebase
  */
 GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
-	this.user = new User(user.displayName, user.photoURL, user.uid); 
+	this.user = new User(user.displayName, user.photoURL, user.uid);
 	if(exists){
 		console.log("I exist!");
 		console.log(snapshot);
