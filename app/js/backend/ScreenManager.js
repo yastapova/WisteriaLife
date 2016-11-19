@@ -95,7 +95,7 @@ ScreenManager.prototype.setupInitScreen = function () {
     var screenSwitch =  window.location.pathname.split(/\//)[1];
     var property = window.location.pathname.split(/\//)[2];
 
-    var current = screenSwitch == '' ? 'splash' : current;
+    var current = screenSwitch == '' ? 'splash' : screenSwitch;
 
     this.screen = new this.screenMap[current](current, property);
 
