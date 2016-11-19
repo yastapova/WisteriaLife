@@ -63,8 +63,6 @@ Screen.prototype.load = function () {
 
             document.title = $(data).filter('title').text();
 
-            console.log('Loading overlay screen complete! ' + this.id);
-
             // initialize overlay screen
             // initScreen.bind(this)();
             this.init();
@@ -86,8 +84,6 @@ Screen.prototype.load = function () {
                     // https://bugs.webkit.org/show_bug.cgi?id=43730
                     // https://bugzilla.mozilla.org/show_bug.cgi?id=585653
                     document.title = $(data).filter('title').text();
-
-                    console.log('Loading screen complete! ' + this.id);
 
                     this.loader.fadeOut('fast');
 
