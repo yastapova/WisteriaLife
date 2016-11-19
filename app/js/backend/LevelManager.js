@@ -69,7 +69,8 @@ LevelManager.prototype.loadJSONDataLevel = function (data) {
         allowedShapes : data.allowedShapes,
         messages : data.messages,
         enemySpawns : data.enemySpawns,
-        defenseStructures : data.defenseStructures
+        defenseStructures : data.defenseStructures,
+        custom : data.custom
     };
     return levelAttrObj;
 };

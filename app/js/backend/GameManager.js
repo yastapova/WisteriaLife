@@ -35,10 +35,10 @@ var GameManager = function() {
     this.userName = document.getElementById('user-name');
 
     // Dropdown
-    this.userDropName = document.getElementsByClassName('user-name')[0];
-    this.userLevel = document.getElementsByClassName('user-level')[0];
-    this.userIconPic = document.getElementById('user-icon-pic');
-    this.userPicDrop = document.getElementById('user-pic-drop');
+    this.userDropName = $('#user-name');
+    this.userLevel = $('#user-level');
+    this.userIconPic = $('#user-icon-pic');
+    this.userPicDrop = $('#user-pic-drop');
 
     // User
     this.user = undefined;

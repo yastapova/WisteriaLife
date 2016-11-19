@@ -108,14 +108,23 @@ GamePlayScreen.prototype.init = function () {
             if (this.level.time < 0)
                 this.level.time = 0;
 
-            if (this.level.time == 0) {
+            if (this.level.time === 0) {
                 this.gameLogicManager.pause();
-                if (this.gameLogicManager.isDead())
-                    this.gameManager.screenManager.switchScreens('defeat');
-                else
+                if (this.gameLogicManager.isDead()){
+                    this.gameManager.screenManager.switchScreens('defeat');                    
+                }
+                else{
                     this.gameManager.screenManager.switchScreens('victory');
+                    if(this.gameManager.user.gameData.currentLevel < this.level.id){
+                        this.gameManager.user.gameData.currentLevel++;
+                        this.gameManager.user.gameData.wistbux += this.level.getWistbux();
+                        this.gameManager.writeUserData();
+                        this.gameManager.userWistbux.text(this.gameManager.user.gameData.wistbux);  
+                        this.gameManager.userLevel.text("Level " + this.gameManager.user.gameData.currentLevel);                      
+                    }
+                }
             }
-            if (this.gameLogicManager.isDead()) {
+            else if (this.gameLogicManager.isDead()) {
                 this.gameLogicManager.pause();
                 this.gameManager.screenManager.switchScreens('defeat');
             }
