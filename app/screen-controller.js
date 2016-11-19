@@ -23,14 +23,15 @@ router.get('/about', function(req, res, next) {
 router.get('/ad/:level(\\d+)', function(req, res, next) {
     res.render('ad', {
         title: 'Ad',
-        level: req.params.level
+        level: Number.parseInt(req.params.level)
     });
 });
 
 /* Defeat. */
-router.get('/defeat', function(req, res, next) {
+router.get('/defeat/:level(\\d+)', function(req, res, next) {
     res.render('defeat', {
-        title: 'Defeat'
+        title: 'Defeat',
+        level: Number.parseInt(req.params.level)
     });
 });
 
@@ -38,7 +39,7 @@ router.get('/defeat', function(req, res, next) {
 router.get('/gameplay/:level(\\d+)', function(req, res, next) {
     res.render('gameplay', {
         title: 'Gameplay',
-        level: req.params.level
+        level: Number.parseInt(req.params.level)
     });
 });
 
@@ -53,7 +54,8 @@ router.get('/level-editor', function(req, res, next) {
 router.get('/level-story/:level(\\d+)', function(req, res, next) {
     res.render('level-story', {
         title: 'Level Story',
-        level: req.params.level
+        level: Number.parseInt(req.params.level),
+        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
     });
 });
 
@@ -61,7 +63,7 @@ router.get('/level-story/:level(\\d+)', function(req, res, next) {
 router.get('/level-select/:region(\\d+)', function(req, res, next) {
     res.render('level-select', {
         title: 'Level Select',
-        region: req.params.region
+        region: Number.parseInt(req.params.region)
     });
 });
 
@@ -73,9 +75,11 @@ router.get('/map', function(req, res, next) {
 });
 
 /* Pause. */
-router.get('/pause', function(req, res, next) {
+router.get('/pause/:level(\\d+)', function(req, res, next) {
     res.render('pause', {
-        title: 'Pause'
+        title: 'Pause',
+        level: Number.parseInt(req.params.level),
+        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
     });
 });
 
@@ -115,9 +119,11 @@ router.get('/tutorial', function(req, res, next) {
 });
 
 /* Victory. */
-router.get('/victory', function(req, res, next) {
+router.get('/victory/:level(\\d+)', function(req, res, next) {
     res.render('victory', {
-        title: 'Victory'
+        title: 'Victory',
+        level: Number.parseInt(req.params.level),
+        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
     });
 });
 
