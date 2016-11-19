@@ -35,14 +35,14 @@ var GameManager = function() {
     this.userName = document.getElementById('user-name');
 
     // Dropdown
-    this.userDropName = document.getElementsByClassName('user-name')[0];
-    this.userLevel = document.getElementsByClassName('user-level')[0];
-    this.userIconPic = document.getElementById('user-icon-pic');
-    this.userPicDrop = document.getElementById('user-pic-drop');
+    this.userDropName = $('#user-name');
+    this.userLevel = $('#user-level');
+    this.userIconPic = $('#user-icon-pic');
+    this.userPicDrop = $('#user-pic-drop');
 
     // User
     this.user = undefined;
-    this.userWistbux = $('#user-wistbux');
+    this.userWistbux = $('#user-wistbux');    
 };
 
 /**
@@ -128,12 +128,16 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     		// Splash changes
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
-	        $('#splash-guest').css('display', 'none');
+	        $('#splash-guest-login').css('display', 'block');
+	        $('#splash-guest').css('display', 'none');	
+	        $('#splash-play').css('display', 'block');
+
 	        $('#splash-play').css('display', 'block');
 
 	        // Dropdown changes
-	        $('#drop-login').css('display','block');
-	        $('#drop-logout').css('display', 'none');
+	        $('#drop-login').css('display','none');
+	        $('#drop-login-guest').css('display', 'block');
+	        $('#drop-logout').css('display', 'block');
 	        $('#user-icon-def').css('display','inline-block');
 	        $('#user-icon-pic').css('display','none');
 	        $('#user-pic-drop').css('display','none');
@@ -165,6 +169,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
 	        $('#splash-guest').css('display', 'none');
+	        $('#splash-guest-login').css('display', 'none');
 	        $('#splash-play').css('display', 'block');
 
 
@@ -179,6 +184,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        this.userPicDrop.style.backgroundImage = 'url(' + (user.photoURL) + ')';
 	        this.userDropName.textContent = name;
 	        $('#drop-logout').css('display','block');
+	        $('#drop-login-guest').css('display', 'none');
 	        $('#drop-login').css('display', 'none');
 	        $('#user-icon-def').css('display','none');
 	        $('#user-icon-pic').css('display','inline-block');
@@ -187,6 +193,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     }else{
     	// Splash changes
         $('#splash-logout').css('display','none');
+        $('#splash-guest-login').css('display', 'none');
         $('#splash-login').css('display', 'block');
         $('#splash-guest').css('display', 'block');
         $('#splash-play').css('display', 'none');
@@ -199,6 +206,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 
         // Dropdown changes
         $('#drop-login').css('display','block');
+        $('#drop-login-guest').css('display', 'none');
         $('#drop-logout').css('display', 'none');
         $('#user-icon-def').css('display','inline-block');
         $('#user-icon-pic').css('display','none');
@@ -213,7 +221,6 @@ GameManager.prototype.login = function() {
     // Sign in Firebase using popup auth and Google as the identity provider
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
-    this.screenManager.switchScreens('map');
 };
 
 /**
@@ -247,10 +254,11 @@ GameManager.prototype.play = function() {
  * Write User Data
  */
 GameManager.prototype.writeUserData = function () {
-  firebase.database().ref('users/' + this.user.uid).set({
-    username: this.user.name,
-    gameData: this.user.gameData
-  });
+	console.log("Writing data " + this.user.gameData);
+	firebase.database().ref('users/' + this.user.uid).set({
+	username: this.user.name,
+	gameData: this.user.gameData
+	});
 };
 
 /**
@@ -269,6 +277,13 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
 	  	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
 		this.writeUserData();
 	}
+};
+
+/**
+ * Guest login modal
+ */
+GameManager.prototype.guestLogin = function () {
+	$('#confirmation-modal').openModal();
 };
 
 /**

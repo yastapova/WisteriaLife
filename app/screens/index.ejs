@@ -2,11 +2,23 @@
 
 <div id="splash-screen-logged-in" class="container-inner">
     <!-- Page Content goes here -->
-    <h2 id="splash-title">Wisteria Life</h2>
+    <h2 id="splash-title">Wisteria Life</h2>    
 
+    <!-- Modal Structure -->
+    <div id="confirmation-modal" class="modal">
+        <div class="modal-content">
+          <h4>Warning - Are you sure you want to Log-in?</h4>
+          <p>By logging in you will be merging your guest account data with the account data on your user account. If you already have an account with us, we recommend that you log out of the guest account first before logging in. Logging in to your user account with guest data is ONLY recommended if you wish to reset your user account data.</p>
+        </div>
+        <div class="modal-footer">                      
+            <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Cancel</a>
+            <button id="guest-proceed-login" class=" modal-action modal-close waves-effect waves-green btn-flat">Proceed</button>
+        </div>
+    </div>
     <div class="user-actions">        
         <button id="splash-guest" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-login"></i> Guest</button>
         <button id="splash-login" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-login"></i> Login</button>
+        <button id="splash-guest-login" data-target="confirmation-modal" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-login"></i> Login</button>
         <button id="splash-play" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-play"></i> Play</button>
         <button id="splash-logout" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-power"></i> Logout</button>
     </div>

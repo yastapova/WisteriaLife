@@ -37,17 +37,25 @@ GamePlayScreen.prototype.setLevel = function (level) {
     $('#unit-select-menu select').append((function () {
         var shapes = [];
         for(var i = 0; i < allowed.length; i++)
-        {
-            shapes.push('<option value=\'' + allowed[i] +
+        {   
+            if(allowed[i].charAt(0) == 'a'){
+                shapes.push('<option value=\'' + allowed[i] +
                         '\' data-icon=\'/img/powerups/' + allowed[i] + '.png\'>' +
-                        allowed[i] +
+                        allowed[i].charAt(0).toUpperCase() + allowed[i].slice(1,-2) + " " + allowed[i].slice(-2).toUpperCase() + " x" +
                         this.gameLogicManager.allowedShapesMap[allowed[i]] +
                         '</option>');
+            }else{
+                shapes.push('<option value=\'' + allowed[i] +
+                        '\' data-icon=\'/img/powerups/' + allowed[i] + '.png\'>' +
+                        allowed[i].charAt(0).toUpperCase() + allowed[i].slice(1,-1) + " " + allowed[i].slice(-1).toUpperCase() + " x" +
+                        this.gameLogicManager.allowedShapesMap[allowed[i]] +
+                        '</option>');
+            }            
         }
         return shapes;
     }.bind(this))());
     $('select').material_select();
-}
+};
 
 /**
  * Setup game logic manager with level and canvas
@@ -105,14 +113,23 @@ GamePlayScreen.prototype.init = function () {
             if (this.level.time < 0)
                 this.level.time = 0;
 
-            if (this.level.time == 0) {
+            if (this.level.time === 0) {
                 this.gameLogicManager.pause();
-                if (this.gameLogicManager.isDead())
-                    this.gameManager.screenManager.switchScreens('defeat');
-                else
+                if (this.gameLogicManager.isDead()){
+                    this.gameManager.screenManager.switchScreens('defeat');                    
+                }
+                else{
                     this.gameManager.screenManager.switchScreens('victory');
+                    if(this.gameManager.user.gameData.currentLevel < this.level.id){
+                        this.gameManager.user.gameData.currentLevel++;
+                        this.gameManager.user.gameData.wistbux += this.level.getWistbux();
+                        this.gameManager.writeUserData();
+                        this.gameManager.userWistbux.text(this.gameManager.user.gameData.wistbux);  
+                        this.gameManager.userLevel.text("Level " + this.gameManager.user.gameData.currentLevel);                      
+                    }
+                }
             }
-            if (this.gameLogicManager.isDead()) {
+            else if (this.gameLogicManager.isDead()) {
                 this.gameLogicManager.pause();
                 this.gameManager.screenManager.switchScreens('defeat');
             }
