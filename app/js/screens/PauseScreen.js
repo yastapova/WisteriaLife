@@ -9,9 +9,8 @@ var Screen = require('./Screen');
  *
  */
 
-var PauseScreen = function (id, properties) {
-    this.properties = properties;
-    Screen.call(this, id, true);
+var PauseScreen = function (id, level) {
+    Screen.call(this, id, true, level);
 };
 
 inherits(PauseScreen, Screen);

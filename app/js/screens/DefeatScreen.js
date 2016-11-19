@@ -7,9 +7,8 @@ var Screen = require('./Screen');
  /*
   * construct a DefeatScreen obj with given id
   */
-var DefeatScreen = function (id, properties) {
-    this.properties = properties;
-    Screen.call(this, id, true);
+var DefeatScreen = function (id, level) {
+    Screen.call(this, id, true, level);
 };
 
 inherits(DefeatScreen, Screen);

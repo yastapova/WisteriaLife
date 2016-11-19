@@ -14,7 +14,7 @@
  * Sets up the initial screen
  * @param {string} current [optional] current screen, default splash
  */
-var ScreenManager = function (currentScreen) {
+var ScreenManager = function () {
 
     // screen manager is loaded once at beginning
     // no such last legal screen in the beginning
@@ -45,10 +45,6 @@ var ScreenManager = function (currentScreen) {
         'tutorial': TutorialScreen,
         'victory': VictoryScreen
     };
-
-    // default screen: splash
-    this.currentScreen = currentScreen && currentScreen in this.screenMap
-                            ? currentScreen : 'splash';
 
     /**
      * Popstate / Back Button
@@ -96,11 +92,12 @@ var ScreenManager = function (currentScreen) {
  */
 ScreenManager.prototype.setupInitScreen = function () {
     // load and display the current screen
+    var current =  window.location.pathname.split(/\//)[1];
     var property = window.location.pathname.split(/\//)[2];
-    this.screen = new this.screenMap[this.currentScreen](this.currentScreen, property);
+    this.screen = new this.screenMap[current](current, property);
 
     // set initial state (for going back later)
-    var screenSwitch = this.currentScreen == 'splash' ? '' : this.currentScreen;
+    var screenSwitch = current == 'splash' ? '' : current;
     history.replaceState({screen: this.id}, '', '/' + screenSwitch +
         (property ? '/' + property : '' ));
 

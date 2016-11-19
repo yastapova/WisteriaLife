@@ -1,10 +1,9 @@
 var gameManager = require('../backend/GameManager');
 var Screen = require('./Screen');
 
-var VictoryScreen = function (id, properties) {
-    this.properties = properties;
+var VictoryScreen = function (id, level) {
     this.gameManager = require('GameManager');
-    Screen.call(this, id, true);    
+    Screen.call(this, id, true, level);    
 };
 
 inherits(VictoryScreen, Screen);
@@ -17,7 +16,7 @@ VictoryScreen.prototype.init = function() {
 	    display: 'popup',
 	    href: 'https://wisteria-life-build3.appspot.com',
 	    }, function(response){});
-	};	
+	};
 	if(this.gameManager.user.gameData.currentLevel < this.gameManager.gameLogicManager.level.id){
 		$('#victory-wistbux').text(this.gameManager.gameLogicManager.level.getWistbux());
 	}else{

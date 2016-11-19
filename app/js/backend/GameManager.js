@@ -8,16 +8,14 @@ var firebase = require('firebase');
 /**
  * GameManager handles the user and saving/loading of data
  */
-var GameManager = function() {
+var GameManager = function () {
     this.initFirebase();
 
     this.powerupManager = new PowerupManager();
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
     this.gameLogicManager = new GameLogicManager();
-    this.screenManager = new ScreenManager(
-        window.location.pathname.split(/\//)[1]
-    );
+    this.screenManager = new ScreenManager();
 
     // classes that need to load resources to be functional
     this.resources = [];
@@ -42,7 +40,7 @@ var GameManager = function() {
 
     // User
     this.user = undefined;
-    this.userWistbux = $('#user-wistbux');    
+    this.userWistbux = $('#user-wistbux');
 };
 
 /**
@@ -129,7 +127,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
 	        $('#splash-guest-login').css('display', 'block');
-	        $('#splash-guest').css('display', 'none');	
+	        $('#splash-guest').css('display', 'none');
 	        $('#splash-play').css('display', 'block');
 
 	        $('#splash-play').css('display', 'block');
