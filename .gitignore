@@ -8,4 +8,5 @@ node_modules
 *.iml
 /.idea/
 /**/*.log
+/**/npm-debug.log.*
 *.db
