@@ -29,11 +29,10 @@ var GameManager = function () {
     this.mute = false;
 
     // Menu Bar
-    this.userPic = document.getElementById('user-pic');
-    this.userName = document.getElementById('user-name');
-
+    this.userPic = $('#user-pic');
+    this.userName = $('#user-name');
     // Dropdown
-    this.userDropName = $('#user-name');
+    this.userDropName = $('#user-name-dropdown');
     this.userLevel = $('#user-level');
     this.userIconPic = $('#user-icon-pic');
     this.userPicDrop = $('#user-pic-drop');
@@ -145,7 +144,8 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     	else{
     		// User is signed in
 	        // Get the avatar and name from the Firebase user object
-	        if(this.user === undefined){
+            //this.usertt// 
+	        if(this.user === undefined){	        	
 	        	// Check if user already has data
 	        	// TO DO
 				var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
@@ -172,15 +172,17 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 
 
 	        // Navbar changes
-	        this.userName.textContent = user.displayName;
-	        this.userPic.style.backgroundImage = 'url(' + (user.photoURL) + ')';
+	        this.userName.text(user.displayName);
+	        this.userPic.css({"background" : "url(" + (user.photoURL) + ") no-repeat center center",
+                "background-size" : "cover"});
 	        $('#user-login').css('display','none');
 	        $('#user-name').css('display','inline-block');
 	        $('#user-pic').css('display','inline-block');
 
 	        // Dropdown changes
-	        this.userPicDrop.style.backgroundImage = 'url(' + (user.photoURL) + ')';
-	        this.userDropName.textContent = name;
+	        this.userPicDrop.css({"background" : "url(" + (user.photoURL) + ") no-repeat center center",
+                "background-size" : "cover"});
+	        this.userDropName.text(user.displayName);
 	        $('#drop-logout').css('display','block');
 	        $('#drop-login-guest').css('display', 'none');
 	        $('#drop-login').css('display', 'none');
@@ -203,12 +205,13 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         $('#user-pic').css('display','none');
 
         // Dropdown changes
-        $('#drop-login').css('display','block');
+        this.$('#drop-login').css('display','block');
         $('#drop-login-guest').css('display', 'none');
         $('#drop-logout').css('display', 'none');
         $('#user-icon-def').css('display','inline-block');
         $('#user-icon-pic').css('display','none');
         $('#user-pic-drop').css('display','none');
+        this.userDropName.textContent = "Guest";
     }
 };
 
@@ -268,11 +271,11 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
 		console.log("I exist!");
 		console.log(snapshot);
 		this.user.gameData = snapshot.gameData;
-		this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+		this.userLevel.text('Level ' + this.user.gameData.currentLevel);
 		this.userWistbux.text(this.user.gameData.wistbux);
 	}else{
 	  	this.user = new User(user.displayName, user.photoURL, user.uid);
-	  	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	  	this.userLevel.text('Level ' + this.user.gameData.currentLevel);
 		this.writeUserData();
 	}
 };
