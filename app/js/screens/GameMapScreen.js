@@ -40,19 +40,19 @@ GameMapScreen.prototype.loadRegionImages = function () {
 	// var pathReference3 = firebase.storage().ref('img/regions/' + regionsMap.get("The Malignant Marsh").img);
 	// var pathReference4 = firebase.storage().ref('img/regions/' + regionsMap.get("The Abysmal Abyss").img);
 	$('#region-1-card').css({
-		   "background" : "url(img/regions/" + regionsMap.get("The Revolting River").img + ") no-repeat center center",
+		   "background" : "url(img/regions/" + regionsMap.get(0).img + ") no-repeat center center",
 		   "background-size" : "cover"
 	});
 	$('#region-2-card').css({
-		   "background" : "url(img/regions/" + regionsMap.get("The Putrid Plateau").img + ") no-repeat center center",
+		   "background" : "url(img/regions/" + regionsMap.get(1).img + ") no-repeat center center",
 		   "background-size" : "cover"
 	});
 	$('#region-3-card').css({
-		   "background" : "url(img/regions/" + regionsMap.get("The Malignant Marsh").img + ") no-repeat center center",
+		   "background" : "url(img/regions/" + regionsMap.get(2).img + ") no-repeat center center",
 		   "background-size" : "cover"
 	});
 	$('#region-4-card').css({
-		   "background" : "url(img/regions/" + regionsMap.get("The Abysmal Abyss").img + ") no-repeat center center",
+		   "background" : "url(img/regions/" + regionsMap.get(3).img + ") no-repeat center center",
 		   "background-size" : "cover"
 	});
 	// // Get the download URL

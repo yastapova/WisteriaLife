@@ -10,6 +10,7 @@ var firebase = require("firebase");
  */
 var LevelManager = function() {
     this.regionsMap = new Map();
+    this.levels = [];
     // For loading descriptions and imgs of private user custom levels later
     //this.privateCustomLevelsMap = new Map();
     //this.initPrivateCustomLevelsMap();
@@ -46,10 +47,10 @@ LevelManager.prototype.loadJSONDataRegion = function (data, callback) {
 		var regionData = data[i];
 		var regionAttrObj = {
 			name: regionData.name,
-			img: regionData.img,
-			levels: regionData.levels
+			img: regionData.img,			
 		};
-        this.regionsMap.set(regionData.name, new Region(regionAttrObj));
+        this.regionsMap.set(i, regionAttrObj);
+        this.levels = this.levels.concat(regionData.levels);
 	}
 
     callback();
