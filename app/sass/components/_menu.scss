@@ -144,6 +144,18 @@ nav {
                     display:block;
                 }
             }
+
+            #drop-login-guest {
+                font-size: 1.5em;
+                float: right;
+                display:none;
+
+                i {
+                    line-height: 25px;
+                    height: 25px;
+                    display:block;
+                }
+            }
         }
     }
 

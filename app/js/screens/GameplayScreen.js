@@ -32,17 +32,25 @@ GamePlayScreen.prototype.setLevel = function (level) {
     $('#unit-select-menu select').append((function () {
         var shapes = [];
         for(var i = 0; i < allowed.length; i++)
-        {
-            shapes.push('<option value=\'' + allowed[i] +
+        {   
+            if(allowed[i].charAt(0) == 'a'){
+                shapes.push('<option value=\'' + allowed[i] +
                         '\' data-icon=\'/img/powerups/' + allowed[i] + '.png\'>' +
-                        allowed[i] + 
+                        allowed[i].charAt(0).toUpperCase() + allowed[i].slice(1,-2) + " " + allowed[i].slice(-2).toUpperCase() + " x" +
                         this.gameLogicManager.allowedShapesMap[allowed[i]] +
                         '</option>');
+            }else{
+                shapes.push('<option value=\'' + allowed[i] +
+                        '\' data-icon=\'/img/powerups/' + allowed[i] + '.png\'>' +
+                        allowed[i].charAt(0).toUpperCase() + allowed[i].slice(1,-1) + " " + allowed[i].slice(-1).toUpperCase() + " x" +
+                        this.gameLogicManager.allowedShapesMap[allowed[i]] +
+                        '</option>');
+            }            
         }
         return shapes;
     }.bind(this))());
     $('select').material_select();
-}
+};
 
 /**
  * Setup game logic manager with level and canvas

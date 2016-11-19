@@ -17,11 +17,13 @@ var UserMenu = function (menu) {
 
     this.loginDropButton = $('#drop-login');
     this.logoutDropButton = $('#drop-logout');
+    this.dropGuestLoginButton = $('#drop-login-guest');
 
     // Listeners for buttons
     var gameManager = require('GameManager');
     this.loginDropButton.on('click', gameManager.login.bind(gameManager));
     this.logoutDropButton.on('click', gameManager.logout.bind(gameManager));
+    this.dropGuestLoginButton.on('click', gameManager.guestLogin.bind(gameManager));
 };
 
 UserMenu.prototype = {
