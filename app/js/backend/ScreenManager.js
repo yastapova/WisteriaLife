@@ -92,12 +92,15 @@ var ScreenManager = function () {
  */
 ScreenManager.prototype.setupInitScreen = function () {
     // load and display the current screen
-    var current =  window.location.pathname.split(/\//)[1];
+    var screenSwitch =  window.location.pathname.split(/\//)[1];
     var property = window.location.pathname.split(/\//)[2];
+
+    var current = screenSwitch == '' ? 'splash' : current;
+
     this.screen = new this.screenMap[current](current, property);
 
     // set initial state (for going back later)
-    var screenSwitch = current == 'splash' ? '' : current;
+
     history.replaceState({screen: this.id}, '', '/' + screenSwitch +
         (property ? '/' + property : '' ));
 
