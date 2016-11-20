@@ -16,13 +16,6 @@
  */
 var ScreenManager = function () {
 
-    // screen manager is loaded once at beginning
-    // no such last legal screen in the beginning
-    this.lastLegalScreen = null;
-
-    this.nextScreen = null;
-    this.screenMap = null;
-
     // all app timers
     this.timers = [];
 
@@ -52,7 +45,7 @@ var ScreenManager = function () {
     $(window).on('popstate', function (e) {
         if (history.state !== null)
             // read state ID that was pushed when switching originally
-            this.switchScreens(history.state.screen);
+            this.switchScreens(history.state.screen, history.state.property);
     }.bind(this));
 
 
@@ -101,7 +94,7 @@ ScreenManager.prototype.setupInitScreen = function () {
 
     // set initial state (for going back later)
 
-    history.replaceState({screen: this.id}, '', '/' + screenSwitch +
+    history.replaceState({screen: this.id, property: property}, '', '/' + screenSwitch +
         (property ? '/' + property : '' ));
 
     this.screen.init(); // first screen doesn't need to load, just init
