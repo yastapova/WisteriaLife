@@ -4,13 +4,27 @@
 <div id="gameplay-screen" class="container-inner">
 
     <div class="gameplay-toolbar toolbar-top">
-        <div class="toolbar-content">
+        <div class="toolbar-content cf">
+
+            <div id="playpause-button" class="toolbar-item">
+                <a href="#!" id="playpause">
+                    <i class="wisteria-icons play mdi mdi-play"></i>
+                </a>
+            </div>
+
             <div class="progress">
                 <div id="time-bar" class="determinate" style="width: 0%"></div>
             </div>
 
             <div id="timer-display">
                 <span id="current-time">0:00</span>
+            </div>
+
+
+            <div id="cheat-button" class="toolbar-item">
+                <a href="#!" id="cheat">
+                    <i class="wisteria-icons play mdi mdi-lock"></i>
+                </a>
             </div>
         </div>
     </div>
@@ -19,15 +33,29 @@
     <div class="canvas" id="gameplay-canvas"></div>
 
     <div class="gameplay-toolbar toolbar-bottom">
-        <div class="toolbar-content">
+        <div class="toolbar-content cf">
 
-            <div id="playpause-button" class="toolbar-item">
-                <a href="#!" id="playpause">
-                    <i class="wisteria-icons play mdi mdi-play"></i>
-                </a>
+            <div id="unit-select" class="toolbar-item toolbar-select">
+                <div id="unit-select-button" class="gameplay-select-button">
+                    <!-- Work in progress -->
+                </div>
+
+                <!-- This will be display: none when the button above is done - Brian -->
+                <!-- Images must be perfectly square for the circular trick to work -->
+                <div id="unit-select-items" class="gameplay-select">
+                    <span class="select-item" data-value="archernw" data-tooltip="Archer &nwarr;">
+                        <img src="/img/powerups/archernw.png" />
+                        <span class="item-count">5</span>
+                    </span>
+
+                    <span class="select-item" data-value="archerne" data-tooltip="Archer &nearr;">
+                        <img src="/img/powerups/archerne.png" />
+                        <span class="item-count">2</span>
+                    </span>
+                </div>
             </div>
 
-            <div id="unit-select" class="toolbar-item">
+            <%# <div id="unit-select" class="toolbar-item">
                 <div id="unit-select-menu">
                     <select>
                         <option value="" disabled selected>Unit</option>
@@ -58,14 +86,21 @@
                         <option value="void">Void Cell</option>
                     </select>
                 </div>
-            </div>
+            </div>%>
 
-            <div id="cheat-button" class="toolbar-item">
-                <a href="#!" id="cheat">
-                    <i class="wisteria-icons play mdi mdi-lock"></i>
-                </a>
-            </div>
+            <div id="powerup-select" class="toolbar-item toolbar-select">
+                <div id="powerup-select-button" class="gameplay-select-button">
+                    <!-- Work in progress -->
+                </div>
 
+                <!-- This will be display: none when the button above is done - Brian -->
+                <!-- Images must be perfectly square for the circular trick to work -->
+                <div id="powerup-select-items" class="gameplay-select">
+                    <span class="select-item" data-value="void" data-tooltip="Void Cell">
+                        <img src="/img/powerups/void.png" />
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -119,11 +119,28 @@ GamePlayScreen.prototype.setLevel = function (level) {
     this.gameManager.screenManager.timers.push(this.timer);
 
     // update current shape
-    $('#unit-select-menu select').change(function () {
+    // $('#unit-select-menu select').change(function () {
+    //     self.gameLogicManager.currentUnit =
+    //         self.gameManager.shapeManager.getShape(
+    //             $(this).val()
+    //         );
+    // });
+    $('#unit-select-items .select-item').click(function () {
+
+        // highlight selected
+        $('.select-item').removeClass('selected');
+        $(this).addClass('selected');
+
         self.gameLogicManager.currentUnit =
             self.gameManager.shapeManager.getShape(
-                $(this).val()
+                $(this).attr('data-value')
             );
+    });
+
+    // units and powerup tooltips
+    $('.select-item').tooltip({
+        delay: 50,
+        position: 'top'
     });
 };
 

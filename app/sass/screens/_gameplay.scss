@@ -45,12 +45,22 @@ $toolbar-height-mobile: 36px;
 .gameplay-toolbar {
     background-color: $primary-color;
     height: $toolbar-height-mobile;
-    padding: 0 20px;
+    padding: 0 10px;
     width: 100%;
     position: fixed;
 
     @media #{$medium-and-up} {
         height: $toolbar-height;
+    }
+
+    #playpause-button {
+        float: left;
+        margin-left: 0;
+    }
+
+    #cheat-button {
+        float: right;
+        margin-right: 0;
     }
 
     .toolbar-item {
@@ -89,10 +99,12 @@ $toolbar-height-mobile: 36px;
 
         .progress {
             top: 50%;
-            transform: translateY(-50%);
+            left: 50%;
+            transform: translate(-50%);
             position: absolute;
             z-index: 5;
             margin: 0;
+            width: 90%;
 
             .determinate {
                 @include transition(width 1s linear);
@@ -149,6 +161,60 @@ $toolbar-height-mobile: 36px;
 
         &:hover {
             opacity: 0.5;
+            cursor: pointer;
+        }
+    }
+}
+
+/**
+ * Unit/Powerup selects
+ */
+.toolbar-select {
+
+    height: 100%;
+
+    &#unit-select {
+        float: left;
+    }
+
+    &#powerup-select {
+        float: right;
+    }
+
+    .select-item {
+        display: inline-block;
+        padding: 5px;
+        height: $toolbar-height-mobile;
+        width: $toolbar-height-mobile;
+        position: relative;
+
+        @media #{$medium-and-up} {
+            height: $toolbar-height;
+            width: $toolbar-height;
+        }
+
+        &.selected {
+            img {
+                border: 2px solid $highlight-color;
+            }
+        }
+
+        img {
+            border-radius: 50%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .item-count {
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: $highlight-color;
+            color: #fff;
+            font-weight: bold;
         }
     }
 }
