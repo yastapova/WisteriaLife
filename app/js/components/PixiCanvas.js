@@ -48,6 +48,7 @@ var PixiCanvas = function (element, size) {
 
     // canvas click event
     this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
+    this.renderer.view.addEventListener('mousemove', this.respondToMouseMove.bind(this));
 }
 
 /**
@@ -96,10 +97,6 @@ PixiCanvas.prototype.setDimensions = function (size) {
     $(window).resize(function () {
         this.resizePixiCanvas();
     }.bind(this));
-
-    // canvas click event
-    this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
-    this.renderer.view.addEventListener('mousemove', this.respondToMouseMove.bind(this));
 }
 
 /**
@@ -206,6 +203,23 @@ PixiCanvas.prototype.respondToMouseClick = function () {
 
     var friend = gameManager.gameLogicManager.FRIEND;
     gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend, null, null);
+
+    // update count display
+    var unit = gameManager.gameLogicManager.currentUnit;
+
+    if (!unit)
+        Materialize.toast(
+            "No shape selected! Select a shape from the Units sidebar.",
+            2000,
+            'wisteria-error-toast'
+        );
+    else
+        unit = unit.name;
+
+
+    $('#unit-' + unit + ' .item-count').text(
+        gameManager.gameLogicManager.allowedShapesMap[unit]
+    );
 
     this.render();
 };

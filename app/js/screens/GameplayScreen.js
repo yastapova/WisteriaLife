@@ -34,31 +34,43 @@ GamePlayScreen.prototype.setLevel = function (level) {
     this.gameLogicManager.setLevel(level, canvas);
     var allowed = Object.keys(this.gameLogicManager.allowedShapesMap);
 
-    $('#unit-select-menu select').append((function () {
+    $('#unit-select-items').append((function () {
         var shapes = [];
-        for(var i = 0; i < allowed.length; i++)
-        {
-            if(allowed[i].charAt(0) == 'a'){
-                shapes.push('<option value=\'' + allowed[i] +
-                        '\' data-icon=\'/img/powerups/' + allowed[i] + '.png\'>' +
-                        allowed[i].charAt(0).toUpperCase() + allowed[i].slice(1,-2) + " " + allowed[i].slice(-2).toUpperCase() + " x" +
-                        this.gameLogicManager.allowedShapesMap[allowed[i]] +
-                        '</option>');
-            }else{
-                shapes.push('<option value=\'' + allowed[i] +
-                        '\' data-icon=\'/img/powerups/' + allowed[i] + '.png\'>' +
-                        allowed[i].charAt(0).toUpperCase() + allowed[i].slice(1,-1) + " " + allowed[i].slice(-1).toUpperCase() + " x" +
-                        this.gameLogicManager.allowedShapesMap[allowed[i]] +
-                        '</option>');
-            }
+        for (var i = 0; i < allowed.length; i++) {
+            var unitName;
+            if (allowed[i].charAt(0) == 'a')
+                unitName = allowed[i].charAt(0).toUpperCase() +
+                               allowed[i].slice(1,-2) + " " +
+                               allowed[i].slice(-2).toUpperCase();
+
+            else
+                unitName = allowed[i].charAt(0).toUpperCase() +
+                               allowed[i].slice(1,-1) + " " +
+                               allowed[i].slice(-1).toUpperCase();
+
+            shapes.push(
+                $('<span>')
+                    .attr('id', 'unit-' + allowed[i])
+                    .addClass('select-item')
+                    .attr('data-value', allowed[i])
+                    .attr('data-tooltip', unitName)
+                    .append(
+                        $('<img>').attr('src', '/img/powerups/' + allowed[i] + '.png')
+                    )
+                    .append(
+                        $('<span>')
+                            .addClass('item-count')
+                            .text(this.gameLogicManager.allowedShapesMap[allowed[i]])
+                    )
+            );
         }
         return shapes;
     }.bind(this))());
+
     $('select').material_select();
 
-
     $('.collapsible').collapsible({
-        accordion: true // TODO: change this to false on large screens
+        accordion: false // TODO: change this to true on small screens
     });
 
     // play pause button event
@@ -124,12 +136,6 @@ GamePlayScreen.prototype.setLevel = function (level) {
     this.gameManager.screenManager.timers.push(this.timer);
 
     // update current shape
-    // $('#unit-select-menu select').change(function () {
-    //     self.gameLogicManager.currentUnit =
-    //         self.gameManager.shapeManager.getShape(
-    //             $(this).val()
-    //         );
-    // });
     $('#unit-select-items .select-item').click(function () {
 
         // highlight selected
