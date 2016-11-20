@@ -9,9 +9,9 @@ var Screen = require('./Screen');
  *
  */
 
-var TutorialScreen = function (id, properties) {
-    this.properties = properties;
-    Screen.call(this, id, true);
+var TutorialScreen = function (id, level) {
+    this.level = level;
+    Screen.call(this, id, true, level);
 };
 
 inherits(TutorialScreen, Screen);

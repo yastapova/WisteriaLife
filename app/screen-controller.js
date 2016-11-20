@@ -112,9 +112,10 @@ router.get('/store', function(req, res, next) {
 });
 
 /* Tutorial. */
-router.get('/tutorial', function(req, res, next) {
+router.get('/tutorial/:level(\\d+)', function(req, res, next) {
     res.render('tutorial', {
-        title: 'Tutorial'
+        title: 'Tutorial',
+        level: Number.parseInt(req.params.level)
     });
 });
 

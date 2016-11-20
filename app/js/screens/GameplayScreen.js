@@ -165,7 +165,7 @@ GamePlayScreen.prototype.init = function () {
 
     // don't bother showing tutorial after the first two levels
     if (this.levelNumber < 3)
-        this.gameManager.screenManager.switchScreens('tutorial');
+        this.gameManager.screenManager.switchScreens('tutorial', this.levelNumber);
 
     $('select').material_select();
 
