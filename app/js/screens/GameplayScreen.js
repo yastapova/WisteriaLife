@@ -56,6 +56,11 @@ GamePlayScreen.prototype.setLevel = function (level) {
     }.bind(this))());
     $('select').material_select();
 
+
+    $('.collapsible').collapsible({
+        accordion: true // TODO: change this to false on large screens
+    });
+
     // play pause button event
     var self = this;
     $('#playpause').click(function () {
@@ -152,7 +157,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
 GamePlayScreen.prototype.init = function () {
     console.log("Gameplay screen init called");
 
-    this.gameManager.screenManager.switchScreens('tutorial');
+    //this.gameManager.screenManager.switchScreens('tutorial');
 
     $('select').material_select();
 
