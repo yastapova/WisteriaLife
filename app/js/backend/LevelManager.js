@@ -47,7 +47,7 @@ LevelManager.prototype.loadJSONDataRegion = function (data, callback) {
 		var regionData = data[i];
 		var regionAttrObj = {
 			name: regionData.name,
-			img: regionData.img,			
+			img: regionData.img,
 		};
         this.regionsMap.set(i, regionAttrObj);
         this.levels = this.levels.concat(regionData.levels);

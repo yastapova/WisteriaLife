@@ -25,10 +25,14 @@ inherits(LevelSelectScreen, Screen);
 
 LevelSelectScreen.prototype.init = function() {
     console.log("Level select Screen init called");
-    var regionsMap = require('GameManager').levelManager.regionsMap;
-    $("#region-1-level-1").text(regionsMap.get("The Revolting River").levelsArray[0].name);
-    $("#region-1-level-1-img").attr("src", "/img/levels/" + regionsMap.get("The Revolting River").levelsArray[0].img);
-    $("#region-1-level-1-storyline").text(regionsMap.get("The Revolting River").levelsArray[0].storyline);
+    var levels = require('GameManager').levelManager.levels;
+
+    // TEMPORARY HARDCODE only - this.level should not exist here
+    this.level = 1;
+
+    $("#region-1-level-1").text(levels[this.level - 1].name);
+    $("#region-1-level-1-img").attr("src", "/img/levels/" + levels[this.level - 1].img);
+    $("#region-1-level-1-storyline").text(levels[this.level - 1].storyline);
 };
 
 LevelSelectScreen.prototype.hide = function() {
