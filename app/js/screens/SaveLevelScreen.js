@@ -7,8 +7,8 @@ var Screen = require('./Screen');
  /*
   * construct a SaveLevelScreen obj with given id
   */
-var SaveLevelScreen = function (id, properties) {
-    this.properties = properties;
+var SaveLevelScreen = function (id, level) {
+    this.level = level;
     Screen.call(this, id, true);
 };
 
@@ -24,7 +24,12 @@ SaveLevelScreen.prototype.init = function() {
         var gameManager = require('GameManager');
         gameManager.screenManager.hideScreen(this);
     }.bind(this));
-
+    $('#tower_num').on("change", function() {
+    $('.output').val(" x" + this.value);
+    }).trigger("change");
+    $('#blockade_num').on("change", function() {
+    $('.output').val(" x" + this.value);
+    }).trigger("change");
 };
 
 SaveLevelScreen.prototype.hide = function() {

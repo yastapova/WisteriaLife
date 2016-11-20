@@ -9,16 +9,19 @@
         text-align: left;
     }
     label{
-        font-size: 1.5rem;
+        font-size: 1.8rem;
+        color: #fff;
         &.units{
-            font-size: 1.1rem;
+            font-size: 1.3rem;
         }
 
         small {
             font-size: 0.6em;
         }
     }
-
+    output {
+        font-size: 1rem;
+    }
     .row p{
         font-size: 1em;
     }
@@ -40,7 +43,7 @@
 
     .center-buttons{
         text-align: center;
-    }
+    }    
 
     .about-body-text{
         padding-left: 30px;
