@@ -85,6 +85,18 @@ LevelManager.prototype.loadLevel = function (id, setLevel) {
     console.log("Load level called for id: " + id);
     // Reference to the /levels/ database path
     firebase.database().ref('levels').once('value', function (snapshot) {
+
+        // no level available
+        if (snapshot.val()[id] === undefined) {
+            require('GameManager').screenManager.switchScreens('map');
+            Materialize.toast(
+                'Level ' + id + ' does not exist!',
+                4000,
+                'wisteria-error-toast'
+            );
+            return;
+        }
+
         var levelAttrObj = this.loadJSONDataLevel(snapshot.val()[id]);
         levelAttrObj.id = id;
         setLevel(new Level(levelAttrObj));

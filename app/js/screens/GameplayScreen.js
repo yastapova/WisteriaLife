@@ -55,30 +55,6 @@ GamePlayScreen.prototype.setLevel = function (level) {
         return shapes;
     }.bind(this))());
     $('select').material_select();
-};
-
-/**
- * Setup game logic manager with level and canvas
- *
- * Setup all events
- */
-GamePlayScreen.prototype.init = function () {
-    console.log("Gameplay screen init called");
-
-    this.gameManager.screenManager.switchScreens('tutorial');
-
-    $('select').material_select();
-
-    $('.dropdown-button').dropdown({
-        constrain_width: false, // Does not change width of dropdown to that of the activator
-        hover: true, // Activate on hover
-        gutter: 0, // Spacing from edge
-        belowOrigin: false, // Displays dropdown below the button
-        alignment: 'left' // Displays dropdown with edge aligned to the left of button
-    });
-
-    // load level, set level callback function
-    this.gameManager.levelManager.loadLevel(this.levelNumber, this.setLevel.bind(this));
 
     // play pause button event
     var self = this;
@@ -149,6 +125,30 @@ GamePlayScreen.prototype.init = function () {
                 $(this).val()
             );
     });
+};
+
+/**
+ * Setup game logic manager with level and canvas
+ *
+ * Setup all events
+ */
+GamePlayScreen.prototype.init = function () {
+    console.log("Gameplay screen init called");
+
+    this.gameManager.screenManager.switchScreens('tutorial');
+
+    $('select').material_select();
+
+    $('.dropdown-button').dropdown({
+        constrain_width: false, // Does not change width of dropdown to that of the activator
+        hover: true, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: false, // Displays dropdown below the button
+        alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    });
+
+    // load level, set level callback function
+    this.gameManager.levelManager.loadLevel(this.levelNumber, this.setLevel.bind(this));
 };
 
 /**
