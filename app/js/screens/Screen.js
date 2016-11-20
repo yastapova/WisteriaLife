@@ -84,7 +84,7 @@ Screen.prototype.load = function () {
                     // don't pushstate if going back (popstate)
                     if (!history.state || history.state.screen != this.id) {
                         // set browser URL
-                        history.pushState({screen: this.id}, '', '/' + screenSwitch);
+                        history.pushState({screen: this.id, property: this.property}, '', '/' + screenSwitch);
                     }
                     // set browser title
                     // https://bugs.webkit.org/show_bug.cgi?id=43730
