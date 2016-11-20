@@ -196,6 +196,15 @@ PixiCanvas.prototype.setCell = function (col, row, color) {
 }
 
 PixiCanvas.prototype.respondToMouseClick = function () {
+    if (gameManager.gameLogicManager.paused) {
+        Materialize.toast(
+            "Game not started yet! Press Play at the top.",
+            2000,
+            'wisteria-error-toast'
+        );
+        return;
+    }
+
     // CALCULATE THE ROW,COL OF THE CLICK
     var canvasCoords = this.getRelativeCoords(event);
     var clickCol = Math.floor(canvasCoords.x/this.cellLength);
