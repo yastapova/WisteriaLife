@@ -76,17 +76,8 @@ GamePlayScreen.prototype.setLevel = function (level) {
     // play pause button event
     var self = this;
     $('#playpause').click(function () {
-        if (self.gameLogicManager.paused) {
-            self.gameLogicManager.start(); // resume button is on pause screen
-
-            $(this).attr('href', '/pause');
-            $(this).attr('data-level', self.levelNumber);
-            $(this).find('i').removeClass('play').removeClass('mdi-play');
-            $(this).find('i').addClass('pause').addClass('mdi-pause');
-
-            return false; // prevent event bubbling
-        } else
-            self.gameLogicManager.pause();
+        // Play on start handled by TutorialScreen
+        self.gameLogicManager.pause();
     });
 
     // cheat button event
