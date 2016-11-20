@@ -29,10 +29,47 @@
         </div>
     </div>
 
-    <!-- Gameplay Canvas - filled in by Pixi -->
-    <div class="canvas" id="gameplay-canvas"></div>
+    <div id="gameplay-area">
 
-    <div class="gameplay-toolbar toolbar-bottom">
+        <div id="gameplay-sidebar">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header active">
+                        <i class="wisteria-icons mdi mdi-shape-plus"></i>
+                        Units
+                        <i class="collapse-icon wisteria-icons right mdi mdi-chevron-down"></i>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="unit-select-items" class="gameplay-select">
+                            <span class="select-item" data-value="archernw" data-tooltip="Archer &nwarr;">
+                                <img src="/img/powerups/archernw.png" />
+                                <span class="item-count">5</span>
+                            </span>
+
+                            <span class="select-item" data-value="archerne" data-tooltip="Archer &nearr;">
+                                <img src="/img/powerups/archerne.png" />
+                                <span class="item-count">2</span>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <i class="wisteria-icons mdi mdi-fire"></i>
+                        Powerups
+                        <i class="collapse-icon wisteria-icons right mdi mdi-chevron-down"></i>
+                    </div>
+                    <div class="collapsible-body"><p>Coming soon.</p></div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Gameplay Canvas - filled in by Pixi -->
+        <div class="canvas" id="gameplay-canvas"></div>
+
+    </div>
+
+    <%# <div class="gameplay-toolbar toolbar-bottom">
         <div class="toolbar-content cf">
 
             <div id="unit-select" class="toolbar-item toolbar-select">
@@ -55,39 +92,6 @@
                 </div>
             </div>
 
-            <%# <div id="unit-select" class="toolbar-item">
-                <div id="unit-select-menu">
-                    <select>
-                        <option value="" disabled selected>Unit</option>
-                        <!-- <option value="archernw" data-icon="/img/powerups/archernw.png">Archer &nwarr;</option>
-                        <option value="archerne" data-icon="/img/powerups/archerne.png">Archer &nearr;</option>
-                        <option value="archersw" data-icon="/img/powerups/archersw.png">Archer &swarr;</option>
-                        <option value="archerse" data-icon="/img/powerups/archerse.png">Archer &searr;</option>
-                        <option value="infantryn" data-icon="/img/powerups/infantryn.png">Infantry &uarr;</option>
-                        <option value="infantrys" data-icon="/img/powerups/infantrys.png">Infantry &darr;</option>
-                        <option value="infantrye" data-icon="/img/powerups/infantrye.png">Infantry &rarr;</option>
-                        <option value="infantryw" data-icon="/img/powerups/infantryw.png">Infantry &larr;</option>
-                        <option value="tower" data-icon="/img/powerups/tower.png">Tower</option>
-                        <option value="blockade" data-icon="/img/powerups/blockade.png">Blockade</option>
-                        <option value="shield" data-icon="/img/powerups/shield.png">Shield</option>
-                        <option value="caltrops" data-icon="/img/powerups/caltrops.png">Caltrops</option>
-                        <option value="wallbackward" data-icon="/img/powerups/wallbackward.png">Wall &nwarr;</option>
-                        <option value="wallforward" data-icon="/img/powerups/wallforward.png">Wall &nearr;</option> -->
-                    </select>
-                </div>
-            </div>
-
-            <div id="powerup-select" class="toolbar-item">
-                <div id="powerup-select-menu">
-                    <select>
-                        <option value="" disabled selected>Powerup</option>
-                        <option value="stopspawn">Reduce Enemy Spawn</option>
-                        <option value="reducetime">Reduce Time</option>
-                        <option value="void">Void Cell</option>
-                    </select>
-                </div>
-            </div>%>
-
             <div id="powerup-select" class="toolbar-item toolbar-select">
                 <div id="powerup-select-button" class="gameplay-select-button">
                     <!-- Work in progress -->
@@ -102,7 +106,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>%>
 </div>
 
 <% include partials/footer %>

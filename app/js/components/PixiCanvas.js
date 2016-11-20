@@ -59,7 +59,7 @@ PixiCanvas.prototype.setDimensions = function (size) {
         case 'small':
             this.size = {
                 width: 36,
-                height: 18
+                height: 20
             };
             break;
 
