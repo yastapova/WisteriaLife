@@ -109,6 +109,15 @@ LevelEditScreen.prototype.init = function() {
         $('#resize-confirm').closeModal();
     }.bind(this));
 
+    // navigate to save level screen    
+    $('#save-button').click(function(){
+        this.gameManager.screenManager.switchScreens('save-level', this.level);
+    }.bind(this));
+    // navigate to private custom levels screen   
+    $('#delete-button').click(function(){
+        this.gameManager.screenManager.switchScreens('private-custom-levels');
+    }.bind(this));
+
 };
 
 /**

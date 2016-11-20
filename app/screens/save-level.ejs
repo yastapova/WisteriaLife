@@ -8,7 +8,7 @@
                 Materialize makes a nice animation w/o one
             -->
             <div class="input-field col s6 offset-s3">
-                <input id="level_title" type="text" class="validate" length="75">
+                <input id="level_title" type="text" class="validate" length="25">
                 <label for="level_title">Level Title &nbsp;
                     <small>Give your level an exciting name.</small>
                 </label>
@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="input-field col s6 offset-s3">
-                <textarea id="level_description" class="materialize-textarea validate" length="500"></textarea>
+                <textarea id="level_description" class="materialize-textarea validate" length="100"></textarea>
                 <label for="level_description">Level Description &nbsp;
                     <small>Give your creation a story!</small>
                 </label>
@@ -27,55 +27,67 @@
         </div>
         <div class="col s6 offset-s3" id="save_ally_units">
             <label class="units" for="tower">Tower</label>
+            <output for="tower" class="output_tower"></output>
             <span class="range-field">
                 <input type="range" id="tower_num" min="0" max="25"/>
-            </span>
+            </span>            
             <label class="units" for="blockade">Blockade</label>
+            <output for="blockade" class="output_blockade"></output>
             <span class="range-field">
-                <input type="range" id="blockad_num" min="0" max="25"/>
+                <input type="range" id="blockade_num" min="0" max="25"/>
             </span>
             <label class="units" for="caltrops">Caltrops</label>
+            <output for="caltrops" class="output_caltrops"></output>
             <span class="range-field">
                 <input type="range" id="caltrops_num" min="0" max="25"/>
             </span>
-
             <label class="units" for="archernw">Archer &nwarr;</label>
+            <output for="archernw" class="output_archernw"></output>
             <span class="range-field">
                 <input type="range" id="archernw_num" min="0" max="25"/>
             </span>
             <label class="units" for="archerne">Archer &nearr;</label>
+            <output for="archerne" class="output_archerne"></output>
             <span class="range-field">
                 <input type="range" id="archerne_num" min="0" max="25"/>
             </span>
             <label class="units" for="archerse">Archer &searr;</label>
+            <output for="archerse" class="output_archerse"></output>
             <span class="range-field">
                 <input type="range" id="archerse_num" min="0" max="25"/>
             </span>
             <label class="units" for="archersw">Archer &swarr;</label>
+            <output for="archersw" class="output_archersw"></output>
             <span class="range-field">
                 <input type="range" id="archersw_num" min="0" max="25"/>
             </span>
             <label class="units" for="infantryw">Infantry &larr;</label>
+            <output for="infantryw" class="output_infantryw"></output>
             <span class="range-field">
                 <input type="range" id="infantryw_num" min="0" max="25"/>
             </span>
             <label class="units" for="infantryn">Infantry &uarr;</label>
+            <output for="infantryn" class="output_infantryn"></output>
             <span class="range-field">
                 <input type="range" id="infantryn_num" min="0" max="25"/>
             </span>
             <label class="units" for="infantrye">Infantry &rarr;</label>
+            <output for="infantrye" class="output_infantrye"></output>
             <span class="range-field">
                 <input type="range" id="infantrye_num" min="0" max="25"/>
             </span>
-            <label class="units" for="blockade">Infantry &darr;</label>
+            <label class="units" for="infantrys">Infantry &darr;</label>
+            <output for="infantrys" class="output_infantrys"></output>
             <span class="range-field">
                 <input type="range" id="infantrys_num" min="0" max="25"/>
             </span>
             <label class="units" for="wallbackward">Wall &nearr;</label>
+            <output for="wallbackward" class="output_wallbackward"></output>
             <span class="range-field">
                 <input type="range" id="wallbackward_num" min="0" max="25"/>
             </span>
             <label class="units" for="wallforward">Wall &nwarr;</label>
+            <output for="wallforward" class="output_wallforward"></output>
             <span class="range-field">
                 <input type="range" id="wallforward_num" min="0" max="25"/>
             </span>

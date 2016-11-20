@@ -14,6 +14,7 @@ var Level = function(levelAttrObj) {
     this.enemySpawnsMap = new Map();
     this.convertToMessageMap(levelAttrObj.messages);
     this.convertToEnemySpawnMap(levelAttrObj.enemySpawns);
+    this.custom = levelAttrObj.custom;
 };
 
 /**
@@ -39,22 +40,25 @@ Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
 };
 
 /**
- * Get the wistbux reward for given level. Does not check to see if level is custom or not.
+ * Get the wistbux reward for given level. Checka to see if level is custom or not.
  * @return int the number of wistbux to reward
  */
 Level.prototype.getWistbux = function() {
     var wistbux = 0;
-    if(id < 11){
+    if(this.custom != "false"){
+        return 0;
+    }
+    if(this.id < 11){
         wistbux += 5;
-    }else if(id < 21){
+    }else if(this.id < 21){
         wistbux += 10;
-    }else if(id < 31){
+    }else if(this.id < 31){
         wistbux += 15;
     }
     else{
         wistbux += 20;
     }
-    if(id % 10 === 0){
+    if(this.id % 10 === 0){
         wistbux *=2;
     }
     return wistbux;

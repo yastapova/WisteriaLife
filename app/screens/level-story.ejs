@@ -1,15 +1,15 @@
 <% include partials/header %>
 <!-- Page Content goes here -->
 <div id="level-story-screen" class="screen-overlay container-inner">
-    <div align="center">
+    <div class="center">
         <h2 id="level-1-story-title" class="level-story-title"></h2>
         <p id ="level-1-story-storyline" class="level-story-description"></p><br><br><br><br>
         <div id="level-story-buttons">
-            <a href="ad" id="story-start" class="waves-effect waves-light btn-large">Start</a>
+            <a href="/ad" id="story-start" class="waves-effect waves-light btn-large" data-level="<%= level %>">Start</a>
         </div>
     </div>
     <div id="level-number">
-        <h2 id="level-story-number" class="level-story-number">Level 1</h2>
+        <h2 id="level-story-number" class="level-story-number">Level <span id="level-story-number-display"></span></h2>
     </div>
 </div>
 

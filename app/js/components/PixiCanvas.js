@@ -48,6 +48,8 @@ var PixiCanvas = function (element, size) {
 
     // canvas click event
     this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
+    this.renderer.view.addEventListener('mousemove', this.respondToMouseMove.bind(this));
+    this.renderer.view.addEventListener('touchstart', this.respondToMouseClick.bind(this));
 }
 
 /**
@@ -59,7 +61,7 @@ PixiCanvas.prototype.setDimensions = function (size) {
         case 'small':
             this.size = {
                 width: 36,
-                height: 18
+                height: 20
             };
             break;
 
@@ -96,10 +98,6 @@ PixiCanvas.prototype.setDimensions = function (size) {
     $(window).resize(function () {
         this.resizePixiCanvas();
     }.bind(this));
-
-    // canvas click event
-    this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
-    this.renderer.view.addEventListener('mousemove', this.respondToMouseMove.bind(this));
 }
 
 /**
@@ -198,14 +196,56 @@ PixiCanvas.prototype.setCell = function (col, row, color) {
 
 }
 
-PixiCanvas.prototype.respondToMouseClick = function () {
-    // CALCULATE THE ROW,COL OF THE CLICK
-    var canvasCoords = this.getRelativeCoords(event);
+PixiCanvas.prototype.respondToMouseClick = function (event) {
+    if (gameManager.gameLogicManager.paused) {
+        Materialize.toast(
+            "Game not started yet! Press Play at the top.",
+            2000,
+            'wisteria-error-toast'
+        );
+        return;
+    }
+
+    // update count display
+    var unit = gameManager.gameLogicManager.currentUnit;
+
+    if (!unit) {
+        Materialize.toast(
+            "No unit selected! Select a unit from the Units sidebar.",
+            2000,
+            'wisteria-error-toast'
+        );
+        return;
+    } else
+        unit = unit.name;
+
+    if (gameManager.gameLogicManager.allowedShapesMap[unit] == 0) {
+        Materialize.toast(
+            "No more of this unit available.",
+            2000,
+            'wisteria-error-toast'
+        );
+        return;
+    }
+
+    // calculate coordinates
+    var canvasCoords;
+
+    // click or touch
+    if (event.changedTouches !== undefined)
+        canvasCoords = this.getRelativeTouchCoords(event);
+    else
+        canvasCoords = this.getRelativeCoords(event);
+
     var clickCol = Math.floor(canvasCoords.x/this.cellLength);
     var clickRow = Math.floor(canvasCoords.y/this.cellLength);
 
     var friend = gameManager.gameLogicManager.FRIEND;
     gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend, null, null);
+
+    $('#unit-' + unit + ' .item-count').text(
+        gameManager.gameLogicManager.allowedShapesMap[unit]
+    );
 
     this.render();
 };
@@ -227,10 +267,19 @@ PixiCanvas.prototype.respondToMouseMove = function () {
     // this.render();
 }
 
-PixiCanvas.prototype.getRelativeCoords = function () {
+PixiCanvas.prototype.getRelativeCoords = function (event) {
     return (event.offsetX !== undefined && event.offsetY !== undefined) ?
         { x: event.offsetX, y: event.offsetY } :
         { x: event.layerX, y: event.layerY };
+};
+
+PixiCanvas.prototype.getRelativeTouchCoords = function (event) {
+    var rect = event.target.getBoundingClientRect();
+    var touch = event.changedTouches[0];
+    return {
+        x: touch.pageX - rect.left,
+        y: touch.pageY - rect.top
+    }
 };
 
 /**

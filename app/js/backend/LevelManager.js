@@ -10,6 +10,7 @@ var firebase = require("firebase");
  */
 var LevelManager = function() {
     this.regionsMap = new Map();
+    this.levels = [];
     // For loading descriptions and imgs of private user custom levels later
     //this.privateCustomLevelsMap = new Map();
     //this.initPrivateCustomLevelsMap();
@@ -47,9 +48,9 @@ LevelManager.prototype.loadJSONDataRegion = function (data, callback) {
 		var regionAttrObj = {
 			name: regionData.name,
 			img: regionData.img,
-			levels: regionData.levels
 		};
-        this.regionsMap.set(regionData.name, new Region(regionAttrObj));
+        this.regionsMap.set(i, regionAttrObj);
+        this.levels = this.levels.concat(regionData.levels);
 	}
 
     callback();
@@ -69,7 +70,8 @@ LevelManager.prototype.loadJSONDataLevel = function (data) {
         allowedShapes : data.allowedShapes,
         messages : data.messages,
         enemySpawns : data.enemySpawns,
-        defenseStructures : data.defenseStructures
+        defenseStructures : data.defenseStructures,
+        custom : data.custom
     };
     return levelAttrObj;
 };
@@ -84,6 +86,18 @@ LevelManager.prototype.loadLevel = function (id, setLevel) {
     console.log("Load level called for id: " + id);
     // Reference to the /levels/ database path
     firebase.database().ref('levels').once('value', function (snapshot) {
+
+        // no level available
+        if (snapshot.val()[id] === undefined) {
+            require('GameManager').screenManager.switchScreens('map');
+            Materialize.toast(
+                'Level ' + id + ' does not exist!',
+                4000,
+                'wisteria-error-toast'
+            );
+            return;
+        }
+
         var levelAttrObj = this.loadJSONDataLevel(snapshot.val()[id]);
         levelAttrObj.id = id;
         setLevel(new Level(levelAttrObj));

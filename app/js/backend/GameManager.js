@@ -8,16 +8,14 @@ var firebase = require('firebase');
 /**
  * GameManager handles the user and saving/loading of data
  */
-var GameManager = function() {
+var GameManager = function () {
     this.initFirebase();
 
     this.powerupManager = new PowerupManager();
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
     this.gameLogicManager = new GameLogicManager();
-    this.screenManager = new ScreenManager(
-        window.location.pathname.replace(/^\//, "")
-    );
+    this.screenManager = new ScreenManager();
 
     // classes that need to load resources to be functional
     this.resources = [];
@@ -31,14 +29,13 @@ var GameManager = function() {
     this.mute = false;
 
     // Menu Bar
-    this.userPic = document.getElementById('user-pic');
-    this.userName = document.getElementById('user-name');
-
+    this.userPic = $('#user-pic');
+    this.userName = $('#user-name');
     // Dropdown
-    this.userDropName = document.getElementsByClassName('user-name')[0];
-    this.userLevel = document.getElementsByClassName('user-level')[0];
-    this.userIconPic = document.getElementById('user-icon-pic');
-    this.userPicDrop = document.getElementById('user-pic-drop');
+    this.userDropName = $('#user-name-dropdown');
+    this.userLevel = $('#user-level');
+    this.userIconPic = $('#user-icon-pic');
+    this.userPicDrop = $('#user-pic-drop');
 
     // User
     this.user = undefined;
@@ -128,12 +125,16 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     		// Splash changes
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
-	        $('#splash-guest').css('display', 'none');	
+	        $('#splash-guest-login').css('display', 'block');
+	        $('#splash-guest').css('display', 'none');
+	        $('#splash-play').css('display', 'block');
+
 	        $('#splash-play').css('display', 'block');
 
 	        // Dropdown changes
-	        $('#drop-login').css('display','block');
-	        $('#drop-logout').css('display', 'none');
+	        $('#drop-login').css('display','none');
+	        $('#drop-login-guest').css('display', 'block');
+	        $('#drop-logout').css('display', 'block');
 	        $('#user-icon-def').css('display','inline-block');
 	        $('#user-icon-pic').css('display','none');
 	        $('#user-pic-drop').css('display','none');
@@ -143,20 +144,21 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     	else{
     		// User is signed in
 	        // Get the avatar and name from the Firebase user object
+            //this.usertt// 
 	        if(this.user === undefined){	        	
 	        	// Check if user already has data
-	        	// TO DO	     
+	        	// TO DO
 				var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
 				  var exists = (snapshot.val() !== null);
 				  this.userExistsCallback(user, exists, snapshot.val());
-				}.bind(this));	        
-	        	// Guest wants to log in 
+				}.bind(this));
+	        	// Guest wants to log in
 	        	// TO DO Merging!
 	        }else if(this.user !== undefined && this.user.name === "Guest"){
 	        	var currentGameData = this.user.gameData;
 	        	this.user = new User(user.displayName, user.photoURL, user.uid);
 	        	this.user.gameData = currentGameData;
-	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	        	this.userLevel.text = 'Level ' + this.user.gameData.currentLevel;
 	        	this.writeUserData();
 	        }
 	        console.log(user);
@@ -165,28 +167,33 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
 	        $('#splash-guest').css('display', 'none');
+	        $('#splash-guest-login').css('display', 'none');
 	        $('#splash-play').css('display', 'block');
 
 
 	        // Navbar changes
-	        this.userName.textContent = user.displayName;
-	        this.userPic.style.backgroundImage = 'url(' + (user.photoURL) + ')';
+	        this.userName.text(user.displayName);
+	        this.userPic.css({"background" : "url(" + (user.photoURL) + ") no-repeat center center",
+                "background-size" : "cover"});
 	        $('#user-login').css('display','none');
 	        $('#user-name').css('display','inline-block');
 	        $('#user-pic').css('display','inline-block');
 
 	        // Dropdown changes
-	        this.userPicDrop.style.backgroundImage = 'url(' + (user.photoURL) + ')';
-	        this.userDropName.textContent = name;	        
+	        this.userPicDrop.css({"background" : "url(" + (user.photoURL) + ") no-repeat center center",
+                "background-size" : "cover"});
+	        this.userDropName.text(user.displayName);
 	        $('#drop-logout').css('display','block');
+	        $('#drop-login-guest').css('display', 'none');
 	        $('#drop-login').css('display', 'none');
 	        $('#user-icon-def').css('display','none');
 	        $('#user-icon-pic').css('display','inline-block');
 	        $('#user-pic-drop').css('display','inline-block');
-    	}       
+    	}
     }else{
     	// Splash changes
         $('#splash-logout').css('display','none');
+        $('#splash-guest-login').css('display', 'none');
         $('#splash-login').css('display', 'block');
         $('#splash-guest').css('display', 'block');
         $('#splash-play').css('display', 'none');
@@ -198,11 +205,13 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         $('#user-pic').css('display','none');
 
         // Dropdown changes
-        $('#drop-login').css('display','block');
+        this.$('#drop-login').css('display','block');
+        $('#drop-login-guest').css('display', 'none');
         $('#drop-logout').css('display', 'none');
         $('#user-icon-def').css('display','inline-block');
         $('#user-icon-pic').css('display','none');
         $('#user-pic-drop').css('display','none');
+        this.userDropName.textContent = "Guest";
     }
 };
 
@@ -213,7 +222,6 @@ GameManager.prototype.login = function() {
     // Sign in Firebase using popup auth and Google as the identity provider
     var provider = new firebase.auth.GoogleAuthProvider();
     firebase.auth().signInWithPopup(provider);
-    this.screenManager.switchScreens('map');
 };
 
 /**
@@ -247,26 +255,36 @@ GameManager.prototype.play = function() {
  * Write User Data
  */
 GameManager.prototype.writeUserData = function () {
-  firebase.database().ref('users/' + this.user.uid).set({
-    username: this.user.name,
-    gameData: this.user.gameData
-  });
+	console.log("Writing data " + this.user.gameData);
+	firebase.database().ref('users/' + this.user.uid).set({
+	username: this.user.name,
+	gameData: this.user.gameData
+	});
 };
 
 /**
  * Callback for reading user data from firebase
  */
 GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
-	this.user = new User(user.displayName, user.photoURL, user.uid); 
+	this.user = new User(user.displayName, user.photoURL, user.uid);
 	if(exists){
 		console.log("I exist!");
 		console.log(snapshot);
 		this.user.gameData = snapshot.gameData;
+		this.userLevel.text('Level ' + this.user.gameData.currentLevel);
+		this.userWistbux.text(this.user.gameData.wistbux);
 	}else{
 	  	this.user = new User(user.displayName, user.photoURL, user.uid);
-	  	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+	  	this.userLevel.text('Level ' + this.user.gameData.currentLevel);
 		this.writeUserData();
 	}
+};
+
+/**
+ * Guest login modal
+ */
+GameManager.prototype.guestLogin = function () {
+	$('#confirmation-modal').openModal();
 };
 
 /**

@@ -9,9 +9,9 @@ var Screen = require('./Screen');
  *
  */
 
-var TutorialScreen = function (id, properties) {
-    this.properties = properties;
-    Screen.call(this, id, true);
+var TutorialScreen = function (id, level) {
+    this.level = level;
+    Screen.call(this, id, true, level);
 };
 
 inherits(TutorialScreen, Screen);
@@ -25,10 +25,25 @@ TutorialScreen.prototype.init = function() {
     console.log("Tutorial screen init called");
 
     $('#tutorial-play').on('click', function () {
-    	console.log("clicked button");
-        var gameManager = require('GameManager');
+        var gameManager = require('../backend/GameManager');
         var gameplayScreen = require('GameplayScreen');
+
         gameManager.screenManager.hideScreen(this);
+
+        if (gameManager.gameLogicManager.paused) {
+            gameManager.gameLogicManager.start();
+
+            // TODO get level number from GameplayScreen
+
+            $(gameplayScreen).find('#playpause').attr('data-level', 1);
+            $(gameplayScreen).find('#playpause').find('i').removeClass('play').removeClass('mdi-play');
+            $(gameplayScreen).find('#playpause').find('i').addClass('pause').addClass('mdi-pause');
+            $(gameplayScreen).find('#playpause').attr('href', '/pause');
+            return false;
+        }
+
+        // Pause handled by GameplayScreen
+
     }.bind(this));
 
 };

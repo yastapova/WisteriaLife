@@ -10,11 +10,13 @@
  * Screen is the parent of all screens
  * @param {string} id       ID of screen (<url>/id)
  * @param {boolean} overlay whether or not its an overlay over existing screen
+ * @param {int} property    screen specific property (needed for final part of url)
  */
-var Screen = function (id, overlay) {
+var Screen = function (id, overlay, property) {
     this.id = id;
     this.overlay = overlay;
     this.overlayElement = null;
+    this.property = property;
 
     // constants - main container will never change
     this.container = $('#main-container');
@@ -45,6 +47,10 @@ Screen.prototype.load = function () {
     // special case url for splash screen
     var screenSwitch = this.id == 'splash' ? '' : this.id;
 
+    // add specific property to url if avaiable
+    if (this.property)
+        screenSwitch += '/' + this.property;
+
     if (!this.overlay)
         this.loader.fadeIn('fast');
 
@@ -63,8 +69,6 @@ Screen.prototype.load = function () {
 
             document.title = $(data).filter('title').text();
 
-            console.log('Loading overlay screen complete! ' + this.id);
-
             // initialize overlay screen
             // initScreen.bind(this)();
             this.init();
@@ -80,14 +84,12 @@ Screen.prototype.load = function () {
                     // don't pushstate if going back (popstate)
                     if (!history.state || history.state.screen != this.id) {
                         // set browser URL
-                        history.pushState({screen: this.id}, '', '/' + screenSwitch);
+                        history.pushState({screen: this.id, property: this.property}, '', '/' + screenSwitch);
                     }
                     // set browser title
                     // https://bugs.webkit.org/show_bug.cgi?id=43730
                     // https://bugzilla.mozilla.org/show_bug.cgi?id=585653
                     document.title = $(data).filter('title').text();
-
-                    console.log('Loading screen complete! ' + this.id);
 
                     this.loader.fadeOut('fast');
 

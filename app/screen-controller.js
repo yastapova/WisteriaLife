@@ -20,23 +20,26 @@ router.get('/about', function(req, res, next) {
 });
 
 /* Ad. */
-router.get('/ad', function(req, res, next) {
+router.get('/ad/:level(\\d+)', function(req, res, next) {
     res.render('ad', {
-        title: 'Ad'
+        title: 'Ad',
+        level: Number.parseInt(req.params.level)
     });
 });
 
 /* Defeat. */
-router.get('/defeat', function(req, res, next) {
+router.get('/defeat/:level(\\d+)', function(req, res, next) {
     res.render('defeat', {
-        title: 'Defeat'
+        title: 'Defeat',
+        level: Number.parseInt(req.params.level)
     });
 });
 
-/* Gameplay. */
-router.get('/gameplay', function(req, res, next) {
+/* Gameplay.- Level Number */
+router.get('/gameplay/:level(\\d+)', function(req, res, next) {
     res.render('gameplay', {
-        title: 'Gameplay'
+        title: 'Gameplay',
+        level: Number.parseInt(req.params.level)
     });
 });
 
@@ -48,16 +51,19 @@ router.get('/level-editor', function(req, res, next) {
 });
 
 /* Level Story. */
-router.get('/level-story', function(req, res, next) {
+router.get('/level-story/:level(\\d+)', function(req, res, next) {
     res.render('level-story', {
-        title: 'Level Story'
+        title: 'Level Story',
+        level: Number.parseInt(req.params.level),
+        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
     });
 });
 
 /* Level Select. */
-router.get('/level-select', function(req, res, next) {
+router.get('/level-select/:region(\\d+)', function(req, res, next) {
     res.render('level-select', {
-        title: 'Level Select'
+        title: 'Level Select',
+        region: Number.parseInt(req.params.region)
     });
 });
 
@@ -69,9 +75,11 @@ router.get('/map', function(req, res, next) {
 });
 
 /* Pause. */
-router.get('/pause', function(req, res, next) {
+router.get('/pause/:level(\\d+)', function(req, res, next) {
     res.render('pause', {
-        title: 'Pause'
+        title: 'Pause',
+        level: Number.parseInt(req.params.level),
+        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
     });
 });
 
@@ -104,16 +112,19 @@ router.get('/store', function(req, res, next) {
 });
 
 /* Tutorial. */
-router.get('/tutorial', function(req, res, next) {
+router.get('/tutorial/:level(\\d+)', function(req, res, next) {
     res.render('tutorial', {
-        title: 'Tutorial'
+        title: 'Tutorial',
+        level: Number.parseInt(req.params.level)
     });
 });
 
 /* Victory. */
-router.get('/victory', function(req, res, next) {
+router.get('/victory/:level(\\d+)', function(req, res, next) {
     res.render('victory', {
-        title: 'Victory'
+        title: 'Victory',
+        level: Number.parseInt(req.params.level),
+        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
     });
 });
 

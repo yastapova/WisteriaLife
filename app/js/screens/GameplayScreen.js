@@ -2,13 +2,18 @@ var Screen = require('./Screen');
 var GameLogicManager = require('../backend/GameLogicManager');
 var gameManager = require('../backend/GameManager');
 
-var GamePlayScreen = function (id, properties) {
-    this.level = null;
+/**
+ * Gameplay Screen
+ * @param {String} id          Screen name id ("gameplay")
+ * @param {[type]} levelNumber Level number
+ */
+var GamePlayScreen = function (id, levelNumber) {
+    this.levelNumber = levelNumber;
 
     this.gameManager = require('GameManager');
     this.gameLogicManager = this.gameManager.gameLogicManager;
 
-    Screen.call(this, id);
+    Screen.call(this, id, false, levelNumber);
 };
 
 
@@ -19,8 +24,8 @@ inherits(GamePlayScreen, Screen);
  * @param {Level} level Level object
  */
 GamePlayScreen.prototype.setLevel = function (level) {
-    this.level = level;
 
+    this.level = level;
     this.totalTime = this.level.time;
 
     var PixiCanvas = require('PixiCanvas');
@@ -29,57 +34,50 @@ GamePlayScreen.prototype.setLevel = function (level) {
     this.gameLogicManager.setLevel(level, canvas);
     var allowed = Object.keys(this.gameLogicManager.allowedShapesMap);
 
-    $('#unit-select-menu select').append((function () {
+    $('#unit-select-items').append((function () {
         var shapes = [];
-        for(var i = 0; i < allowed.length; i++)
-        {
-            shapes.push('<option value=\'' + allowed[i] +
-                        '\' data-icon=\'/img/powerups/' + allowed[i] + '.png\'>' +
-                        allowed[i] + 
-                        this.gameLogicManager.allowedShapesMap[allowed[i]] +
-                        '</option>');
+        for (var i = 0; i < allowed.length; i++) {
+            var unitName;
+            if (allowed[i].charAt(0) == 'a')
+                unitName = allowed[i].charAt(0).toUpperCase() +
+                               allowed[i].slice(1,-2) + " " +
+                               allowed[i].slice(-2).toUpperCase();
+
+            else
+                unitName = allowed[i].charAt(0).toUpperCase() +
+                               allowed[i].slice(1,-1) + " " +
+                               allowed[i].slice(-1).toUpperCase();
+
+            shapes.push(
+                $('<span>')
+                    .attr('id', 'unit-' + allowed[i])
+                    .addClass('select-item')
+                    .attr('data-value', allowed[i])
+                    .attr('data-tooltip', unitName)
+                    .append(
+                        $('<img>').attr('src', '/img/powerups/' + allowed[i] + '.png')
+                    )
+                    .append(
+                        $('<span>')
+                            .addClass('item-count')
+                            .text(this.gameLogicManager.allowedShapesMap[allowed[i]])
+                    )
+            );
         }
         return shapes;
     }.bind(this))());
-    $('select').material_select();
-}
-
-/**
- * Setup game logic manager with level and canvas
- *
- * Setup all events
- */
-GamePlayScreen.prototype.init = function () {
-    console.log("Gameplay screen init called");
-
-    this.gameManager.screenManager.switchScreens('tutorial');
 
     $('select').material_select();
 
-    $('.dropdown-button').dropdown({
-        constrain_width: false, // Does not change width of dropdown to that of the activator
-        hover: true, // Activate on hover
-        gutter: 0, // Spacing from edge
-        belowOrigin: false, // Displays dropdown below the button
-        alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    $('.collapsible').collapsible({
+        accordion: false // TODO: change this to true on small screens
     });
-
-    // load level, set level callback function
-    this.gameManager.levelManager.loadLevel(1, this.setLevel.bind(this));
 
     // play pause button event
     var self = this;
     $('#playpause').click(function () {
-        if (self.gameLogicManager.paused) {
-            self.gameLogicManager.start(); // resume button is on pause screen
-
-            $(this).attr('href', 'pause');
-            $(this).find('i').removeClass('play').removeClass('mdi-play');
-            $(this).find('i').addClass('pause').addClass('mdi-pause');
-
-            return false; // prevent event bubbling
-        } else
-            self.gameLogicManager.pause();
+        // Play on start handled by TutorialScreen
+        self.gameLogicManager.pause();
     });
 
     // cheat button event
@@ -100,16 +98,25 @@ GamePlayScreen.prototype.init = function () {
             if (this.level.time < 0)
                 this.level.time = 0;
 
-            if (this.level.time == 0) {
+            if (this.level.time === 0) {
                 this.gameLogicManager.pause();
-                if (this.gameLogicManager.isDead())
-                    this.gameManager.screenManager.switchScreens('defeat');
-                else
-                    this.gameManager.screenManager.switchScreens('victory');
+                if (this.gameLogicManager.isDead()){
+                    this.gameManager.screenManager.switchScreens('defeat', this.levelNumber);
+                }
+                else{
+                    this.gameManager.screenManager.switchScreens('victory', this.levelNumber);
+                    if(this.gameManager.user.gameData.currentLevel < this.level.id){
+                        this.gameManager.user.gameData.currentLevel++;
+                        this.gameManager.user.gameData.wistbux += this.level.getWistbux();
+                        this.gameManager.writeUserData();
+                        this.gameManager.userWistbux.text(this.gameManager.user.gameData.wistbux);
+                        this.gameManager.userLevel.text("Level " + this.gameManager.user.gameData.currentLevel);
+                    }
+                }
             }
-            if (this.gameLogicManager.isDead()) {
+            else if (this.gameLogicManager.isDead()) {
                 this.gameLogicManager.pause();
-                this.gameManager.screenManager.switchScreens('defeat');
+                this.gameManager.screenManager.switchScreens('defeat', this.levelNumber);
             }
         }
         this.setTimeDisplay(this.level.time);
@@ -120,12 +127,49 @@ GamePlayScreen.prototype.init = function () {
     this.gameManager.screenManager.timers.push(this.timer);
 
     // update current shape
-    $('#unit-select-menu select').change(function () {
+    $('#unit-select-items .select-item').click(function () {
+
+        // highlight selected
+        $('.select-item').removeClass('selected');
+        $(this).addClass('selected');
+
         self.gameLogicManager.currentUnit =
             self.gameManager.shapeManager.getShape(
-                $(this).val()
+                $(this).attr('data-value')
             );
     });
+
+    // units and powerup tooltips
+    $('.select-item').tooltip({
+        delay: 50,
+        position: 'top'
+    });
+};
+
+/**
+ * Setup game logic manager with level and canvas
+ *
+ * Setup all events
+ */
+GamePlayScreen.prototype.init = function () {
+    console.log("Gameplay screen init called");
+
+    // don't bother showing tutorial after the first two levels
+    if (this.levelNumber < 3)
+        this.gameManager.screenManager.switchScreens('tutorial', this.levelNumber);
+
+    $('select').material_select();
+
+    $('.dropdown-button').dropdown({
+        constrain_width: false, // Does not change width of dropdown to that of the activator
+        hover: true, // Activate on hover
+        gutter: 0, // Spacing from edge
+        belowOrigin: false, // Displays dropdown below the button
+        alignment: 'left' // Displays dropdown with edge aligned to the left of button
+    });
+
+    // load level, set level callback function
+    this.gameManager.levelManager.loadLevel(this.levelNumber, this.setLevel.bind(this));
 };
 
 /**

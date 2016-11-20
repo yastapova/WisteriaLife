@@ -89,6 +89,10 @@ a {
     @include transition(all 0.3s linear);
 }
 
+.center {
+    text-align: center;
+}
+
 #toast-container {
     z-index: 2;
 
@@ -114,6 +118,11 @@ a {
 
 .wisteria-toast {
     background-color: rgba(201, 160, 220, 0.7);
+    float: left;
+}
+
+.wisteria-error-toast {
+    background-color: rgba(47, 22, 48, 0.7);
     float: left;
 }
 

@@ -18,23 +18,100 @@
 $toolbar-height: 48px;
 $toolbar-height-mobile: 36px;
 
-#gameplay-canvas {
-    text-align: center;
+#gameplay-area {
     width: 100%;
     position: fixed;
     top: calc(#{$toolbar-height-mobile} + #{$navbar-height-mobile});
-    bottom: $toolbar-height-mobile;
+    bottom: 0px;
 
     @media #{$medium-and-up} {
         top: calc(#{$toolbar-height} + #{$navbar-height});
-        bottom: $toolbar-height;
     }
 
-    canvas {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+
+    #gameplay-canvas {
+        width: 80%;
+        height: 100%;
+        float: right;
+        position: relative;
+
+        canvas {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+}
+
+#gameplay-sidebar {
+    width: 20%;
+    height: 100%;
+    background-color: $primary-color;
+    float: left;
+    position: relative;
+
+    .collapsible {
+        font-size: 0.9rem;
+
+        @media #{$medium-and-up} {
+            font-size: 1.2rem;
+        }
+
+        .collapsible-header {
+            padding-left: 0;
+
+            @media #{$medium-and-up} {
+                padding-left: 14px;
+            }
+        }
+    }
+
+    .collapse-icon {
+        font-size: 0.6rem;
+        margin-right: 0;
+
+        @media #{$medium-and-up} {
+            font-size: 1.0rem;
+        }
+    }
+
+    .select-item {
+        display: inline-block;
+        padding: 5px;
+        height: $toolbar-height-mobile;
+        width: $toolbar-height-mobile;
+        position: relative;
+        font-size: 1.1rem;
+
+        @media #{$medium-and-up} {
+            height: $toolbar-height;
+            width: $toolbar-height;
+        }
+
+        &.selected {
+            img {
+                border: 2px solid $highlight-color;
+            }
+        }
+
+        img {
+            border-radius: 50%;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .item-count {
+            position: absolute;
+            top: 0%;
+            right: 0%;
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            background-color: $highlight-color;
+            color: #fff;
+            text-align: center;
+        }
     }
 }
 
@@ -45,12 +122,22 @@ $toolbar-height-mobile: 36px;
 .gameplay-toolbar {
     background-color: $primary-color;
     height: $toolbar-height-mobile;
-    padding: 0 20px;
+    padding: 0 10px;
     width: 100%;
     position: fixed;
 
     @media #{$medium-and-up} {
         height: $toolbar-height;
+    }
+
+    #playpause-button {
+        float: left;
+        margin-left: 0;
+    }
+
+    #cheat-button {
+        float: right;
+        margin-right: 0;
     }
 
     .toolbar-item {
@@ -89,10 +176,12 @@ $toolbar-height-mobile: 36px;
 
         .progress {
             top: 50%;
-            transform: translateY(-50%);
+            left: 50%;
+            transform: translate(-50%);
             position: absolute;
             z-index: 5;
             margin: 0;
+            width: 90%;
 
             .determinate {
                 @include transition(width 1s linear);
@@ -149,6 +238,7 @@ $toolbar-height-mobile: 36px;
 
         &:hover {
             opacity: 0.5;
+            cursor: pointer;
         }
     }
 }
