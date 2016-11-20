@@ -1,5 +1,4 @@
 var gulp = require('gulp');
-var concat = require('gulp-concat');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
@@ -69,7 +68,6 @@ gulp.task('browserify:prod', function() {
         .on('error', function (err){
             gutil.log(gutil.colors.bgRed(err));
             gutil.beep();
-            // end this stream
             this.emit('end');
         })
         .pipe(source('wisteria.js'))
@@ -78,14 +76,13 @@ gulp.task('browserify:prod', function() {
             .on('error', function (err){
                 gutil.log(gutil.colors.bgRed(err));
                 gutil.beep();
-                // end this stream
                 this.emit('end');
             })
 
     .pipe(gulp.dest('./app/public/js/'));
 });
 
-// automatically concat scripts on change
+// update scripts on change
 gulp.task('scripts:watch', function() {
     gulp.watch(['./app/js/**/*.js'], ['browserify']);
 });
