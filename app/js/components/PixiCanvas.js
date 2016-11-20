@@ -211,13 +211,22 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
 
     if (!unit) {
         Materialize.toast(
-            "No shape selected! Select a shape from the Units sidebar.",
+            "No unit selected! Select a unit from the Units sidebar.",
             2000,
             'wisteria-error-toast'
         );
         return;
     } else
         unit = unit.name;
+
+    if (gameManager.gameLogicManager.allowedShapesMap[unit] == 0) {
+        Materialize.toast(
+            "No more of this unit available.",
+            2000,
+            'wisteria-error-toast'
+        );
+        return;
+    }
 
     // calculate coordinates
     var canvasCoords;
