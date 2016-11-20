@@ -157,7 +157,9 @@ GamePlayScreen.prototype.setLevel = function (level) {
 GamePlayScreen.prototype.init = function () {
     console.log("Gameplay screen init called");
 
-    //this.gameManager.screenManager.switchScreens('tutorial');
+    // don't bother showing tutorial after the first two levels
+    if (this.levelNumber < 3)
+        this.gameManager.screenManager.switchScreens('tutorial');
 
     $('select').material_select();
 
