@@ -24,13 +24,13 @@ inherits(LevelStoryScreen, Screen);
 LevelStoryScreen.prototype.init = function () {
     console.log("Level story Screen init called");
 
-    var regionsMap = require('GameManager').levelManager.regionsMap;
+    var levels = require('GameManager').levelManager.levels;
 
     // this screen has no way of knowing the region
     // First level of second region should be level 11, not level 1 of region 2
     // get rid of regions map, just have a levels array
-    $("#level-1-story-title").text(regionsMap.get("The Revolting River").levelsArray[this.level - 1].name);
-    $("#level-1-story-storyline").text(regionsMap.get("The Revolting River").levelsArray[this.level - 1].storyline);
+    $("#level-1-story-title").text(levels[this.level - 1].name);
+    $("#level-1-story-storyline").text(levels[this.level - 1].storyline);
     $("#level-story-number-display").text(this.level);
 };
 
