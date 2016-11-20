@@ -205,6 +205,19 @@ PixiCanvas.prototype.respondToMouseClick = function () {
         return;
     }
 
+    // update count display
+    var unit = gameManager.gameLogicManager.currentUnit;
+
+    if (!unit) {
+        Materialize.toast(
+            "No shape selected! Select a shape from the Units sidebar.",
+            2000,
+            'wisteria-error-toast'
+        );
+        return;
+    } else
+        unit = unit.name;
+
     // CALCULATE THE ROW,COL OF THE CLICK
     var canvasCoords = this.getRelativeCoords(event);
     var clickCol = Math.floor(canvasCoords.x/this.cellLength);
@@ -212,19 +225,6 @@ PixiCanvas.prototype.respondToMouseClick = function () {
 
     var friend = gameManager.gameLogicManager.FRIEND;
     gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend, null, null);
-
-    // update count display
-    var unit = gameManager.gameLogicManager.currentUnit;
-
-    if (!unit)
-        Materialize.toast(
-            "No shape selected! Select a shape from the Units sidebar.",
-            2000,
-            'wisteria-error-toast'
-        );
-    else
-        unit = unit.name;
-
 
     $('#unit-' + unit + ' .item-count').text(
         gameManager.gameLogicManager.allowedShapesMap[unit]
