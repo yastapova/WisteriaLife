@@ -3,7 +3,14 @@
 
      @media screen and (orientation:portrait) {
          display: none;
-     }
+     }     
+
+    .editor-buttons{
+        background-color : Transparent;
+        border: none;
+        text-align: center;
+        padding : 0px;
+    }
 }
 
 /**
