@@ -49,6 +49,7 @@ var PixiCanvas = function (element, size) {
     // canvas click event
     this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
     this.renderer.view.addEventListener('mousemove', this.respondToMouseMove.bind(this));
+    this.renderer.view.addEventListener('touchstart', this.respondToMouseClick.bind(this));
 }
 
 /**
@@ -195,7 +196,7 @@ PixiCanvas.prototype.setCell = function (col, row, color) {
 
 }
 
-PixiCanvas.prototype.respondToMouseClick = function () {
+PixiCanvas.prototype.respondToMouseClick = function (event) {
     if (gameManager.gameLogicManager.paused) {
         Materialize.toast(
             "Game not started yet! Press Play at the top.",
@@ -218,8 +219,15 @@ PixiCanvas.prototype.respondToMouseClick = function () {
     } else
         unit = unit.name;
 
-    // CALCULATE THE ROW,COL OF THE CLICK
-    var canvasCoords = this.getRelativeCoords(event);
+    // calculate coordinates
+    var canvasCoords;
+
+    // click or touch
+    if (event.changedTouches !== undefined)
+        canvasCoords = this.getRelativeTouchCoords(event);
+    else
+        canvasCoords = this.getRelativeCoords(event);
+
     var clickCol = Math.floor(canvasCoords.x/this.cellLength);
     var clickRow = Math.floor(canvasCoords.y/this.cellLength);
 
@@ -250,10 +258,19 @@ PixiCanvas.prototype.respondToMouseMove = function () {
     // this.render();
 }
 
-PixiCanvas.prototype.getRelativeCoords = function () {
+PixiCanvas.prototype.getRelativeCoords = function (event) {
     return (event.offsetX !== undefined && event.offsetY !== undefined) ?
         { x: event.offsetX, y: event.offsetY } :
         { x: event.layerX, y: event.layerY };
+};
+
+PixiCanvas.prototype.getRelativeTouchCoords = function (event) {
+    var rect = event.target.getBoundingClientRect();
+    var touch = event.changedTouches[0];
+    return {
+        x: touch.pageX - rect.left,
+        y: touch.pageY - rect.top
+    }
 };
 
 /**
