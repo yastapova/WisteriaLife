@@ -42,13 +42,8 @@ SaveLevelScreen.prototype.init = function() {
     	$('#mediaCapture').click();
   	}.bind(this));
   	$('#mediaCapture').on('change', this.saveImage.bind(this));
-<<<<<<< HEAD
   	// Save the level to firebase  	
    	$('#save-button').on('click', this.saveLevel.bind(this));
-=======
-  	// Save the level to firebase
-   	$('#save-button').on('click', this.saveLevel);
->>>>>>> 3210102fa3477cc386c2180c364abcba7ed77f61
     // Go back to Level Edit Screen
     $('#cancel-button').on('click', function () {
         var gameManager = require('GameManager');
