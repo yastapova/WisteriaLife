@@ -10,17 +10,22 @@ var Level = require('Level');
   * construct a SaveLevelScreen obj with given id
   */
 var SaveLevelScreen = function (id, level) {
-    //this.level = level;
-    //temp
-    // var levelAttrObj = {
-	   //  id : "1",
-	   //  grid : "1",
-	   //  time : "1",
-	   //  enemyZone : "1",
-	   //  allowedShapes : "1",
-	   //  defenseStructures : "1",	    
-     // 	custom : "1"
-    // };
+    console.log("save level screen constructor!");    
+    this.gameManager = require('GameManager');
+    this.level = level;
+    this.level.custom = "true"; // yes, its a custom level
+    this.levelMisc = {}; // name, img, storyline, public, uid
+    this.imgFile = null;
+
+    // what do we really need to change? What fields can we directly edit the level itself?
+    // Some of the manager fields were undefined when i tested, please double check
+    var manager = this.gameManager.levelEditManager;
+    this.level.grid = manager.size;
+    this.level.time = manager.totalTime;
+    this.level.enemyZone = manager.factionGrid;
+    this.enemyZone = manager.enemyZone;
+    this.allowedShapes = manager.allowedShapes;
+    this.defenseStructures = manager.defenseStructures;
     Screen.call(this, id, true);
 };
 
@@ -30,24 +35,7 @@ inherits(SaveLevelScreen, Screen);
  * Override the load and hide of the parent screen
  */
 SaveLevelScreen.prototype.init = function() {
-var gameManager = require('GameManager');
     console.log("Save levels screen init called");
-    var manager = gameManager.levelEditManager;
-    var levelAttrObj = {
-        id : manager.level.id,
-        grid : manager.size,
-        time : manager.totalTime,
-        enemyZone : manager.factionGrid,
-        allowedShapes : manager.allowedShapes,
-        defenseStructures : manager.defenses,        
-        custom : manager.custom
-    };
-    this.level = new Level(levelAttrObj);
-    // test rewrite level
-    // this.level.id = "-KX4_roCA6JTP7IYyui9";
-    this.levelMisc = {}; // name, img, storyline, public, uid
-    this.imgFile = null;
-    this.gameManager = require('GameManager');
     // handle uploading image
     // Events for image upload.
   	$('#upload-image').on('click', function() {
