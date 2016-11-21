@@ -14,7 +14,7 @@ var SaveLevelScreen = function (id, level) {
     this.gameManager = require('GameManager');
     this.level = level;
     this.level.custom = "true"; // yes, its a custom level
-    this.levelMisc = {}; // name, img, storyline, public, uid
+    this.levelMisc = {}; // name, img, storyline, public, uid, author
     this.imgFile = null;
 
     // what do we really need to change? What fields can we directly edit the level itself?
@@ -102,10 +102,11 @@ SaveLevelScreen.prototype.saveImage = function(event){
 
 SaveLevelScreen.prototype.saveLevel = function(){
 	console.log("Save level called.");    
-	// Save title and storyline to level misc
+	// Save title, storyline, user id and user name to level misc
 	this.levelMisc.title = $('#level_title').val();	
 	this.levelMisc.storyline = $('#level_storyline').val();
     this.levelMisc.uid = this.gameManager.user.uid;
+    this.levelMisc.author = this.gameManager.user.name;
 	// Save allowed units into level allowed shapes
 	this.level.allowedShapes = [];
 	var saveAllyUnits = $('#save_ally_units :input');
