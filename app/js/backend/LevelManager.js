@@ -104,6 +104,10 @@ LevelManager.prototype.loadLevel = function (id, setLevel) {
     }.bind(this));
 };
 
+LevelManager.prototype.loadUserLevels = function (levels, callback) {
+
+    // TODO
+}
 
 /**
  * Initialize the private custom levels non game data fields

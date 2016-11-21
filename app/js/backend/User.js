@@ -14,6 +14,8 @@ var User = function(name, avatar, uid) {
     this.avatar = avatar;
     this.uid = uid;
     this.gameData = new GameData();
+
+    this.levels = [];
 };
 
 module.exports = User;

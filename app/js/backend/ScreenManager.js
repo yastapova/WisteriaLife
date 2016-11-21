@@ -126,6 +126,9 @@ ScreenManager.prototype.switchScreens = function (screen, property) {
             clearInterval(this.timers[i]);
         }
         this.timers = [];
+
+        // clear tooltips
+        $('.material-tooltip').remove();
     }
 };
 

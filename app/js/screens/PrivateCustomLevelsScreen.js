@@ -1,22 +1,35 @@
 
-var screen = require('./Screen');
+var Screen = require('./Screen');
 
-var PrivateCustomLevelsScreen = function(id) {
-    screen.call(this,id);
-};
-
-inherits(PrivateCustomLevelsScreen, screen);
-
-PrivateCustomLevelsScreen.prototype.init = function() {
-    console.log("Private custom levels screen init called");
+var PrivateCustomLevelsScreen = function (id) {
+    Screen.call(this, id);
 
 };
 
-PrivateCustomLevelsScreen.prototype.hide = function() {
+inherits(PrivateCustomLevelsScreen, Screen);
+
+PrivateCustomLevelsScreen.prototype.init = function () {
+    this.gameManager = require('GameManager');
+    this.gameManager.levelManager.loadUserLevels(
+        this.gameManager.user.levels,
+        this.setCustomLevels.bind(this)
+    );
+};
+
+/**
+ * Callback from loading custom levels
+ * @param {[type]} levels [description]
+ */
+PrivateCustomLevelsScreen.prototype.setCustomLevels = function (levels) {
+    console.log("Private custom levels Screen init called");
 
 };
 
-PrivateCustomLevelsScreen.prototype.loadPrivateLevels = function() {
+PrivateCustomLevelsScreen.prototype.hide = function () {
+
+};
+
+PrivateCustomLevelsScreen.prototype.loadPrivateLevels = function () {
 
 };
 

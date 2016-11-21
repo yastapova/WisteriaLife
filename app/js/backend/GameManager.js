@@ -147,7 +147,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     	else{
     		// User is signed in
 	        // Get the avatar and name from the Firebase user object
-	        if(this.user === undefined){	        	
+	        if(this.user === undefined){
 	        	// Check if user already has data
 	        	// TO DO
 				var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
@@ -277,7 +277,9 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
 	this.user = new User(user.displayName, user.photoURL, user.uid);
 	if(exists){
 		console.log("I exist!");
-		this.user.gameData = snapshot.gameData;      
+		this.user.gameData = snapshot.gameData;
+        this.user.levels = snapshot.levels ? Object.values(snapshot.levels) : [];
+        console.log(this.user);
 	}else{
 	  	this.user = new User(user.displayName, user.photoURL, user.uid);
 		this.writeUserData();
