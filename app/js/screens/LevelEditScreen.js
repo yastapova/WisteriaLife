@@ -1,11 +1,17 @@
-
 var Screen = require('./Screen');
+var LevelEditManager = require('../backend/LevelEditManager');
+var gameManager = require('../backend/GameManager');
 
+/**
+ * Level Edit Screen
+ * @param {String} id          Screen name id ("level-edit")
+ * @param {[type]} levelNumber Level number
+ */
 var LevelEditScreen = function(id, level) {
     this.level = null;
 
     this.gameManager = require('GameManager');
-    this.gameLogicManager = this.gameManager.gameLogicManager;
+    this.levelEditManager = this.gameManager.levelEditManager;
 
     Screen.call(this,id);
 };
@@ -24,7 +30,7 @@ LevelEditScreen.prototype.setLevel = function (level) {
     var PixiCanvas = require('PixiCanvas');
     var canvas = new PixiCanvas($('#editor-canvas'), this.level.grid);
 
-    this.gameLogicManager.setLevel(level, canvas);
+    this.levelEditManager.setLevel(level, canvas);
 
     // current zoom level - needed to undo zoom changes
     this.currentZoom = level.grid;
