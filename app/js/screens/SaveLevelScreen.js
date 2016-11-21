@@ -5,7 +5,6 @@
 var Screen = require('./Screen');
 var firebase = require("firebase");
 var Level = require('Level');
-var gameManager = require('../backend/GameManager');
 
  /*
   * construct a SaveLevelScreen obj with given id
@@ -13,21 +12,16 @@ var gameManager = require('../backend/GameManager');
 var SaveLevelScreen = function (id, level) {
     //this.level = level;
     //temp
-    var levelAttrObj = {
-	    id : "1",
-	    grid : "1",
-	    time : "1",
-	    enemyZone : "1",
-	    allowedShapes : "1",
-	    defenseStructures : "1",	    
-    	custom : "1"
-    };
-    this.level = new Level(levelAttrObj);
-    // test rewrite level
-    this.level.id = "-KX4_roCA6JTP7IYyui9";
-    this.levelMisc = {}; // name, img, storyline, public, uid
-    this.imgFile = null;
-    this.gameManager = require('GameManager');
+    // var levelAttrObj = {
+	   //  id : "1",
+	   //  grid : "1",
+	   //  time : "1",
+	   //  enemyZone : "1",
+	   //  allowedShapes : "1",
+	   //  defenseStructures : "1",	    
+    // 	custom : "1"
+    // };
+    
     Screen.call(this, id, true);
 };
 
@@ -37,7 +31,24 @@ inherits(SaveLevelScreen, Screen);
  * Override the load and hide of the parent screen
  */
 SaveLevelScreen.prototype.init = function() {
+var gameManager = require('GameManager');
     console.log("Save levels screen init called");
+    var manager = gameManager.levelEditManager;
+    var levelAttrObj = {
+        id : manager.level.id,
+        grid : manager.size,
+        time : manager.totalTime,
+        enemyZone : manager.factionGrid,
+        allowedShapes : manager.allowedShapes,
+        defenseStructures : manager.defenses,        
+        custom : manager.custom
+    };
+    this.level = new Level(levelAttrObj);
+    // test rewrite level
+    // this.level.id = "-KX4_roCA6JTP7IYyui9";
+    this.levelMisc = {}; // name, img, storyline, public, uid
+    this.imgFile = null;
+    this.gameManager = require('GameManager');
     // handle uploading image
     // Events for image upload.
   	$('#upload-image').on('click', function() {
