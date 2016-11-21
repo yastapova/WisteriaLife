@@ -6,7 +6,7 @@
      }
 
     .editor-buttons{
-        background-color : Transparent;
+        background-color : transparent;
         border: none;
         text-align: center;
         padding : 0px;
@@ -73,6 +73,28 @@ $toolbar-height-mobile: 36px;
             display: inline-block;
             margin: 5px;
         }
+    }
+}
+
+.toolbar-item {
+    button * {
+        vertical-align: middle;
+    }
+
+    .wisteria-icons {
+        font-size: 1.2rem;
+        padding: 0 5px;
+        opacity: 1.0;
+        @include transition(all, 0.5s, linear);
+
+        &:hover {
+            opacity: 0.7;
+            cursor: pointer;
+        }
+    }
+
+    button {
+        width: 100%;
     }
 }
 
