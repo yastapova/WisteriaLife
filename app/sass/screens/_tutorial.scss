@@ -28,7 +28,7 @@ table, td, th {
     color: #fff;
     display: block;
     margin: 0;
-    padding-top:2.3rem;
+    //padding-top:2.3rem;
 }
 
 .tutorial-text {
@@ -49,6 +49,11 @@ table, td, th {
 
 .btn-large {
     margin-top:10px;
+}
+
+.wisteria-icons.tplay {
+    color: $highlight-color;
+    font-size:2em;
 }
 
 .wisteria-icons.tpause {
@@ -75,6 +80,11 @@ table, td, th {
 
 .wisteria-icons.tshare {
     color: green;
+    font-size: 2em;
+}
+
+.wisteria-icons.thelp {
+    color: $enemy-color;
     font-size: 2em;
 }
 
