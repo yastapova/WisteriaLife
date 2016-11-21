@@ -144,7 +144,6 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     	else{
     		// User is signed in
 	        // Get the avatar and name from the Firebase user object
-            //this.usertt// 
 	        if(this.user === undefined){	        	
 	        	// Check if user already has data
 	        	// TO DO
@@ -205,13 +204,14 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         $('#user-pic').css('display','none');
 
         // Dropdown changes
-        this.$('#drop-login').css('display','block');
+        $('#drop-login').css('display','block');
         $('#drop-login-guest').css('display', 'none');
         $('#drop-logout').css('display', 'none');
         $('#user-icon-def').css('display','inline-block');
         $('#user-icon-pic').css('display','none');
         $('#user-pic-drop').css('display','none');
         this.userDropName.textContent = "Guest";
+        this.userWistbux.text(0);
     }
 };
 
@@ -237,6 +237,11 @@ GameManager.prototype.guest = function() {
  * Logout event
  */
 GameManager.prototype.logout = function() {
+    if(this.user.name === "Guest"){
+        // delete guest from database
+        var userId = firebase.auth().currentUser.uid;
+        firebase.database().ref('/users/' + userId).remove();
+    }
     // Sign out of Firebase.
     firebase.auth().signOut();
     this.screenManager.switchScreens('splash');
