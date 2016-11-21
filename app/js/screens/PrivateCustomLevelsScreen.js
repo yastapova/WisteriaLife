@@ -24,13 +24,15 @@ PrivateCustomLevelsScreen.prototype.deleteLevels = function(){
 	// Grab the ids for the levels that are checked
 	// TO DO
 	var levelsID = [];
-	for(var levelID in levels){
+	var levels = firebase.database().ref("/users/" + userId + "/levels/");
+	// NOT SURE IF THIS WORKS
+	for(var levelID in levelsID){
 		// delete from 3 locations: customLevels, levels, and users
 		firebase.database().ref('/customLevels/' + levelID).remove();
 		firebase.database().ref('/levels/' + levelID).remove();
-		for(var [key, value] in Object.entries(firebase.database().ref('/users/' + userId + "/levels/"))){
-			if(value === levelID){
-				firebase.database().ref('/users/' + userId + "/" + key).remove();
+		for(var key in levels.keys){
+			if(levels.key === levelID){
+				firebase.database().ref("/users/" + userId + "/" + key).remove();
 				break;
 			}
 		}
