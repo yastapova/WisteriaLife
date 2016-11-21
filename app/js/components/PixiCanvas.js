@@ -147,6 +147,12 @@ PixiCanvas.prototype.render = function () {
     this.renderer.render(this.stage);
 };
 
+/**
+ * Duplicate of GameLogicManager.renderGridCells
+ *
+ * TODO: using this method results in severe lag, although the identical
+ * method in GameLogicManager does not
+ */
 PixiCanvas.prototype.renderGridCells = function(gridHeight, gridWidth, renderGrid, renderGridOld, colors) {
     for(var i = 0; i < gridHeight; i++)
     {
