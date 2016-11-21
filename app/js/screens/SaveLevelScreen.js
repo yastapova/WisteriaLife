@@ -24,8 +24,8 @@ var SaveLevelScreen = function (id, level) {
     };
     this.level = new Level(levelAttrObj);
     // test rewrite level
-    this.level.id = "-KX4GB9NQfbxL_rEWd2Y";
-    this.levelMisc = {}; // name, img, storyline, public
+    this.level.id = "-KX4_roCA6JTP7IYyui9";
+    this.levelMisc = {}; // name, img, storyline, public, uid
     this.imgFile = null;
     this.gameManager = require('GameManager');
     Screen.call(this, id, true);
@@ -103,10 +103,11 @@ SaveLevelScreen.prototype.saveImage = function(event){
 };
 
 SaveLevelScreen.prototype.saveLevel = function(){
-	console.log("Save level called.");
+	console.log("Save level called.");    
 	// Save title and storyline to level misc
 	this.levelMisc.title = $('#level_title').val();	
 	this.levelMisc.storyline = $('#level_storyline').val();
+    this.levelMisc.uid = this.gameManager.user.uid;
 	// Save allowed units into level allowed shapes
 	this.level.allowedShapes = [];
 	var saveAllyUnits = $('#save_ally_units :input');
@@ -137,8 +138,9 @@ SaveLevelScreen.prototype.saveLevel = function(){
     }
 	console.log(this.level.id);
 	// Write level misc data to firebase
-	firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/' + this.level.id + '/').set(this.levelMisc);
+	firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().set(this.level.id);
 	firebase.database().ref('levels/' + this.level.id).set(this.level);
+    firebase.database().ref('customLevels/' + this.level.id).set(this.levelMisc);
 	// Switch screen to public or private
 	if(this.levelMisc.public === 1){ 
 		this.gameManager.screenManager.switchScreens('public-custom-levels');
