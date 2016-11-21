@@ -79,6 +79,16 @@ $large-height-up: "only screen and (min-height : #{$large-height-up})" !default;
 
 /* Start Global Wisteria Life CSS */
 
+::-moz-selection {
+    background-color: $primary-color;
+    color: #ccc;
+}
+
+::selection {
+    background-color: $primary-color;
+    color: #ccc;
+}
+
 body {
     background: $primary-color url('/img/wisteria-tunnel.jpg') no-repeat;
     background-size: cover;

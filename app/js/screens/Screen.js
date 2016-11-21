@@ -20,7 +20,7 @@ var Screen = function (id, overlay, property) {
 
     // constants - main container will never change
     this.container = $('#main-container');
-    this.loader = $('#container-loader');
+    this.loader = $('#loading-overlay');
 };
 
 /**

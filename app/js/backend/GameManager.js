@@ -2,6 +2,7 @@ var User = require('./User');
 var ScreenManager = require('./ScreenManager');
 var PowerupManager = require('./PowerupManager');
 var GameLogicManager = require('./GameLogicManager');
+var LevelEditManager = require('./LevelEditManager');
 var ShapeManager = require('./ShapeManager');
 var LevelManager = require('./LevelManager');
 var firebase = require('firebase');
@@ -15,6 +16,7 @@ var GameManager = function () {
     this.shapeManager = new ShapeManager();
     this.levelManager = new LevelManager();
     this.gameLogicManager = new GameLogicManager();
+    this.levelEditManager = new LevelEditManager();
     this.screenManager = new ScreenManager();
 
     // classes that need to load resources to be functional

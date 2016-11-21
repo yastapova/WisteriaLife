@@ -18,20 +18,78 @@
         </div>
     </div>
 
+    <div id="gameplay-area">
 
-    <div class="canvas" id="editor-canvas"></div>
+        <div id="gameplay-sidebar">
+            <ul class="collapsible" data-collapsible="accordion">
+                <li>
+                    <div class="collapsible-header active">
+                        <i class="wisteria-icons mdi mdi-shape-plus"></i>
+                        Units
+                        <i class="collapse-icon wisteria-icons right mdi mdi-chevron-down"></i>
+                    </div>
+                    <div class="collapsible-body">
+                        <div id="unit-select-items" class="gameplay-select">
+                            <span class="select-item" data-value="archernw" data-tooltip="Archer &nwarr;">
+                                <img src="/img/powerups/archernw.png" />
+                            </span>
+                            <span class="select-item" data-value="archerne" data-tooltip="Archer &nearr;">
+                                <img src="/img/powerups/archerne.png" />
+                            </span>
+                            <span class="select-item" data-value="archersw" data-tooltip="Archer &swarr;">
+                                <img src="/img/powerups/archersw.png" />
+                            </span>
+                            <span class="select-item" data-value="infantryn" data-tooltip="Infantry &uarr;">
+                                <img src="/img/powerups/infantryn.png" />
+                            </span>
+                            <span class="select-item" data-value="infantrys" data-tooltip="Infantry &darr;">
+                                <img src="/img/powerups/infantrys.png" />
+                            </span>
+                            <span class="select-item" data-value="infantrye" data-tooltip="Infantry &rarr;">
+                                <img src="/img/powerups/infantrye.png" />
+                            </span>
+                            <span class="select-item" data-value="infantrye" data-tooltip="Infantry &larr;">
+                                <img src="/img/powerups/infantrye.png" />
+                            </span>
+                            <span class="select-item" data-value="tower" data-tooltip="Tower">
+                                <img src="/img/powerups/tower.png" />
+                            </span>
+                            <span class="select-item" data-value="blockade" data-tooltip="Blockade">
+                                <img src="/img/powerups/blockade.png" />
+                            </span>
+                            <span class="select-item" data-value="shield" data-tooltip="Shield">
+                                <img src="/img/powerups/shield.png" />
+                            </span>
+                            <span class="select-item" data-value="caltrops" data-tooltip="Caltrops">
+                                <img src="/img/powerups/caltrops.png" />
+                            </span>
+                            <span class="select-item" data-value="wallbackward" data-tooltip="Wall &nwarr;">
+                                <img src="/img/powerups/wallbackward.png" />
+                            </span>
 
+                            <span class="select-item" data-value="wallforward" data-tooltip="Wall &nearr;">
+                                <img src="/img/powerups/wallforward.png" />
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header">
+                        <i class="wisteria-icons mdi mdi-fire"></i>
+                        Powerups
+                        <i class="collapse-icon wisteria-icons right mdi mdi-chevron-down"></i>
+                    </div>
+                    <div class="collapsible-body"><p>Coming soon.</p></div>
+                </li>
+            </ul>
 
-    <div class="gameplay-toolbar toolbar-bottom">
-        <div class="toolbar-content">
-
-            <div id="backspace-button" class="toolbar-item">
+            <div id="backspace-button" class="toolbar-item tooltipped" data-tooltip="Delete Unit">
                 <a href="#!" id="backspace">
                     <i class="wisteria-icons clear-cell mdi mdi-backspace"></i>
                 </a>
             </div>
 
-            <div id="faction-switch" class="toolbar-item">
+            <div id="faction-switch" class="toolbar-item tooltipped" data-tooltip="Switch Faction">
                 <div class="switch">
                     <label>
                         <span class="enemy-switch">
@@ -46,68 +104,77 @@
                 </div>
             </div>
 
-            <div id="unit-select" class="toolbar-item">
-                <div id="unit-select-menu">
-                    <select>
-                        <option value="" disabled selected>Unit</option>
-                        <option value="archernw" data-icon="/img/powerups/archernw.png">Archer &nwarr;</option>
-                        <option value="archerne" data-icon="/img/powerups/archerne.png">Archer &nearr;</option>
-                        <option value="archersw" data-icon="/img/powerups/archersw.png">Archer &swarr;</option>
-                        <option value="archerse" data-icon="/img/powerups/archerse.png">Archer &searr;</option>
-                        <option value="infantryn" data-icon="/img/powerups/infantryn.png">Infantry &uarr;</option>
-                        <option value="infantrys" data-icon="/img/powerups/infantrys.png">Infantry &darr;</option>
-                        <option value="infantrye" data-icon="/img/powerups/infantrye.png">Infantry &rarr;</option>
-                        <option value="infantryw" data-icon="/img/powerups/infantryw.png">Infantry &larr;</option>
-                        <option value="tower" data-icon="/img/powerups/tower.png">Tower</option>
-                        <option value="blockade" data-icon="/img/powerups/blockade.png">Blockade</option>
-                        <option value="shield" data-icon="/img/powerups/shield.png">Shield</option>
-                        <option value="caltrops" data-icon="/img/powerups/caltrops.png">Caltrops</option>
-                        <option value="wallbackward" data-icon="/img/powerups/wallbackward.png">Wall &nwarr;</option>
-                        <option value="wallforward" data-icon="/img/powerups/wallforward.png">Wall &nearr;</option>
-                    </select>
-                </div>
-            </div>
-
-           <div id="zoom-select" class="toolbar-item">
-               <div id="zoom-select-menu">
-                   <select>
-                       <option value="" disabled>Zoom Level</option>
-                       <option value="small" selected>Small</option>
-                       <option value="medium">Medium</option>
-                       <option value="large">Large</option>
-                   </select>
-               </div>
-           </div>
-
-            <div class="toolbar-item">
-                <button id="message-button" class="editor-buttons">
-                    <i class="wisteria-icons clear-cell mdi mdi-message-text"></i>
-                </button>
-            </div>
-
-            <div class="toolbar-item">
-                <button id="save-button" class="editor-buttons">
-                    <i class="wisteria-icons clear-cell mdi mdi-content-save"></i>
-                </button>
-            </div>
-
-            <div class="toolbar-item">
-                 <button id="delete-button" class="editor-buttons">
-                     <i class="wisteria-icons clear-cell mdi mdi-delete-forever"></i>
+             <div class="toolbar-item tooltipped" data-tooltip="Add Message">
+                 <button id="message-button" class="editor-buttons">
+                     <i class="wisteria-icons clear-cell mdi mdi-message-text"></i>
                  </button>
-            </div>
+             </div>
 
+             <div class="toolbar-item">
+                 <button class="btn waves-effect waves-light" id="save-level-show">
+                     <i class="wisteria-icons mdi mdi-content-save"></i>
+                     <span>Save Level</span>
+                 </button>
+             </div>
+
+             <div class="toolbar-item">
+                 <button class="btn waves-effect waves-light" id="delete-button" data-target="delete-confirm">
+                     <i class="wisteria-icons mdi mdi-delete"></i>
+                     <span>Delete Level</span>
+                 </button>
+             </div>
+
+             <div id="zoom-select" class="toolbar-item">
+                 <button class="btn waves-effect waves-light" id="zoom-select-open" data-target="resize-confirm">
+                     <i class="wisteria-icons mdi mdi-move-resize-variant"></i>
+                     <span>Level Size</span>
+                 </button>
+             </div>
         </div>
+
+        <!-- Gameplay Canvas - filled in by Pixi -->
+        <div class="canvas" id="editor-canvas"></div>
+
     </div>
 
     <div id="resize-confirm" class="modal">
         <div class="modal-content">
             <h4>Warning - Change Level Size</h4>
-            <p>Please note that changing the level size will DELETE any unsaved progress on your current level. Are you sure you want to do this? This is irreversible.</p>
+            <p>
+                Please note that changing the level size will DELETE any unsaved progress on your current level. Are you sure you want to do this? This is irreversible.
+            </p>
+            <p>
+                If you are sure you want to do this, please select a grid size below.
+            </p>
+            <ul id="resize-options">
+                <li class="resize-select">
+                    <button class="waves-effect btn-large" data-zoom="small">Small</button>
+                </li>
+
+                <li class="resize-select">
+                    <button class="waves-effect btn-large" data-zoom="medium">Medium</button>
+                </li>
+
+                <li class="resize-select">
+                    <button class="waves-effect btn-large" data-zoom="large">Large</button>
+                </li>
+            </ul>
         </div>
         <div class="modal-footer">
-            <a href="#!" id="resize-yes" class="modal-action waves-effect waves-green btn-flat">Yes I'm Sure</a>
             <a href="#!" id="resize-no" class="modal-action waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </div>
+
+    <div id="delete-confirm" class="modal">
+        <div class="modal-content">
+            <h4>Warning - Delete Level</h4>
+            <p>
+                Are you sure you wish to permanently delete this level?
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" id="delete-yes" class="modal-action waves-effect waves-green btn-flat">Yes, Delete</a>
+            <a href="#!" id="delete-no" class="modal-action waves-effect waves-green btn-flat">Cancel</a>
         </div>
     </div>
 

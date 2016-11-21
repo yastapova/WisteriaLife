@@ -11,6 +11,7 @@ var GamePlayScreen = function (id, levelNumber) {
     this.levelNumber = levelNumber;
 
     this.gameManager = require('GameManager');
+    this.gameManager.isGameplay = true;
     this.gameLogicManager = this.gameManager.gameLogicManager;
 
     Screen.call(this, id, false, levelNumber);
@@ -69,8 +70,6 @@ GamePlayScreen.prototype.setLevel = function (level) {
         return shapes;
     }.bind(this))());
 
-    $('select').material_select();
-
     $('.collapsible').collapsible({
         accordion: false // TODO: change this to true on small screens
     });
@@ -106,7 +105,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
                     this.gameManager.screenManager.switchScreens('defeat', this.levelNumber);
                 }
                 else{
-                    this.gameManager.screenManager.switchScreens('victory', this.levelNumber);                    
+                    this.gameManager.screenManager.switchScreens('victory', this.levelNumber);
                 }
             }
             else if (this.gameLogicManager.isDead()) {

@@ -1,11 +1,18 @@
-
 var Screen = require('./Screen');
+var LevelEditManager = require('../backend/LevelEditManager');
+var gameManager = require('../backend/GameManager');
 
+/**
+ * Level Edit Screen
+ * @param {String} id          Screen name id ("level-edit")
+ * @param {[type]} levelNumber Level number
+ */
 var LevelEditScreen = function(id, level) {
     this.level = null;
 
     this.gameManager = require('GameManager');
-    this.gameLogicManager = this.gameManager.gameLogicManager;
+    this.gameManager.isGameplay = false;
+    this.levelEditManager = this.gameManager.levelEditManager;
 
     Screen.call(this,id);
 };
@@ -24,7 +31,31 @@ LevelEditScreen.prototype.setLevel = function (level) {
     var PixiCanvas = require('PixiCanvas');
     var canvas = new PixiCanvas($('#editor-canvas'), this.level.grid);
 
-    this.gameLogicManager.setLevel(level, canvas);
+    this.levelEditManager.setLevel(level, canvas);
+
+    $('.collapsible').collapsible({
+        accordion: false // TODO: change this to true on small screens
+    });
+
+    var self = this;
+    // update current shape
+    $('#unit-select-items .select-item').click(function () {
+
+        // highlight selected
+        $('.select-item').removeClass('selected');
+        $(this).addClass('selected');
+
+        self.gameLogicManager.currentUnit =
+            self.gameManager.shapeManager.getShape(
+                $(this).attr('data-value')
+            );
+    });
+
+    // units and powerup tooltips
+    $('.select-item').tooltip({
+        delay: 50,
+        position: 'top'
+    });
 
     // current zoom level - needed to undo zoom changes
     this.currentZoom = level.grid;
@@ -32,12 +63,6 @@ LevelEditScreen.prototype.setLevel = function (level) {
 
 LevelEditScreen.prototype.init = function() {
     console.log("Level edit screen init called");
-
-    // materialize select menus
-    $('select').material_select();
-
-    var PixiCanvas = require('PixiCanvas');
-    this.canvas = new PixiCanvas($('#editor-canvas'), 'medium');
 
     $('.dropdown-button').dropdown({
         constrain_width: false, // Does not change width of dropdown to that of the activator
@@ -71,52 +96,72 @@ LevelEditScreen.prototype.init = function() {
             );
     });
 
-    // zoom select, ask for confirmation because this clears the canvas
-    $('#zoom-select-menu select').change(function () {
-        // the new 0.97.8 method doesn't work
-        // https://github.com/Dogfalo/materialize/issues/3902
-        $('#resize-confirm').openModal();
+    $('#zoom-select-open').leanModal({
+        dismissible: true,
+        opacity: .6
+    });
+
+    $('#delete-button').leanModal({
+        dismissible: true,
+        opacity: .6
     });
 
     // user confirms resize, clear and resize
-    $('#resize-yes').click(function () {
+    $('.resize-select button').click(function () {
         $('#editor-canvas').empty();
 
-        switch ($('#zoom-select-menu select').val()) {
+        switch ($(this).attr('data-zoom')) {
             case 'small':
-                this.gameManager.levelManager.loadLevel(41, this.setLevel.bind(this));
-                this.currentZoom = 'small';
+                self.gameManager.levelManager.loadLevel(41, self.setLevel.bind(self));
+                self.currentZoom = 'small';
                 break;
 
             case 'medium':
-                this.gameManager.levelManager.loadLevel(42, this.setLevel.bind(this));
-                this.currentZoom = 'medium';
+                self.gameManager.levelManager.loadLevel(42, self.setLevel.bind(self));
+                self.currentZoom = 'medium';
                 break;
 
             case 'large':
-                this.gameManager.levelManager.loadLevel(43, this.setLevel.bind(this));
-                this.currentZoom = 'large';
+                self.gameManager.levelManager.loadLevel(43, self.setLevel.bind(self));
+                self.currentZoom = 'large';
                 break;
         }
 
         $('#resize-confirm').closeModal();
-    }.bind(this));
+    });
 
     // user cancels resize, revert value
     $('#resize-no').click(function () {
-        $('#zoom-select-menu select').val(this.currentZoom);
-        $('select').material_select();
         $('#resize-confirm').closeModal();
     }.bind(this));
 
-    // navigate to save level screen    
-    $('#save-button').click(function(){
+    // navigate to save level screen
+    $('#save-level-show').click(function (){
         this.gameManager.screenManager.switchScreens('save-level', this.level);
     }.bind(this));
-    // navigate to private custom levels screen   
-    $('#delete-button').click(function(){
+
+    // navigate to private custom levels screen
+    $('#delete-yes').click(function (){
+        $('#delete-confirm').closeModal();
         this.gameManager.screenManager.switchScreens('private-custom-levels');
+        // add delete level code here
     }.bind(this));
+
+    $('#delete-no').click(function () {
+        $('#delete-confirm').closeModal();
+    });
+
+    // units and powerup tooltips
+    $('.select-item').tooltip({
+        delay: 50,
+        position: 'top'
+    });
+
+    // units and powerup tooltips
+    $('.tooltipped').tooltip({
+        delay: 50,
+        position: 'right'
+    });
 
 };
 
