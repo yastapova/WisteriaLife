@@ -380,23 +380,29 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     if(this.getGridCell(this.factionGrid, clickRow, clickCol) !== zone) {
         return;
     }
+    var col = clickCol + pixels[1];
+    var row = clickRow + pixels[0];
+    if(this.getGridCell(this.battleGrid, row, col) === this.VOID) {
+        return;
+    }
+    if(faction === this.FRIEND) {
+        var val = this.allowedShapesMap[shape.name];
+        if(val > 0) {
+            this.allowedShapesMap[shape.name]--;
+        }
+        else {
+            return;
+        }
+    }
 
     for (var i = 0; i < pixels.length; i += 2)
     {
         var col = clickCol + pixels[i+1];
         var row = clickRow + pixels[i];
+
         // VERIFY THAT THIS CELL CAN BE PLACED ON
         if(this.getGridCell(this.battleGrid, row, col) !== this.VOID)
         {
-            if(faction !== this.GHOST) {
-                var val = this.allowedShapesMap[shape.name];
-                if(val > 0) {
-                    this.allowedShapesMap[shape.name]--;
-                }
-                else {
-                    return;
-                }
-            }
             this.setGridCell(grid, row, col, faction);
             if(battle)
                 this.setGridCell(this.battleGridNew, row, col, faction);
