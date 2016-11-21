@@ -86,6 +86,7 @@ LevelEditScreen.prototype.init = function() {
     this.timeBar = $('#timeline input');
     this.timeBar.on('change', function () {
         self.setTimeDisplay($(this).val());
+        self.levelEditManager.currentTime = $(this).val();
     });
     this.timeBar.val(0);
 
@@ -95,6 +96,18 @@ LevelEditScreen.prototype.init = function() {
             self.gameManager.shapeManager.getShape(
                 $(this).val()
             );
+    });
+
+    $('#level-total-time').change(function() {
+        if (!($(this).val() < 300) || !($(this).val() > 30))  {
+            // TODO show an error message
+            console.log("this is invalid time");
+        }
+        else {
+            self.levelEditManager.changeTotalTime($(this).val());
+            $('#timeline input').attr('max', $(this).val());
+            $('#level-total-time').attr('value', $(this).val());
+        }
     });
 
     $('#zoom-select-open').leanModal({

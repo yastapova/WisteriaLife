@@ -85,7 +85,7 @@ LevelEditManager.prototype.addMessage = function(time, msg) {
 }
 
 LevelEditManager.prototype.changeTotalTime = function(newTime) {
-	if(newTime < totalTime && newTime > 30) {
+	if(newTime < this.totalTime && newTime > 30) {
 		this.deleteAfter(newTime);
 	}
 	if(newTime <= 400)
