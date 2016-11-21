@@ -47,6 +47,8 @@ var LevelEditManager = function(levelSize) {
 LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.level = level;
     this.canvas = canvas;
+    this.rows = this.canvas.size.height;
+    this.cols = this.canvas.size.width;
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
     this.defenses = this.level.defenseStructures; // clone?
@@ -156,9 +158,17 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     if(faction === this.ENEMY) {
     	// add to enemy spawn map
     	var currentSpawns = this.enemySpawns[this.currentTime];
-    	this.enemySpawns[this.currentTime].push({"name" : name,
-    									 	"coords" : {"x" : x,
-    												 	"y" : y}});
+    	if(this.enemySpawns[this.currentTime] === undefined) {
+    		//new array
+    		this.enemySpawns[this.currentTime] = [{"name" : name,
+	    									 	   "coords" : {"x" : x,
+	    												 	   "y" : y}}]
+    	}
+    	else {
+    		this.enemySpawns[this.currentTime].push({"name" : name,
+	    									 	"coords" : {"x" : x,
+	    												 	"y" : y}});
+    	}
     }
     else if(faction === this.OBJECTIVE) {
     	// add to defenses list
