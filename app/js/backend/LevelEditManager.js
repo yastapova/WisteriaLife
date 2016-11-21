@@ -11,6 +11,7 @@ var LevelEditManager = function(levelSize) {
 	this.defenses = null; // [{name : String, coordinates : {x : int, y : int}}]
 	this.enemySpawns = {}; // {time : int, shapes :  [{name : String, coordinates : {x : int, y : int}}]}
 	this.totalTime = 60;
+	this.currentTime = 0;
 	this.allowedShapes = null; // {name : quantity}
 
 	this.factionGrid = [];	// enemy and friendly zones
@@ -82,11 +83,12 @@ LevelEditManager.prototype.addMessage = function(time, msg) {
 	this.messageMap[time] = msg;
 }
 
-LevelEditManager.prototype.changeTotalType = function(newTime) {
-	if(newTime < totalTime) {
+LevelEditManager.prototype.changeTotalTime = function(newTime) {
+	if(newTime < totalTime && newTime > 30) {
 		this.deleteAfter(newTime);
 	}
-	this.totalTime = newTime;
+	if(newTime <= 400)
+		this.totalTime = newTime;
 }
 
 LevelEditManager.prototype.deleteAfter = function(newTime) {
@@ -143,6 +145,28 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         // VERIFY THAT THIS CELL CAN BE PLACED ON
         this.setGridCell(grid, row, col, faction);
         this.setGridCell(this.renderGrid, row, col, faction);
+    }
+    var name = shape.name;
+	var y = clickRow + pixels[0];
+	var x = clickCol + pixels[1];
+    if(faction === this.ENEMY) {
+    	// add to enemy spawn map
+    	var currentSpawns = this.enemySpawns[currentTime];
+    	this.enemySpawns[currentTime].push({"name" : name,
+    									 	"coords" : {"x" : x,
+    												 	"y" : y}});
+    }
+    else if(faction === this.OBJECTIVE) {
+    	// add to defenses list
+    	this.defenses.push({"name" : name,
+						 	"coords" : {"x" : x,
+									 	"y" : y}});
+    }
+    else if(faction === this.ENEMY_ZONE) {
+    	this.setGridCell(this.factionGrid, y, x, this.ENEMY_ZONE);
+    }
+    else if(faction === this.FRIEND_ZONE) {
+    	this.setGridCell(this.factionGrid, y, x, this.FRIEND_ZONE);
     }
 
     this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 

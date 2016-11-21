@@ -32,6 +32,7 @@ LevelEditScreen.prototype.setLevel = function (level) {
     var canvas = new PixiCanvas($('#editor-canvas'), this.level.grid);
 
     this.levelEditManager.setLevel(level, canvas);
+    this.levelEditManager.custom = false;
 
     $('.collapsible').collapsible({
         accordion: false // TODO: change this to true on small screens

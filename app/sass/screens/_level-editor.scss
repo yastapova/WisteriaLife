@@ -25,13 +25,42 @@
 $toolbar-height: 48px;
 $toolbar-height-mobile: 36px;
 
-#editor-time-progress {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
+.toolbar-content {
+    #editor-time-progress {
+        position: absolute;
+        top: 50%;
+        //left: 50%;
+        transform: translate(0, -50%);
+        width: 90%;
+        float: left;
+    }
+
+    .input-field {
+        float: right;
+        width: 7rem;
+        top: 50%;
+        transform: translate(0, -50%);
+    }
+
+    #total-time-input {
+        height:$toolbar-height;
+        top: 32%;
+        transform: translate(0, -32%);
+        border: 1px solid $highlight-color;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    #level-total-time-label {
+        color: white;
+        line-height: 5px;
+    }
+
+    #wisteria-icons {
+        float:left;
+    }
 }
+
 
 .switch {
     display: inline-block;

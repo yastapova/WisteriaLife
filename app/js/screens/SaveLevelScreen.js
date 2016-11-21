@@ -5,7 +5,6 @@
 var Screen = require('./Screen');
 var firebase = require("firebase");
 var Level = require('Level');
-var gameManager = require('../backend/GameManager');
 
  /*
   * construct a SaveLevelScreen obj with given id
@@ -13,21 +12,15 @@ var gameManager = require('../backend/GameManager');
 var SaveLevelScreen = function (id, level) {
     //this.level = level;
     //temp
-    var levelAttrObj = {
-	    id : "1",
-	    grid : "1",
-	    time : "1",
-	    enemyZone : "1",
-	    allowedShapes : "1",
-	    defenseStructures : "1",	    
-    	custom : "1"
-    };
-    this.level = new Level(levelAttrObj);
-    // test rewrite level
-    this.level.id = "-KX4_roCA6JTP7IYyui9";
-    this.levelMisc = {}; // name, img, storyline, public, uid
-    this.imgFile = null;
-    this.gameManager = require('GameManager');
+    // var levelAttrObj = {
+	   //  id : "1",
+	   //  grid : "1",
+	   //  time : "1",
+	   //  enemyZone : "1",
+	   //  allowedShapes : "1",
+	   //  defenseStructures : "1",	    
+     // 	custom : "1"
+    // };
     Screen.call(this, id, true);
 };
 
@@ -37,7 +30,24 @@ inherits(SaveLevelScreen, Screen);
  * Override the load and hide of the parent screen
  */
 SaveLevelScreen.prototype.init = function() {
+var gameManager = require('GameManager');
     console.log("Save levels screen init called");
+    var manager = gameManager.levelEditManager;
+    var levelAttrObj = {
+        id : manager.level.id,
+        grid : manager.size,
+        time : manager.totalTime,
+        enemyZone : manager.factionGrid,
+        allowedShapes : manager.allowedShapes,
+        defenseStructures : manager.defenses,        
+        custom : manager.custom
+    };
+    this.level = new Level(levelAttrObj);
+    // test rewrite level
+    // this.level.id = "-KX4_roCA6JTP7IYyui9";
+    this.levelMisc = {}; // name, img, storyline, public, uid
+    this.imgFile = null;
+    this.gameManager = require('GameManager');
     // handle uploading image
     // Events for image upload.
   	$('#upload-image').on('click', function() {
@@ -119,26 +129,25 @@ SaveLevelScreen.prototype.saveLevel = function(){
 					quantity : saveAllyUnits[i].value - '0'
 				});
 		}
-	}
-	// Save public/private to level misc
-	if ($('#save-public').is(":checked"))
-	{
-		this.levelMisc.public = 1;
-	}else{
-		this.levelMisc.public = 0;
 	}	
 	// Upload the image to Firebase Storage 
 	if(this.imgFile !== null){
 	firebase.storage().ref(this.gameManager.user.uid + '/' + this.imgFile.name)
 	  .put(this.imgFile, {contentType: this.imgFile.type});
 	}
-	// Get unique level id from fb if a new level
+	// Get unique level id from fb if a new level, add unique id to user levels "array"
     if(this.level.id === "41" || this.level.id === "42" || this.level.id === "43"){
 	   this.level.id = firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().key;
+        firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().set(this.level.id);
     }
-	console.log(this.level.id);
+    // Save public/private to level misc
+    if ($('#save-public').is(":checked"))
+    {
+        this.levelMisc.public = 1;
+    }else{
+        this.levelMisc.public = 0;
+    }
 	// Write level misc data to firebase
-	firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().set(this.level.id);
 	firebase.database().ref('levels/' + this.level.id).set(this.level);
     firebase.database().ref('customLevels/' + this.level.id).set(this.levelMisc);
 	// Switch screen to public or private

@@ -149,7 +149,6 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        // Get the avatar and name from the Firebase user object
 	        if(this.user === undefined){
 	        	// Check if user already has data
-	        	// TO DO
 				var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
 				  var exists = (snapshot.val() !== null);
 				  this.userExistsCallback(user, exists, snapshot.val());
@@ -277,16 +276,16 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
 	this.user = new User(user.displayName, user.photoURL, user.uid);
 	if(exists){
 		console.log("I exist!");
-		this.user.gameData = snapshot.gameData;
-        this.user.levels = snapshot.levels ? Object.values(snapshot.levels) : [];
-        console.log(this.user);
+		this.user.gameData = snapshot.gameData;   
+        this.userWistbux.text(this.user.gameData.wistbux);
+        this.userLevel.text('Level ' + this.user.gameData.currentLevel);
+        this.userName.text(this.user.name);   
 	}else{
-	  	this.user = new User(user.displayName, user.photoURL, user.uid);
+        this.userWistbux.text(this.user.gameData.wistbux);
+        this.userLevel.text('Level ' + this.user.gameData.currentLevel);
+        this.userName.text(this.user.name);
 		this.writeUserData();
-	}
-    this.userWistbux.text(this.user.gameData.wistbux);
-    this.userLevel.text('Level ' + this.user.gameData.currentLevel);
-    this.userName.text(this.user.name);
+	}    
 };
 
 /**
