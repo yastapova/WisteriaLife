@@ -20,12 +20,10 @@ var SaveLevelScreen = function (id, level) {
     // what do we really need to change? What fields can we directly edit the level itself?
     // Some of the manager fields were undefined when i tested, please double check
     var manager = this.gameManager.levelEditManager;
-    this.level.grid = manager.size;
     this.level.time = manager.totalTime;
     this.level.enemyZone = manager.factionGrid;
-    this.enemyZone = manager.enemyZone;
-    this.allowedShapes = manager.allowedShapes;
-    this.defenseStructures = manager.defenseStructures;
+    this.level.enemySpawnMap = manager.enemySpawns;
+    this.level.defenseStructures = manager.defenses;
     Screen.call(this, id, true);
 };
 

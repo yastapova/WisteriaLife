@@ -49,7 +49,9 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.canvas = canvas;
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
-    this.defenses = this.level.defenseStructures;
+    this.defenses = this.level.defenseStructures; // clone?
+    if(this.defenses === undefined)
+    	this.defenses = [];
     this.allowedShapes = {};
     var allowed = this.level.allowedShapes;
     if (!allowed) allowed = [];
@@ -60,6 +62,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.renderGrid = this.level.enemyZone.slice(0);
     this.nonGhostGrid = this.renderGrid.slice(0);
     this.factionGrid = this.level.enemyZone.slice(0);
+    this.enemySpawns = this.level.enemySpawnsMap; // clone?
     
     // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
     //                      		this.renderGrid, this.renderGridOld, 
