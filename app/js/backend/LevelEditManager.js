@@ -1,9 +1,6 @@
 'use strict';
 
 var LevelEditManager = function(levelSize) {
-	this.size = levelSize;
-	this.rows = 0;
-	this.cols = 0;
 	this.canvas = null;
 
 	this.MESSAGE_TIME_DIFFERENCE = 4;
@@ -47,8 +44,6 @@ var LevelEditManager = function(levelSize) {
 LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.level = level;
     this.canvas = canvas;
-    this.rows = this.canvas.size.height;
-    this.cols = this.canvas.size.width;
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
     this.defenses = this.level.defenseStructures; // clone?
@@ -62,9 +57,14 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     }
     this.renderGridOld = new Array(this.gridWidth * this.gridHeight)
     this.renderGrid = this.level.enemyZone.slice(0);
-    this.nonGhostGrid = this.renderGrid.slice(0);
+    this.nonGhostGrid = this.renderGridOld.slice(0);
     this.factionGrid = this.level.enemyZone.slice(0);
     this.enemySpawns = this.level.enemySpawnsMap; // clone?
+    for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
+    {
+    	this.renderGrid[i] = this.BLANK;
+    	this.nonGhostGrid[i] = this.BLANK;
+    }
     
     // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
     //                      		this.renderGrid, this.renderGridOld, 
@@ -74,10 +74,15 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
 }
 
 LevelEditManager.prototype.reset = function() {
-	this.renderGrid = new Array(rows*cols);
-	this.defenseGrid = new Array(rows*cols);
-    this.ghostGrid = new Array(rows*cols);
-    this.nonGhostGrid = new Array(rows*cols);
+	this.renderGrid = new Array(this.gridWidth * this.gridHeight);
+	this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
+    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
+    this.nonGhostGrid = new Array(this.gridWidth * this.gridHeight);
+    for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
+    {
+    	this.renderGrid[i] = this.BLANK;
+    	this.nonGhostGrid[i] = this.BLANK;
+    }
     this.defenses = [];
     this.enemySpawns = [];
     this.totalTime = 60;
@@ -206,7 +211,7 @@ LevelEditManager.prototype.placeDefenses = function() {
 
 LevelEditManager.prototype.clearGrid = function(grid) {
     for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
-        grid[i] = this.BLANK;
+        this.ghostGrid[i] = this.BLANK;
     }
 
     for(var i = 0; i < this.gridHeight; i++)
@@ -217,10 +222,13 @@ LevelEditManager.prototype.clearGrid = function(grid) {
             // AND GET ITS CURRENT STATE
             var index = (i * this.gridWidth) + j;
             var ghostCell = this.ghostGrid[index];
+            var underCell = this.nonGhostGrid[index];
 
             if(ghostCell !== this.BLANK)
                 this.renderGrid[index] = this.GHOST;
-            else
+            else if(underCell !== this.BLANK)
+            	this.renderGrid[index] = underCell;
+       		else
                 this.renderGrid[index] = this.factionGrid[index];
         }
     }
