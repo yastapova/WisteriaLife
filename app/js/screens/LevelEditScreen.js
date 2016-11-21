@@ -107,6 +107,23 @@ LevelEditScreen.prototype.init = function() {
         opacity: .6
     });
 
+    $('#fac-objective').click(function () {
+        this.gameManager.levelEditManager.selectedFaction = 5;
+        console.log(this.gameManager.levelEditManager.selectedFaction);
+    }.bind(this));
+    $('#fac-enemy').click(function () {
+        this.gameManager.levelEditManager.selectedFaction = 6;
+        console.log(this.gameManager.levelEditManager.selectedFaction);
+    }.bind(this));
+    $('#fac-friend-zone').click(function () {
+        this.gameManager.levelEditManager.selectedFaction = 2;
+        console.log(this.gameManager.levelEditManager.selectedFaction);
+    }.bind(this));
+    $('#fac-enemy-zone').click(function () {
+        this.gameManager.levelEditManager.selectedFaction = 3;
+        console.log(this.gameManager.levelEditManager.selectedFaction);
+    }.bind(this));
+
     // user confirms resize, clear and resize
     $('.resize-select button').click(function () {
         $('#editor-canvas').empty();
