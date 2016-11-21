@@ -23,6 +23,8 @@ var SaveLevelScreen = function (id, level) {
     	custom : "1"
     };
     this.level = new Level(levelAttrObj);
+    // test rewrite level
+    this.level.id = "-KX4GB9NQfbxL_rEWd2Y";
     this.levelMisc = {}; // name, img, storyline, public
     this.imgFile = null;
     this.gameManager = require('GameManager');
@@ -129,8 +131,10 @@ SaveLevelScreen.prototype.saveLevel = function(){
 	firebase.storage().ref(this.gameManager.user.uid + '/' + this.imgFile.name)
 	  .put(this.imgFile, {contentType: this.imgFile.type});
 	}
-	// Get unique level id from fb	
-	this.level.id = firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().key;
+	// Get unique level id from fb if a new level
+    if(this.level.id === "41" || this.level.id === "42" || this.level.id === "43"){
+	   this.level.id = firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().key;
+    }
 	console.log(this.level.id);
 	// Write level misc data to firebase
 	firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/' + this.level.id + '/').set(this.levelMisc);
