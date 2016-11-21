@@ -8,7 +8,7 @@ var LevelEditManager = function(levelSize) {
 
 	this.MESSAGE_TIME_DIFFERENCE = 4;
 	this.messageMap = {}; // {time : String}
-	this.defenses = null; // [{name : String, coordinates : {x : int, y : int}}]
+	this.defenses = []; // [{name : String, coordinates : {x : int, y : int}}]
 	this.enemySpawns = {}; // {time : int, shapes :  [{name : String, coordinates : {x : int, y : int}}]}
 	this.totalTime = 60;
 	this.currentTime = 0;
@@ -21,7 +21,7 @@ var LevelEditManager = function(levelSize) {
     this.ghostGrid = [];    // ghost only
 
     this.selectedShape = null;
-    this.selectedFaction = null;
+    this.selectedFaction = 0;
 
     // cell types
     this.BLANK = 0;
@@ -49,7 +49,9 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.canvas = canvas;
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
-    this.defenses = this.level.defenseStructures;
+    this.defenses = this.level.defenseStructures; // clone?
+    if(this.defenses === undefined)
+    	this.defenses = [];
     this.allowedShapes = {};
     var allowed = this.level.allowedShapes;
     if (!allowed) allowed = [];
@@ -60,10 +62,12 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.renderGrid = this.level.enemyZone.slice(0);
     this.nonGhostGrid = this.renderGrid.slice(0);
     this.factionGrid = this.level.enemyZone.slice(0);
+    this.enemySpawns = this.level.enemySpawnsMap; // clone?
     
-    this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
-                         		this.renderGrid, this.renderGridOld, 
-                         		this.colors);
+    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
+    //                      		this.renderGrid, this.renderGridOld, 
+    //                      		this.colors);
+	this.renderGridCells();
 
 }
 
@@ -84,7 +88,7 @@ LevelEditManager.prototype.addMessage = function(time, msg) {
 }
 
 LevelEditManager.prototype.changeTotalTime = function(newTime) {
-	if(newTime < totalTime && newTime > 30) {
+	if(newTime < this.totalTime && newTime > 30) {
 		this.deleteAfter(newTime);
 	}
 	if(newTime <= 400)
@@ -151,8 +155,8 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
 	var x = clickCol + pixels[1];
     if(faction === this.ENEMY) {
     	// add to enemy spawn map
-    	var currentSpawns = this.enemySpawns[currentTime];
-    	this.enemySpawns[currentTime].push({"name" : name,
+    	var currentSpawns = this.enemySpawns[this.currentTime];
+    	this.enemySpawns[this.currentTime].push({"name" : name,
     									 	"coords" : {"x" : x,
     												 	"y" : y}});
     }
@@ -169,9 +173,10 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     	this.setGridCell(this.factionGrid, y, x, this.FRIEND_ZONE);
     }
 
-    this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
-                         		this.renderGrid, this.renderGridOld, 
-                         		this.colors);
+    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
+    //                      		this.renderGrid, this.renderGridOld, 
+    //                      		this.colors);
+	this.renderGridCells();
 }
 
 LevelEditManager.prototype.placeDefenses = function() {
@@ -210,9 +215,10 @@ LevelEditManager.prototype.clearGrid = function(grid) {
         }
     }
 
-    this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
-                         		this.renderGrid, this.renderGridOld, 
-                         		this.colors);
+    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
+    //                      		this.renderGrid, this.renderGridOld, 
+    //                      		this.colors);
+	this.renderGridCells();
 }
 
 LevelEditManager.prototype.isValidCell = function(row, col) {
@@ -257,6 +263,27 @@ LevelEditManager.prototype.setGridCell = function(grid, row, col, value) {
     }
     var index = (row * this.gridWidth) + col;
     grid[index] = value;
+}
+
+LevelEditManager.prototype.renderGridCells = function() {
+    for(var i = 0; i < this.gridHeight; i++)
+    {
+        for(var j = 0; j < this.gridWidth; j++)
+        {
+            // CALCULATE THE ARRAY INDEX OF THIS CELL
+            // AND GET ITS CURRENT STATE
+            var index = (i * this.gridWidth) + j;
+            var renderCell = this.renderGrid[index];
+            if(renderCell !== this.renderGridOld[index]) {
+                this.canvas.setCell(j, i, this.colors[renderCell]);
+            }
+        }
+    }
+
+    this.renderGridOld = this.renderGrid;
+    this.renderGrid = this.renderGrid.slice(0);
+
+    this.canvas.render();
 }
 
 module.exports = LevelEditManager;

@@ -86,6 +86,7 @@ LevelEditScreen.prototype.init = function() {
     this.timeBar = $('#timeline input');
     this.timeBar.on('change', function () {
         self.setTimeDisplay($(this).val());
+        self.levelEditManager.currentTime = $(this).val();
     });
     this.timeBar.val(0);
 
@@ -97,6 +98,18 @@ LevelEditScreen.prototype.init = function() {
             );
     });
 
+    $('#level-total-time').change(function() {
+        if (!($(this).val() < 300) || !($(this).val() > 30))  {
+            // TODO show an error message
+            console.log("this is invalid time");
+        }
+        else {
+            self.levelEditManager.changeTotalTime($(this).val());
+            $('#timeline input').attr('max', $(this).val());
+            $('#level-total-time').attr('value', $(this).val());
+        }
+    });
+
     $('#zoom-select-open').leanModal({
         dismissible: true,
         opacity: .6
@@ -106,6 +119,23 @@ LevelEditScreen.prototype.init = function() {
         dismissible: true,
         opacity: .6
     });
+
+    $('#fac-objective').click(function () {
+        this.gameManager.levelEditManager.selectedFaction = 5;
+        console.log(this.gameManager.levelEditManager.selectedFaction);
+    }.bind(this));
+    $('#fac-enemy').click(function () {
+        this.gameManager.levelEditManager.selectedFaction = 6;
+        console.log(this.gameManager.levelEditManager.selectedFaction);
+    }.bind(this));
+    $('#fac-friend-zone').click(function () {
+        this.gameManager.levelEditManager.selectedFaction = 2;
+        console.log(this.gameManager.levelEditManager.selectedFaction);
+    }.bind(this));
+    $('#fac-enemy-zone').click(function () {
+        this.gameManager.levelEditManager.selectedFaction = 3;
+        console.log(this.gameManager.levelEditManager.selectedFaction);
+    }.bind(this));
 
     // user confirms resize, clear and resize
     $('.resize-select button').click(function () {

@@ -7,7 +7,7 @@
             <div id="editor-time-progress">
                 <form action="#">
                     <span class="range-field" id="timeline">
-                        <input type="range" id="test5" min="0" max="300" />
+                        <input type="range" id="test5" min="0" max="60" />
                     </span>
                 </form>
             </div>
@@ -18,7 +18,7 @@
 
             <div class="input-field col s6">
                 <div id="total-time-input">
-                    <input id="level-total-time" type="text" class="validate">
+                    <input value="60" id="level-total-time" type="text" class="validate">
                     <label id="level-total-time-label" for="level-total-time">Total Time</label>
                 </div>
             </div>
@@ -96,7 +96,13 @@
                 </a>
             </div>
 
-            <div id="faction-switch" class="toolbar-item tooltipped" data-tooltip="Switch Faction">
+            <div id="faction-switch">
+                <button type="button" id="fac-objective">Defense</button>
+                <button type="button" id="fac-enemy">Enemy</button>
+                <button type="button" id="fac-friend-zone" value=2>Friend Zone</button>
+                <button type="button" id="fac-enemy-zone" value=3>Enemy Zone</button>
+            </div>
+           <!--  <div id="faction-switch" class="toolbar-item tooltipped" data-tooltip="Switch Faction">
                 <div class="switch">
                     <label>
                         <span class="enemy-switch">
@@ -109,7 +115,7 @@
                         </span>
                     </label>
                 </div>
-            </div>
+            </div> -->
 
              <div class="toolbar-item tooltipped" data-tooltip="Add Message">
                  <button id="message-button" class="editor-buttons">
