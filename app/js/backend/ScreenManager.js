@@ -99,7 +99,7 @@ ScreenManager.prototype.setupInitScreen = function () {
 
     this.screen.init(); // first screen doesn't need to load, just init
 
-    $('#container-loader').fadeOut('fast');
+    $('#loading-overlay').fadeOut('fast');
 }
 
 ScreenManager.prototype.switchScreens = function (screen, property) {
