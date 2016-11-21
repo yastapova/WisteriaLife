@@ -3,13 +3,16 @@
  * SaveLevelScreen object
  */
 var Screen = require('./Screen');
+var firebase = require("firebase");
+var gameManager = require('../backend/GameManager');
 
  /*
   * construct a SaveLevelScreen obj with given id
   */
 var SaveLevelScreen = function (id, level) {
     this.level = level;
-    this.level_misc = {}; // name, img, storyline
+    this.levelMisc = {}; // name, img, storyline
+    this.gameManager = require('GameManager');
     Screen.call(this, id, true);
 };
 
@@ -78,15 +81,24 @@ SaveLevelScreen.prototype.init = function() {
 
 SaveLevelScreen.prototype.saveImage = function(event){
 	var imgFile = event.target.files[0];
-
 	// clear the selection in the file picker input (?)
 	$('#image-form')[0].reset();
 	$('#imgFileName').text(imgFile.name);
-	
+	this.levelMisc.imgFile = imgFile;
 };
 
 SaveLevelScreen.prototype.saveLevel = function(){
 	console.log("Save level called.");
+	// Upload the image to Firebase Storage.
+	firebase.storage.ref(this.gameManager.user.uid + '/' + "leveltitle" + '/' + this.levelMisc.imgFile.name)
+	  .put(this.imgFile, {contentType: this.imgFile.type})
+	  .then(function(snapshot) {
+		// Get the file's Storage URI and update the chat message placeholder.
+		var filePath = snapshot.metadata.fullPath;
+		data.update({imageUrl: this.storage.ref(filePath).toString()});
+	  }.bind(this)).catch(function(error) {
+	console.error('There was an error uploading a file to Firebase Storage:', error);
+	});
 };
 
 SaveLevelScreen.prototype.hide = function() {
