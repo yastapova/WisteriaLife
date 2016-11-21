@@ -360,15 +360,6 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         }
         else {
             shape = this.currentUnit;
-            if(faction !== this.GHOST) {
-                var val = this.allowedShapesMap[shape.name];
-                if(val > 0) {
-                    this.allowedShapesMap[shape.name]--;
-                }
-                else {
-                    return;
-                }
-            }
         }
     }
     var battle = false;
@@ -397,6 +388,15 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         // VERIFY THAT THIS CELL CAN BE PLACED ON
         if(this.getGridCell(this.battleGrid, row, col) !== this.VOID)
         {
+            if(faction !== this.GHOST) {
+                var val = this.allowedShapesMap[shape.name];
+                if(val > 0) {
+                    this.allowedShapesMap[shape.name]--;
+                }
+                else {
+                    return;
+                }
+            }
             this.setGridCell(grid, row, col, faction);
             if(battle)
                 this.setGridCell(this.battleGridNew, row, col, faction);

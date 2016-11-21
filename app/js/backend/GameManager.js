@@ -122,6 +122,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     		if(this.user === undefined){
 	        	this.user = new User("Guest", null, user.uid);
 	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+                this.userDropName.text("Guest");
 	        }
     		console.log(user);
     		// Splash changes
@@ -140,7 +141,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#user-icon-def').css('display','inline-block');
 	        $('#user-icon-pic').css('display','none');
 	        $('#user-pic-drop').css('display','none');
-	        this.userDropName.textContent = "Guest";
+	        this.userDropName.text("Guest");
 	        this.writeUserData();
 	    }
     	else{
@@ -154,7 +155,6 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 				  this.userExistsCallback(user, exists, snapshot.val());
 				}.bind(this));
 	        	// Guest wants to log in
-	        	// TO DO Merging!
 	        }else if(this.user !== undefined && this.user.name === "Guest"){
 	        	var currentGameData = this.user.gameData;
 	        	this.user = new User(user.displayName, user.photoURL, user.uid);
@@ -212,7 +212,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         $('#user-icon-def').css('display','inline-block');
         $('#user-icon-pic').css('display','none');
         $('#user-pic-drop').css('display','none');
-        this.userDropName.textContent = "Guest";
+        this.userDropName.text("Guest");
         this.userWistbux.text(0);
     }
 };
@@ -248,6 +248,7 @@ GameManager.prototype.logout = function() {
     firebase.auth().signOut();
     this.screenManager.switchScreens('splash');
     this.user = undefined;
+    this.userDropName.text("Guest");
 };
 
 /**
@@ -276,15 +277,14 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
 	this.user = new User(user.displayName, user.photoURL, user.uid);
 	if(exists){
 		console.log("I exist!");
-		console.log(snapshot);
-		this.user.gameData = snapshot.gameData;
-		this.userLevel.text('Level ' + this.user.gameData.currentLevel);
-		this.userWistbux.text(this.user.gameData.wistbux);
+		this.user.gameData = snapshot.gameData;      
 	}else{
 	  	this.user = new User(user.displayName, user.photoURL, user.uid);
-	  	this.userLevel.text('Level ' + this.user.gameData.currentLevel);
 		this.writeUserData();
 	}
+    this.userWistbux.text(this.user.gameData.wistbux);
+    this.userLevel.text('Level ' + this.user.gameData.currentLevel);
+    this.userName.text(this.user.name);
 };
 
 /**
