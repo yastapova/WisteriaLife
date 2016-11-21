@@ -218,35 +218,51 @@ PixiCanvas.prototype.setCell = function (col, row, color) {
 }
 
 PixiCanvas.prototype.respondToMouseClick = function (event) {
-    if (gameManager.isGameplay && gameManager.gameLogicManager.paused) {
-        Materialize.toast(
-            "Game not started yet! Press Play at the top.",
-            2000,
-            'wisteria-error-toast'
-        );
-        return;
+    var isGameplay = gameManager.isGameplay;
+    if(isGameplay) {
+        if (gameManager.gameLogicManager.paused) {
+            Materialize.toast(
+                "Game not started yet! Press Play at the top.",
+                2000,
+                'wisteria-error-toast'
+            );
+            return;
+        }
+
+        // update count display
+        var unit = gameManager.gameLogicManager.currentUnit;
+
+        if (!unit) {
+            Materialize.toast(
+                "No unit selected! Select a unit from the Units sidebar.",
+                2000,
+                'wisteria-error-toast'
+            );
+            return;
+        } else
+            unit = unit.name;
+
+        if (gameManager.gameLogicManager.allowedShapesMap[unit] == 0) {
+            Materialize.toast(
+                "No more of this unit available.",
+                2000,
+                'wisteria-error-toast'
+            );
+            return;
+        }
     }
+    else {
+        var unit = gameManager.levelEditManager.selectedUnit;
 
-    // update count display
-    var unit = gameManager.gameLogicManager.currentUnit;
-
-    if (!unit) {
-        Materialize.toast(
-            "No unit selected! Select a unit from the Units sidebar.",
-            2000,
-            'wisteria-error-toast'
-        );
-        return;
-    } else
-        unit = unit.name;
-
-    if (gameManager.gameLogicManager.allowedShapesMap[unit] == 0) {
-        Materialize.toast(
-            "No more of this unit available.",
-            2000,
-            'wisteria-error-toast'
-        );
-        return;
+        if (!unit) {
+            Materialize.toast(
+                "No unit selected! Select a unit from the Units sidebar.",
+                2000,
+                'wisteria-error-toast'
+            );
+            return;
+        } else
+            unit = unit.name;
     }
 
     // calculate coordinates
@@ -261,12 +277,18 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
     var clickCol = Math.floor(canvasCoords.x/this.cellLength);
     var clickRow = Math.floor(canvasCoords.y/this.cellLength);
 
-    var friend = gameManager.gameLogicManager.FRIEND;
-    gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend, null, null);
+    if(isGameplay) {
+        var friend = gameManager.gameLogicManager.FRIEND;
+        gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend, null, null);
 
-    $('#unit-' + unit + ' .item-count').text(
-        gameManager.gameLogicManager.allowedShapesMap[unit]
-    );
+        $('#unit-' + unit + ' .item-count').text(
+            gameManager.gameLogicManager.allowedShapesMap[unit]
+        );
+    }
+    else {
+        var faction = gameManager.levelEditManager.selectedFaction;
+        gameManager.levelEditManager.placeShape(clickRow, clickCol, faction, null, null);
+    }
 
     this.render();
 };
