@@ -11,6 +11,7 @@ var Screen = require('./Screen');
 
 var PauseScreen = function (id, level) {
     Screen.call(this, id, true, level);
+    this.level = level;
 };
 
 inherits(PauseScreen, Screen);
@@ -32,6 +33,7 @@ PauseScreen.prototype.init = function() {
     $('#help-button').on('click', function () {
         var gameManager = require('GameManager');
         gameManager.screenManager.hideScreen(this);
+        gameManager.screenManager.switchScreens('tutorial', this.level);
     }.bind(this));
 
 };

@@ -33,9 +33,7 @@ TutorialScreen.prototype.init = function() {
         if (gameManager.gameLogicManager.paused) {
             gameManager.gameLogicManager.start();
 
-            // TODO get level number from GameplayScreen
-
-            $(gameplayScreen).find('#playpause').attr('data-level', 1);
+            $(gameplayScreen).find('#playpause').attr('data-level', this.level);
             $(gameplayScreen).find('#playpause').find('i').removeClass('play').removeClass('mdi-play');
             $(gameplayScreen).find('#playpause').find('i').addClass('pause').addClass('mdi-pause');
             $(gameplayScreen).find('#playpause').attr('href', '/pause');
