@@ -164,7 +164,7 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
     this.placeDefenses();
     this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
                          this.renderGrid, this.renderGridOld, 
-                         this.color);
+                         this.colors);
 }
 
 /**
@@ -184,7 +184,7 @@ GameLogicManager.prototype.start = function () {
             this.updateLoop();
             this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
                          this.renderGrid, this.renderGridOld, 
-                         this.color);
+                         this.colors);
         }
     }.bind(this), 400);
 
@@ -406,7 +406,7 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
 
     this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
                          this.renderGrid, this.renderGridOld, 
-                         this.color);
+                         this.colors);
 }
 
 GameLogicManager.prototype.placeDefenses = function() {
@@ -509,7 +509,7 @@ GameLogicManager.prototype.reset = function() {
     // RENDER THE CLEARED SCREEN
     this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
                          this.renderGrid, this.renderGridOld, 
-                         this.color);
+                         this.colors);
 }
 
 GameLogicManager.prototype.clearGrid = function(grid) {
