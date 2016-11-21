@@ -57,7 +57,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     }
     this.renderGridOld = new Array(this.gridWidth * this.gridHeight)
     this.renderGrid = this.level.enemyZone.slice(0);
-    console.log("aaaaaaaaaa");
+    
     this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
                          this.renderGrid, this.renderGridOld, 
                          this.colors);
@@ -77,6 +77,10 @@ LevelEditManager.prototype.reset = function() {
 
 LevelEditManager.prototype.addMessage = function(time, msg) {
 	this.messageMap[time] = msg;
+}
+
+LevelEditManager.prototype.changeTotalType = function(newTime) {
+	this.totalTime = newTime;
 }
 
 LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid) {
