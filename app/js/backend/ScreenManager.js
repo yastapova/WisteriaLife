@@ -102,6 +102,14 @@ ScreenManager.prototype.setupInitScreen = function () {
     $('#loading-overlay').fadeOut('fast');
 }
 
+/**
+ * Switch screens
+ * @param  {[type]} screen   [description]
+ * @param  {String, Number, or Object} property Arbitrary property for each screen
+ *                           If clicked from a link (event defined in constructor
+ *                           above), property will be a Number.
+ *                           If called directly, it can be anything.
+ */
 ScreenManager.prototype.switchScreens = function (screen, property) {
 
     // screen should be valid, otherwise go to splash
