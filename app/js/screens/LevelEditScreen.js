@@ -45,7 +45,7 @@ LevelEditScreen.prototype.setLevel = function (level) {
         $('.select-item').removeClass('selected');
         $(this).addClass('selected');
 
-        self.gameLogicManager.currentUnit =
+        self.levelEditManager.selectedUnit =
             self.gameManager.shapeManager.getShape(
                 $(this).attr('data-value')
             );

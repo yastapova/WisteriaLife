@@ -41,7 +41,6 @@ var LevelEditManager = function(levelSize) {
     var GHOST_COLOR = 0xa0d1dc;
     this.colors = [null, null, FRIEND_ZONE_COLOR, ENEMY_ZONE_COLOR,
                    FRIEND_COLOR, OBJECTIVE_COLOR, ENEMY_COLOR, GHOST_COLOR];
-
 }
 
 LevelEditManager.prototype.setLevel = function (level, canvas) {
@@ -61,8 +60,8 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.nonGhostGrid = this.renderGrid.slice(0);
     
     this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
-                         this.renderGrid, this.renderGridOld, 
-                         this.colors);
+                         		this.renderGrid, this.renderGridOld, 
+                         		this.colors);
 
 }
 
@@ -70,6 +69,7 @@ LevelEditManager.prototype.reset = function() {
 	this.renderGrid = new Array(rows*cols);
 	this.defenseGrid = new Array(rows*cols);
     this.ghostGrid = new Array(rows*cols);
+    this.nonGhostGrid = new Array(rows*cols);
     this.defenses = [];
     this.enemySpawns = [];
     this.totalTime = 60;
@@ -82,20 +82,41 @@ LevelEditManager.prototype.addMessage = function(time, msg) {
 }
 
 LevelEditManager.prototype.changeTotalType = function(newTime) {
+	if(newTime < totalTime) {
+		this.deleteAfter(newTime);
+	}
 	this.totalTime = newTime;
+}
+
+LevelEditManager.prototype.deleteAfter = function(newTime) {
+	var msgs = Object.keys(this.messageMap);
+	var spawns = Object.keys(this.enemySpawns);
+	for(var i = 0; i < msgs.length; i++) {
+		if(msgs[i] > newTime)
+			delete this.messageMap[msgs[i]];
+	}
+	for(var i = 0; i < spawns.length; i++) {
+		if(spawns[i] > newTime)
+			delete this.enemySpawns[spawns[i]];
+	}
 }
 
 LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid) {
     if(shape === null) {
-        if(this.currentUnit === null) {
+        if(this.selectedUnit === null) {
             return;
         }
         else {
-            shape = this.currentUnit;
+            shape = this.selectedUnit;
         }
     }
     if(grid === null) {
-        return;
+    	if(this.nonGhostGrid === null) {
+    		return;
+    	}
+    	else {
+    		grid = this.nonGhostGrid;
+    	}
     }
     var pixels = shape.pixelsArray;
 
@@ -124,8 +145,8 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     }
 
     this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
-                         this.renderGrid, this.renderGridOld, 
-                         this.colors);
+                         		this.renderGrid, this.renderGridOld, 
+                         		this.colors);
 }
 
 LevelEditManager.prototype.placeDefenses = function() {
@@ -141,6 +162,50 @@ LevelEditManager.prototype.placeDefenses = function() {
         this.placeShape(coords.y, coords.x, this.OBJECTIVE,
                         shape, this.nonGhostGrid);
     }
+}
+
+LevelEditManager.prototype.isValidCell = function(row, col) {
+    // IS IT OUTSIDE THE GRID?
+    if(    (row < 0) ||
+            (col < 0) ||
+            (row >= this.gridHeight) ||
+            (col >= this.gridWidth))
+    {
+        return false;
+    }
+    // IT'S INSIDE THE GRID
+    else
+    {
+        return true;
+    }
+}
+
+/*
+ * Accessor method for getting the cell value in the grid at
+ * location (row, col).
+ */
+LevelEditManager.prototype.getGridCell = function(grid, row, col) {
+    // IGNORE IF IT'S OUTSIDE THE GRID
+    if (!this.isValidCell(row, col))
+    {
+        return -1;
+    }
+    var index = (row * this.gridWidth) + col;
+    return grid[index];
+}
+
+/*
+ * Mutator method for setting the cell value in the grid at
+ * location (row, col).
+ */
+LevelEditManager.prototype.setGridCell = function(grid, row, col, value) {
+    // IGNORE IF IT'S OUTSIDE THE GRID
+    if(!this.isValidCell(row, col))
+    {
+        return;
+    }
+    var index = (row * this.gridWidth) + col;
+    grid[index] = value;
 }
 
 module.exports = LevelEditManager;

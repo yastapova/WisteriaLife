@@ -182,7 +182,7 @@ GameLogicManager.prototype.start = function () {
     this.gameLoopTimer = setInterval(function () {
         if (!this.paused) {
             this.updateLoop();
-            this.renderGridCells(this.gridHeight, this.gridWidth, 
+            this.renderGridCells(this.gridHeight, this.gridWidth,
                          this.renderGrid, this.renderGridOld,
                          this.colors);
         }
@@ -516,6 +516,32 @@ GameLogicManager.prototype.clearGrid = function(grid) {
     for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
         grid[i] = this.BLANK;
     }
+
+    for(var i = 0; i < this.gridHeight; i++)
+    {
+        for(var j = 0; j < this.gridWidth; j++)
+        {
+            // CALCULATE THE ARRAY INDEX OF THIS CELL
+            // AND GET ITS CURRENT STATE
+            var index = (i * this.gridWidth) + j;
+            var battleCell = this.battleGrid[index];
+            var defenseCell = this.defenseGrid[index];
+            var ghostCell = this.ghostGrid[index];
+
+            battleCell = this.battleGridNew[index];
+            defenseCell = this.defenseGrid[index];
+            if(ghostCell !== this.BLANK)
+                this.renderGrid[index] = this.GHOST;
+            else if(battleCell !== this.BLANK)
+                this.renderGrid[index] = battleCell;
+            else if(defenseCell !== this.BLANK)
+                this.renderGrid[index] = defenseCell;
+            else
+                this.renderGrid[index] = this.factionGrid[index];
+        }
+    }
+
+    this.renderGridCells();
 }
 
 /*

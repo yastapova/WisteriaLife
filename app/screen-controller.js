@@ -50,6 +50,13 @@ router.get('/level-editor', function(req, res, next) {
     });
 });
 
+router.get('/level-editor/:level', function(req, res, next) {
+    res.render('level-editor', {
+        title: 'Level Editor',
+        level: req.params.level
+    });
+});
+
 /* Level Story. */
 router.get('/level-story/:level(\\d+)', function(req, res, next) {
     res.render('level-story', {
@@ -101,6 +108,13 @@ router.get('/private-custom-levels', function(req, res, next) {
 router.get('/save-level', function(req, res, next) {
     res.render('save-level', {
         title: 'Save Level'
+    });
+});
+
+router.get('/save-level/:level', function(req, res, next) {
+    res.render('save-level', {
+        title: 'Save Level',
+        level: req.params.level
     });
 });
 
