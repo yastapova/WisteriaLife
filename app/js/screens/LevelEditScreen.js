@@ -63,9 +63,6 @@ LevelEditScreen.prototype.setLevel = function (level) {
 LevelEditScreen.prototype.init = function() {
     console.log("Level edit screen init called");
 
-    // materialize select menus
-    $('select').material_select();
-
     $('.dropdown-button').dropdown({
         constrain_width: false, // Does not change width of dropdown to that of the activator
         hover: true, // Activate on hover
@@ -103,6 +100,11 @@ LevelEditScreen.prototype.init = function() {
         opacity: .6
     });
 
+    $('#delete-button').leanModal({
+        dismissible: true,
+        opacity: .6
+    });
+
     // user confirms resize, clear and resize
     $('.resize-select button').click(function () {
         $('#editor-canvas').empty();
@@ -133,13 +135,32 @@ LevelEditScreen.prototype.init = function() {
     }.bind(this));
 
     // navigate to save level screen
-    $('#save-button').click(function(){
+    $('#save-level-show').click(function (){
         this.gameManager.screenManager.switchScreens('save-level', this.level);
     }.bind(this));
+
     // navigate to private custom levels screen
-    $('#delete-button').click(function(){
+    $('#delete-yes').click(function (){
+        $('#delete-confirm').closeModal();
         this.gameManager.screenManager.switchScreens('private-custom-levels');
+        // add delete level code here
     }.bind(this));
+
+    $('#delete-no').click(function () {
+        $('#delete-confirm').closeModal();
+    });
+
+    // units and powerup tooltips
+    $('.select-item').tooltip({
+        delay: 50,
+        position: 'top'
+    });
+
+    // units and powerup tooltips
+    $('.tooltipped').tooltip({
+        delay: 50,
+        position: 'right'
+    });
 
 };
 
