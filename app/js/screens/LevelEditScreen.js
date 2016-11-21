@@ -99,7 +99,7 @@ LevelEditScreen.prototype.init = function() {
     });
 
     $('#level-total-time').change(function() {
-        if (!($(this).val() < 300) || !($(this).val() > 30))  {
+        if (!($(this).val() <= 300) || !($(this).val() >= 30))  {
             // TODO show an error message
             console.log("this is invalid time");
         }

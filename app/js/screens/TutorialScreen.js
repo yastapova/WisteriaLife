@@ -50,8 +50,4 @@ TutorialScreen.prototype.hide = function() {
 
 };
 
-TutorialScreen.prototype.replay = function() {
-
-};
-
 module.exports = TutorialScreen;
