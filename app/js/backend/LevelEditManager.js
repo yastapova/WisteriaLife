@@ -14,6 +14,7 @@ var LevelEditManager = function(levelSize) {
 	this.allowedShapes = null; // {name : quantity}
 
 	this.factionGrid = [];	// enemy and friendly zones
+	this.nonGhostGrid = [];
 	this.renderGrid = [];   // what gets displayed
 	this.renderGridOld = [];
     this.ghostGrid = [];    // ghost only
@@ -57,6 +58,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     }
     this.renderGridOld = new Array(this.gridWidth * this.gridHeight)
     this.renderGrid = this.level.enemyZone.slice(0);
+    this.nonGhostGrid = this.renderGrid.slice(0);
     
     this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
                          this.renderGrid, this.renderGridOld, 
@@ -117,18 +119,28 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         var col = clickCol + pixels[i+1];
         var row = clickRow + pixels[i];
         // VERIFY THAT THIS CELL CAN BE PLACED ON
-        if(this.getGridCell(this.battleGrid, row, col) !== this.VOID)
-        {
-            this.setGridCell(grid, row, col, faction);
-            if(battle)
-                this.setGridCell(this.battleGridNew, row, col, faction);
-            this.setGridCell(this.renderGrid, row, col, faction);
-        }
+        this.setGridCell(grid, row, col, faction);
+        this.setGridCell(this.renderGrid, row, col, faction);
     }
 
     this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
                          this.renderGrid, this.renderGridOld, 
                          this.colors);
+}
+
+LevelEditManager.prototype.placeDefenses = function() {
+    var defenses = this.level.defenseStructures;
+    if(typeof defenses === "undefined")
+        return;
+    var gameManager = require('GameManager');
+
+    for(var i = 0; i < defenses.length; i++) {
+        var shape = defenses[i].name;
+        var coords = defenses[i].coordinates;
+        shape = gameManager.shapeManager.getShape(shape);
+        this.placeShape(coords.y, coords.x, this.OBJECTIVE,
+                        shape, this.nonGhostGrid);
+    }
 }
 
 module.exports = LevelEditManager;

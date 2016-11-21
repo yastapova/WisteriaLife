@@ -224,7 +224,7 @@ PixiCanvas.prototype.setCell = function (col, row, color) {
 }
 
 PixiCanvas.prototype.respondToMouseClick = function (event) {
-    if (gameManager.gameLogicManager.paused) {
+    if (gameManager.isGameplay && gameManager.gameLogicManager.paused) {
         Materialize.toast(
             "Game not started yet! Press Play at the top.",
             2000,
