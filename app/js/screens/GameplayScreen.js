@@ -11,6 +11,7 @@ var GamePlayScreen = function (id, levelNumber) {
     this.levelNumber = levelNumber;
 
     this.gameManager = require('GameManager');
+    this.gameManager.isGameplay = true;
     this.gameLogicManager = this.gameManager.gameLogicManager;
 
     Screen.call(this, id, false, levelNumber);

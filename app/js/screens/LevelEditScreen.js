@@ -11,6 +11,7 @@ var LevelEditScreen = function(id, level) {
     this.level = null;
 
     this.gameManager = require('GameManager');
+    this.gameManager.isGameplay = false;
     this.levelEditManager = this.gameManager.levelEditManager;
 
     Screen.call(this,id);
