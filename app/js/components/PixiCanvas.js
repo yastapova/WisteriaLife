@@ -303,13 +303,19 @@ PixiCanvas.prototype.respondToMouseMove = function () {
     var canvasCoords = this.getRelativeCoords(event);
     var clickCol = Math.floor(canvasCoords.x/this.cellLength);
     var clickRow = Math.floor(canvasCoords.y/this.cellLength);
-
-    var ghost = gameManager.gameLogicManager.GHOST;
+    var manager;
+    if(gameManager.isGameplay) {
+        manager = gameManager.gameLogicManager;
+    }
+    else {
+        manager = gameManager.levelEditManager;
+    }
+    var ghost = manager.GHOST;
     // var blank = gameManager.gameLogicManager.BLANK;
-    var grid = gameManager.gameLogicManager.ghostGrid;
-    gameManager.gameLogicManager.clearGrid(grid);
+    var grid = manager.ghostGrid;
+    manager.clearGrid(grid);
     // gameManager.gameLogicManager.placeShape(this.prevGhostRow, this.prevGhostCol, blank, null, grid);
-    gameManager.gameLogicManager.placeShape(clickRow, clickCol, ghost, null, grid);
+    manager.placeShape(clickRow, clickCol, ghost, null, grid);
 
     // this.prevGhostCol = clickCol;
     // this.prevGhostRow = clickRow;

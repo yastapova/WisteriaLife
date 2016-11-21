@@ -58,6 +58,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.renderGridOld = new Array(this.gridWidth * this.gridHeight)
     this.renderGrid = this.level.enemyZone.slice(0);
     this.nonGhostGrid = this.renderGrid.slice(0);
+    this.factionGrid = this.level.enemyZone.slice(0);
     
     this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
                          		this.renderGrid, this.renderGridOld, 
@@ -102,8 +103,8 @@ LevelEditManager.prototype.deleteAfter = function(newTime) {
 }
 
 LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid) {
-    if(shape === null) {
-        if(this.selectedUnit === null) {
+    if(shape === null || shape === undefined) {
+        if(this.selectedUnit === null || this.selectedUnit === undefined) {
             return;
         }
         else {
@@ -162,6 +163,32 @@ LevelEditManager.prototype.placeDefenses = function() {
         this.placeShape(coords.y, coords.x, this.OBJECTIVE,
                         shape, this.nonGhostGrid);
     }
+}
+
+LevelEditManager.prototype.clearGrid = function(grid) {
+    for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
+        grid[i] = this.BLANK;
+    }
+
+    for(var i = 0; i < this.gridHeight; i++)
+    {
+        for(var j = 0; j < this.gridWidth; j++)
+        {
+            // CALCULATE THE ARRAY INDEX OF THIS CELL
+            // AND GET ITS CURRENT STATE
+            var index = (i * this.gridWidth) + j;
+            var ghostCell = this.ghostGrid[index];
+
+            if(ghostCell !== this.BLANK)
+                this.renderGrid[index] = this.GHOST;
+            else
+                this.renderGrid[index] = this.factionGrid[index];
+        }
+    }
+
+    this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
+                         		this.renderGrid, this.renderGridOld, 
+                         		this.colors);
 }
 
 LevelEditManager.prototype.isValidCell = function(row, col) {
