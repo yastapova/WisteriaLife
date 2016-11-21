@@ -3,7 +3,7 @@
 
      @media screen and (orientation:portrait) {
          display: none;
-     }     
+     }
 
     .editor-buttons{
         background-color : Transparent;
@@ -24,26 +24,6 @@
 
 $toolbar-height: 48px;
 $toolbar-height-mobile: 36px;
-
-#editor-canvas {
-    text-align: center;
-    width: 100%;
-    position: fixed;
-    top: calc(#{$toolbar-height-mobile} + #{$navbar-height-mobile});
-    bottom: $toolbar-height-mobile;
-
-    @media #{$medium-and-up} {
-        top: calc(#{$toolbar-height} + #{$navbar-height});
-        bottom: $toolbar-height;
-    }
-
-    canvas {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-}
 
 #editor-time-progress {
     position: absolute;
@@ -83,4 +63,24 @@ $toolbar-height-mobile: 36px;
 
 .range-field#timeline {
     margin-top: 0;
+}
+
+#resize-confirm {
+    ul {
+        list-style: none;
+
+        li {
+            display: inline-block;
+            margin: 5px;
+        }
+    }
+}
+
+.lean-overlay {
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
 }

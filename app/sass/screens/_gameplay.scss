@@ -28,8 +28,7 @@ $toolbar-height-mobile: 36px;
         top: calc(#{$toolbar-height} + #{$navbar-height});
     }
 
-
-    #gameplay-canvas {
+    #gameplay-canvas, #editor-canvas {
         width: 80%;
         height: 100%;
         float: right;
@@ -112,6 +111,15 @@ $toolbar-height-mobile: 36px;
             color: #fff;
             text-align: center;
         }
+    }
+
+    .toolbar-item {
+
+        .wisteria-icons {
+            font-size: 1.8rem;
+        }
+        
+        padding: 10px;
     }
 }
 
