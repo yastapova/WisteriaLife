@@ -31,6 +31,7 @@ $primary-dark: #773795;
 $enemy-color: #94b21c;
 $enemy-light: #ADBF63;
 $highlight-color: #26a69a;
+$error-color: #FF2400;
 
 // Small heights
 $small-height: 400px;
@@ -117,12 +118,12 @@ a {
 }
 
 .wisteria-toast {
-    background-color: rgba(201, 160, 220, 0.7);
+    background-color: rgba($enemy-color, 0.7);
     float: left;
 }
 
 .wisteria-error-toast {
-    background-color: rgba(47, 22, 48, 0.7);
+    background-color: rgba($error-color, 0.7);
     float: left;
 }
 
