@@ -116,14 +116,9 @@ SaveLevelScreen.prototype.saveLevel = function(){
 					quantity : saveAllyUnits[i].value - '0'
 				});
 		}
-	}	
-	// Upload the image to Firebase Storage 
-	if(this.imgFile !== null){
-	firebase.storage().ref(this.gameManager.user.uid + '/' + this.imgFile.name)
-	  .put(this.imgFile, {contentType: this.imgFile.type});
-	}
+	}		
 	// Get unique level id from fb if a new level, add unique id to user levels "array"
-    if(this.level.id === "41" || this.level.id === "42" || this.level.id === "43"){
+    if((this.level.id + "") === "41" || (this.level.id + "") === "42" || (this.level.id + "") === "43"){
 	   this.level.id = firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().key;
         firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().set(this.level.id);
     }
@@ -137,6 +132,13 @@ SaveLevelScreen.prototype.saveLevel = function(){
 	// Write level misc data to firebase
 	firebase.database().ref('levels/' + this.level.id).set(this.level);
     firebase.database().ref('customLevels/' + this.level.id).set(this.levelMisc);
+
+    // Upload the image to Firebase Storage 
+    if(this.imgFile !== null){
+    firebase.storage().ref(this.gameManager.user.uid + '/' + this.level.id + "/" + this.imgFile.name)
+      .put(this.imgFile, {contentType: this.imgFile.type});
+    }
+
 	// Switch screen to public or private
 	if(this.levelMisc.public === 1){ 
 		this.gameManager.screenManager.switchScreens('public-custom-levels');

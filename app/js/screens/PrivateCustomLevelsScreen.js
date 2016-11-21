@@ -14,7 +14,6 @@ PrivateCustomLevelsScreen.prototype.init = function () {
         this.gameManager.user.levels,
         this.setCustomLevels.bind(this)
     );
-
     // test deleting levels
     $('#delete-custom-level').on('click', this.deleteLevels);
 };
@@ -23,19 +22,20 @@ PrivateCustomLevelsScreen.prototype.deleteLevels = function(){
 	// Get current user
     var userId = firebase.auth().currentUser.uid;
 	// Grab the ids for the levels that are checked
-	var levels = [];
-	for(var level in levels){
+	// TO DO
+	var levelsID = [];
+	for(var levelID in levels){
 		// delete from 3 locations: customLevels, levels, and users
-		firebase.database().ref('/customLevels/' + level).remove();
-		firebase.database().ref('/levels/' + level).remove();
+		firebase.database().ref('/customLevels/' + levelID).remove();
+		firebase.database().ref('/levels/' + levelID).remove();
 		for(var [key, value] in Object.entries(firebase.database().ref('/users/' + userId + "/levels/"))){
-			if(value === level){
+			if(value === levelID){
 				firebase.database().ref('/users/' + userId + "/" + key).remove();
 				break;
 			}
 		}
 		// delete img from storage if it exists
-		//firebase.storage().ref
+		firebase.storage().ref(userId + "/" + levelID).delete();
 	}
 };
 
