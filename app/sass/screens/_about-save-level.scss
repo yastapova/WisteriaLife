@@ -25,7 +25,13 @@
     .row p{
         font-size: 1em;
     }
-
+    #mediaCapture{
+        display: none;
+    }
+    #image-form {
+        display: flex;
+        flex-direction: row;
+    }
     th input {
         width: 110px;
         height: 2em;

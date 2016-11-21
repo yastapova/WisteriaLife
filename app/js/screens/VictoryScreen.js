@@ -21,7 +21,13 @@ VictoryScreen.prototype.init = function() {
 		$('#victory-wistbux').text(this.gameManager.gameLogicManager.level.getWistbux());
 	}else{
 		$('#victory-wistbux').text("0");
-	}
+	}	
+    this.gameManager.user.gameData.currentLevel++;
+    this.gameManager.user.gameData.wistbux += this.gameManager.gameLogicManager.level.getWistbux();
+    this.gameManager.writeUserData();
+    this.gameManager.userWistbux.text(this.gameManager.user.gameData.wistbux);
+    this.gameManager.userLevel.text("Level " + this.gameManager.user.gameData.currentLevel);
+
 };
 
 VictoryScreen.prototype.hide = function() {

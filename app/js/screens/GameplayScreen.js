@@ -43,11 +43,13 @@ GamePlayScreen.prototype.setLevel = function (level) {
                                allowed[i].slice(1,-2) + " " +
                                allowed[i].slice(-2).toUpperCase();
 
-            else
+            else if(allowed[i].charAt(0) == 'i')
                 unitName = allowed[i].charAt(0).toUpperCase() +
                                allowed[i].slice(1,-1) + " " +
                                allowed[i].slice(-1).toUpperCase();
-
+            else
+                unitName = allowed[i].charAt(0).toUpperCase() +
+                               allowed[i].slice(1);
             shapes.push(
                 $('<span>')
                     .attr('id', 'unit-' + allowed[i])
@@ -104,14 +106,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
                     this.gameManager.screenManager.switchScreens('defeat', this.levelNumber);
                 }
                 else{
-                    this.gameManager.screenManager.switchScreens('victory', this.levelNumber);
-                    if(this.gameManager.user.gameData.currentLevel < this.level.id){
-                        this.gameManager.user.gameData.currentLevel++;
-                        this.gameManager.user.gameData.wistbux += this.level.getWistbux();
-                        this.gameManager.writeUserData();
-                        this.gameManager.userWistbux.text(this.gameManager.user.gameData.wistbux);
-                        this.gameManager.userLevel.text("Level " + this.gameManager.user.gameData.currentLevel);
-                    }
+                    this.gameManager.screenManager.switchScreens('victory', this.levelNumber);                    
                 }
             }
             else if (this.gameLogicManager.isDead()) {

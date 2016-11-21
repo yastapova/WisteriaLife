@@ -9,6 +9,7 @@ var Screen = require('./Screen');
   */
 var SaveLevelScreen = function (id, level) {
     this.level = level;
+    this.level_misc = {}; // name, img, storyline
     Screen.call(this, id, true);
 };
 
@@ -19,11 +20,20 @@ inherits(SaveLevelScreen, Screen);
  */
 SaveLevelScreen.prototype.init = function() {
     console.log("Save levels screen init called");
+    // handle uploading image
+    // Events for image upload.
+  	$('#upload-image').on('click', function() {
+    	$('#mediaCapture').click();
+  	}.bind(this));
+  	$('#mediaCapture').on('change', this.saveImage.bind(this));
+  	// Save the level to firebase  	
+   	$('#save-button').on('click', this.saveLevel());
     // Go back to Level Edit Screen
-    $('#save-cancel-button').on('click', function () {
+    $('#cancel-button').on('click', function () {
         var gameManager = require('GameManager');
         gameManager.screenManager.hideScreen(this);
     }.bind(this));
+
     // Output values for the ranges of the units
     $('#tower_num').on("change", function() {
     $('.output_tower').val(" x" + this.value);
@@ -64,6 +74,19 @@ SaveLevelScreen.prototype.init = function() {
     $('#wallforward_num').on("change", function() {
     $('.output_wallforward').val(" x" + this.value);
     }).trigger("change");
+};
+
+SaveLevelScreen.prototype.saveImage = function(event){
+	var imgFile = event.target.files[0];
+
+	// clear the selection in the file picker input (?)
+	$('#image-form')[0].reset();
+	$('#imgFileName').text(imgFile.name);
+	
+};
+
+SaveLevelScreen.prototype.saveLevel = function(){
+	console.log("Save level called.");
 };
 
 SaveLevelScreen.prototype.hide = function() {
