@@ -162,7 +162,9 @@ GameLogicManager.prototype.setLevel = function (level, canvas) {
     }
     this.renderGrid = this.level.enemyZone.slice(0);
     this.placeDefenses();
-    this.renderGridCells();
+    this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
+                         this.renderGrid, this.renderGridOld, 
+                         this.color);
 }
 
 /**
@@ -180,7 +182,9 @@ GameLogicManager.prototype.start = function () {
     this.gameLoopTimer = setInterval(function () {
         if (!this.paused) {
             this.updateLoop();
-            this.renderGridCells();
+            this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
+                         this.renderGrid, this.renderGridOld, 
+                         this.color);
         }
     }.bind(this), 400);
 
@@ -270,26 +274,26 @@ GameLogicManager.prototype.updateLoop = function() {
     this.battleGridNew = this.battleGridNew.slice(0);
 }
 
-GameLogicManager.prototype.renderGridCells = function() {
-    for(var i = 0; i < this.gridHeight; i++)
-    {
-        for(var j = 0; j < this.gridWidth; j++)
-        {
-            // CALCULATE THE ARRAY INDEX OF THIS CELL
-            // AND GET ITS CURRENT STATE
-            var index = (i * this.gridWidth) + j;
-            var renderCell = this.renderGrid[index];
-            if(renderCell !== this.renderGridOld[index]) {
-                this.canvas.setCell(j, i, this.colors[renderCell]);
-            }
-        }
-    }
+// GameLogicManager.prototype.renderGridCells = function(gridHeight, gridWidth, renderGrid, renderGridOld, colors) {
+//     for(var i = 0; i < this.gridHeight; i++)
+//     {
+//         for(var j = 0; j < this.gridWidth; j++)
+//         {
+//             // CALCULATE THE ARRAY INDEX OF THIS CELL
+//             // AND GET ITS CURRENT STATE
+//             var index = (i * this.gridWidth) + j;
+//             var renderCell = this.renderGrid[index];
+//             if(renderCell !== this.renderGridOld[index]) {
+//                 this.canvas.setCell(j, i, this.colors[renderCell]);
+//             }
+//         }
+//     }
 
-    this.renderGridOld = this.renderGrid;
-    this.renderGrid = this.renderGrid.slice(0);
+//     this.renderGridOld = this.renderGrid;
+//     this.renderGrid = this.renderGrid.slice(0);
 
-    this.canvas.render();
-}
+//     this.canvas.render();
+// }
 
 GameLogicManager.prototype.reproduce = function(index, neighbors) {
     var friends = neighbors["friends"];
@@ -400,7 +404,9 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         }
     }
 
-    this.renderGridCells();
+    this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
+                         this.renderGrid, this.renderGridOld, 
+                         this.color);
 }
 
 GameLogicManager.prototype.placeDefenses = function() {
@@ -501,7 +507,9 @@ GameLogicManager.prototype.reset = function() {
     }
 
     // RENDER THE CLEARED SCREEN
-    this.renderGridCells();
+    this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
+                         this.renderGrid, this.renderGridOld, 
+                         this.color);
 }
 
 GameLogicManager.prototype.clearGrid = function(grid) {

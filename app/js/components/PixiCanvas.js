@@ -147,6 +147,27 @@ PixiCanvas.prototype.render = function () {
     this.renderer.render(this.stage);
 };
 
+PixiCanvas.prototype.renderGridCells = function(gridHeight, gridWidth, renderGrid, renderGridOld, colors) {
+    for(var i = 0; i < gridHeight; i++)
+    {
+        for(var j = 0; j < gridWidth; j++)
+        {
+            // CALCULATE THE ARRAY INDEX OF THIS CELL
+            // AND GET ITS CURRENT STATE
+            var index = (i * gridWidth) + j;
+            var renderCell = renderGrid[index];
+            if(renderCell !== renderGridOld[index]) {
+                this.setCell(j, i, colors[renderCell]);
+            }
+        }
+    }
+
+    renderGridOld = renderGrid;
+    renderGrid = renderGrid.slice(0);
+
+    this.render();
+}
+
 /**
  * Clear the canvas
  */
