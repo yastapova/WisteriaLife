@@ -1,24 +1,28 @@
 'use strict';
 
+/**
+ * Constructs a LevelEditManager object for a level.
+ * @param {String} levelSize Not used
+ */
 var LevelEditManager = function(levelSize) {
-	this.canvas = null;
+	this.canvas = null;        // PixiCanvas that renders everything
 
-	this.MESSAGE_TIME_DIFFERENCE = 4;
-	this.messageMap = {}; // {time : String}
-	this.defenses = []; // [{name : String, coordinates : {x : int, y : int}}]
-	this.enemySpawns = {}; // {time : int, shapes :  [{name : String, coordinates : {x : int, y : int}}]}
-	this.totalTime = 60;
-	this.currentTime = 0;
+	this.MESSAGE_TIME_DIFFERENCE = 4; // minimum time between messages
+	this.messageMap = {};      // {time : String}
+	this.defenses = [];        // [{name : String, coordinates : {x : int, y : int}}]
+	this.enemySpawns = {};     // {time : int, shapes :  [{name : String, coordinates : {x : int, y : int}}]}
+	this.totalTime = 60;       // default total level time
+	this.currentTime = 0;      // default current time
 	this.allowedShapes = null; // {name : quantity}
 
-	this.factionGrid = [];	// enemy and friendly zones
-	this.nonGhostGrid = [];
-	this.renderGrid = [];   // what gets displayed
-	this.renderGridOld = [];
-    this.ghostGrid = [];    // ghost only
+	this.factionGrid = [];     // enemy and friendly zones
+	this.nonGhostGrid = [];    // everything underneath ghost
+	this.renderGrid = [];      // what gets displayed
+	this.renderGridOld = [];   // what was rendered last time
+    this.ghostGrid = [];       // ghost only
 
-    this.selectedShape = null;
-    this.selectedFaction = 0;
+    this.selectedShape = null; // which shape is selected to place
+    this.selectedFaction = 0;  // which faction is selected to place
 
     // cell types
     this.BLANK = 0;
@@ -41,28 +45,41 @@ var LevelEditManager = function(levelSize) {
                    FRIEND_COLOR, OBJECTIVE_COLOR, ENEMY_COLOR, GHOST_COLOR];
 }
 
+/**
+ * Sets the level that the edit manager corresponds to and
+ * initializes many variables.
+ * @param {Level} level Level object
+ * @param {PixiCanvas} canvas Canvas responsible for rendering
+ */
 LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.level = level;
     this.canvas = canvas;
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
-    this.defenses = this.level.defenseStructures; // clone?
+
+    this.messageMap = {}; // TODO: change to Map() objects?
+
+    this.defenses = this.level.defenseStructures; // TODO: clone
     if(this.defenses === undefined)
-    	this.defenses = [];
+    	this.defenses = []; // if empty, just make it an empty array
+
+    // make a map of allowed shapes and their quantities
     this.allowedShapes = {};
     var allowed = this.level.allowedShapes;
     if (!allowed) allowed = [];
     for(var i = 0; i < allowed.length; i++) {
         this.allowedShapes[allowed[i].shape] = allowed[i].quantity;
     }
-    this.renderGridOld = new Array(this.gridWidth * this.gridHeight)
+    // initialize grids
+    this.renderGridOld = new Array(this.gridWidth * this.gridHeight);
     this.renderGrid = this.level.enemyZone.slice(0);
-    this.nonGhostGrid = this.renderGridOld.slice(0);
+    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
+    this.nonGhostGrid = new Array(this.gridWidth * this.gridHeight);
     this.factionGrid = this.level.enemyZone.slice(0);
-    this.enemySpawns = this.level.enemySpawnsMap; // clone?
+    this.enemySpawns = this.level.enemySpawnsMap; // TODO: clone
     for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
     {
-    	this.renderGrid[i] = this.BLANK;
+        this.ghostGrid[i] = this.BLANK;
     	this.nonGhostGrid[i] = this.BLANK;
     }
     
@@ -73,38 +90,67 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
 
 }
 
+/**
+ * Resets the LevelEditManager to blank starting point.
+ */
 LevelEditManager.prototype.reset = function() {
-	this.renderGrid = new Array(this.gridWidth * this.gridHeight);
-	this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
-    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
-    this.nonGhostGrid = new Array(this.gridWidth * this.gridHeight);
-    for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
-    {
-    	this.renderGrid[i] = this.BLANK;
-    	this.nonGhostGrid[i] = this.BLANK;
-    }
-    this.defenses = [];
-    this.enemySpawns = [];
-    this.totalTime = 60;
-    this.allowedShapes = {};
-    this.messageMap = {};
+	// this.renderGrid = this.level.enemyZone.slice(0);
+ //    this.factionGrid = this.level.enemyZone.slice(0);
+ //    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
+ //    this.nonGhostGrid = new Array(this.gridWidth * this.gridHeight);
+ //    for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
+ //    {
+ //        this.ghostGrid[i] = this.BLANK;
+ //    	this.nonGhostGrid[i] = this.BLANK;
+ //    }
+ //    this.defenses = this.level.defenseStructures; // TODO: clone
+ //    if(this.defenses === undefined)
+ //        this.defenses = []; // if empty, just make it an empty array
+
+ //    this.enemySpawns = this.level.enemySpawnsMap; // TODO: clone
+ //    this.totalTime = 60;
+ //    this.currentTime = 0;
+ //    this.allowedShapes = {};
+ //    var allowed = this.level.allowedShapes;
+ //    if (!allowed) allowed = [];
+ //    for(var i = 0; i < allowed.length; i++) {
+ //        this.allowedShapes[allowed[i].shape] = allowed[i].quantity;
+ //    }
+
+ //    this.messageMap = {};
+    this.setLevel(this.level, this.canvas);
 }
 
+/**
+ * Adds a message to the level at the given time.
+ * @param {int} time Time that the message will display
+ * @param {String} msg Message to display
+ */
 LevelEditManager.prototype.addMessage = function(time, msg) {
 	this.messageMap[time] = msg;
 }
 
+/**
+ * Change the total level time. If the new time is less than
+ * the old time, then it removes everything after the new time.
+ * @param {int} newTime New total level time (seconds)
+ */
 LevelEditManager.prototype.changeTotalTime = function(newTime) {
-	if(newTime < this.totalTime && newTime > 30) {
+	if(newTime < this.totalTime && newTime >= 30) {
 		this.deleteAfter(newTime);
 	}
-	if(newTime <= 400)
+	if(newTime <= 300 && newTime >= 30)
 		this.totalTime = newTime;
 }
 
+/**
+ * Deletes all messages and enemy spawns after a certain time.
+ * @param {int} newTime Time after which to delete (seconds)
+ */
 LevelEditManager.prototype.deleteAfter = function(newTime) {
 	var msgs = Object.keys(this.messageMap);
 	var spawns = Object.keys(this.enemySpawns);
+
 	for(var i = 0; i < msgs.length; i++) {
 		if(msgs[i] > newTime)
 			delete this.messageMap[msgs[i]];
@@ -115,7 +161,16 @@ LevelEditManager.prototype.deleteAfter = function(newTime) {
 	}
 }
 
+/**
+ * Places a shape on a specified grid.
+ * @param {int} clickRow Row to place the shape
+ * @param {int} clickCol Column to place the shape
+ * @param {int} faction What faction to make the placed shape
+ * @param {Shape} shape The shape to place
+ * @param {int[]} grid Grid to place the shape on
+ */
 LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid) {
+    // if no shape is specified, check if one is selected
     if(shape === null || shape === undefined) {
         if(this.selectedUnit === null || this.selectedUnit === undefined) {
             return;
@@ -124,6 +179,8 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             shape = this.selectedUnit;
         }
     }
+
+    // if no grid is specified, use the nonGhostGrid
     if(grid === null) {
     	if(this.nonGhostGrid === null) {
     		return;
@@ -132,44 +189,55 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     		grid = this.nonGhostGrid;
     	}
     }
+    // get the pixels of the shape
     var pixels = shape.pixelsArray;
 
+    // decide which zone it's allowed to be placed in
     var zone = this.BLANK;
+    // friendly units and objectives only in friend zone
     if(faction === this.FRIEND || faction === this.OBJECTIVE)
         zone = this.FRIEND_ZONE;
+    // enemies only in the enemy zone
     else if(faction === this.ENEMY)
         zone = this.ENEMY_ZONE;
+    // zones can be anywhere
     else if(faction === this.ENEMY_ZONE || faction === this.FRIEND_ZONE)
         zone = this.BLANK;
+    // everything else can be anywhere
     else
     	zone = this.BLANK;
 
+    // make sure that we're trying to place the shape in the proper zone
     if(zone !== this.BLANK &&
        this.getGridCell(this.factionGrid, clickRow, clickCol) !== zone) {
         return;
     }
 
+    // place each pixel of the shape
     for (var i = 0; i < pixels.length; i += 2)
     {
         var col = clickCol + pixels[i+1];
         var row = clickRow + pixels[i];
-        // VERIFY THAT THIS CELL CAN BE PLACED ON
+
         this.setGridCell(grid, row, col, faction);
         this.setGridCell(this.renderGrid, row, col, faction);
     }
-    var name = shape.name;
-	var y = clickRow + pixels[0];
-	var x = clickCol + pixels[1];
+
+    // add an enemy unit to the proper list
+    var name = shape.name;         // name of the shape to add
+	var y = clickRow + pixels[0];  // y coordinate
+	var x = clickCol + pixels[1];  // x coordinate
     if(faction === this.ENEMY) {
-    	// add to enemy spawn map
+        // add to enemy list
     	var currentSpawns = this.enemySpawns[this.currentTime];
     	if(this.enemySpawns[this.currentTime] === undefined) {
-    		//new array
+    		// new array
     		this.enemySpawns[this.currentTime] = [{"name" : name,
 	    									 	   "coords" : {"x" : x,
 	    												 	   "y" : y}}]
     	}
     	else {
+            // add to array
     		this.enemySpawns[this.currentTime].push({"name" : name,
 	    									 	"coords" : {"x" : x,
 	    												 	"y" : y}});
@@ -182,9 +250,13 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
 									 	"y" : y}});
     }
     else if(faction === this.ENEMY_ZONE) {
+        // update the faction grid
+        // TODO fix
     	this.setGridCell(this.factionGrid, y, x, this.ENEMY_ZONE);
     }
     else if(faction === this.FRIEND_ZONE) {
+        // update the faction grid
+        // TODO fix
     	this.setGridCell(this.factionGrid, y, x, this.FRIEND_ZONE);
     }
 
@@ -194,12 +266,17 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
 	this.renderGridCells();
 }
 
+/**
+ * Place any defenses on the list of the level.
+ */
 LevelEditManager.prototype.placeDefenses = function() {
+    // check if there are existing defenses
     var defenses = this.level.defenseStructures;
     if(typeof defenses === "undefined")
         return;
     var gameManager = require('GameManager');
 
+    // place each one on the nonGhostGrid
     for(var i = 0; i < defenses.length; i++) {
         var shape = defenses[i].name;
         var coords = defenses[i].coordinates;
@@ -209,18 +286,23 @@ LevelEditManager.prototype.placeDefenses = function() {
     }
 }
 
+/**
+ * Clear the ghostGrid and update the renderGrid.
+ */
 LevelEditManager.prototype.clearGhostGrid = function() {
+    // clear ghostGrid
     for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
         this.ghostGrid[i] = this.BLANK;
     }
 
+    // update the renderGrid like an update loop but without interactions
     for(var i = 0; i < this.gridHeight; i++)
     {
         for(var j = 0; j < this.gridWidth; j++)
         {
-            // CALCULATE THE ARRAY INDEX OF THIS CELL
-            // AND GET ITS CURRENT STATE
+            // calculate the index in the grid arrays
             var index = (i * this.gridWidth) + j;
+            // get cell statuses
             var ghostCell = this.ghostGrid[index];
             var underCell = this.nonGhostGrid[index];
 
@@ -239,8 +321,15 @@ LevelEditManager.prototype.clearGhostGrid = function() {
 	this.renderGridCells();
 }
 
+/**
+ * Check if the given row and column coordinates correspond
+ * to a valid cell.
+ * @param {int} row Row on the canvas
+ * @param {int} col Column on the canvas
+ * @return true if valid; false otherwise
+ */
 LevelEditManager.prototype.isValidCell = function(row, col) {
-    // IS IT OUTSIDE THE GRID?
+    // is it outside the grid?
     if(    (row < 0) ||
             (col < 0) ||
             (row >= this.gridHeight) ||
@@ -248,16 +337,20 @@ LevelEditManager.prototype.isValidCell = function(row, col) {
     {
         return false;
     }
-    // IT'S INSIDE THE GRID
+    // it's inside the grid
     else
     {
         return true;
     }
 }
 
-/*
+/**
  * Accessor method for getting the cell value in the grid at
  * location (row, col).
+ * @param {int[]} grid Which grid to check
+ * @param {int} row Row in the grid
+ * @param {int} col Column in the grid
+ * @return {int} Cell life type in the given cell
  */
 LevelEditManager.prototype.getGridCell = function(grid, row, col) {
     // IGNORE IF IT'S OUTSIDE THE GRID
@@ -269,9 +362,13 @@ LevelEditManager.prototype.getGridCell = function(grid, row, col) {
     return grid[index];
 }
 
-/*
+/**
  * Mutator method for setting the cell value in the grid at
  * location (row, col).
+ * @param {int[]} grid Which grid to change
+ * @param {int} row Row in the grid
+ * @param {int} col Column in the grid
+ * @param {int} value Value to change to
  */
 LevelEditManager.prototype.setGridCell = function(grid, row, col, value) {
     // IGNORE IF IT'S OUTSIDE THE GRID
@@ -283,21 +380,27 @@ LevelEditManager.prototype.setGridCell = function(grid, row, col, value) {
     grid[index] = value;
 }
 
+/**
+ * Renders the grid cells of the game using PixiCanvas.
+ */
 LevelEditManager.prototype.renderGridCells = function() {
     for(var i = 0; i < this.gridHeight; i++)
     {
         for(var j = 0; j < this.gridWidth; j++)
         {
-            // CALCULATE THE ARRAY INDEX OF THIS CELL
-            // AND GET ITS CURRENT STATE
+            // calculate index of this cell in the grid arrays
             var index = (i * this.gridWidth) + j;
+            // get status of this cell
             var renderCell = this.renderGrid[index];
+            // check if it has been updated since last render
             if(renderCell !== this.renderGridOld[index]) {
+                // if yes, render it again
                 this.canvas.setCell(j, i, this.colors[renderCell]);
             }
         }
     }
 
+    // set old renderGrid to this new renderGrid
     this.renderGridOld = this.renderGrid;
     this.renderGrid = this.renderGrid.slice(0);
 

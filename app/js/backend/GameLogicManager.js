@@ -559,6 +559,7 @@ GameLogicManager.prototype.isDead = function() {
  * Checks if the given row and column correspond to a valid cell.
  * @param {int} row Row in the grid
  * @param {int} col Column in the grid
+ * @return true if valid; false otherwise
  */
 GameLogicManager.prototype.isValidCell = function(row, col) {
     // is it outside the grid?

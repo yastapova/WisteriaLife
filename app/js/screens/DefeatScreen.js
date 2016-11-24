@@ -22,14 +22,21 @@ DefeatScreen.prototype.init = function() {
 	    FB.ui({
 	    method: 'share',
 	    display: 'popup',
-	    href: 'https://wisteria-life-build2.appspot.com',
+	    href: 'https://wisteria-life-build3.appspot.com',
 	    }, function(response){});
-	}
-
+	};
 };
 
 DefeatScreen.prototype.hide = function() {
 
 };
+
+DefeatScreen.prototype.share = function() {
+
+}
+
+DefeatScreen.prototype.replay = function() {
+
+}
 
 module.exports = DefeatScreen;

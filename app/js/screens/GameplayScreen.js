@@ -104,7 +104,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
                 if (this.gameLogicManager.isDead()){
                     this.gameManager.screenManager.switchScreens('defeat', this.levelNumber);
                 }
-                else{
+                else {
                     this.gameManager.screenManager.switchScreens('victory', this.levelNumber);
                 }
             }
