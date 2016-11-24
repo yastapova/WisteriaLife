@@ -313,7 +313,7 @@ PixiCanvas.prototype.respondToMouseMove = function () {
     var ghost = manager.GHOST;
     // var blank = gameManager.gameLogicManager.BLANK;
     var grid = manager.ghostGrid;
-    manager.clearGrid(grid);
+    manager.clearGhostGrid();
     // gameManager.gameLogicManager.placeShape(this.prevGhostRow, this.prevGhostCol, blank, null, grid);
     manager.placeShape(clickRow, clickCol, ghost, null, grid);
 

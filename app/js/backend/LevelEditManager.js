@@ -209,7 +209,7 @@ LevelEditManager.prototype.placeDefenses = function() {
     }
 }
 
-LevelEditManager.prototype.clearGrid = function(grid) {
+LevelEditManager.prototype.clearGhostGrid = function() {
     for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
         this.ghostGrid[i] = this.BLANK;
     }
