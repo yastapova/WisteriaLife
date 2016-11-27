@@ -510,8 +510,8 @@ GameLogicManager.prototype.placeDefenses = function() {
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.OBJECTIVE,
                         shape, this.defenseGrid);
-        this.defensesLeft += 4; // assumes that they are towers
-        // TODO: change this if we allow other shapes
+        shape = shape.pixelsArray;
+        this.defensesLeft += shape.length/2;
     }
 }
 
