@@ -31,7 +31,8 @@ router.get('/ad/:level(\\d+)', function(req, res, next) {
 router.get('/defeat/:level(\\d+)', function(req, res, next) {
     res.render('defeat', {
         title: 'Defeat',
-        level: Number.parseInt(req.params.level)
+        level: Number.parseInt(req.params.level),
+        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
     });
 });
 

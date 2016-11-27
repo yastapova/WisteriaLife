@@ -106,7 +106,14 @@ LevelManager.prototype.loadLevel = function (id, setLevel) {
 
 LevelManager.prototype.loadUserLevels = function (levels, callback) {
 
-    // TODO
+    var customLevels = firebase.database()
+                        .ref('/customLevels/')
+                        .once('value', findUserLevels);
+
+
+    userLevels = userLevels.once('value', function (snapshot) {
+        console.log(snapshot.val());
+    })
 }
 
 /**
