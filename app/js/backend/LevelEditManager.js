@@ -10,7 +10,7 @@ var LevelEditManager = function(levelSize) {
 	this.MESSAGE_TIME_DIFFERENCE = 4; // minimum time between messages
 	this.messages = {};      // {time : String}
 	this.defenses = [];        // [{name : String, coordinates : {x : int, y : int}}]
-	this.enemySpawns = {};     // {time : int, shapes :  [{name : String, coordinates : {x : int, y : int}}]}
+	this.enemySpawns = {};     // {time : int, shapes : [{name : String, coordinates : {x : int, y : int}}]}
 	this.totalTime = 60;       // default total level time
 	this.currentTime = 0;      // default current time
 	this.allowedShapes = null; // {name : quantity}
@@ -205,6 +205,15 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             shape = this.selectedUnit;
         }
     }
+    if(this.selectedFaction === this.BLANK && faction !== this.GHOST)
+    {
+        var y = clickRow;  // y coordinate
+        var x = clickCol;  // x coordinate
+        var deletedShape = this.deleteUnit(x, y);
+        shape = deletedShape.shape;
+        clickRow = deletedShape.coordinates.y;
+        clickCol = deletedShape.coordinates.x;
+    }
 
     // if no grid is specified, use the nonGhostGrid
     if(grid === null) {
@@ -244,8 +253,8 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         return;
     }
 
-    var y = clickRow + pixels[0];  // y coordinate
-    var x = clickCol + pixels[1];  // x coordinate
+    var y = clickRow;  // y coordinate
+    var x = clickCol;  // x coordinate
     var pixelMap = {};
     // place each pixel of the shape
     for (var i = 0; i < pixels.length; i += 2)
@@ -253,7 +262,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         var col = clickCol + pixels[i+1];
         var row = clickRow + pixels[i];
 
-        pixelMap[col + " " + row] = {"x" : x, "y" : y};
+        pixelMap[col + " " + row] = {"x" : clickCol, "y" : clickRow};
 
         this.setGridCell(grid, row, col, faction);
         this.setGridCell(this.renderGrid, row, col, faction);
@@ -269,13 +278,13 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         		// new array
         		this.enemySpawns[this.currentTime] = [{"name" : name,
     	    									 	   "coordinates" : {"x" : x,
-    	    												 	   "y" : y}}]
+    	    												 	        "y" : y}}]
         	}
         	else {
                 // add to array
         		this.enemySpawns[this.currentTime].push({"name" : name,
     	    									 	"coordinates" : {"x" : x,
-    	    												 	"y" : y}});
+    	    												 	     "y" : y}});
         	}
             var currentLookup = this.shapeLookupMap[this.currentTime];
             if(currentLookup === undefined) {
@@ -295,7 +304,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         	// add to defenses list
         	this.defenses.push({"name" : name,
     						 	"coordinates" : {"x" : x,
-    									 	"y" : y}});
+    									 	     "y" : y}});
             var currentLookup = this.shapeLookupMap[this.currentTime];
             if(currentLookup === undefined) {
                 // map
@@ -326,6 +335,42 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     //                      		this.renderGrid, this.renderGridOld, 
     //                      		this.colors);
 	this.renderGridCells();
+}
+
+LevelEditManager.prototype.deleteUnit = function(x, y) {
+    var timeSliceMap = this.shapeLookupMap[this.currentTime];
+    var coords = timeSliceMap[x + " " + y];
+    if(coords === undefined)
+        return;
+
+    var spawns = this.enemySpawns[this.currentTime];
+    var i;
+    var shape;
+    for(i = 0; i < spawns.length; i++) {
+        if(JSON.stringify(spawns[i].coordinates) === JSON.stringify(coords)) {
+            shape = spawns.splice(i,1)[0];
+            coords = shape.coordinates;
+            break;
+        }
+    }
+    if(shape === undefined) {
+        var spawns = this.defenses;
+        for(i = 0; i < spawns.length; i++) {
+            if(JSON.stringify(spawns[i].coordinates) === JSON.stringify(coords)) {
+                shape = spawns.splice(i,1)[0];
+                coords = shape.coordinates;
+                break;
+            }
+        }
+    }
+    
+    if(shape === undefined)
+        return undefined;
+
+    var gameManager = require('GameManager');
+    shape = gameManager.shapeManager.getShape(shape.name);
+
+    return {"shape" : shape, "coordinates" : coords};
 }
 
 /**
