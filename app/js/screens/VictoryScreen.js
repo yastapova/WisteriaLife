@@ -37,11 +37,11 @@ VictoryScreen.prototype.init = function() {
 
     if (!$.isNumeric(this.level)) {
         $('#level-back-button')
-            .attr('href', 'custom-private-levels')
+            .attr('href', '/custom-private-levels')
             .attr('data-region', '');
 
         $('#level-next-button')
-            .attr('href', 'custom-private-levels')
+            .attr('href', '/custom-private-levels')
             .attr('data-level', '');
     }
 };

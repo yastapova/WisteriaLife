@@ -36,6 +36,13 @@ PauseScreen.prototype.init = function() {
         gameManager.screenManager.switchScreens('tutorial', this.level);
     }.bind(this));
 
+
+    if (!$.isNumeric(this.level)) {
+        $('#level-back-button')
+            .attr('href', '/custom-private-levels')
+            .attr('data-region', '');
+    }
+
 };
 
 PauseScreen.prototype.hide = function() {

@@ -9,6 +9,7 @@ var Screen = require('./Screen');
   */
 var DefeatScreen = function (id, level) {
 	this.gameManager = require('GameManager');
+	this.level = level;
     Screen.call(this, id, true, level);
 };
 
@@ -32,6 +33,16 @@ DefeatScreen.prototype.init = function() {
 			$(this).attr("autoplay", "autoplay");
 		});
 	}
+
+	if (!$.isNumeric(this.level)) {
+        $('#level-back-button')
+            .attr('href', '/custom-private-levels')
+            .attr('data-region', '');
+
+        $('#level-next-button')
+            .attr('href', '/custom-private-levels')
+            .attr('data-level', '');
+    }
 };
 
 DefeatScreen.prototype.hide = function() {
