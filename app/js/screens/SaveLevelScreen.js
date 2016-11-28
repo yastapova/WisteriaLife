@@ -60,10 +60,7 @@ SaveLevelScreen.prototype.init = function() {
   	// Save the level to firebase  	
    	$('#save-button').on('click', this.saveLevel.bind(this));
     // Go back to Level Edit Screen
-    $('#cancel-button').on('click', function () {
-        var gameManager = require('GameManager');
-        gameManager.screenManager.hideScreen(this);
-    }.bind(this));
+    $('#cancel-button').on('click', this.cancelSaving.bind(this));
 
     // Output values for the ranges of the units
     $('#tower_num').on("change", function() {
@@ -136,12 +133,23 @@ SaveLevelScreen.prototype.saveLevel = function(){
 		}
 	}
 
-    if(this.level.defenseStructures.length < 1 ||
-       Object.keys(this.level.enemySpawns).length < 1 ||
-       this.level.allowedShapes.length < 1) {
-        alert("Need at least 1 of each to save:\n"
-            + this.level.defenseStructures.length + "/1 Defense Structures\n"
-            + Object.keys(this.level.enemySpawns).length + "/1 Enemy Spawn\n"
+    if(this.level.allowedShapes.length < 1 ||
+       this.levelMisc.title === undefined || 
+       this.levelMisc.title === "" ||
+       this.levelMisc.storyline === undefined ||
+       this.levelMisc.storyline === "")
+    {
+        var title = 1;
+        if(this.levelMisc.title === undefined || 
+           this.levelMisc.title === "")
+            title = 0;
+        var story = 1;
+        if(this.levelMisc.storyline === undefined || 
+           this.levelMisc.storyline === "")
+            story = 0;
+        alert("Must have all of the following to save:\n"
+            + title + "/1 Level Title\n"
+            + story + "/1 Level Story\n"
             + this.level.allowedShapes.length + "/1 Allowed Unit");
         return;
     }
@@ -175,6 +183,13 @@ SaveLevelScreen.prototype.saveLevel = function(){
 		this.gameManager.screenManager.switchScreens('private-custom-levels');
 	}
 };
+
+SaveLevelScreen.prototype.cancelSaving = function() {
+    var manager = this.gameManager.levelEditManager;
+    manager.levelTitle = this.levelMisc.title;
+    manager.levelStory = this.levelMisc.storyline;
+    this.gameManager.screenManager.hideScreen(this);
+}
 
 SaveLevelScreen.prototype.hide = function() {
 
