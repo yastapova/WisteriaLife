@@ -14,7 +14,8 @@ PrivateCustomLevelsScreen.prototype.init = function () {
 
     this.cards = $('#custom-level-cards');
     this.sampleCard = $('#sample-card');
-
+    console.error(this.gameManager.user.levels);
+    console.error(this.gameManager.user.levels);
     this.gameManager.levelManager.loadUserLevels(
         this.gameManager.user.levels,
         this.addCustomLevel.bind(this)

@@ -123,7 +123,12 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        	this.user = new User("Guest", null, user.uid);
 	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
                 this.userDropName.text("Guest");
-	        }
+	        }else{
+                // Check if user already has data
+                var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
+                  this.user.levels = snapshot.val().levels;
+                }.bind(this));
+            }
     		console.log(user);
     		// Splash changes
 	        $('#splash-logout').css('display','block');
@@ -282,7 +287,8 @@ GameManager.prototype.writeUserData = function () {
 	console.log("Writing data " + this.user.gameData);
 	firebase.database().ref('users/' + this.user.uid).set({
 	username: this.user.name,
-	gameData: this.user.gameData
+	gameData: this.user.gameData,
+    levels: this.user.levels
 	});
 };
 
