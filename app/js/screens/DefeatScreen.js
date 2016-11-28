@@ -40,7 +40,7 @@ DefeatScreen.prototype.init = function() {
             .attr('data-region', '');
 
         $('#level-next-button')
-            .attr('href', 'private-custom-levels')
+            .attr('href', '/private-custom-levels')
             .attr('data-level', '');
     }
     else if($.isNumeric(this.level)) {
