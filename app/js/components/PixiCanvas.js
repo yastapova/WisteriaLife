@@ -52,6 +52,7 @@ var PixiCanvas = function (element, size) {
     // this.renderer.view.addEventListener('touchstart', this.respondToMouseClick.bind(this));
     this.renderer.view.addEventListener('touchmove', this.respondToMouseMove.bind(this));
     this.renderer.view.addEventListener('touchend', this.respondToMouseClick.bind(this));
+    this.renderer.view.addEventListener('touchcancel', this.respondToTouchCancel.bind(this));
 }
 
 /**
@@ -292,10 +293,12 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
         $('#unit-' + unit + ' .item-count').text(
             gameManager.gameLogicManager.allowedShapesMap[unit]
         );
+        gameManager.gameLogicManager.clearGhostGrid();
     }
     else {
         var faction = gameManager.levelEditManager.selectedFaction;
         gameManager.levelEditManager.placeShape(clickRow, clickCol, faction, null, null);
+        gameManager.levelEditManager.clearGhostGrid();
     }
 
     this.render();
@@ -329,6 +332,17 @@ PixiCanvas.prototype.respondToMouseMove = function () {
     // this.prevGhostCol = clickCol;
     // this.prevGhostRow = clickRow;
     // this.render();
+}
+
+PixiCanvas.prototype.respondToTouchCancel = function() {
+    var manager;
+    if(gameManager.isGameplay) {
+        manager = gameManager.gameLogicManager;
+    }
+    else {
+        manager = gameManager.levelEditManager;
+    }
+    manager.clearGhostGrid();
 }
 
 PixiCanvas.prototype.getRelativeCoords = function (event) {

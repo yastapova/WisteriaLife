@@ -24,14 +24,17 @@ inherits(TutorialScreen, Screen);
 TutorialScreen.prototype.init = function() {
     console.log("Tutorial screen init called");
 
+    this.gameManager = require('GameManager');
+    this.gameLogicManager = this.gameManager.gameLogicManager;
+    this.gameLogicManager.paused = true;
+
     $('#tutorial-play').on('click', function () {
-        var gameManager = require('../backend/GameManager');
         var gameplayScreen = require('GameplayScreen');
 
-        gameManager.screenManager.hideScreen(this);
+        this.gameManager.screenManager.hideScreen(this);
 
-        if (gameManager.gameLogicManager.paused) {
-            gameManager.gameLogicManager.start();
+        if (this.gameManager.gameLogicManager.paused) {
+            this.gameManager.gameLogicManager.start();
 
             $(gameplayScreen).find('#playpause').attr('data-level', this.level);
             $(gameplayScreen).find('#playpause').find('i').removeClass('play').removeClass('mdi-play');
