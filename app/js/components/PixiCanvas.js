@@ -49,7 +49,10 @@ var PixiCanvas = function (element, size) {
     // canvas click event
     this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
     this.renderer.view.addEventListener('mousemove', this.respondToMouseMove.bind(this));
-    this.renderer.view.addEventListener('touchstart', this.respondToMouseClick.bind(this));
+    // this.renderer.view.addEventListener('touchstart', this.respondToMouseClick.bind(this));
+    this.renderer.view.addEventListener('touchmove', this.respondToMouseMove.bind(this), {passive:true});
+    this.renderer.view.addEventListener('touchend', this.respondToMouseClick.bind(this), {passive:true});
+    this.renderer.view.addEventListener('touchcancel', this.respondToTouchCancel.bind(this), {passive:true});
 }
 
 /**
@@ -290,17 +293,26 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
         $('#unit-' + unit + ' .item-count').text(
             gameManager.gameLogicManager.allowedShapesMap[unit]
         );
+        gameManager.gameLogicManager.clearGhostGrid();
     }
     else {
         var faction = gameManager.levelEditManager.selectedFaction;
         gameManager.levelEditManager.placeShape(clickRow, clickCol, faction, null, null);
+        gameManager.levelEditManager.clearGhostGrid();
     }
 
     this.render();
 };
 
 PixiCanvas.prototype.respondToMouseMove = function () {
-    var canvasCoords = this.getRelativeCoords(event);
+    // calculate coordinates
+    var canvasCoords;
+
+    // click or touch
+    if (event.changedTouches !== undefined)
+        canvasCoords = this.getRelativeTouchCoords(event);
+    else
+        canvasCoords = this.getRelativeCoords(event);
     var clickCol = Math.floor(canvasCoords.x/this.cellLength);
     var clickRow = Math.floor(canvasCoords.y/this.cellLength);
     var manager;
@@ -320,6 +332,17 @@ PixiCanvas.prototype.respondToMouseMove = function () {
     // this.prevGhostCol = clickCol;
     // this.prevGhostRow = clickRow;
     // this.render();
+}
+
+PixiCanvas.prototype.respondToTouchCancel = function() {
+    var manager;
+    if(gameManager.isGameplay) {
+        manager = gameManager.gameLogicManager;
+    }
+    else {
+        manager = gameManager.levelEditManager;
+    }
+    manager.clearGhostGrid();
 }
 
 PixiCanvas.prototype.getRelativeCoords = function (event) {

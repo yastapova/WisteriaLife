@@ -8,6 +8,7 @@ var Screen = require('./Screen');
   * construct a DefeatScreen obj with given id
   */
 var DefeatScreen = function (id, level) {
+	this.gameManager = require('GameManager');
     Screen.call(this, id, true, level);
 };
 

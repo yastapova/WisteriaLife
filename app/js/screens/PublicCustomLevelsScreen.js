@@ -1,5 +1,6 @@
 
 var Screen = require('./Screen');
+var firebase = require('firebase');
 
 var PublicCustomLevelsScreen = function (id, publicCustomLevelsMap) {
     this.publicCustomLevelsMap = publicCustomLevelsMap;
@@ -40,6 +41,17 @@ PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
         card.find('.level-sub').text(levels[level].author);
         card.find('.card-desc').text(levels[level].storyline);
         card.find('a').attr('data-level', level);
+
+        if (levels[level].img !== undefined) {
+            (function(card) {
+                firebase.storage()
+                .ref(levels[level].uid + '/' + level + '/' + levels[level].img)
+                .getDownloadURL()
+                .then(function (url) {
+                    card.find('img').attr('src', url);
+                });
+            })(card);
+        }
 
         this.cards.append(card);
     }
