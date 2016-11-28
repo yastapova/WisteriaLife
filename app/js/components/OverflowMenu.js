@@ -54,7 +54,7 @@ OverflowMenu.prototype = {
      * Handle mute button
      */
     handleMuteButton: function () {
-        this.gameManager.mute = true;
+        this.gameManager.handleMute();
     },
 
     /**

@@ -343,7 +343,13 @@ GameManager.prototype.loadFromServer = function() {};
 /**
  * Mute all sounds
  */
-GameManager.prototype.mute = function() {};
+GameManager.prototype.handleMute = function() {
+    this.mute = true;
+    $('audio').each(function() {
+        $(this).attr("preload", "none");
+        $(this).prop("muted", true);
+    });
+};
 
 /**
  * Return to the previous screen if eligible

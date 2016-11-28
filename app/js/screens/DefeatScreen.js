@@ -29,10 +29,10 @@ DefeatScreen.prototype.init = function() {
 	};
 
 	if(!this.gameManager.mute) {
-		$('audio').each(function() {
-			$(this).attr("autoplay", "autoplay");
-		});
-	}
+        $('audio').each(function() {
+            this.play();
+        });
+    }
 
 	if (!$.isNumeric(this.level)) {
         $('#level-back-button')
