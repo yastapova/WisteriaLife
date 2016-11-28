@@ -77,6 +77,8 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.nonGhostGrid = new Array(this.gridWidth * this.gridHeight);
     this.factionGrid = this.level.enemyZone.slice(0);
     this.enemySpawns = this.level.enemySpawns; // TODO: clone
+    if(this.enemySpawns === undefined)
+        this.enemySpawns = {};
     for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
     {
         this.ghostGrid[i] = this.BLANK;
@@ -125,9 +127,9 @@ LevelEditManager.prototype.changeCurrentTime = function(newTime) {
         this.nonGhostGrid[i] = this.BLANK;
     }
 
-    this.placeDefenses(this.defenses);
+    this.placeDefenses(this.defenses, false);
     var spawns = this.checkForSpawns();
-    this.spawnEnemies(spawns);
+    this.spawnEnemies(spawns, false);
 
     this.renderGridCells();
 }
@@ -165,7 +167,7 @@ LevelEditManager.prototype.checkForSpawns = function() {
  * @param {[{name : String, coordinates : {x : int, y : int}}, ...]}
  *       spawns List of spawns at a given time
  */
-LevelEditManager.prototype.spawnEnemies = function(spawns) {
+LevelEditManager.prototype.spawnEnemies = function(spawns, addToMaps) {
     if(typeof spawns === "undefined")
         return;
     var gameManager = require('GameManager');
@@ -177,7 +179,7 @@ LevelEditManager.prototype.spawnEnemies = function(spawns) {
         var coords = mob.coordinates;
         // get the shape to place
         shape = gameManager.shapeManager.getShape(shape);
-        this.placeShape(coords.y, coords.x, this.ENEMY, shape, null);
+        this.placeShape(coords.y, coords.x, this.ENEMY, shape, null, addToMaps);
     }
 }
 
@@ -189,7 +191,7 @@ LevelEditManager.prototype.spawnEnemies = function(spawns) {
  * @param {Shape} shape The shape to place
  * @param {int[]} grid Grid to place the shape on
  */
-LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid) {
+LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid, addToMaps) {
     // if no shape is specified, check if one is selected
     if(shape === null || shape === undefined) {
         if(this.selectedUnit === null || this.selectedUnit === undefined) {
@@ -209,6 +211,9 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     		grid = this.nonGhostGrid;
     	}
     }
+
+    if(addToMaps === undefined)
+        addToMaps = true;
     // get the pixels of the shape
     var pixels = shape.pixelsArray;
 
@@ -246,40 +251,42 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     }
 
     // add an enemy unit to the proper list
-    var name = shape.name;         // name of the shape to add
-	var y = clickRow + pixels[0];  // y coordinate
-	var x = clickCol + pixels[1];  // x coordinate
-    if(faction === this.ENEMY) {
-        // add to enemy list
-    	var currentSpawns = this.enemySpawns[this.currentTime];
-    	if(this.enemySpawns[this.currentTime] === undefined) {
-    		// new array
-    		this.enemySpawns[this.currentTime] = [{"name" : name,
-	    									 	   "coordinates" : {"x" : x,
-	    												 	   "y" : y}}]
-    	}
-    	else {
-            // add to array
-    		this.enemySpawns[this.currentTime].push({"name" : name,
-	    									 	"coordinates" : {"x" : x,
-	    												 	"y" : y}});
-    	}
-    }
-    else if(faction === this.OBJECTIVE) {
-    	// add to defenses list
-    	this.defenses.push({"name" : name,
-						 	"coordinates" : {"x" : x,
-									 	"y" : y}});
-    }
-    else if(faction === this.ENEMY_ZONE) {
-        // update the faction grid
-        // TODO fix
-    	this.setGridCell(this.factionGrid, y, x, this.ENEMY_ZONE);
-    }
-    else if(faction === this.FRIEND_ZONE) {
-        // update the faction grid
-        // TODO fix
-    	this.setGridCell(this.factionGrid, y, x, this.FRIEND_ZONE);
+    if(addToMaps) {
+        var name = shape.name;         // name of the shape to add
+    	var y = clickRow + pixels[0];  // y coordinate
+    	var x = clickCol + pixels[1];  // x coordinate
+        if(faction === this.ENEMY) {
+            // add to enemy list
+        	var currentSpawns = this.enemySpawns[this.currentTime];
+        	if(this.enemySpawns[this.currentTime] === undefined) {
+        		// new array
+        		this.enemySpawns[this.currentTime] = [{"name" : name,
+    	    									 	   "coordinates" : {"x" : x,
+    	    												 	   "y" : y}}]
+        	}
+        	else {
+                // add to array
+        		this.enemySpawns[this.currentTime].push({"name" : name,
+    	    									 	"coordinates" : {"x" : x,
+    	    												 	"y" : y}});
+        	}
+        }
+        else if(faction === this.OBJECTIVE) {
+        	// add to defenses list
+        	this.defenses.push({"name" : name,
+    						 	"coordinates" : {"x" : x,
+    									 	"y" : y}});
+        }
+        else if(faction === this.ENEMY_ZONE) {
+            // update the faction grid
+            // TODO fix
+        	this.setGridCell(this.factionGrid, y, x, this.ENEMY_ZONE);
+        }
+        else if(faction === this.FRIEND_ZONE) {
+            // update the faction grid
+            // TODO fix
+        	this.setGridCell(this.factionGrid, y, x, this.FRIEND_ZONE);
+        }
     }
 
     // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
@@ -291,7 +298,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
 /**
  * Place any defenses on the list of the level.
  */
-LevelEditManager.prototype.placeDefenses = function(defenses) {
+LevelEditManager.prototype.placeDefenses = function(defenses, addToMaps) {
     // check if there are existing defenses
     if(typeof defenses === "undefined")
         return;
@@ -303,7 +310,7 @@ LevelEditManager.prototype.placeDefenses = function(defenses) {
         var coords = defenses[i].coordinates;
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.OBJECTIVE,
-                        shape, this.nonGhostGrid);
+                        shape, this.nonGhostGrid, addToMaps);
     }
 }
 
