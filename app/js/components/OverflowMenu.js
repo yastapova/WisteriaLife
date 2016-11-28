@@ -6,6 +6,8 @@
  */
 var OverflowMenu = function (menu) {
 
+    this.gameManager = require('GameManager');
+
     // set dropdown event
     menu.activate.dropdown();
 
@@ -52,7 +54,7 @@ OverflowMenu.prototype = {
      * Handle mute button
      */
     handleMuteButton: function () {
-
+        this.gameManager.mute = true;
     },
 
     /**
