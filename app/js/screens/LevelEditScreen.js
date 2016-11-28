@@ -86,7 +86,7 @@ LevelEditScreen.prototype.init = function() {
     this.timeBar = $('#timeline input');
     this.timeBar.on('change', function () {
         self.setTimeDisplay($(this).val());
-        self.levelEditManager.currentTime = $(this).val();
+        self.levelEditManager.changeCurrentTime($(this).val());
     });
     this.timeBar.val(0);
 
@@ -107,6 +107,7 @@ LevelEditScreen.prototype.init = function() {
             self.levelEditManager.changeTotalTime($(this).val());
             $('#timeline input').attr('max', $(this).val());
             $('#level-total-time').attr('value', $(this).val());
+            self.setTimeDisplay($('#timeline input').val());
         }
     });
 

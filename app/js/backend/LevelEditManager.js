@@ -212,8 +212,10 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     else if(faction === this.ENEMY)
         zone = this.ENEMY_ZONE;
     // zones can be anywhere
-    else if(faction === this.ENEMY_ZONE || faction === this.FRIEND_ZONE)
+    else if(faction === this.ENEMY_ZONE || faction === this.FRIEND_ZONE) {
         zone = this.BLANK;
+        grid = this.factionGrid;
+    }
     // everything else can be anywhere
     else
     	zone = this.BLANK;
