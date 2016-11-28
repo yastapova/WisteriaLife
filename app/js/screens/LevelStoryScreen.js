@@ -25,7 +25,7 @@ LevelStoryScreen.prototype.init = function () {
     console.log("Level story Screen init called");
 
     // custom level?
-    if (Number.isInteger(this.level)) {
+    if ($.isNumeric(this.level)) {
         var levels = require('GameManager').levelManager.levels;
 
         $("#level-1-story-title").text(levels[this.level - 1].name);
