@@ -86,7 +86,8 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
     //                      		this.renderGrid, this.renderGridOld, 
     //                      		this.colors);
-	this.renderGridCells();
+	this.placeDefenses();
+    this.renderGridCells();
 
 }
 
@@ -112,6 +113,16 @@ LevelEditManager.prototype.changeTotalTime = function(newTime) {
 		this.totalTime = newTime;
 }
 
+LevelEditManager.prototype.changeCurrentTime = function(newTime) {
+    this.currentTime = newTime;
+    this.renderGrid = this.level.enemyZone.slice(0);
+    this.placeDefenses();
+    var spawns = this.checkForSpawns();
+    this.spawnEnemies(spawns);
+
+    this.renderGridCells();
+}
+
 /**
  * Deletes all messages and enemy spawns after a certain time.
  * @param {int} newTime Time after which to delete (seconds)
@@ -128,6 +139,37 @@ LevelEditManager.prototype.deleteAfter = function(newTime) {
 		if(spawns[i] > newTime)
 			delete this.enemySpawns[spawns[i]];
 	}
+}
+
+/**
+ * Checks if there are enemies that should spawn at this time.
+ * @return {[{name : String, coordinates : {x : int, y : int}}, ...]}
+ *       List of spawns at a given time
+ */
+LevelEditManager.prototype.checkForSpawns = function() {
+    var spawns = this.enemySpawns.get(this.currentTime);
+    return spawns;
+}
+
+/**
+ * Places each enemy spawn on the grid.
+ * @param {[{name : String, coordinates : {x : int, y : int}}, ...]}
+ *       spawns List of spawns at a given time
+ */
+LevelEditManager.prototype.spawnEnemies = function(spawns) {
+    if(typeof spawns === "undefined")
+        return;
+    var gameManager = require('GameManager');
+
+    // place each spawn
+    for(var i = 0; i < spawns.length; i++) {
+        var mob = spawns[i];
+        var shape = mob.name;
+        var coords = mob.coordinates;
+        // get the shape to place
+        shape = gameManager.shapeManager.getShape(shape);
+        this.placeShape(coords.y, coords.x, this.ENEMY, shape, null);
+    }
 }
 
 /**
