@@ -27,12 +27,22 @@ LevelSelectScreen.prototype.init = function() {
     console.log("Level select Screen init called");
     var levels = require('GameManager').levelManager.levels;
 
-    // TEMPORARY HARDCODE only - this.level should not exist here
-    this.level = 1;
+    this.cards = $('#level-cards');
+    this.sampleCard = $('#sample-card');
 
-    $("#region-1-level-1").text(levels[this.level - 1].name);
-    $("#region-1-level-1-img").attr("src", "/img/levels/" + levels[this.level - 1].img);
-    $("#region-1-level-1-storyline").text(levels[this.level - 1].storyline);
+    // add cards for each level
+    for (var i = (this.region - 1) * 10; i < this.region * 10; i++) {
+        var card = this.sampleCard.clone()
+                        .attr('id', 'level-' + (i + 1));
+
+        card.find('.level-num').text(i + 1);
+        card.find('.card-title span').text(levels[i].name);
+        card.find('.card-desc').text(levels[i].storyline);
+        card.find('a').attr('data-level', i + 1);
+        card.find('img').attr('src', '/img/levels/' + levels[i].img);
+
+        this.cards.append(card);
+    }
 };
 
 LevelSelectScreen.prototype.hide = function() {

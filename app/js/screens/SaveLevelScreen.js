@@ -185,6 +185,13 @@ SaveLevelScreen.prototype.saveLevel = function(){
 	}else{
 		this.gameManager.screenManager.switchScreens('private-custom-levels');
 	}
+
+    Materialize.toast(
+        'Custom level created/updated!',
+        4000,
+        'wisteria-toast'
+    );
+    return;
 };
 
 SaveLevelScreen.prototype.cancelSaving = function() {
