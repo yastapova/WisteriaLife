@@ -49,7 +49,9 @@ var PixiCanvas = function (element, size) {
     // canvas click event
     this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
     this.renderer.view.addEventListener('mousemove', this.respondToMouseMove.bind(this));
-    this.renderer.view.addEventListener('touchstart', this.respondToMouseClick.bind(this));
+    // this.renderer.view.addEventListener('touchstart', this.respondToMouseClick.bind(this));
+    this.renderer.view.addEventListener('touchmove', this.respondToMouseMove.bind(this));
+    this.renderer.view.addEventListener('touchend', this.respondToMouseClick.bind(this));
 }
 
 /**
@@ -300,7 +302,14 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
 };
 
 PixiCanvas.prototype.respondToMouseMove = function () {
-    var canvasCoords = this.getRelativeCoords(event);
+    // calculate coordinates
+    var canvasCoords;
+
+    // click or touch
+    if (event.changedTouches !== undefined)
+        canvasCoords = this.getRelativeTouchCoords(event);
+    else
+        canvasCoords = this.getRelativeCoords(event);
     var clickCol = Math.floor(canvasCoords.x/this.cellLength);
     var clickRow = Math.floor(canvasCoords.y/this.cellLength);
     var manager;
