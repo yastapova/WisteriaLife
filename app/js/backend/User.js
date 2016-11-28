@@ -15,7 +15,16 @@ var User = function(name, avatar, uid, levels) {
     this.uid = uid;
     this.gameData = new GameData();
 
-    this.levels = levels;
+    this.levels = levels ? levels : [];
+};
+
+User.prototype.addCustomLevel = function (levelId) {
+    for (var i = 0; i < this.levels.length; i++) {
+        if (this.levels[i] == levelId)
+            return;
+    }
+
+    this.levels[levelId] = levelId;
 };
 
 module.exports = User;

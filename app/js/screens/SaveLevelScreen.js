@@ -10,7 +10,7 @@ var Level = require('Level');
   * construct a SaveLevelScreen obj with given id
   */
 var SaveLevelScreen = function (id, level) {
-    console.log("save level screen constructor!");    
+    console.log("save level screen constructor!");
     this.gameManager = require('GameManager');
     this.level = level;
     this.level.custom = "true"; // yes, its a custom level
@@ -43,12 +43,12 @@ SaveLevelScreen.prototype.init = function() {
             $('#level_title').val(snapshot.val().title).focus();
             $("label[for^='level_storyline']").addClass("active");
             $('#level_storyline').val(snapshot.val().storyline).focus();
-            $("label[for^='level_title']").addClass("active");   
+            $("label[for^='level_title']").addClass("active");
         });
         // Update the range for all the allowed shapes
         for(var index in this.level.allowedShapes){
             $('#' + this.level.allowedShapes[index].shape +'_num').val(this.level.allowedShapes[index].quantity);
-        }        
+        }
     }
 
     // handle uploading image
@@ -57,7 +57,7 @@ SaveLevelScreen.prototype.init = function() {
     	$('#mediaCapture').click();
   	}.bind(this));
   	$('#mediaCapture').on('change', this.saveImage.bind(this));
-  	// Save the level to firebase  	
+  	// Save the level to firebase
    	$('#save-button').on('click', this.saveLevel.bind(this));
     // Go back to Level Edit Screen
     $('#cancel-button').on('click', this.cancelSaving.bind(this));
@@ -113,9 +113,9 @@ SaveLevelScreen.prototype.saveImage = function(event){
 };
 
 SaveLevelScreen.prototype.saveLevel = function(){
-	console.log("Save level called.");    
+	console.log("Save level called.");
 	// Save title, storyline, user id and user name to level misc
-	this.levelMisc.title = $('#level_title').val();	
+	this.levelMisc.title = $('#level_title').val();
 	this.levelMisc.storyline = $('#level_storyline').val();
     this.levelMisc.uid = this.gameManager.user.uid;
     this.levelMisc.author = this.gameManager.user.name;
@@ -134,17 +134,17 @@ SaveLevelScreen.prototype.saveLevel = function(){
 	}
 
     if(this.level.allowedShapes.length < 1 ||
-       this.levelMisc.title === undefined || 
+       this.levelMisc.title === undefined ||
        this.levelMisc.title === "" ||
        this.levelMisc.storyline === undefined ||
        this.levelMisc.storyline === "")
     {
         var title = 1;
-        if(this.levelMisc.title === undefined || 
+        if(this.levelMisc.title === undefined ||
            this.levelMisc.title === "")
             title = 0;
         var story = 1;
-        if(this.levelMisc.storyline === undefined || 
+        if(this.levelMisc.storyline === undefined ||
            this.levelMisc.storyline === "")
             story = 0;
         alert("Must have all of the following to save:\n"
@@ -170,14 +170,17 @@ SaveLevelScreen.prototype.saveLevel = function(){
 	firebase.database().ref('levels/' + this.level.id).set(this.level);
     firebase.database().ref('customLevels/' + this.level.id).set(this.levelMisc);
 
-    // Upload the image to Firebase Storage 
+    // add level to user
+    this.gameManager.user.addCustomLevel(this.level.id);
+
+    // Upload the image to Firebase Storage
     if(this.imgFile !== null){
-    firebase.storage().ref(this.level.id + "/" + this.imgFile.name)
+    firebase.storage().ref(this.gameManager.user.uid + '/' + this.level.id + "/" + this.imgFile.name)
       .put(this.imgFile, {contentType: this.imgFile.type});
     }
 
 	// Switch screen to public or private
-	if(this.levelMisc.public === 1){ 
+	if(this.levelMisc.public === 1){
 		this.gameManager.screenManager.switchScreens('public-custom-levels');
 	}else{
 		this.gameManager.screenManager.switchScreens('private-custom-levels');
@@ -189,7 +192,7 @@ SaveLevelScreen.prototype.cancelSaving = function() {
     manager.levelTitle = this.levelMisc.title;
     manager.levelStory = this.levelMisc.storyline;
     this.gameManager.screenManager.hideScreen(this);
-}
+};
 
 SaveLevelScreen.prototype.hide = function() {
 

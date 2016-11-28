@@ -3,7 +3,8 @@ var Screen = require('./Screen');
 
 var VictoryScreen = function (id, level) {
     this.gameManager = require('GameManager');
-    Screen.call(this, id, true, level);    
+    this.level = level;
+    Screen.call(this, id, true, level);
 };
 
 inherits(VictoryScreen, Screen);
@@ -26,13 +27,40 @@ VictoryScreen.prototype.init = function() {
 	    this.gameManager.userLevel.text("Level " + this.gameManager.user.gameData.currentLevel);
 	}else{
 		$('#victory-wistbux').text("0");
-	}	
+	}
 
 	if(!this.gameManager.mute) {
 		$('audio').each(function() {
 			$(this).attr("autoplay", "autoplay");
 		});
-	}   
+	}
+
+    if (!$.isNumeric(this.level)) {
+        $('#level-back-button')
+            .attr('href', '/private-custom-levels')
+            .attr('data-region', '');
+
+        $('#level-next-button')
+            .attr('href', '/private-custom-levels')
+            .attr('data-level', '');
+    }
+    else if($.isNumeric(this.level)) {
+    	var region = 0;
+    	if(this.level < 11) {
+    		region = 1;
+    	}
+    	else if(10 < this.level < 21) {
+    		region = 2;
+    	}
+    	else if(20 < this.level < 31) {
+    		region = 3;
+    	}
+    	else {
+    		region = 4;
+    	}
+     	$('#level-back-button')
+            .attr('data-region', region);
+    }
 };
 
 VictoryScreen.prototype.hide = function() {

@@ -23,7 +23,7 @@ router.get('/about', function(req, res, next) {
 router.get('/ad/:level', function(req, res, next) {
     res.render('ad', {
         title: 'Ad',
-        level: req.params.level
+        level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level
     });
 });
 
@@ -31,8 +31,8 @@ router.get('/ad/:level', function(req, res, next) {
 router.get('/defeat/:level', function(req, res, next) {
     res.render('defeat', {
         title: 'Defeat',
-        level: req.params.level,
-        region: Number.isInteger(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
+        level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level,
+        region:  !isNaN(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
     });
 });
 
@@ -40,7 +40,7 @@ router.get('/defeat/:level', function(req, res, next) {
 router.get('/gameplay/:level', function(req, res, next) {
     res.render('gameplay', {
         title: 'Gameplay',
-        level: req.params.level
+        level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level
     });
 });
 
@@ -54,7 +54,7 @@ router.get('/level-editor', function(req, res, next) {
 router.get('/level-editor/:level', function(req, res, next) {
     res.render('level-editor', {
         title: 'Level Editor',
-        level: req.params.level
+        level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level
     });
 });
 
@@ -62,8 +62,8 @@ router.get('/level-editor/:level', function(req, res, next) {
 router.get('/level-story/:level', function(req, res, next) {
     res.render('level-story', {
         title: 'Level Story',
-        level: req.params.level,
-        region: Number.isInteger(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
+        level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level,
+        region:  !isNaN(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
     });
 });
 
@@ -86,8 +86,8 @@ router.get('/map', function(req, res, next) {
 router.get('/pause/:level', function(req, res, next) {
     res.render('pause', {
         title: 'Pause',
-        level: req.params.level,
-        region: Number.isInteger(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
+        level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level,
+        region:  !isNaN(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
     });
 });
 
@@ -115,7 +115,7 @@ router.get('/save-level', function(req, res, next) {
 router.get('/save-level/:level', function(req, res, next) {
     res.render('save-level', {
         title: 'Save Level',
-        level: req.params.level
+        level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level
     });
 });
 
@@ -130,7 +130,7 @@ router.get('/store', function(req, res, next) {
 router.get('/tutorial/:level', function(req, res, next) {
     res.render('tutorial', {
         title: 'Tutorial',
-        level: req.params.level
+        level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level
     });
 });
 
@@ -138,8 +138,8 @@ router.get('/tutorial/:level', function(req, res, next) {
 router.get('/victory/:level', function(req, res, next) {
     res.render('victory', {
         title: 'Victory',
-        level: req.params.level,
-        region: Number.isInteger(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
+        level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level,
+        region: !isNaN(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
     });
 });
 

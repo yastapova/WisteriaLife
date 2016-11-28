@@ -9,6 +9,7 @@ var gameManager = require('../backend/GameManager');
  */
 var GamePlayScreen = function (id, levelNumber) {
     this.levelNumber = levelNumber;
+    this.id = id;
 
     this.gameManager = require('GameManager');
     this.gameManager.isGameplay = true;
@@ -77,8 +78,28 @@ GamePlayScreen.prototype.setLevel = function (level) {
     // play pause button event
     var self = this;
     $('#playpause').click(function () {
-        // Play on start handled by TutorialScreen
-        self.gameLogicManager.pause();
+        // Play on start handled by TutorialScreen if level number < 11
+        // Check if level number is greater than 10 or if it has a level id instead
+        // if so, then do everything in TutorialScreen here
+        if(this.levelNumber > 10 || this.id != null) {
+            if (self.gameLogicManager.paused) {
+                self.gameLogicManager.start();
+
+                if(this.id != null) {
+                    $('#playpause').attr('data-level', this.id);
+                }
+                else {
+                    $('#playpause').attr('data-level', this.level);
+                }
+                $('#playpause').find('i').removeClass('play').removeClass('mdi-play');
+                $('#playpause').find('i').addClass('pause').addClass('mdi-pause');
+                $('#playpause').attr('href', '/pause');
+                return false;
+            }
+            else {
+                self.gameLogicManager.pause();
+            } 
+        }
     });
 
     // cheat button event
@@ -148,8 +169,8 @@ GamePlayScreen.prototype.setLevel = function (level) {
 GamePlayScreen.prototype.init = function () {
     console.log("Gameplay screen init called");
 
-    // don't bother showing tutorial after the first two levels
-    if (this.levelNumber < 3)
+    // don't bother showing tutorial after the first ten levels
+    if (this.levelNumber < 11)
         this.gameManager.screenManager.switchScreens('tutorial', this.levelNumber);
 
     $('select').material_select();
