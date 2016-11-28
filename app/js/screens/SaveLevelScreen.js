@@ -172,7 +172,7 @@ SaveLevelScreen.prototype.saveLevel = function(){
 
     // Upload the image to Firebase Storage 
     if(this.imgFile !== null){
-    firebase.storage().ref(this.gameManager.user.uid + '/' + this.level.id + "/" + this.imgFile.name)
+    firebase.storage().ref(this.level.id + "/" + this.imgFile.name)
       .put(this.imgFile, {contentType: this.imgFile.type});
     }
 
