@@ -12,13 +12,14 @@ inherits(PrivateCustomLevelsScreen, Screen);
 PrivateCustomLevelsScreen.prototype.init = function () {
     this.gameManager = require('GameManager');
 
+    this.cards = $('#custom-level-cards');
+    this.sampleCard = $('#sample-card');
+
     this.gameManager.levelManager.loadUserLevels(
         this.gameManager.user.levels,
         this.addCustomLevel.bind(this)
     );
 
-    this.cards = $('#custom-level-cards');
-    this.sampleCard = $('#sample-card');
 
     // test deleting levels
     $('#delete-custom-level').on('click', this.deleteLevels);

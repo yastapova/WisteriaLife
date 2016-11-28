@@ -125,7 +125,22 @@ LevelManager.prototype.loadCustomLevel = function (id, callback) {
     this.customLevels.child(id).on('value', function (snapshot) {
         callback(snapshot.val());
     });
+}
 
+LevelManager.prototype.loadUserLevels = function (levels, callback) {
+
+    for (var level in levels) {
+        this.customLevels.child(levels[level]).on('value', function (snapshot) {
+            callback(snapshot.key, snapshot.val());
+        });
+    }
+}
+
+LevelManager.prototype.loadAllCustomLevels = function (callback) {
+
+    this.customLevels.on('value', function (snapshot) {
+        callback(snapshot.val());
+    })
 }
 
 /**
