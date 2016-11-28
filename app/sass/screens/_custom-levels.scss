@@ -26,6 +26,13 @@
     height: 1rem;
 }
 
+#sample-card {
+    display: none;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
 #delete-custom-level{
     background : transparent;
     border: none;

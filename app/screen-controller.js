@@ -20,27 +20,27 @@ router.get('/about', function(req, res, next) {
 });
 
 /* Ad. */
-router.get('/ad/:level(\\d+)', function(req, res, next) {
+router.get('/ad/:level', function(req, res, next) {
     res.render('ad', {
         title: 'Ad',
-        level: Number.parseInt(req.params.level)
+        level: req.params.level
     });
 });
 
 /* Defeat. */
-router.get('/defeat/:level(\\d+)', function(req, res, next) {
+router.get('/defeat/:level', function(req, res, next) {
     res.render('defeat', {
         title: 'Defeat',
-        level: Number.parseInt(req.params.level),
-        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
+        level: req.params.level,
+        region: Number.isInteger(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
     });
 });
 
 /* Gameplay.- Level Number */
-router.get('/gameplay/:level(\\d+)', function(req, res, next) {
+router.get('/gameplay/:level', function(req, res, next) {
     res.render('gameplay', {
         title: 'Gameplay',
-        level: Number.parseInt(req.params.level)
+        level: req.params.level
     });
 });
 
@@ -59,11 +59,11 @@ router.get('/level-editor/:level', function(req, res, next) {
 });
 
 /* Level Story. */
-router.get('/level-story/:level(\\d+)', function(req, res, next) {
+router.get('/level-story/:level', function(req, res, next) {
     res.render('level-story', {
         title: 'Level Story',
-        level: Number.parseInt(req.params.level),
-        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
+        level: req.params.level,
+        region: Number.isInteger(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
     });
 });
 
@@ -71,7 +71,7 @@ router.get('/level-story/:level(\\d+)', function(req, res, next) {
 router.get('/level-select/:region(\\d+)', function(req, res, next) {
     res.render('level-select', {
         title: 'Level Select',
-        region: Number.parseInt(req.params.region)
+        region: req.params.region
     });
 });
 
@@ -83,11 +83,11 @@ router.get('/map', function(req, res, next) {
 });
 
 /* Pause. */
-router.get('/pause/:level(\\d+)', function(req, res, next) {
+router.get('/pause/:level', function(req, res, next) {
     res.render('pause', {
         title: 'Pause',
-        level: Number.parseInt(req.params.level),
-        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
+        level: req.params.level,
+        region: Number.isInteger(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
     });
 });
 
@@ -127,19 +127,19 @@ router.get('/store', function(req, res, next) {
 });
 
 /* Tutorial. */
-router.get('/tutorial/:level(\\d+)', function(req, res, next) {
+router.get('/tutorial/:level', function(req, res, next) {
     res.render('tutorial', {
         title: 'Tutorial',
-        level: Number.parseInt(req.params.level)
+        level: req.params.level
     });
 });
 
 /* Victory. */
-router.get('/victory/:level(\\d+)', function(req, res, next) {
+router.get('/victory/:level', function(req, res, next) {
     res.render('victory', {
         title: 'Victory',
-        level: Number.parseInt(req.params.level),
-        region: Math.floor(Number.parseInt(req.params.level)/10) + 1
+        level: req.params.level,
+        region: Number.isInteger(req.params.level) ? Math.floor(req.params.level/10) + 1 : 'custom'
     });
 });
 

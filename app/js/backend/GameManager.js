@@ -156,7 +156,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        	// Guest wants to log in
 	        }else if(this.user !== undefined && this.user.name === "Guest"){
 	        	var currentGameData = this.user.gameData;
-	        	this.user = new User(user.displayName, user.photoURL, user.uid);
+	        	this.user = new User(user.displayName, user.photoURL, user.uid, []);
 	        	this.user.gameData = currentGameData;
 	        	this.userLevel.text = 'Level ' + this.user.gameData.currentLevel;
 	        	this.writeUserData();
@@ -273,19 +273,19 @@ GameManager.prototype.writeUserData = function () {
  * Callback for reading user data from firebase
  */
 GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
-	this.user = new User(user.displayName, user.photoURL, user.uid);
+	this.user = new User(user.displayName, user.photoURL, user.uid, snapshot.levels);
 	if(exists){
 		console.log("I exist!");
-		this.user.gameData = snapshot.gameData;   
+		this.user.gameData = snapshot.gameData;
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
-        this.userName.text(this.user.name);   
+        this.userName.text(this.user.name);
 	}else{
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
         this.userName.text(this.user.name);
 		this.writeUserData();
-	}    
+	}
 };
 
 /**

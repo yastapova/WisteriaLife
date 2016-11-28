@@ -3,6 +3,7 @@ var firebase = require('firebase');
 
 var PrivateCustomLevelsScreen = function (id) {
     this.gameManager = require('GameManager');
+    this.levels = [];
     Screen.call(this, id);
 };
 
@@ -10,10 +11,15 @@ inherits(PrivateCustomLevelsScreen, Screen);
 
 PrivateCustomLevelsScreen.prototype.init = function () {
     this.gameManager = require('GameManager');
+
     this.gameManager.levelManager.loadUserLevels(
         this.gameManager.user.levels,
-        this.setCustomLevels.bind(this)
+        this.addCustomLevel.bind(this)
     );
+
+    this.cards = $('#custom-level-cards');
+    this.sampleCard = $('#sample-card');
+
     // test deleting levels
     $('#delete-custom-level').on('click', this.deleteLevels);
 };
@@ -43,10 +49,24 @@ PrivateCustomLevelsScreen.prototype.deleteLevels = function(){
 
 /**
  * Callback from loading custom levels
- * @param {[type]} levels [description]
+ *
+ * Adds ONE custom level (different call per level, order not preserved)
  */
-PrivateCustomLevelsScreen.prototype.setCustomLevels = function (levels) {
+PrivateCustomLevelsScreen.prototype.addCustomLevel = function (id, level) {
     console.log("Private custom levels Screen init called");
+    this.levels.push(level);
+
+    var card = this.sampleCard.clone()
+                    .attr('id', 'custom-level-' + id);
+
+    card.find('.card-title').text(level.title);
+    card.find('.card-desc').text(level.storyline);
+    card.find('a').attr('data-level', id);
+    card.find('input').attr('id',  'level-select-' + id);
+    card.find('label').attr('for', 'level-select-' + id);
+
+    this.cards.append(card);
+
 
 };
 

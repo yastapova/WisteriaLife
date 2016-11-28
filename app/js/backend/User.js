@@ -9,13 +9,13 @@
 
 var GameData = require('./GameData');
 
-var User = function(name, avatar, uid) {
+var User = function(name, avatar, uid, levels) {
     this.name = name;
     this.avatar = avatar;
     this.uid = uid;
     this.gameData = new GameData();
 
-    this.levels = [];
+    this.levels = levels;
 };
 
 module.exports = User;

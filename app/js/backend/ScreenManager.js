@@ -97,6 +97,7 @@ ScreenManager.prototype.setupInitScreen = function () {
     history.replaceState({screen: this.id, property: property}, '', '/' + screenSwitch +
         (property ? '/' + property : '' ));
 
+    // wait to init until user available
     this.screen.init(); // first screen doesn't need to load, just init
 
     $('#loading-overlay').fadeOut('fast');
