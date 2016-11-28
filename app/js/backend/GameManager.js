@@ -241,6 +241,15 @@ GameManager.prototype.logout = function() {
     if(this.user.name === "Guest"){
         // delete guest from database
         var userId = firebase.auth().currentUser.uid;
+        var levels = firebase.database().ref("/users/" + userId + "/levels/");
+        // NOT SURE IF THIS WORKS
+        for(var key in levels.keys){
+            // delete from 2 locations: customLevels, levels
+            firebase.database().ref('/customLevels/' + key).remove();
+            firebase.database().ref('/levels/' + key).remove();                
+            // delete img from storage if it exists
+            firebase.storage().ref(key).delete();
+        }
         firebase.database().ref('/users/' + userId).remove();
     }
     // Sign out of Firebase.
