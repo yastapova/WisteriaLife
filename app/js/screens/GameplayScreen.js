@@ -13,7 +13,6 @@ var GamePlayScreen = function (id, levelNumber) {
     this.gameManager = require('GameManager');
     this.gameManager.isGameplay = true;
     this.gameLogicManager = this.gameManager.gameLogicManager;
-    this.gameLogicManager.paused = true;
 
     Screen.call(this, id, false, levelNumber);
 };
