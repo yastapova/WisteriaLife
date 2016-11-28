@@ -14,6 +14,7 @@ var LevelEditManager = function(levelSize) {
 	this.totalTime = 60;       // default total level time
 	this.currentTime = 0;      // default current time
 	this.allowedShapes = null; // {name : quantity}
+    this.shapeLookupMap = {};
 
 	this.factionGrid = [];     // enemy and friendly zones
 	this.nonGhostGrid = [];    // everything underneath ghost
@@ -243,11 +244,16 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         return;
     }
 
+    var y = clickRow + pixels[0];  // y coordinate
+    var x = clickCol + pixels[1];  // x coordinate
+    var pixelMap = {};
     // place each pixel of the shape
     for (var i = 0; i < pixels.length; i += 2)
     {
         var col = clickCol + pixels[i+1];
         var row = clickRow + pixels[i];
+
+        pixelMap[col + " " + row] = {"x" : x, "y" : y};
 
         this.setGridCell(grid, row, col, faction);
         this.setGridCell(this.renderGrid, row, col, faction);
@@ -256,8 +262,6 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     // add an enemy unit to the proper list
     if(addToMaps) {
         var name = shape.name;         // name of the shape to add
-    	var y = clickRow + pixels[0];  // y coordinate
-    	var x = clickCol + pixels[1];  // x coordinate
         if(faction === this.ENEMY) {
             // add to enemy list
         	var currentSpawns = this.enemySpawns[this.currentTime];
@@ -273,12 +277,38 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     	    									 	"coordinates" : {"x" : x,
     	    												 	"y" : y}});
         	}
+            var currentLookup = this.shapeLookupMap[this.currentTime];
+            if(currentLookup === undefined) {
+                // map
+                this.shapeLookupMap[this.currentTime] = pixelMap;
+            }
+            else {
+                // add to map
+                var pixelMapKeys = Object.keys(pixelMap);
+                for(var i = 0; i < pixelMapKeys.length; i++) {
+                    var key = pixelMapKeys[i];
+                    this.shapeLookupMap[this.currentTime][key] = pixelMap[key];
+                }
+            }
         }
         else if(faction === this.OBJECTIVE) {
         	// add to defenses list
         	this.defenses.push({"name" : name,
     						 	"coordinates" : {"x" : x,
     									 	"y" : y}});
+            var currentLookup = this.shapeLookupMap[this.currentTime];
+            if(currentLookup === undefined) {
+                // map
+                this.shapeLookupMap[this.currentTime] = pixelMap;
+            }
+            else {
+                // add to map
+                var pixelMapKeys = Object.keys(pixelMap);
+                for(var i = 0; i < pixelMapKeys.length; i++) {
+                    var key = pixelMapKeys[i];
+                    this.shapeLookupMap[this.currentTime][key] = pixelMap[key];
+                }
+            }
         }
         else if(faction === this.ENEMY_ZONE) {
             // update the faction grid
