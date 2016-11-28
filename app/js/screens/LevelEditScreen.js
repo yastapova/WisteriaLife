@@ -138,6 +138,11 @@ LevelEditScreen.prototype.init = function() {
         console.log(this.gameManager.levelEditManager.selectedFaction);
     }.bind(this));
 
+    $('#backspace-button button').click(function () {
+        this.gameManager.levelEditManager.selectedFaction = this.gameManager.levelEditManager.BLANK;
+        this.gameManager.levelEditManager.selectedUnit = this.gameManager.shapeManager.getShape("void");
+    }.bind(this));
+
     // user confirms resize, clear and resize
     $('.resize-select button').click(function () {
         $('#editor-canvas').empty();
