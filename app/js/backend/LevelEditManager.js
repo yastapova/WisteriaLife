@@ -8,7 +8,7 @@ var LevelEditManager = function(levelSize) {
 	this.canvas = null;        // PixiCanvas that renders everything
 
 	this.MESSAGE_TIME_DIFFERENCE = 4; // minimum time between messages
-	this.messageMap = {};      // {time : String}
+	this.messages = {};      // {time : String}
 	this.defenses = [];        // [{name : String, coordinates : {x : int, y : int}}]
 	this.enemySpawns = {};     // {time : int, shapes :  [{name : String, coordinates : {x : int, y : int}}]}
 	this.totalTime = 60;       // default total level time
@@ -57,7 +57,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
 
-    this.messageMap = {}; // TODO: change to Map() objects?
+    this.messages = {}; // TODO: change to Map() objects?
 
     this.defenses = this.level.defenseStructures; // TODO: clone
     if(this.defenses === undefined)
@@ -76,7 +76,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
     this.nonGhostGrid = new Array(this.gridWidth * this.gridHeight);
     this.factionGrid = this.level.enemyZone.slice(0);
-    this.enemySpawns = this.level.enemySpawnsMap; // TODO: clone
+    this.enemySpawns = this.level.enemySpawns; // TODO: clone
     for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
     {
         this.ghostGrid[i] = this.BLANK;
@@ -97,7 +97,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
  * @param {String} msg Message to display
  */
 LevelEditManager.prototype.addMessage = function(time, msg) {
-	this.messageMap[time] = msg;
+	this.messages[time] = msg;
 }
 
 /**
@@ -128,12 +128,12 @@ LevelEditManager.prototype.changeCurrentTime = function(newTime) {
  * @param {int} newTime Time after which to delete (seconds)
  */
 LevelEditManager.prototype.deleteAfter = function(newTime) {
-	var msgs = Object.keys(this.messageMap);
+	var msgs = Object.keys(this.messages);
 	var spawns = Object.keys(this.enemySpawns);
 
 	for(var i = 0; i < msgs.length; i++) {
 		if(msgs[i] > newTime)
-			delete this.messageMap[msgs[i]];
+			delete this.messages[msgs[i]];
 	}
 	for(var i = 0; i < spawns.length; i++) {
 		if(spawns[i] > newTime)
@@ -244,20 +244,20 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     	if(this.enemySpawns[this.currentTime] === undefined) {
     		// new array
     		this.enemySpawns[this.currentTime] = [{"name" : name,
-	    									 	   "coords" : {"x" : x,
+	    									 	   "coordinates" : {"x" : x,
 	    												 	   "y" : y}}]
     	}
     	else {
             // add to array
     		this.enemySpawns[this.currentTime].push({"name" : name,
-	    									 	"coords" : {"x" : x,
+	    									 	"coordinates" : {"x" : x,
 	    												 	"y" : y}});
     	}
     }
     else if(faction === this.OBJECTIVE) {
     	// add to defenses list
     	this.defenses.push({"name" : name,
-						 	"coords" : {"x" : x,
+						 	"coordinates" : {"x" : x,
 									 	"y" : y}});
     }
     else if(faction === this.ENEMY_ZONE) {

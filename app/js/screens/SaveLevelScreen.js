@@ -22,8 +22,9 @@ var SaveLevelScreen = function (id, level) {
     var manager = this.gameManager.levelEditManager;
     this.level.time = manager.totalTime;
     this.level.enemyZone = manager.factionGrid;
-    this.level.enemySpawnMap = manager.enemySpawns;
+    this.level.enemySpawns = manager.enemySpawns;
     this.level.defenseStructures = manager.defenses;
+    this.level.messages = manager.messages;
     Screen.call(this, id, true);
 };
 
@@ -105,6 +106,7 @@ SaveLevelScreen.prototype.saveLevel = function(){
 	this.levelMisc.storyline = $('#level_storyline').val();
     this.levelMisc.uid = this.gameManager.user.uid;
     this.levelMisc.author = this.gameManager.user.name;
+    this.levelMisc.dateCreated = Date.now();
 	// Save allowed units into level allowed shapes
 	this.level.allowedShapes = [];
 	var saveAllyUnits = $('#save_ally_units :input');

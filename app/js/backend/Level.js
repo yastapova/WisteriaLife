@@ -10,21 +10,21 @@ var Level = function(levelAttrObj) {
     this.enemyZone = levelAttrObj.enemyZone;
     this.allowedShapes = levelAttrObj.allowedShapes;
     this.defenseStructures = levelAttrObj.defenseStructures;
-    this.messageMap = new Map();
-    this.enemySpawnsMap = new Map();
+    this.messages = new Map();
+    this.enemySpawns = new Map();
     this.convertToMessageMap(levelAttrObj.messages);
     this.convertToEnemySpawnMap(levelAttrObj.enemySpawns);
     this.custom = levelAttrObj.custom;
 };
 
 /**
- * Initializes the messageMap from the messages array in the shapeAtrrObj
+ * Initializes the messages from the messages array in the shapeAtrrObj
  * @param messages the messages object with time and message attributes
  */
 Level.prototype.convertToMessageMap = function (messages) {
     if (!messages) return;
 	for(var i = 0; i < messages.length; i++){
-        this.messageMap.set(messages[i].time, messages[i].message);
+        this.messages.set(messages[i].time, messages[i].message);
     }
 };
 
@@ -35,7 +35,7 @@ Level.prototype.convertToMessageMap = function (messages) {
 Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
     if (!enemySpawns) return;
 	for(var i = 0; i < enemySpawns.length; i++){
-        this.enemySpawnsMap.set(enemySpawns[i].time, enemySpawns[i].shapes);
+        this.enemySpawns.set(enemySpawns[i].time, enemySpawns[i].shapes);
     }
 };
 
