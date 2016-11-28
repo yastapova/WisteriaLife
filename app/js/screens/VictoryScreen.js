@@ -26,7 +26,13 @@ VictoryScreen.prototype.init = function() {
 	    this.gameManager.userLevel.text("Level " + this.gameManager.user.gameData.currentLevel);
 	}else{
 		$('#victory-wistbux').text("0");
-	}	   
+	}	
+
+	if(!this.gameManager.mute) {
+		$('audio').each(function() {
+			$(this).attr("autoplay", "autoplay");
+		});
+	}   
 };
 
 VictoryScreen.prototype.hide = function() {

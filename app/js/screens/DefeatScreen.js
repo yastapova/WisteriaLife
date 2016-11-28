@@ -25,6 +25,12 @@ DefeatScreen.prototype.init = function() {
 	    href: 'https://wisteria-life-build3.appspot.com',
 	    }, function(response){});
 	};
+
+	if(!this.gameManager.mute) {
+		$('audio').each(function() {
+			$(this).attr("autoplay", "autoplay");
+		});
+	}
 };
 
 DefeatScreen.prototype.hide = function() {
