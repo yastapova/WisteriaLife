@@ -24,14 +24,20 @@ inherits(LevelStoryScreen, Screen);
 LevelStoryScreen.prototype.init = function () {
     console.log("Level story Screen init called");
 
-    var levels = require('GameManager').levelManager.levels;
+    // custom level?
+    if ($.isNumeric(this.level)) {
+        var levels = require('GameManager').levelManager.levels;
 
-    // this screen has no way of knowing the region
-    // First level of second region should be level 11, not level 1 of region 2
-    // get rid of regions map, just have a levels array
-    $("#level-1-story-title").text(levels[this.level - 1].name);
-    $("#level-1-story-storyline").text(levels[this.level - 1].storyline);
-    $("#level-story-number-display").text(this.level);
+        $("#level-1-story-title").text(levels[this.level - 1].name);
+        $("#level-1-story-storyline").text(levels[this.level - 1].storyline);
+        $("#level-story-number-display").text(this.level);
+    } else {
+        require('GameManager').levelManager.loadCustomLevel(this.level, function (level) {
+            $("#level-1-story-title").text(level.title);
+            $("#level-1-story-storyline").text(level.storyline);
+            $("#level-story-number-display").text(" by " + level.author);
+        });
+    }
 };
 
 LevelStoryScreen.prototype.hide = function () {

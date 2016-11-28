@@ -35,6 +35,22 @@ inherits(SaveLevelScreen, Screen);
  */
 SaveLevelScreen.prototype.init = function() {
     console.log("Save levels screen init called");
+    // Check to see if editing an old level
+    if(this.level.allowedShapes){
+        console.log("Found old data.");
+        var levelRef = firebase.database().ref('/customLevels/' + this.level.id).once('value').then(function(snapshot) {
+            var temp = snapshot.val();
+            $('#level_title').val(snapshot.val().title).focus();
+            $("label[for^='level_storyline']").addClass("active");
+            $('#level_storyline').val(snapshot.val().storyline).focus();
+            $("label[for^='level_title']").addClass("active");   
+        });
+        // Update the range for all the allowed shapes
+        for(var index in this.level.allowedShapes){
+            $('#' + this.level.allowedShapes[index].shape +'_num').val(this.level.allowedShapes[index].quantity);
+        }        
+    }
+
     // handle uploading image
     // Events for image upload.
   	$('#upload-image').on('click', function() {
@@ -118,7 +134,18 @@ SaveLevelScreen.prototype.saveLevel = function(){
 					quantity : saveAllyUnits[i].value - '0'
 				});
 		}
-	}		
+	}
+
+    if(this.level.defenseStructures.length < 1 ||
+       Object.keys(this.level.enemySpawns).length < 1 ||
+       this.level.allowedShapes.length < 1) {
+        alert("Need at least 1 of each to save:\n"
+            + this.level.defenseStructures.length + "/1 Defense Structures\n"
+            + Object.keys(this.level.enemySpawns).length + "/1 Enemy Spawn\n"
+            + this.level.allowedShapes.length + "/1 Allowed Unit");
+        return;
+    }
+
 	// Get unique level id from fb if a new level, add unique id to user levels "array"
     if(this.level.id == "41" || this.level.id == "42" || this.level.id == "43"){
 	   this.level.id = firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().key;

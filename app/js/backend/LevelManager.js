@@ -27,6 +27,8 @@ var LevelManager = function() {
  */
 LevelManager.prototype.load = function (callback) {
     this.loadRegions(callback);
+
+    this.customLevels = firebase.database().ref('/customLevels/');
 };
 
 // Loads the regions from firebase
@@ -106,13 +108,24 @@ LevelManager.prototype.loadLevel = function (id, setLevel) {
 
 LevelManager.prototype.loadUserLevels = function (levels, callback) {
 
-    var customLevels = firebase.database().ref('/customLevels/');
-
     for (var level in levels) {
-        customLevels.child(levels[level]).on('value', function (snapshot) {
-            callback(level, snapshot.val());
+        this.customLevels.child(levels[level]).on('value', function (snapshot) {
+            callback(snapshot.key, snapshot.val());
         });
     }
+}
+
+/**
+ * Load details (story, name) about a specific custom level
+ * @param  {[type]}   id       [description]
+ * @param  {Function} callback [description]
+ * @return {[type]}            [description]
+ */
+LevelManager.prototype.loadCustomLevel = function (id, callback) {
+    this.customLevels.child(id).on('value', function (snapshot) {
+        callback(snapshot.val());
+    });
+
 }
 
 /**
@@ -139,15 +152,6 @@ LevelManager.prototype.initPublicCustomLevelsMap = function () {
 		// console.log("loading from data regions.json");
 		// this.loadJSONDataRegion(data);
 	// }.bind(this));
-};
-
-/**
- * Load a custom level with given id
- * @param  id integer denoting the id of the level
- * @return the level object with the given id
- */
-LevelManager.prototype.loadCustomLevel = function(id) {
-
 };
 
 module.exports = LevelManager;
