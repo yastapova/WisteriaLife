@@ -592,38 +592,6 @@ GameLogicManager.prototype.resume = function() {
 }
 
 /**
- * Reset the game and its variables.
- */
-GameLogicManager.prototype.reset = function() {
-    // reset all grids
-    this.battleGrid = new Array(this.gridWidth * this.gridHeight);
-    this.battleGridNew = new Array(this.gridWidth * this.gridHeight);
-    this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
-    this.renderGrid = new Array(this.gridWidth * this.gridHeight);
-    this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
-    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
-
-    for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
-        this.renderGrid[i] = this.BLANK;
-        this.renderGridOld[i] = this.BLANK;
-        this.battleGrid[i] = this.BLANK;
-        this.battleGridNew[i] = this.BLANK;
-        this.defenseGrid[i] = this.BLANK;
-        this.ghostGrid[i] = this.BLANK;
-    }
-
-    this.paused = true;
-    this.currentUnit = null;
-    this.defensesLeft = 0;
-
-    this.placeDefenses();
-    // render the cleared screen
-    this.renderGridCells(this.gridHeight, this.gridWidth,
-                         this.renderGrid, this.renderGridOld,
-                         this.colors);
-}
-
-/**
  * Clears the ghostGrid.
  */
 GameLogicManager.prototype.clearGhostGrid = function() {

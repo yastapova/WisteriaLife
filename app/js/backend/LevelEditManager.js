@@ -91,37 +91,6 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
 }
 
 /**
- * Resets the LevelEditManager to blank starting point.
- */
-LevelEditManager.prototype.reset = function() {
-	// this.renderGrid = this.level.enemyZone.slice(0);
- //    this.factionGrid = this.level.enemyZone.slice(0);
- //    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
- //    this.nonGhostGrid = new Array(this.gridWidth * this.gridHeight);
- //    for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
- //    {
- //        this.ghostGrid[i] = this.BLANK;
- //    	this.nonGhostGrid[i] = this.BLANK;
- //    }
- //    this.defenses = this.level.defenseStructures; // TODO: clone
- //    if(this.defenses === undefined)
- //        this.defenses = []; // if empty, just make it an empty array
-
- //    this.enemySpawns = this.level.enemySpawnsMap; // TODO: clone
- //    this.totalTime = 60;
- //    this.currentTime = 0;
- //    this.allowedShapes = {};
- //    var allowed = this.level.allowedShapes;
- //    if (!allowed) allowed = [];
- //    for(var i = 0; i < allowed.length; i++) {
- //        this.allowedShapes[allowed[i].shape] = allowed[i].quantity;
- //    }
-
- //    this.messageMap = {};
-    this.setLevel(this.level, this.canvas);
-}
-
-/**
  * Adds a message to the level at the given time.
  * @param {int} time Time that the message will display
  * @param {String} msg Message to display
