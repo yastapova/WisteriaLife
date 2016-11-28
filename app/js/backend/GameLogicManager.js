@@ -214,9 +214,9 @@ GameLogicManager.prototype.start = function () {
  * displays the message as a toast.
  */
 GameLogicManager.prototype.checkMessage = function () {
-    if (this.level.messageMap.has(this.level.time)) {
+    if (this.level.messages.has(this.level.time)) {
         Materialize.toast(
-            this.level.messageMap.get(this.level.time),
+            this.level.messages.get(this.level.time),
             4000,
             'wisteria-toast'
         );
@@ -522,7 +522,7 @@ GameLogicManager.prototype.placeDefenses = function() {
  */
 GameLogicManager.prototype.checkForSpawns = function() {
     var time = this.level.time;
-    var spawns = this.level.enemySpawnsMap.get(time);
+    var spawns = this.level.enemySpawns.get(time);
     return spawns;
 }
 

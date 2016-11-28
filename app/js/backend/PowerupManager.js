@@ -135,8 +135,8 @@ PowerupManager.prototype.useReduceTimePowerup = function(level) {
  */
 PowerupManager.prototype.useStopSpawnPowerup = function(level) {
 	for(var currentTime = level.time; currentTime > 0; currentTime--){
-		if(level.enemySpawnsMap.has(currentTime)){
-			level.enemySpawnsMap.delete(currentTime);
+		if(level.enemySpawns.has(currentTime)){
+			level.enemySpawns.delete(currentTime);
 			return;
 		}
 	}
