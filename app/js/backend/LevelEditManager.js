@@ -86,7 +86,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
     //                      		this.renderGrid, this.renderGridOld, 
     //                      		this.colors);
-	this.placeDefenses();
+	this.placeDefenses(this.level.defenseStructures);
     this.renderGridCells();
 
 }
@@ -115,8 +115,17 @@ LevelEditManager.prototype.changeTotalTime = function(newTime) {
 
 LevelEditManager.prototype.changeCurrentTime = function(newTime) {
     this.currentTime = newTime;
-    this.renderGrid = this.level.enemyZone.slice(0);
-    this.placeDefenses();
+    this.renderGridOld = new Array(this.gridWidth * this.gridHeight);
+    this.renderGrid = this.factionGrid.slice(0);
+    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
+    this.nonGhostGrid = new Array(this.gridWidth * this.gridHeight);
+    for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
+    {
+        this.ghostGrid[i] = this.BLANK;
+        this.nonGhostGrid[i] = this.BLANK;
+    }
+
+    this.placeDefenses(this.defenses);
     var spawns = this.checkForSpawns();
     this.spawnEnemies(spawns);
 
@@ -282,9 +291,8 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
 /**
  * Place any defenses on the list of the level.
  */
-LevelEditManager.prototype.placeDefenses = function() {
+LevelEditManager.prototype.placeDefenses = function(defenses) {
     // check if there are existing defenses
-    var defenses = this.level.defenseStructures;
     if(typeof defenses === "undefined")
         return;
     var gameManager = require('GameManager');
