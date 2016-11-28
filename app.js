@@ -9,7 +9,6 @@
  *
  * A few minimal changes will be needed to have this actually work.
  *
- * TODO for Build 3
  */
 // var GameData = require('./app/js/backend/GameData');
 // var GameLogicManager = require('./app/js/backend/GameLogicManager');

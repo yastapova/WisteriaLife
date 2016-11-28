@@ -85,9 +85,9 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
         this.ghostGrid[i] = this.BLANK;
     	this.nonGhostGrid[i] = this.BLANK;
     }
-    
-    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
-    //                      		this.renderGrid, this.renderGridOld, 
+
+    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth,
+    //                      		this.renderGrid, this.renderGridOld,
     //                      		this.colors);
 	this.placeDefenses(this.level.defenseStructures);
     this.renderGridCells();
@@ -250,6 +250,11 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     // make sure that we're trying to place the shape in the proper zone
     if(zone !== this.BLANK &&
        this.getGridCell(this.factionGrid, clickRow, clickCol) !== zone) {
+	   Materialize.toast(
+	        'Invalid zone for placement!',
+	        4000,
+	        'wisteria-error-toast'
+   	    );
         return;
     }
 
@@ -331,8 +336,8 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         }
     }
 
-    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
-    //                      		this.renderGrid, this.renderGridOld, 
+    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth,
+    //                      		this.renderGrid, this.renderGridOld,
     //                      		this.colors);
 	this.renderGridCells();
 }
@@ -421,8 +426,8 @@ LevelEditManager.prototype.clearGhostGrid = function() {
         }
     }
 
-    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth, 
-    //                      		this.renderGrid, this.renderGridOld, 
+    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth,
+    //                      		this.renderGrid, this.renderGridOld,
     //                      		this.colors);
 	this.renderGridCells();
 }
