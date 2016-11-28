@@ -124,9 +124,10 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
                 this.userDropName.text("Guest");
 	        }else{
-                // Check if user already has data
+                // Check if guest already has data
                 var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
-                  this.user.levels = snapshot.val().levels;
+                  var exists = (snapshot.val() !== null);
+                  this.guestExistsCallback(user, exists, snapshot.val());
                 }.bind(this));
             }
     		console.log(user);
@@ -310,6 +311,26 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
 		this.writeUserData();
 	}
 };
+
+/**
+ * Callback for reading user data from firebase
+ */
+GameManager.prototype.guestExistsCallback = function (user, exists, snapshot) {
+    this.user = new User(user.displayName, user.photoURL, user.uid, snapshot.levels);
+    if(exists){
+        console.log("I exist!");
+        this.user.gameData = snapshot.gameData;
+        this.userWistbux.text(this.user.gameData.wistbux);
+        this.userLevel.text('Level ' + this.user.gameData.currentLevel);
+        this.userName.text(this.user.name);
+    }else{
+        this.userWistbux.text(this.user.gameData.wistbux);
+        this.userLevel.text('Level ' + this.user.gameData.currentLevel);
+        this.userName.text(this.user.name);
+        this.writeUserData();
+    }
+};
+
 
 /**
  * Guest login modal
