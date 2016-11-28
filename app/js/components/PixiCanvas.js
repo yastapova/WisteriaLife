@@ -50,9 +50,9 @@ var PixiCanvas = function (element, size) {
     this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
     this.renderer.view.addEventListener('mousemove', this.respondToMouseMove.bind(this));
     // this.renderer.view.addEventListener('touchstart', this.respondToMouseClick.bind(this));
-    this.renderer.view.addEventListener('touchmove', this.respondToMouseMove.bind(this));
-    this.renderer.view.addEventListener('touchend', this.respondToMouseClick.bind(this));
-    this.renderer.view.addEventListener('touchcancel', this.respondToTouchCancel.bind(this));
+    this.renderer.view.addEventListener('touchmove', this.respondToMouseMove.bind(this), {passive:true});
+    this.renderer.view.addEventListener('touchend', this.respondToMouseClick.bind(this), {passive:true});
+    this.renderer.view.addEventListener('touchcancel', this.respondToTouchCancel.bind(this), {passive:true});
 }
 
 /**
