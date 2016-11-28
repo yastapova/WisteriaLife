@@ -192,7 +192,7 @@ SaveLevelScreen.prototype.cancelSaving = function() {
     manager.levelTitle = this.levelMisc.title;
     manager.levelStory = this.levelMisc.storyline;
     this.gameManager.screenManager.hideScreen(this);
-}
+};
 
 SaveLevelScreen.prototype.hide = function() {
 
