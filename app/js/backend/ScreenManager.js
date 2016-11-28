@@ -98,7 +98,17 @@ ScreenManager.prototype.setupInitScreen = function () {
         (property ? '/' + property : '' ));
 
     // wait to init until user available
-    this.screen.init(); // first screen doesn't need to load, just init
+    if (current !== 'splash') {
+        var gameManager = require('GameManager');
+        var userCheck = setTimeout(function () {
+            if (gameManager.user) {
+                clearTimeout(userCheck);
+                this.screen.init(); // first screen doesn't need to load, just init
+            }
+        }.bind(this), 250);
+    } else {
+        this.screen.init();
+    }
 
     $('#loading-overlay').fadeOut('fast');
 }
