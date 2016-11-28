@@ -134,7 +134,18 @@ SaveLevelScreen.prototype.saveLevel = function(){
 					quantity : saveAllyUnits[i].value - '0'
 				});
 		}
-	}		
+	}
+
+    if(this.level.defenseStructures.length < 1 ||
+       Object.keys(this.level.enemySpawns).length < 1 ||
+       this.level.allowedShapes.length < 1) {
+        alert("Need at least 1 of each to save:\n"
+            + this.level.defenseStructures.length + "/1 Defense Structures\n"
+            + Object.keys(this.level.enemySpawns).length + "/1 Enemy Spawn\n"
+            + this.level.allowedShapes.length + "/1 Allowed Unit");
+        return;
+    }
+
 	// Get unique level id from fb if a new level, add unique id to user levels "array"
     if(this.level.id == "41" || this.level.id == "42" || this.level.id == "43"){
 	   this.level.id = firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().key;
