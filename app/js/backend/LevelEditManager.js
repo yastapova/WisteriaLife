@@ -113,10 +113,13 @@ LevelEditManager.prototype.changeTotalTime = function(newTime) {
 	}
 	if(newTime <= 300 && newTime >= 30)
 		this.totalTime = newTime;
+    if(newTime <= this.currentTime) {
+        this.changeCurrentTime(newTime);
+    }
 }
 
 LevelEditManager.prototype.changeCurrentTime = function(newTime) {
-    this.currentTime = newTime;
+    this.currentTime = newTime - 0;
     this.renderGridOld = new Array(this.gridWidth * this.gridHeight);
     this.renderGrid = this.factionGrid.slice(0);
     this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
@@ -158,7 +161,7 @@ LevelEditManager.prototype.deleteAfter = function(newTime) {
  *       List of spawns at a given time
  */
 LevelEditManager.prototype.checkForSpawns = function() {
-    var spawns = this.enemySpawns.get(this.currentTime);
+    var spawns = this.enemySpawns[this.currentTime];
     return spawns;
 }
 
