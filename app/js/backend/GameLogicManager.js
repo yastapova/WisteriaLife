@@ -679,8 +679,8 @@ GameLogicManager.prototype.determineCellType = function(row, col) {
     else if ((row === (this.gridHeight-1)) && (col === (this.gridHeight-1)))  return this.BOTTOM_RIGHT;
     else if (row === 0)                                                       return this.TOP;
     else if (col === 0)                                                       return this.LEFT;
-    else if (row === (this.gridHeight-1))                                     return this.RIGHT;
-    else if (col === (this.gridWidth-1))                                      return this.BOTTOM;
+    else if (row === (this.gridHeight-1))                                     return this.BOTTOM;
+    else if (col === (this.gridWidth-1))                                      return this.RIGHT;
     else                                                                      return this.CENTER;
 }
 
