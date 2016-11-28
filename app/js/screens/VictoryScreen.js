@@ -31,7 +31,7 @@ VictoryScreen.prototype.init = function() {
 
 	if(!this.gameManager.mute) {
 		$('audio').each(function() {
-			$(this).attr("autoplay", "autoplay");
+			this.play();
 		});
 	}
 
