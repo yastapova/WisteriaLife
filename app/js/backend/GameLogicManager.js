@@ -510,8 +510,8 @@ GameLogicManager.prototype.placeDefenses = function() {
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.OBJECTIVE,
                         shape, this.defenseGrid);
-        this.defensesLeft += 4; // assumes that they are towers
-        // TODO: change this if we allow other shapes
+        shape = shape.pixelsArray;
+        this.defensesLeft += shape.length/2;
     }
 }
 
@@ -589,38 +589,6 @@ GameLogicManager.prototype.pause = function() {
  */
 GameLogicManager.prototype.resume = function() {
     this.paused = false;
-}
-
-/**
- * Reset the game and its variables.
- */
-GameLogicManager.prototype.reset = function() {
-    // reset all grids
-    this.battleGrid = new Array(this.gridWidth * this.gridHeight);
-    this.battleGridNew = new Array(this.gridWidth * this.gridHeight);
-    this.renderGridOld =  new Array(this.gridWidth * this.gridHeight);
-    this.renderGrid = new Array(this.gridWidth * this.gridHeight);
-    this.defenseGrid = new Array(this.gridWidth * this.gridHeight);
-    this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
-
-    for(var i = 0; i < (this.gridWidth*this.gridHeight); i++) {
-        this.renderGrid[i] = this.BLANK;
-        this.renderGridOld[i] = this.BLANK;
-        this.battleGrid[i] = this.BLANK;
-        this.battleGridNew[i] = this.BLANK;
-        this.defenseGrid[i] = this.BLANK;
-        this.ghostGrid[i] = this.BLANK;
-    }
-
-    this.paused = true;
-    this.currentUnit = null;
-    this.defensesLeft = 0;
-
-    this.placeDefenses();
-    // render the cleared screen
-    this.renderGridCells(this.gridHeight, this.gridWidth,
-                         this.renderGrid, this.renderGridOld,
-                         this.colors);
 }
 
 /**
@@ -711,8 +679,8 @@ GameLogicManager.prototype.determineCellType = function(row, col) {
     else if ((row === (this.gridHeight-1)) && (col === (this.gridHeight-1)))  return this.BOTTOM_RIGHT;
     else if (row === 0)                                                       return this.TOP;
     else if (col === 0)                                                       return this.LEFT;
-    else if (row === (this.gridHeight-1))                                     return this.RIGHT;
-    else if (col === (this.gridWidth-1))                                      return this.BOTTOM;
+    else if (row === (this.gridHeight-1))                                     return this.BOTTOM;
+    else if (col === (this.gridWidth-1))                                      return this.RIGHT;
     else                                                                      return this.CENTER;
 }
 
