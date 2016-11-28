@@ -15,6 +15,9 @@ PrivateCustomLevelsScreen.prototype.init = function () {
     this.cards = $('#custom-level-cards');
     this.sampleCard = $('#sample-card');
 
+    this.imageStorage = firebase.storage()
+        .ref(firebase.auth().currentUser.uid);
+
     this.gameManager.levelManager.loadUserLevels(
         this.gameManager.user.levels,
         this.addCustomLevel.bind(this)
@@ -65,6 +68,13 @@ PrivateCustomLevelsScreen.prototype.addCustomLevel = function (id, level) {
     card.find('a').attr('data-level', id);
     card.find('input').attr('id',  'level-select-' + id);
     card.find('label').attr('for', 'level-select-' + id);
+
+    if (level.img !== undefined) 
+        this.imageStorage.child(id + '/' + level.img)
+            .getDownloadURL()
+            .then(function (url) {
+                card.find('img').attr('src', url);
+            });
 
     this.cards.append(card);
 
