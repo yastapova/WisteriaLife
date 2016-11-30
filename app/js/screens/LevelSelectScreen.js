@@ -48,7 +48,8 @@ LevelSelectScreen.prototype.init = function() {
         card.find('a').attr('data-level', i + 1);
         card.find('img').attr('src', '/img/levels/' + levels[i].img);
 
-        if (user.gameData.currentLevel < i + 1)
+        // allowed levels are [1, currentLevel + 1]
+        if (user.gameData.currentLevel < i)
             card.addClass('card-locked');
 
         this.cards.append(card);

@@ -18,7 +18,7 @@ VictoryScreen.prototype.init = function() {
 	    href: 'https://wisteria-life-build3.appspot.com',
 	    }, function(response){});
 	};
-	if(this.gameManager.user.gameData.currentLevel <= this.gameManager.gameLogicManager.level.id){
+	if(this.gameManager.user.gameData.currentLevel < this.gameManager.gameLogicManager.level.id){
 		$('#victory-wistbux').text(this.gameManager.gameLogicManager.level.getWistbux());
 		this.gameManager.user.gameData.currentLevel++;
 	    this.gameManager.user.gameData.wistbux += this.gameManager.gameLogicManager.level.getWistbux();
