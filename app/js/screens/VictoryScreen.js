@@ -63,10 +63,6 @@ VictoryScreen.prototype.init = function() {
     }
 };
 
-VictoryScreen.prototype.hide = function() {
-
-};
-
 VictoryScreen.prototype.share = function() {
 
 }

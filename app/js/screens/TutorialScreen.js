@@ -49,8 +49,4 @@ TutorialScreen.prototype.init = function() {
 
 };
 
-TutorialScreen.prototype.hide = function() {
-
-};
-
 module.exports = TutorialScreen;

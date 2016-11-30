@@ -66,10 +66,6 @@ PauseScreen.prototype.init = function() {
 
 };
 
-PauseScreen.prototype.hide = function() {
-
-};
-
 PauseScreen.prototype.replay = function() {
 
 };

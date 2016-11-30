@@ -56,10 +56,6 @@ LevelSelectScreen.prototype.init = function() {
     }
 };
 
-LevelSelectScreen.prototype.hide = function() {
-
-};
-
 LevelSelectScreen.prototype.loadAvailableLevels = function() {
 
 };

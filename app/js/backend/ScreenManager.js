@@ -195,7 +195,7 @@ ScreenManager.prototype.back = function () {
 /**
  * Check if navigation to a screen is legal
  * @param  {Screen}  screen Screen being switched to
- * @return {Boolean}        whether or not its legal
+ * @return {Boolean/String} whether or not its legal or an error message
  */
 ScreenManager.prototype.isLegal = function (screen) {
     return screen.isLegal(this.gameManager.user);

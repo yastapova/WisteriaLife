@@ -40,8 +40,4 @@ LevelStoryScreen.prototype.init = function () {
     }
 };
 
-LevelStoryScreen.prototype.hide = function () {
-
-};
-
 module.exports = LevelStoryScreen;

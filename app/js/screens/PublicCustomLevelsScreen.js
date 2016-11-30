@@ -22,10 +22,6 @@ PublicCustomLevelsScreen.prototype.init = function () {
 
 };
 
-PublicCustomLevelsScreen.prototype.hide = function () {
-
-};
-
 PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
 
     for (var level in levels) {

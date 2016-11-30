@@ -28,8 +28,4 @@ AdScreen.prototype.init = function() {
 
 };
 
-AdScreen.prototype.hide = function() {
-
-};
-
 module.exports = AdScreen;

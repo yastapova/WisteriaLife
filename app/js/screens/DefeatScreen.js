@@ -62,10 +62,6 @@ DefeatScreen.prototype.init = function() {
     }
 };
 
-DefeatScreen.prototype.hide = function() {
-
-};
-
 DefeatScreen.prototype.share = function() {
 
 }

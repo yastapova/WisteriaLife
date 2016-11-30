@@ -82,10 +82,6 @@ PrivateCustomLevelsScreen.prototype.addCustomLevel = function (id, level) {
 
 };
 
-PrivateCustomLevelsScreen.prototype.hide = function () {
-
-};
-
 PrivateCustomLevelsScreen.prototype.loadPrivateLevels = function () {
 
 };
