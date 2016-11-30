@@ -87,6 +87,10 @@ var ScreenManager = function () {
  * Game manager relies on screen manager
  */
 ScreenManager.prototype.setupInitScreen = function () {
+
+    // game manager doesn't exist during constructor call
+    this.gameManager = require('GameManager');
+
     // load and display the current screen
     var screenSwitch =  window.location.pathname.split(/\//)[1];
     var property = window.location.pathname.split(/\//)[2];
@@ -94,6 +98,16 @@ ScreenManager.prototype.setupInitScreen = function () {
     var current = screenSwitch == '' ? 'splash' : screenSwitch;
 
     this.screen = new this.screenMap[current](current, property);
+
+    // return could be true, false, or a string
+    var legal = this.isLegal(this.screen);
+    if (legal !== true) {
+        if (legal)
+            Materialize.toast(legal, 4000, 'wisteria-error-toast');
+
+        this.switchScreens('splash');
+        return;
+    }
 
     // set initial state (for going back later)
 
@@ -103,9 +117,8 @@ ScreenManager.prototype.setupInitScreen = function () {
     // wait to init until user available
     if (current !== 'splash') {
         this.loader.fadeIn();
-        var gameManager = require('GameManager');
         var userCheck = setTimeout(function () {
-            if (gameManager.user) {
+            if (this.gameManager.user) {
                 clearTimeout(userCheck);
                 this.screen.init(); // first screen doesn't need to load, just init
                 this.loader.fadeOut();
@@ -135,6 +148,17 @@ ScreenManager.prototype.switchScreens = function (screen, property) {
 
     // load and display the current screen
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, property);
+
+    // return could be true, false, or a string
+    var legal = this.isLegal(this.screen);
+    if (legal !== true) {
+        if (legal)
+            Materialize.toast(legal, 4000, 'wisteria-error-toast');
+
+        this.switchScreens('map');
+        return;
+    }
+
     this.screen.load();
 
     // stop timers if not an overlay
@@ -167,6 +191,15 @@ ScreenManager.prototype.back = function () {
 
     // TODO - restricting where the user can go back to
 };
+
+/**
+ * Check if navigation to a screen is legal
+ * @param  {Screen}  screen Screen being switched to
+ * @return {Boolean}        whether or not its legal
+ */
+ScreenManager.prototype.isLegal = function (screen) {
+    return screen.isLegal(this.gameManager.user);
+}
 
 // require all screens
 var Screen = require('../screens/Screen');

@@ -116,4 +116,15 @@ Screen.prototype.init = function () {
     throw this.id + " screen's init() method not implemented!";
 }
 
+/**
+ * Base method for checking if loading this screen is legal
+ * for the user
+ *
+ * @param  {User}  user User object
+ * @return {Boolean}    whether or not the user is allowed to navigate here
+ */
+Screen.prototype.isLegal = function (user) {
+    return true;
+}
+
 module.exports = Screen;

@@ -14,8 +14,6 @@ PrivateCustomLevelsScreen.prototype.init = function () {
 
     this.cards = $('#custom-level-cards');
     this.sampleCard = $('#sample-card');
-    console.error(this.gameManager.user);
-    console.error(this.gameManager.user.levels);
 
     this.imageStorage = firebase.storage()
         .ref(firebase.auth().currentUser.uid);
