@@ -76,6 +76,9 @@ var ScreenManager = function () {
             self.switchScreens(newScreen, property);
         }
     });
+
+    // loading indicator overlay
+    this.loader = $('#loading-overlay');
 };
 
 /**
@@ -99,14 +102,17 @@ ScreenManager.prototype.setupInitScreen = function () {
 
     // wait to init until user available
     if (current !== 'splash') {
+        this.loader.fadeIn();
         var gameManager = require('GameManager');
         var userCheck = setTimeout(function () {
             if (gameManager.user) {
                 clearTimeout(userCheck);
                 this.screen.init(); // first screen doesn't need to load, just init
+                this.loader.fadeOut();
             }
         }.bind(this), 250);
     } else {
+        // splash screen is a special case so just load it
         this.screen.init();
     }
 
