@@ -351,20 +351,24 @@ LevelEditManager.prototype.deleteUnit = function(x, y) {
     var spawns = this.enemySpawns[this.currentTime];
     var i;
     var shape;
-    for(i = 0; i < spawns.length; i++) {
-        if(JSON.stringify(spawns[i].coordinates) === JSON.stringify(coords)) {
-            shape = spawns.splice(i,1)[0];
-            coords = shape.coordinates;
-            break;
-        }
-    }
-    if(shape === undefined) {
-        var spawns = this.defenses;
+    if(spawns !== undefined) {
         for(i = 0; i < spawns.length; i++) {
             if(JSON.stringify(spawns[i].coordinates) === JSON.stringify(coords)) {
                 shape = spawns.splice(i,1)[0];
                 coords = shape.coordinates;
                 break;
+            }
+        }
+    }
+    if(shape === undefined) {
+        var spawns = this.defenses;
+        if(spawns !== undefined) {
+            for(i = 0; i < spawns.length; i++) {
+                if(JSON.stringify(spawns[i].coordinates) === JSON.stringify(coords)) {
+                    shape = spawns.splice(i,1)[0];
+                    coords = shape.coordinates;
+                    break;
+                }
             }
         }
     }
