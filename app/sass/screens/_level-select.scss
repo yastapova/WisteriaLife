@@ -27,7 +27,7 @@
     text-align:center;
 }
 
-#level-num-shape {
+.level-num-shape {
     background: $primary-color;
     height:50px;
     width:50px;
@@ -38,7 +38,7 @@
     float: left;
 }
 
-#level-num {
+.level-num {
     position:absolute;
     font-size:2em;
     top: 50%;
@@ -47,9 +47,21 @@
     color:white;
 }
 
-.wisteria-icons.lockedlevel {
-    margin-left:90%;
-    font-size:1.50rem;
+.locked-icon {
+    margin-left: 90%;
+    display: none; // display only on locked cards
+}
+
+.card-locked {
+    opacity: 0.6;
+
+    .locked-icon {
+        display: inline-block;
+    }
+
+    .play-button {
+        display: none;
+    }
 }
 
 #titles-fix {

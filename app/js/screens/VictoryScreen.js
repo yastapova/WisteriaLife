@@ -31,7 +31,7 @@ VictoryScreen.prototype.init = function() {
 
 	if(!this.gameManager.mute) {
 		$('audio').each(function() {
-			$(this).attr("autoplay", "autoplay");
+			this.play();
 		});
 	}
 
@@ -61,10 +61,6 @@ VictoryScreen.prototype.init = function() {
      	$('#level-back-button')
             .attr('data-region', region);
     }
-};
-
-VictoryScreen.prototype.hide = function() {
-
 };
 
 VictoryScreen.prototype.share = function() {

@@ -29,24 +29,37 @@ DefeatScreen.prototype.init = function() {
 	};
 
 	if(!this.gameManager.mute) {
-		$('audio').each(function() {
-			$(this).attr("autoplay", "autoplay");
-		});
-	}
+        $('audio').each(function() {
+            this.play();
+        });
+    }
 
 	if (!$.isNumeric(this.level)) {
         $('#level-back-button')
-            .attr('href', '/custom-private-levels')
+            .attr('href', '/private-custom-levels')
             .attr('data-region', '');
 
         $('#level-next-button')
-            .attr('href', '/custom-private-levels')
+            .attr('href', '/private-custom-levels')
             .attr('data-level', '');
     }
-};
-
-DefeatScreen.prototype.hide = function() {
-
+    else if($.isNumeric(this.level)) {
+    	var region = 0;
+    	if(this.level < 11) {
+    		region = 1;
+    	}
+    	else if(10 < this.level < 21) {
+    		region = 2;
+    	}
+    	else if(20 < this.level < 31) {
+    		region = 3;
+    	}
+    	else {
+    		region = 4;
+    	}
+     	$('#level-back-button')
+            .attr('data-region', region);
+    }
 };
 
 DefeatScreen.prototype.share = function() {

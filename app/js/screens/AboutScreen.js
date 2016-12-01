@@ -21,8 +21,4 @@ AboutScreen.prototype.init = function () {
     $('.collapsible').collapsible();
 };
 
-AboutScreen.prototype.hide = function () {
-
-};
-
 module.exports = AboutScreen;

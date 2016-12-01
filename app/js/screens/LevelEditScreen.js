@@ -8,13 +8,13 @@ var gameManager = require('../backend/GameManager');
  * @param {[type]} levelNumber Level number
  */
 var LevelEditScreen = function(id, level) {
-    this.level = null;
+    this.level = level ? level : 41;
 
     this.gameManager = require('GameManager');
     this.gameManager.isGameplay = false;
     this.levelEditManager = this.gameManager.levelEditManager;
 
-    Screen.call(this,id);
+    Screen.call(this, id, false, level);
 };
 
 inherits(LevelEditScreen, Screen);
@@ -77,7 +77,7 @@ LevelEditScreen.prototype.init = function() {
     // 41, 42, 43 are small, medium, large blank levels respectively
     // Saved levels will start from ID 44 onwards.
     // Default: 41
-    this.gameManager.levelManager.loadLevel(41, this.setLevel.bind(this));
+    this.gameManager.levelManager.loadLevel(this.level, this.setLevel.bind(this));
 
     var self = this;
 
@@ -222,10 +222,6 @@ LevelEditScreen.prototype.setTimeDisplay = function (seconds) {
     seconds = seconds % 60;
 
     this.timeDisplay.text(minutes + ':' + (seconds < 10 ? '0' : '') + seconds);
-};
-
-LevelEditScreen.prototype.hide = function() {
-
 };
 
 LevelEditScreen.prototype.placeShape = function(shape) {

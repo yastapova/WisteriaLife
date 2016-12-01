@@ -28,10 +28,6 @@ GameMapScreen.prototype.init = function () {
     this.loadRegionImages();
 };
 
-GameMapScreen.prototype.hide = function () {
-
-};
-
 GameMapScreen.prototype.loadRegionImages = function () {
 	var regionsMap = require('GameManager').levelManager.regionsMap;
 	// Reference to the /images/ storage path

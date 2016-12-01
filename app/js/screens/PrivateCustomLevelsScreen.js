@@ -14,6 +14,7 @@ PrivateCustomLevelsScreen.prototype.init = function () {
 
     this.cards = $('#custom-level-cards');
     this.sampleCard = $('#sample-card');
+    
     console.log(this.gameManager.user);
     console.log(this.gameManager.user.levels);
 
@@ -75,23 +76,20 @@ PrivateCustomLevelsScreen.prototype.addCustomLevel = function (id, level) {
 
     card.find('.card-title').text(level.title);
     card.find('.card-desc').text(level.storyline);
+    card.find('.card-icon img').attr('src', this.gameManager.user.avatar);
     card.find('a').attr('data-level', id);
     card.find('input').attr('id',  'level-select-' + id);
     card.find('label').attr('for', 'level-select-' + id);
 
-    if (level.img !== undefined) 
+    if (level.img !== undefined)
         this.imageStorage.child(id + '/' + level.img)
             .getDownloadURL()
             .then(function (url) {
-                card.find('img').attr('src', url);
+                card.find('.level-img').attr('src', url);
             });
 
     this.cards.append(card);
 
-
-};
-
-PrivateCustomLevelsScreen.prototype.hide = function () {
 
 };
 

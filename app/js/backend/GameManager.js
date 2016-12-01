@@ -130,7 +130,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
                   this.userExistsCallback(user, exists, snapshot.val());
                 }.bind(this));
             }
-    		console.log(user);
+            
     		// Splash changes
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
@@ -253,7 +253,7 @@ GameManager.prototype.logout = function() {
             for(var key in levels){
                 // delete from 2 locations: customLevels, levels
                 firebase.database().ref('/customLevels/' + levels[key]).remove();
-                firebase.database().ref('/levels/' + levels[key]).remove();                
+                firebase.database().ref('/levels/' + levels[key]).remove();
                 // delete img from storage if it exists
                 firebase.storage().ref(userId + "/"+ levels[key]).getDownloadURL().then(function(){console.log("Resolve");}, function(){console.log("Reject");});
             }
@@ -263,14 +263,14 @@ GameManager.prototype.logout = function() {
             this.screenManager.switchScreens('splash');
             this.user = undefined;
             this.userDropName.text("Guest");
-            }.bind(this));                
+            }.bind(this));
     }else{
         // Sign out of Firebase.
         firebase.auth().signOut();
         this.screenManager.switchScreens('splash');
         this.user = undefined;
         this.userDropName.text("Guest");
-    }    
+    }
 };
 
 /**
@@ -343,7 +343,13 @@ GameManager.prototype.loadFromServer = function() {};
 /**
  * Mute all sounds
  */
-GameManager.prototype.mute = function() {};
+GameManager.prototype.handleMute = function() {
+    this.mute = true;
+    $('audio').each(function() {
+        $(this).attr("preload", "none");
+        $(this).prop("muted", true);
+    });
+};
 
 /**
  * Return to the previous screen if eligible
