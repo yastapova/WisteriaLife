@@ -47,9 +47,21 @@
     color:white;
 }
 
-.wisteria-icons.lockedlevel {
-    margin-left:90%;
-    font-size:1.50rem;
+.locked-icon {
+    margin-left: 90%;
+    display: none; // display only on locked cards
+}
+
+.card-locked {
+    opacity: 0.6;
+
+    .locked-icon {
+        display: inline-block;
+    }
+
+    .play-button {
+        display: none;
+    }
 }
 
 #titles-fix {

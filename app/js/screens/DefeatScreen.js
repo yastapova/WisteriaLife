@@ -24,15 +24,15 @@ DefeatScreen.prototype.init = function() {
 	    FB.ui({
 	    method: 'share',
 	    display: 'popup',
-	    href: 'https://wisteria-life-build3.appspot.com',
+	    href: 'https://wisteria-life-build4.appspot.com',
 	    }, function(response){});
 	};
 
 	if(!this.gameManager.mute) {
-		$('audio').each(function() {
-			$(this).attr("autoplay", "autoplay");
-		});
-	}
+        $('audio').each(function() {
+            this.play();
+        });
+    }
 
 	if (!$.isNumeric(this.level)) {
         $('#level-back-button')
@@ -60,10 +60,6 @@ DefeatScreen.prototype.init = function() {
      	$('#level-back-button')
             .attr('data-region', region);
     }
-};
-
-DefeatScreen.prototype.hide = function() {
-
 };
 
 DefeatScreen.prototype.share = function() {

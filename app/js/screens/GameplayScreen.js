@@ -98,7 +98,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
             }
             else {
                 self.gameLogicManager.pause();
-            } 
+            }
         }
     });
 
@@ -205,10 +205,6 @@ GamePlayScreen.prototype.setTimeDisplay = function (seconds) {
 
     if (percent < 20)
         this.timeBar.css('background-color', '#b21c1c');
-};
-
-GamePlayScreen.prototype.hide = function() {
-
 };
 
 GamePlayScreen.prototype.displayMessage = function () {

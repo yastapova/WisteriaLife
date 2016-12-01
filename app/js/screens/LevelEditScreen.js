@@ -224,10 +224,6 @@ LevelEditScreen.prototype.setTimeDisplay = function (seconds) {
     this.timeDisplay.text(minutes + ':' + (seconds < 10 ? '0' : '') + seconds);
 };
 
-LevelEditScreen.prototype.hide = function() {
-
-};
-
 LevelEditScreen.prototype.placeShape = function(shape) {
 
 }

@@ -14,8 +14,9 @@ PrivateCustomLevelsScreen.prototype.init = function () {
 
     this.cards = $('#custom-level-cards');
     this.sampleCard = $('#sample-card');
-    console.error(this.gameManager.user);
-    console.error(this.gameManager.user.levels);
+    
+    console.log(this.gameManager.user);
+    console.log(this.gameManager.user.levels);
 
     this.imageStorage = firebase.storage()
         .ref(firebase.auth().currentUser.uid);
@@ -34,23 +35,31 @@ PrivateCustomLevelsScreen.prototype.deleteLevels = function(){
 	// Get current user
     var userId = firebase.auth().currentUser.uid;
 	// Grab the ids for the levels that are checked
-	// TO DO
-	var levelsID = [];
-	var levels = firebase.database().ref("/users/" + userId + "/levels/");
-	// NOT SURE IF THIS WORKS
-	for(var levelID in levelsID){
-		// delete from 3 locations: customLevels, levels, and users
-		firebase.database().ref('/customLevels/' + levelID).remove();
-		firebase.database().ref('/levels/' + levelID).remove();
-		for(var key in levels.keys){
-			if(levels.key === levelID){
-				firebase.database().ref("/users/" + userId + "/" + key).remove();
-				break;
-			}
-		}
-		// delete img from storage if it exists
-		firebase.storage().ref(userId + "/" + levelID).delete();
-	}
+	// TO DO    
+	var levelsID = $('.input-field input:checkbox:checked');
+    console.log(levelsID); 
+    if(levelsID.length === 0){
+        return;
+    }
+	firebase.database().ref("/users/" + userId + "/levels/").once('value', function(snapshot){
+        // NOT SURE IF THIS WORKS TO DO
+        for(var index in levelsID){
+            var lkey = levelsID[index].id.substring(14);
+            // delete from 3 locations: customLevels, levels, and users
+            firebase.database().ref('/customLevels/' + lkey).remove();
+            firebase.database().ref('/levels/' + lkey).remove();
+            // which level is being deleted?
+            var levels = snapshot.val();
+            for(var key in levels){
+                if(levels[key] === lkey){
+                    firebase.database().ref("/users/" + firebase.auth().currentUser.uid + "/" + key).remove();
+                    break;
+                }
+            }
+        // delete img from storage if it exists
+        firebase.storage().ref(userId + "/" + lkey).delete();
+        }
+    });	
 };
 
 /**
@@ -67,23 +76,20 @@ PrivateCustomLevelsScreen.prototype.addCustomLevel = function (id, level) {
 
     card.find('.card-title').text(level.title);
     card.find('.card-desc').text(level.storyline);
+    card.find('.card-icon img').attr('src', this.gameManager.user.avatar);
     card.find('a').attr('data-level', id);
     card.find('input').attr('id',  'level-select-' + id);
     card.find('label').attr('for', 'level-select-' + id);
 
-    if (level.img !== undefined) 
+    if (level.img !== undefined)
         this.imageStorage.child(id + '/' + level.img)
             .getDownloadURL()
             .then(function (url) {
-                card.find('img').attr('src', url);
+                card.find('.level-img').attr('src', url);
             });
 
     this.cards.append(card);
 
-
-};
-
-PrivateCustomLevelsScreen.prototype.hide = function () {
 
 };
 

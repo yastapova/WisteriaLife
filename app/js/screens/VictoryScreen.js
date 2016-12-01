@@ -15,7 +15,7 @@ VictoryScreen.prototype.init = function() {
 	    FB.ui({
 	    method: 'share',
 	    display: 'popup',
-	    href: 'https://wisteria-life-build3.appspot.com',
+	    href: 'https://wisteria-life-build4.appspot.com',
 	    }, function(response){});
 	};
 	if(this.gameManager.user.gameData.currentLevel < this.gameManager.gameLogicManager.level.id){
@@ -31,7 +31,7 @@ VictoryScreen.prototype.init = function() {
 
 	if(!this.gameManager.mute) {
 		$('audio').each(function() {
-			$(this).attr("autoplay", "autoplay");
+			this.play();
 		});
 	}
 
@@ -61,10 +61,6 @@ VictoryScreen.prototype.init = function() {
      	$('#level-back-button')
             .attr('data-region', region);
     }
-};
-
-VictoryScreen.prototype.hide = function() {
-
 };
 
 VictoryScreen.prototype.share = function() {

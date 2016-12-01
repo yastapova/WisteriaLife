@@ -21,8 +21,4 @@ StoreScreen.prototype.init = function() {
 
 };
 
-StoreScreen.prototype.hide = function() {
-
-};
-
 module.exports = StoreScreen;

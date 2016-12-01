@@ -201,8 +201,4 @@ SaveLevelScreen.prototype.cancelSaving = function() {
     this.gameManager.screenManager.hideScreen(this);
 };
 
-SaveLevelScreen.prototype.hide = function() {
-
-};
-
 module.exports = SaveLevelScreen;

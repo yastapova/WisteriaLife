@@ -22,10 +22,6 @@ PublicCustomLevelsScreen.prototype.init = function () {
 
 };
 
-PublicCustomLevelsScreen.prototype.hide = function () {
-
-};
-
 PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
 
     for (var level in levels) {
@@ -40,6 +36,9 @@ PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
         card.find('.level-title').text(levels[level].title);
         card.find('.level-sub').text(levels[level].author);
         card.find('.card-desc').text(levels[level].storyline);
+
+        // TODO - get user avatars
+        card.find('.card-icon img').attr('src', require('GameManager').user.avatar);
         card.find('a').attr('data-level', level);
 
         if (levels[level].img !== undefined) {
@@ -48,7 +47,7 @@ PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
                 .ref(levels[level].uid + '/' + level + '/' + levels[level].img)
                 .getDownloadURL()
                 .then(function (url) {
-                    card.find('img').attr('src', url);
+                    card.find('.level-img').attr('src', url);
                 });
             })(card);
         }

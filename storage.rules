@@ -1,5 +1,5 @@
 service firebase.storage {
-  match /b/wisteria-life-build3.appspot.com/o {
+  match /b/wisteria-life-build4.appspot.com/o {
     match /{userId}/{levelID}/{fileName}{
       allow write: if request.auth.uid == userId;
       allow read;

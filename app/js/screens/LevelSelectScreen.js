@@ -25,7 +25,14 @@ inherits(LevelSelectScreen, Screen);
 
 LevelSelectScreen.prototype.init = function() {
     console.log("Level select Screen init called");
-    var levels = require('GameManager').levelManager.levels;
+
+    var gameManager = require('GameManager');
+
+    // get all level metadata
+    var levels = gameManager.levelManager.levels;
+
+    // current user
+    var user = gameManager.user;
 
     this.cards = $('#level-cards');
     this.sampleCard = $('#sample-card');
@@ -41,12 +48,12 @@ LevelSelectScreen.prototype.init = function() {
         card.find('a').attr('data-level', i + 1);
         card.find('img').attr('src', '/img/levels/' + levels[i].img);
 
+        // allowed levels are [1, currentLevel + 1]
+        if (user.gameData.currentLevel < i)
+            card.addClass('card-locked');
+
         this.cards.append(card);
     }
-};
-
-LevelSelectScreen.prototype.hide = function() {
-
 };
 
 LevelSelectScreen.prototype.loadAvailableLevels = function() {

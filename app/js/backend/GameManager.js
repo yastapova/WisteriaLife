@@ -90,13 +90,13 @@ GameManager.prototype.resourceLoaded = function () {
 */
 GameManager.prototype.initFirebase = function() {
     // Initialize Firebase
-	var config = {
-	    apiKey: "AIzaSyCF30XXggPV9nLf3zBLEYpRUMjG55cQUaE",
-	    authDomain: "wisteria-life-build3.firebaseapp.com",
-	    databaseURL: "https://wisteria-life-build3.firebaseio.com",
-	    storageBucket: "wisteria-life-build3.appspot.com",
-	    messagingSenderId: "581646437875"
-	};
+    var config = {
+    apiKey: "AIzaSyBDHjZ6QCq90PhuMr7AbzlxyX_BIY3UXYc",
+    authDomain: "wisteria-life-build4.firebaseapp.com",
+    databaseURL: "https://wisteria-life-build4.firebaseio.com",
+    storageBucket: "wisteria-life-build4.appspot.com",
+    messagingSenderId: "788760332289"
+    };
 
 	firebase.initializeApp(config);
 
@@ -130,7 +130,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
                   this.userExistsCallback(user, exists, snapshot.val());
                 }.bind(this));
             }
-            
+
     		// Splash changes
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
@@ -297,14 +297,15 @@ GameManager.prototype.writeUserData = function () {
  * Callback for reading user data from firebase
  */
 GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
-	this.user = new User(user.displayName, user.photoURL, user.uid, snapshot.levels);
 	if(exists){
+        this.user = new User(user.displayName, user.photoURL, user.uid, snapshot.levels);
 		console.log("I exist!");
 		this.user.gameData = snapshot.gameData;
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
         this.userName.text(this.user.name);
 	}else{
+        this.user = new User(user.displayName, user.photoURL, user.uid, []);
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
         this.userName.text(this.user.name);
@@ -343,7 +344,13 @@ GameManager.prototype.loadFromServer = function() {};
 /**
  * Mute all sounds
  */
-GameManager.prototype.mute = function() {};
+GameManager.prototype.handleMute = function() {
+    this.mute = true;
+    $('audio').each(function() {
+        $(this).attr("preload", "none");
+        $(this).prop("muted", true);
+    });
+};
 
 /**
  * Return to the previous screen if eligible

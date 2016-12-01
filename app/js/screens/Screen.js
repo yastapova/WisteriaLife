@@ -32,7 +32,7 @@ Screen.prototype.load = function () {
     /*
         - $.get HTML page
         - Get #container-inner from fetched page
-        - if overlay (TODO overlay not implemented yet)
+        - if overlay
             - append container to current #container
         - else
             - replace #container contents to new #container-inner
@@ -114,6 +114,19 @@ Screen.prototype.load = function () {
  */
 Screen.prototype.init = function () {
     throw this.id + " screen's init() method not implemented!";
+}
+
+/**
+ * Base method for checking if loading this screen is legal
+ * for the user
+ *
+ * @param  {User}  user User object
+ * @return {Boolean/String}    whether or not the user is allowed to navigate here
+ *                             if false, a String message may be returned instead.
+ *                             Message will appear as an error toast
+ */
+Screen.prototype.isLegal = function (user) {
+    return true;
 }
 
 module.exports = Screen;
