@@ -41,7 +41,7 @@ PrivateCustomLevelsScreen.prototype.deleteLevels = function(){
         return;
     }
 	firebase.database().ref("/users/" + userId + "/levels/").once('value', function(snapshot){
-        // NOT SURE IF THIS WORKS
+        // NOT SURE IF THIS WORKS TO DO
         for(var index in levelsID){
             var lkey = levelsID[index].id.substring(14);
             // delete from 3 locations: customLevels, levels, and users

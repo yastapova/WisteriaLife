@@ -24,7 +24,7 @@ DefeatScreen.prototype.init = function() {
 	    FB.ui({
 	    method: 'share',
 	    display: 'popup',
-	    href: 'https://wisteria-life-build3.appspot.com',
+	    href: 'https://wisteria-life-build4.appspot.com',
 	    }, function(response){});
 	};
 

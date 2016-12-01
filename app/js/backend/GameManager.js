@@ -90,13 +90,13 @@ GameManager.prototype.resourceLoaded = function () {
 */
 GameManager.prototype.initFirebase = function() {
     // Initialize Firebase
-	var config = {
-	    apiKey: "AIzaSyCF30XXggPV9nLf3zBLEYpRUMjG55cQUaE",
-	    authDomain: "wisteria-life-build3.firebaseapp.com",
-	    databaseURL: "https://wisteria-life-build3.firebaseio.com",
-	    storageBucket: "wisteria-life-build3.appspot.com",
-	    messagingSenderId: "581646437875"
-	};
+    var config = {
+    apiKey: "AIzaSyBDHjZ6QCq90PhuMr7AbzlxyX_BIY3UXYc",
+    authDomain: "wisteria-life-build4.firebaseapp.com",
+    databaseURL: "https://wisteria-life-build4.firebaseio.com",
+    storageBucket: "wisteria-life-build4.appspot.com",
+    messagingSenderId: "788760332289"
+    };
 
 	firebase.initializeApp(config);
 
