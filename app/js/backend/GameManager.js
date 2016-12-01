@@ -130,7 +130,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
                   this.userExistsCallback(user, exists, snapshot.val());
                 }.bind(this));
             }
-            
+
     		// Splash changes
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
@@ -297,14 +297,15 @@ GameManager.prototype.writeUserData = function () {
  * Callback for reading user data from firebase
  */
 GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
-	this.user = new User(user.displayName, user.photoURL, user.uid, snapshot.levels);
 	if(exists){
+        this.user = new User(user.displayName, user.photoURL, user.uid, snapshot.levels);
 		console.log("I exist!");
 		this.user.gameData = snapshot.gameData;
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
         this.userName.text(this.user.name);
 	}else{
+        this.user = new User(user.displayName, user.photoURL, user.uid, []);
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
         this.userName.text(this.user.name);
