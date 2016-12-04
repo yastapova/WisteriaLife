@@ -88,7 +88,7 @@ LevelEditScreen.prototype.init = function() {
         self.setTimeDisplay($(this).val());
         self.levelEditManager.changeCurrentTime($(this).val());
     });
-    this.timeBar.val(0);
+    this.timeBar.val($('#level-total-time').val());
 
     // update current shape
     $('#unit-select-menu select').change(function () {
