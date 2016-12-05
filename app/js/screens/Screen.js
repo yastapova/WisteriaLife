@@ -131,8 +131,8 @@ Screen.prototype.isLegal = function (user) {
         return 'Please login or select "Play As Guest".';
 
     // overlay screens cannot be directly accessed ever
-    if (!require('GameManager').screenManager.previousScreen)
-        return 'Screen cannot be accessed directly.';
+    // if (!require('GameManager').screenManager.previousScreen)
+    //     return 'Screen cannot be accessed directly.';
 
     return true;
 }
