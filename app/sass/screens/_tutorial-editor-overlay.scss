@@ -1,6 +1,6 @@
-#tutorial-screen {
+#tutorial-editor-overlay-screen {
 
-    #tutorial-inner {
+    #tutorial-editor-overlay-inner {
         padding: 0 60px;
     }
 }
@@ -23,7 +23,7 @@ table, td, th {
     height: 0rem;
 }
 
-#tutorial-title {
+#tutorial-editor-overlay-title {
     font-size: 3.3rem;
     color: #fff;
     display: block;
@@ -31,7 +31,7 @@ table, td, th {
     //padding-top:2.3rem;
 }
 
-.tutorial-text {
+.tutorial-editor-overlay-text {
     font-size: 2rem;
     color: #fff;
     margin: 0;
@@ -39,7 +39,7 @@ table, td, th {
     margin-right: 5px;
 }
 
-.tutorial-note {
+.tutorial-editor-overlay-note {
     font-size: 1.2rem;
     display: block;
     margin-bottom: 15px;

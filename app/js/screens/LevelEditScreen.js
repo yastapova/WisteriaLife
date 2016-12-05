@@ -65,6 +65,9 @@ LevelEditScreen.prototype.setLevel = function (level) {
 LevelEditScreen.prototype.init = function() {
     console.log("Level edit screen init called");
 
+    if (this.level === 41)
+        this.gameManager.screenManager.switchScreens('editor-overlay', this.level);
+
     $('.dropdown-button').dropdown({
         constrain_width: false, // Does not change width of dropdown to that of the activator
         hover: true, // Activate on hover

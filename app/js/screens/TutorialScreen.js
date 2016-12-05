@@ -5,7 +5,7 @@
 var Screen = require('./Screen');
 
 /*
- * Construct a TutorialScren with given id
+ * Construct a TutorialScreen with given id
  *
  */
 
