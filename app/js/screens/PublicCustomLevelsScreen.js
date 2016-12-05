@@ -36,13 +36,21 @@ PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
         card.find('.level-title').text(levels[level].title);
         card.find('.level-sub').text(levels[level].author);
         card.find('.card-desc').text(levels[level].storyline);
-
-        // TODO - get user avatars
-        card.find('.card-icon img').attr('src', require('GameManager').user.avatar);
         card.find('a').attr('data-level', level);
 
+        // insert user avatar
+        (function (card) {
+            firebase.database()
+                .ref('users/' + levels[level].uid)
+                .once('value', function (snapshot) {
+                    if (snapshot.val().avatar)
+                        card.find('.card-icon img').attr('src', snapshot.val().avatar);
+                });
+        })(card);
+
+
         if (levels[level].img !== undefined) {
-            (function(card) {
+            (function (card) {
                 firebase.storage()
                 .ref(levels[level].uid + '/' + level + '/' + levels[level].img)
                 .getDownloadURL()

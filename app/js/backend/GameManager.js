@@ -289,9 +289,10 @@ GameManager.prototype.play = function() {
 GameManager.prototype.writeUserData = function () {
 	console.log("Writing data " + this.user.gameData);
 	firebase.database().ref('users/' + this.user.uid).set({
-	username: this.user.name,
-	gameData: this.user.gameData,
-    levels: this.user.levels
+    	username: this.user.name,
+    	gameData: this.user.gameData,
+        levels: this.user.levels,
+        avatar: this.user.avatar
 	});
 };
 
