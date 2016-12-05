@@ -90,8 +90,16 @@ LevelEditScreen.prototype.init = function() {
     this.timeBar = $('#timeline input');
     this.timeBar.on('change', function () {
         self.setTimeDisplay($(this).val());
+        var curSelFaction = self.levelEditManager.selectedFaction;
         self.levelEditManager.changeCurrentTime($(this).val());
         self.levelEditManager.selectedUnit = self.gameManager.shapeManager.getShape($('#unit-select-items .select-item').attr('data-value'));
+        self.levelEditManager.selectedFaction = curSelFaction;
+        switch(self.levelEditManager.selectedFaction) {
+            case 5: $('#fac-objective').focus(); break;
+            case 6: $('#fac-enemy').focus(); break;
+            case 2: $('#fac-friend-zone').focus(); break;
+            case 3: $('#fac-enemy-zone').focus(); break;
+        }
         // check for messages
         // change color of button if message exists
         var message = self.levelEditManager.messages[$(this).val()];
@@ -138,6 +146,7 @@ LevelEditScreen.prototype.init = function() {
         if (this.levelEditManager.addMessage(this.messageField.val())) {
             self.messageButton.addClass('has-message');
             this.messageBox.fadeOut('fast');
+            this.messageOpen = false;
         }
     }.bind(this));
 

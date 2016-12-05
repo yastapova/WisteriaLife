@@ -102,13 +102,6 @@ GamePlayScreen.prototype.setLevel = function (level) {
         }
     });
 
-    // cheat button event
-    $('#cheat').click(function () {
-        if (self.gameLogicManager.paused)
-            self.gameLogicManager.start();
-        this.level.time = 0;
-    }.bind(this));
-
     // update timer once per second
     this.timeDisplay = $('#timer-display');
     this.timeBar = $('#time-bar');
@@ -185,6 +178,52 @@ GamePlayScreen.prototype.init = function () {
 
     // load level, set level callback function
     this.gameManager.levelManager.loadLevel(this.levelNumber, this.setLevel.bind(this));
+
+    // cheat code
+    this.cheatButton = $('#cheat');
+    this.cheatField = $('#cheat-code');
+    this.cheatBox = $('#cheat-box');
+    this.cheatForm = $('#cheat-form');
+    this.cheatOpen = false;
+
+    // close on click outside of cheat dialog
+    $(document).click(function (e) {
+        if(this.cheatOpen && !$(e.target).closest(this.cheatBox.parent()).length) {
+            this.cheatBox.fadeOut('fast');
+            this.cheatOpen = false;
+        }
+    }.bind(this));
+
+    // open cheat box
+    this.cheatButton.click(function () {
+        this.cheatOpen = true;
+        this.cheatBox.fadeIn('fast');
+    }.bind(this));
+
+    this.cheatForm.submit(function (e) {
+        e.preventDefault();
+
+        // check cheat code
+        if (this.cheatField.val().toLowerCase() == 'winlevel' + this.levelNumber + 'pineapple') {
+            if (this.gameLogicManager.paused)
+                this.gameLogicManager.start();
+            this.level.time = 0;
+            this.cheatBox.fadeOut('fast');
+            this.cheatOpen = false;
+
+            Materialize.toast(
+                'Cheat successful.',
+                4000,
+                'wisteria-toast'
+            );
+        } else {
+            Materialize.toast(
+                'Cheat code incorrect. Maybe play the level instead?',
+                4000,
+                'wisteria-error-toast'
+            );
+        }
+    }.bind(this));
 };
 
 /**
