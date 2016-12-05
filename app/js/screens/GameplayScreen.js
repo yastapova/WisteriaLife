@@ -231,8 +231,13 @@ GamePlayScreen.prototype.usePowerup = function(powerup) {
 GamePlayScreen.prototype.isLegal = function (user) {
     var userCheck = Screen.prototype.isLegal.call(this, user);
 
+    console.log(this.gameManager.screenManager.previousScreen);
+
     if (userCheck === true) {
-        if (this.gameManager.screenManager.previousScreen != 'level-story')
+        if (
+            this.gameManager.screenManager.previousScreen != 'level-story'
+            && this.gameManager.screenManager.previousScreen != 'gameplay'
+        )
             return "Must come from story screen";
 
         // check user progress

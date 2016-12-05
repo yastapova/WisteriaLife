@@ -79,7 +79,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.factionGrid = this.level.enemyZone.slice(0);
     this.enemySpawns = this.level.enemySpawns; // TODO: clone
     if(this.enemySpawns === undefined)
-        this.enemySpawns = {};
+        this.enemySpawns = new Map();
     // else {
     //     this.level.convertToEnemySpawnMap(this.enemySpawns);
     // }
@@ -394,18 +394,18 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         var name = shape.name;         // name of the shape to add
         if(faction === this.ENEMY) {
             // add to enemy list
-        	var currentSpawns = this.enemySpawns[this.currentTime];
-        	if(this.enemySpawns[this.currentTime] === undefined) {
+        	// var currentSpawns = this.enemySpawns[this.currentTime];
+        	if(this.enemySpawns.get(this.currentTime) === undefined) {
         		// new array
-        		this.enemySpawns[this.currentTime] = [{"name" : name,
+        		this.enemySpawns.set(this.currentTime, [{"name" : name,
     	    									 	   "coordinates" : {"x" : x,
-    	    												 	        "y" : y}}]
+    	    												 	        "y" : y}}]);
         	}
         	else {
                 // add to array
-        		this.enemySpawns[this.currentTime].push({"name" : name,
-    	    									 	"coordinates" : {"x" : x,
-    	    												 	     "y" : y}});
+        		this.enemySpawns.get(this.currentTime).push({"name" : name,
+    	    									 	        "coordinates" : {"x" : x,
+    	    												 	             "y" : y}});
         	}
             var currentLookup = this.shapeLookupMap[this.currentTime];
             if(currentLookup === undefined) {
