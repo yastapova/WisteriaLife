@@ -3,11 +3,12 @@
 <!-- Page Content goes here -->
 <div id="tutorial-editor-overlay-screen" class="container-inner screen-overlay">
 	<div id="tutorial-editor-overlay-inner" class="row center">
-		<span id="tutorial-editor-overlay-title">Rules</span>
+		<span id="tutorial-editor-overlay-title">Tutorial</span>
 		<span class="tutorial-editor-overlay-note tutorial-editor-overlay-text">
-		Here you will learn everything about how to use the level editor.
+		To create a new level, first specify how long the level will be in the "Total Time" box on the top right corner. The time entered must be between 60 and 300 seconds. Then, use the slider on the timeline to determine which units appear at the specified time. <br>
+		<b>Note</b>: the display of time in the middle of the slider specifies how much time is left in the level.
 	    <br>
-	    <button id="editor-play" class="waves-effect waves-light btn-large">Start</button>
+	    <button id="editor-play" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-pencil"></i> Start</button>
 	    </span>
         <table>
 				<tr>
@@ -19,34 +20,25 @@
 					<th>Denotes the Factions accordion. Select a faction for the selected unit. </th>
 				</tr>
 				<tr>
+					<th><i class="wisteria-icons delunit mdi mdi-backspace"></i>
+					<th>Delete unit button - once clicked, click anywhere on the unit to be removed to delete it.</th>
+				</tr>
+				<tr>
+					<th><i class="wisteria-icons addmessage mdi mdi-message-text"></i>
+					<th>Add Message button - once you have the time slider placed, click to add a message to the level at that time.</th>
+				</tr>
+				<tr>
 					<th><i class="wisteria-icons save mdi mdi-content-save"></i>
-					<th>Save button - save your level.</th>
+					<th>Save button - save your level and add preferences.</th>
 				</tr>
 				<tr>
-					<th><i class="wisteria-icons tback mdi mdi-step-backward"></i>
-					<th>Back button - choose another level. Displayed after victory/defeat.</th>
+					<th><i class="wisteria-icons discard mdi mdi-delete"></i>
+					<th>Discard button - abandon unsaved progress in editing a level.</th>
 				</tr>
 				<tr>
-					<th><i class="wisteria-icons treplay mdi mdi-replay"></i>
-					<th>Replay button - replay the level. Displayed on pause/victory/defeat.</th>
+					<th><i class="wisteria-icons size mdi mdi-move-resize-variant"></i>
+					<th>Size button - resize the grid. This will delete unsaved progress.</th>
 				</tr>
-				<tr>
-					<th><i class="wisteria-icons tshare mdi mdi-share-variant"></i>
-					<th>Share button - share on social media. Displayed on victory/defeat.</th>
-				</tr>
-				<tr>
-					<th><i class="wisteria-icons thelp mdi mdi-help"></i>
-					<th>Help button - access this help page. Displayed on pause.</th>
-				</tr>
-				<tr>
-					<th><i class="wisteria-icons tnext mdi mdi-play"></i>
-					<th>Next button - play the next level. Displayed on victory.</th>
-				</tr>
-				<tr>
-					<th><i class="wisteria-icons tplay mdi mdi-lock"></i>
-					<th>Cheat code button - enter a cheat code. Located on the left of the time toolbar.</th>
-				</tr>
-
 	    <table>
 	</div>
 </div>
