@@ -67,7 +67,8 @@ Screen.prototype.load = function () {
             // save element to easily hide later
             this.overlayElement = this.container.find('.screen-overlay');
 
-            document.title = $(data).filter('title').text();
+            // changing title on overlay updates the history stack
+            // document.title = $(data).filter('title').text();
 
             // initialize overlay screen
             // initScreen.bind(this)();
@@ -128,6 +129,11 @@ Screen.prototype.init = function () {
 Screen.prototype.isLegal = function (user) {
     if (user === '')
         return 'Please login or select "Play As Guest".';
+
+    // overlay screens cannot be directly accessed ever
+    if (!require('GameManager').screenManager.previousScreen)
+        return 'Screen cannot be accessed directly.';
+
     return true;
 }
 
