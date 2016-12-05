@@ -96,31 +96,35 @@ ScreenManager.prototype.setupInitScreen = function () {
     var screenSwitch =  window.location.pathname.split(/\//)[1];
     var property = window.location.pathname.split(/\//)[2];
 
-    var current = screenSwitch == '' ? 'splash' : screenSwitch;
+    this.currentScreen = this.screenMap[screenSwitch] ? screenSwitch : 'splash';
 
-    this.screen = new this.screenMap[current](current, property);
-
-    // return could be true, false, or a string
-    var legal = this.isLegal(this.screen);
-    if (legal !== true) {
-        if (legal)
-            Materialize.toast(legal, 4000, 'wisteria-error-toast');
-
-        this.switchScreens('splash');
-        return;
-    }
+    this.previousScreen = '';
+    this.screen = new this.screenMap[this.currentScreen](this.currentScreen, property);
 
     // set initial state (for going back later)
 
     history.replaceState({screen: this.id, property: property}, '', '/' + screenSwitch +
         (property ? '/' + property : '' ));
 
+    console.log("Switch " + this.currentScreen);
+
     // wait to init until user available
-    if (current !== 'splash') {
+    if (this.currentScreen !== 'splash') {
         this.loader.fadeIn();
         var userCheck = setTimeout(function () {
-            if (this.gameManager.user) {
+            if (this.gameManager.user || this.gameManager.user === '') {
                 clearTimeout(userCheck);
+
+                // return could be true, false, or a string
+                var legal = this.isLegal(this.screen);
+                if (legal !== true) {
+                    if (legal)
+                        Materialize.toast(legal, 4000, 'wisteria-error-toast');
+
+                    this.switchScreens('splash');
+                    return;
+                }
+
                 this.screen.init(); // first screen doesn't need to load, just init
                 this.loader.fadeOut();
             }
@@ -143,6 +147,9 @@ ScreenManager.prototype.setupInitScreen = function () {
  */
 ScreenManager.prototype.switchScreens = function (screen, property) {
 
+    // save previous screen, update instance var only if not overlay
+    var previousScreen = this.currentScreen;
+
     // screen should be valid, otherwise go to splash
     this.currentScreen = screen && screen in this.screenMap
                             ? screen : 'splash';
@@ -150,13 +157,17 @@ ScreenManager.prototype.switchScreens = function (screen, property) {
     // load and display the current screen
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, property);
 
+    // overlay screens don't count as previous screen
+    if (this.screen.overlay)
+        this.previousScreen = previousScreen;
+
     // return could be true, false, or a string
     var legal = this.isLegal(this.screen);
     if (legal !== true) {
         if (legal)
             Materialize.toast(legal, 4000, 'wisteria-error-toast');
 
-        this.switchScreens('map');
+        this.switchScreens('splash');
         return;
     }
 

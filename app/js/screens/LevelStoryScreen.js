@@ -40,4 +40,24 @@ LevelStoryScreen.prototype.init = function () {
     }
 };
 
+/**
+ * Check if user allowed to access this level story
+ * @param  {User}  user [description]
+ * @return {Boolean/String}      error message or boolean
+ */
+LevelStoryScreen.prototype.isLegal = function (user) {
+    var userCheck = Screen.prototype.isLegal.call(this, user);
+
+    if (userCheck === true) {
+        // check user progress
+        if (this.level <= 40 && this.level > user.gameData.currentLevel + 1)
+            return "Not up to level " + this.level + " yet!";
+
+    } else {
+        return userCheck;
+    }
+
+    return true;
+}
+
 module.exports = LevelStoryScreen;

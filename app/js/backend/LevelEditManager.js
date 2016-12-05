@@ -193,6 +193,18 @@ LevelEditManager.prototype.deleteAfter = function(newTime) {
 	}
 }
 
+LevelEditManager.prototype.forceChangeUnit = function() {
+    if(this.selectedUnit === "void" || this.selectedUnit.name === "void") {
+        var gameManager = require('GameManager');
+        this.selectedUnit = gameManager.shapeManager.getShape("archernw");
+    }
+}
+LevelEditManager.prototype.forceChangeFaction = function() {
+    if(this.selectedFaction === this.BLANK) {
+        this.selectedFaction = this.OBJECTIVE;
+    }
+}
+
 /**
  * Checks if there are enemies that should spawn at this time.
  * @return {[{name : String, coordinates : {x : int, y : int}}, ...]}
@@ -242,12 +254,32 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             shape = this.selectedUnit;
         }
     }
+    if(this.selectedFaction === undefined) {
+        Materialize.toast(
+            "No faction selected! Select a faction from the Colors sidebar.",
+            2000,
+            'wisteria-error-toast'
+        );
+        return;
+    }
     if(this.selectedFaction === this.BLANK && faction !== this.GHOST)
     {
+        if(this.selectedUnit.name !== "void") {
+            Materialize.toast(
+                "No faction selected! Select a faction from the Colors sidebar.",
+                2000,
+                'wisteria-error-toast'
+            );
+            return;
+        }
         var y = clickRow;  // y coordinate
         var x = clickCol;  // x coordinate
         var deletedShape = this.deleteUnit(x, y);
-        shape = deletedShape.shape;
+        shape = deletedShape;
+        if(shape === undefined)
+            return;
+        else
+            shape = shape.shape;
         clickRow = deletedShape.coordinates.y;
         clickCol = deletedShape.coordinates.x;
     }
@@ -277,7 +309,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         if(this.totalTime - this.currentTime < 3) {
             Materialize.toast(
                 'Enemy spawns allowed only after 3 seconds.',
-                4000,
+                2000,
                 'wisteria-error-toast'
             );
             return;
@@ -298,7 +330,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
        this.getGridCell(this.factionGrid, clickRow, clickCol) !== zone) {
 	   Materialize.toast(
 	        'Invalid zone for placement!',
-	        4000,
+	        2000,
 	        'wisteria-error-toast'
    	    );
         return;
@@ -390,6 +422,8 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
 
 LevelEditManager.prototype.deleteUnit = function(x, y) {
     var timeSliceMap = this.shapeLookupMap[this.currentTime];
+    if(timeSliceMap === undefined)
+        return;
     var coords = timeSliceMap[x + " " + y];
     if(coords === undefined)
         return;
