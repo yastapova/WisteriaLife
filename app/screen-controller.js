@@ -19,10 +19,10 @@ router.get('/about', function(req, res, next) {
     });
 });
 
-/* Ad. */
-router.get('/ad/:level', function(req, res, next) {
-    res.render('ad', {
-        title: 'Ad',
+/* Transition. */
+router.get('/transition/:level', function(req, res, next) {
+    res.render('transition', {
+        title: 'Transition',
         level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level
     });
 });

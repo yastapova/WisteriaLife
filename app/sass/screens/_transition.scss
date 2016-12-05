@@ -1,6 +1,6 @@
-#ad-screen {
+#transition-screen {
     padding-top: 0;
-    // ad is a special case which overlays even the navbar
+    // transition is a special case which overlays even the navbar
     position: fixed;
     top: 0;
     left: 0;
@@ -9,7 +9,7 @@
     width: 100vw;
 }
 
-#ad {
+#transition {
     height: 30em;
     width: 30em;
     position: absolute;

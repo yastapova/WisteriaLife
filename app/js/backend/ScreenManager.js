@@ -22,7 +22,6 @@ var ScreenManager = function () {
     // reference all the screens
     this.screenMap = {
         'about': AboutScreen,
-        'ad': AdScreen,
         'defeat': DefeatScreen,
         'map': GameMapScreen,
         'gameplay': GameplayScreen,
@@ -35,6 +34,7 @@ var ScreenManager = function () {
         'save-level': SaveLevelScreen,
         'splash': SplashScreen,
         'store': StoreScreen,
+        'transition': TransitionScreen,
         'tutorial': TutorialScreen,
         'victory': VictoryScreen
     };
@@ -204,7 +204,6 @@ ScreenManager.prototype.isLegal = function (screen) {
 // require all screens
 var Screen = require('../screens/Screen');
 var AboutScreen = require('../screens/AboutScreen');
-var AdScreen = require('../screens/AdScreen');
 var DefeatScreen = require('../screens/DefeatScreen');
 var GameMapScreen = require('../screens/GameMapScreen');
 var GameplayScreen = require('../screens/GameplayScreen');
@@ -217,6 +216,7 @@ var PublicCustomLevelsScreen = require('../screens/PublicCustomLevelsScreen');
 var SaveLevelScreen = require('../screens/SaveLevelScreen');
 var SplashScreen = require('../screens/SplashScreen');
 var StoreScreen = require('../screens/StoreScreen');
+var TransitionScreen = require('../screens/TransitionScreen');
 var TutorialScreen = require('../screens/TutorialScreen');
 var VictoryScreen = require('../screens/VictoryScreen');
 
