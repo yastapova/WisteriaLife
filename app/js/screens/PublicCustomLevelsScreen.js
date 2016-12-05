@@ -60,7 +60,7 @@ PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
             })(card);
         }
 
-        this.cards.append(card);
+        this.cards.prepend(card);
     }
 
 };
