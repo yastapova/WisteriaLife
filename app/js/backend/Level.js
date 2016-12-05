@@ -45,7 +45,8 @@ Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
 Level.prototype.revertEnemySpawnMap = function () {
     if (!this.enemySpawns) return;
     var enemySpawnsToSave = [];
-    var entries  = Object.entries(this.enemySpawns);
+    // var entries  = Object.entries(this.enemySpawns);
+    var entries = this.enemySpawns.entries();
     for(var entry in entries){
         var obj = {};
         obj.time = parseInt(entries[entry][0]);
