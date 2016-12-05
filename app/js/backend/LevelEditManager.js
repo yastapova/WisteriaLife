@@ -80,6 +80,9 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.enemySpawns = this.level.enemySpawns; // TODO: clone
     if(this.enemySpawns === undefined)
         this.enemySpawns = {};
+    // else {
+    //     this.level.convertToEnemySpawnMap(this.enemySpawns);
+    // }
     for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
     {
         this.ghostGrid[i] = this.BLANK;
@@ -89,7 +92,9 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     // this.canvas.renderGridCells(this.gridHeight, this.gridWidth,
     //                      		this.renderGrid, this.renderGridOld,
     //                      		this.colors);
-	this.placeDefenses(this.level.defenseStructures);
+    // this.selectedFaction = this.OBJECTIVE;
+	this.placeDefenses(this.level.defenseStructures, false);
+    // this.selectedFaction = this.BLANK;
     this.renderGridCells();
 
 }
@@ -170,7 +175,9 @@ LevelEditManager.prototype.changeCurrentTime = function(newTime) {
 
     this.placeDefenses(this.defenses, false);
     var spawns = this.checkForSpawns();
+    this.selectedUnit = "";
     this.spawnEnemies(spawns, false);
+    this.selectedUnit = undefined;
 
     this.renderGridCells();
 }
@@ -213,7 +220,7 @@ LevelEditManager.prototype.forceChangeFaction = function() {
  *       List of spawns at a given time
  */
 LevelEditManager.prototype.checkForSpawns = function() {
-    var spawns = this.enemySpawns[this.currentTime];
+    var spawns = this.enemySpawns.get(this.currentTime);
     return spawns;
 }
 
@@ -264,9 +271,20 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         );
         return;
     }
-    if(this.selectedFaction === this.BLANK && faction !== this.GHOST)
+    if(this.selectedFaction === this.BLANK && 
+       this.selectedUnit !== undefined &&
+       this.selectedUnit.name === "void" &&
+       faction !== this.GHOST)
     {
-        if(this.selectedUnit.name !== "void") {
+        faction = this.BLANK;
+    }
+    if(addToMaps === undefined && faction !== this.GHOST)
+        addToMaps = true;
+
+    if(this.selectedFaction === this.BLANK && 
+       faction === this.BLANK)
+    {
+        if(addToMaps && this.selectedUnit.name !== "void") {
             Materialize.toast(
                 "No faction selected! Select a faction from the Colors sidebar.",
                 2000,
@@ -296,8 +314,6 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     	}
     }
 
-    if(addToMaps === undefined)
-        addToMaps = true;
     // get the pixels of the shape
     var pixels = shape.pixelsArray;
 
@@ -473,6 +489,8 @@ LevelEditManager.prototype.placeDefenses = function(defenses, addToMaps) {
         return;
     var gameManager = require('GameManager');
 
+    this.selectedFaction = this.OBJECTIVE;
+
     // place each one on the nonGhostGrid
     for(var i = 0; i < defenses.length; i++) {
         var shape = defenses[i].name;
@@ -483,6 +501,7 @@ LevelEditManager.prototype.placeDefenses = function(defenses, addToMaps) {
                         shape, this.nonGhostGrid, addToMaps);
     }
     this.selectedUnit = undefined;
+    this.selectedFaction = this.BLANK;
 }
 
 /**
