@@ -12,7 +12,7 @@ var LevelEditManager = function(levelSize) {
 	this.defenses = [];        // [{name : String, coordinates : {x : int, y : int}}]
 	this.enemySpawns = {};     // {time : int, shapes : [{name : String, coordinates : {x : int, y : int}}]}
 	this.totalTime = 60;       // default total level time
-	this.currentTime = 0;      // default current time
+	this.currentTime = 60;      // default current time
 	this.allowedShapes = null; // {name : quantity}
     this.shapeLookupMap = {};
 
@@ -274,7 +274,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         zone = this.FRIEND_ZONE;
     // enemies only in the enemy zone
     else if(faction === this.ENEMY) {
-        if(this.totalTime - this.currentTime < 4) {
+        if(this.totalTime - this.currentTime < 3) {
             Materialize.toast(
                 'Enemy spawns allowed only after 3 seconds.',
                 4000,
