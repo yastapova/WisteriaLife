@@ -121,7 +121,7 @@ SaveLevelScreen.prototype.saveLevel = function(){
     this.levelMisc.author = this.gameManager.user.name;
     this.levelMisc.dateCreated = Date.now();
 	// Save allowed units into level allowed shapes
-	this.level.allowedShapes = [];
+    this.level.allowedShapes = [];
 	var saveAllyUnits = $('#save_ally_units :input');
 	for(var i = 0; i < saveAllyUnits.length; i++){
 		if(saveAllyUnits[i].value !== '0'){
