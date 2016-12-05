@@ -101,10 +101,14 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
 
 /**
  * Adds a message to the level at the given time.
- * @param {int} time Time that the message will display
  * @param {String} msg Message to display
+ * @param {int} [time] Time that the message will display
+ * @return {Boolean} whether or not it was successful
  */
-LevelEditManager.prototype.addMessage = function(time, msg) {
+LevelEditManager.prototype.addMessage = function(msg, time) {
+	if (time === undefined)
+		time = this.currentTime;
+
     if(msg === '' || msg === undefined || msg === null) {
         if(this.messages[time] !== undefined) {
             delete this.messages[time];
@@ -113,28 +117,43 @@ LevelEditManager.prototype.addMessage = function(time, msg) {
                 4000,
                 'wisteria-toast'
             );
-            return;
+            return false; // false to keep the dialog open
         }
-        return;
+        return false;
     }
+
+	// if message already exists at that location, update it
+	if (this.messages[time]) {
+		this.messages[time] = msg;
+
+		Materialize.toast(
+	        'Updated message.',
+	        4000,
+	        'wisteria-toast'
+	    );
+
+		return true;
+	}
+
     for(var i = time; i < time + 4; i++) {
-        if(i < this.totalTime && this.message[i] !== undefined) {
+        if(i < this.totalTime && this.messages[i] !== undefined) {
             Materialize.toast(
                 'Cannot place message less than 4 seconds before/after another.',
                 4000,
                 'wisteria-error-toast'
             );
-            return;
+            return false;
         }
     }
+
     for(var i = time-4; i < time; i++) {
-        if(i > 0 && this.message[i] !== undefined) {
+        if(i > 0 && this.messages[i] !== undefined) {
             Materialize.toast(
                 'Cannot place message less than 4 seconds before/after another.',
                 4000,
                 'wisteria-error-toast'
             );
-            return;
+            return false;
         }
     }
 	this.messages[time] = msg;
@@ -143,6 +162,7 @@ LevelEditManager.prototype.addMessage = function(time, msg) {
         4000,
         'wisteria-toast'
     );
+	return true;
 }
 
 /**
@@ -162,7 +182,7 @@ LevelEditManager.prototype.changeTotalTime = function(newTime) {
 }
 
 LevelEditManager.prototype.changeCurrentTime = function(newTime) {
-    this.currentTime = newTime - 0;
+    this.currentTime = newTime - 0; // convert to int
     this.renderGridOld = new Array(this.gridWidth * this.gridHeight);
     this.renderGrid = this.factionGrid.slice(0);
     this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
@@ -470,7 +490,7 @@ LevelEditManager.prototype.deleteUnit = function(x, y) {
             }
         }
     }
-    
+
     if(shape === undefined)
         return undefined;
 

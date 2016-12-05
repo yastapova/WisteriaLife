@@ -95,16 +95,28 @@
                 </li>
             </ul>
 
-            <div id="backspace-button" class="toolbar-item tooltipped" data-tooltip="Delete Unit">
+            <div id="backspace-button" class="toolbar-item toolbar-button tooltipped" data-tooltip="Delete Unit">
                 <button id="backspace" class="editor-buttons">
                     <i class="wisteria-icons clear-cell mdi mdi-backspace"></i>
                 </button>
             </div>
 
-             <div class="toolbar-item tooltipped" data-tooltip="Add Message">
+             <div id="toolbar-message" class="toolbar-item toolbar-button tooltipped" data-tooltip="Add Message">
                  <button id="message-button" class="editor-buttons">
                      <i class="wisteria-icons clear-cell mdi mdi-message-text"></i>
                  </button>
+
+
+                 <div id="message-box">
+                     <div id="message-box-content">
+                        <div class="input-field col">
+                            <input id="message" type="text" class="validate">
+                            <label for="message">Message</label>
+                        </div>
+                        <button id="add-message" class="btn waves-effect waves-light">Add Message</button>
+                     </div>
+                 </div>
+
              </div>
 
              <div class="toolbar-item">
