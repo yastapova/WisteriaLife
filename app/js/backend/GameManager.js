@@ -219,6 +219,8 @@ GameManager.prototype.onAuthStateChanged = function(user) {
         $('#user-pic-drop').css('display','none');
         this.userDropName.text("Guest");
         this.userWistbux.text(0);
+
+        this.user = "";
     }
 };
 

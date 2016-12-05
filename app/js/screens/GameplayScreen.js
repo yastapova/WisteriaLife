@@ -217,8 +217,31 @@ GamePlayScreen.prototype.displayMessage = function () {
  */
 GamePlayScreen.prototype.usePowerup = function(powerup) {
     // get the powerups manager to execute the powerup callback
-    var powerupObj = gameManager.powerupManager.powerupsMap.get(powerup);
+    var powerupObj = this.gameManager.powerupManager.powerupsMap.get(powerup);
     powerupObj.effect(this.level);
 };
+
+/**
+ * Legal gameplay access check
+ * - Referral screen must be story
+ * - Level must be less than or equal to user level
+ * @return {Boolean/String} Whether or not switching to this screen is Legal
+ *                          Can be an error message instead
+ */
+GamePlayScreen.prototype.isLegal = function (user) {
+    var userCheck = Screen.prototype.isLegal.call(this, user);
+
+    if (userCheck === true) {
+        if (this.gameManager.screenManager.previousScreen != 'level-story')
+            return "Must come from story screen";
+
+        // check user progress
+        if (this.levelNumber <= 40 && this.levelNumber > user.gameData.currentLevel + 1)
+            return "Not up to level " + this.levelNumber + " yet!";
+    } else
+        return userCheck;
+
+    return true;
+}
 
 module.exports = GamePlayScreen;

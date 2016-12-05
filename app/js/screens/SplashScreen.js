@@ -33,12 +33,20 @@ SplashScreen.prototype.init = function() {
     this.playButton.on('click', gameManager.play.bind(gameManager));
     this.guestLoginButton.on('click', gameManager.guestLogin.bind(gameManager));
     this.guestProceedLoginButton.on('click', gameManager.login.bind(gameManager));
-    gameManager.auth.onAuthStateChanged(gameManager.onAuthStateChanged.bind(gameManager));   
+    gameManager.auth.onAuthStateChanged(gameManager.onAuthStateChanged.bind(gameManager));
 
 };
 
 SplashScreen.prototype.checkUser = function() {
 
 };
+
+/**
+ * Splash screen always legal
+ * @return {Boolean} Always true
+ */
+SplashScreen.prototype.isLegal = function () {
+    return true;
+}
 
 module.exports = SplashScreen;
