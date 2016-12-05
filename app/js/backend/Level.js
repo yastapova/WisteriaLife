@@ -39,6 +39,22 @@ Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
     }
 };
 
+/*
+ * Revert enemySpawnMap into the enemy spawns array in the shapeAtrrObj 
+ */
+Level.prototype.revertEnemySpawnMap = function () {
+    if (!this.enemySpawns) return;
+    var enemySpawnsToSave = [];
+    var entries  = Object.entries(this.enemySpawns);
+    for(var entry in entries){
+        var obj = {};
+        obj.time = parseInt(entries[entry][0]);
+        obj.shapes = entries[entry][1];
+        enemySpawnsToSave.push(obj);
+    }
+    return enemySpawnsToSave;
+};
+
 /**
  * Get the wistbux reward for given level. Checka to see if level is custom or not.
  * @return int the number of wistbux to reward

@@ -23,6 +23,7 @@ var SaveLevelScreen = function (id, level) {
     this.level.time = manager.totalTime;
     this.level.enemyZone = manager.factionGrid;
     this.level.enemySpawns = manager.enemySpawns;
+    this.level.enemySpawns = this.level.revertEnemySpawnMap();
     this.level.defenseStructures = manager.defenses;
     this.level.messages = manager.messages;
     Screen.call(this, id, true);
@@ -178,6 +179,9 @@ SaveLevelScreen.prototype.saveLevel = function(){
     firebase.storage().ref(this.gameManager.user.uid + '/' + this.level.id + "/" + this.imgFile.name)
       .put(this.imgFile, {contentType: this.imgFile.type});
     }
+
+    // Write user data to firebase
+    this.gameManager.writeUserData();
 
 	// Switch screen to public or private
 	if(this.levelMisc.public === 1){
