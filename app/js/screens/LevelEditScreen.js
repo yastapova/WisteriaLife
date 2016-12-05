@@ -91,7 +91,19 @@ LevelEditScreen.prototype.init = function() {
     this.timeBar.on('change', function () {
         self.setTimeDisplay($(this).val());
         self.levelEditManager.changeCurrentTime($(this).val());
+
+        // check for messages
+        // change color of button if message exists
+        var message = self.levelEditManager.messages[$(this).val()];
+        if (message) {
+            self.messageButton.addClass('has-message');
+            $('#message').val(message);
+        } else {
+            self.messageButton.removeClass('has-message');
+            $('#message').val(null);
+        }
     });
+    self.setTimeDisplay($('#level-total-time').val());
     this.timeBar.val($('#level-total-time').val());
 
     // update current shape
@@ -101,6 +113,33 @@ LevelEditScreen.prototype.init = function() {
                 $(this).val()
             );
     });
+
+    this.messageButton = $('#message-button');
+    this.messageField = $('#message');
+    this.messageBox = $('#message-box');
+    this.addMessage = $('#add-message');
+    this.messageOpen = false;
+
+    // close on click outside of message dialog
+    $(document).click(function (e) {
+        if(this.messageOpen && !$(e.target).closest(this.messageBox.parent()).length) {
+            this.messageBox.fadeOut('fast');
+            this.messageOpen = false;
+        }
+    }.bind(this));
+
+    // open message box
+    this.messageButton.click(function () {
+        this.messageOpen = true;
+        this.messageBox.fadeIn('fast');
+    }.bind(this));
+
+    this.addMessage.click(function () {
+        if (this.levelEditManager.addMessage(this.messageField.val())) {
+            self.messageButton.addClass('has-message');
+            this.messageBox.fadeOut('fast');
+        }
+    }.bind(this));
 
     $('#level-total-time').change(function() {
         if (!($(this).val() <= 300) || !($(this).val() >= 30))  {
@@ -212,7 +251,7 @@ LevelEditScreen.prototype.init = function() {
     // units and powerup tooltips
     $('.tooltipped').tooltip({
         delay: 50,
-        position: 'right'
+        position: 'top'
     });
 
 };

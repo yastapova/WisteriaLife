@@ -43,7 +43,7 @@ PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
             firebase.database()
                 .ref('users/' + levels[level].uid)
                 .once('value', function (snapshot) {
-                    if (snapshot.val().avatar)
+                    if (snapshot.val() && snapshot.val().avatar)
                         card.find('.card-icon img').attr('src', snapshot.val().avatar);
                 });
         })(card);
