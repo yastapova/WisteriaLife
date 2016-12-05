@@ -91,8 +91,9 @@ LevelEditScreen.prototype.init = function() {
     this.timeBar.on('change', function () {
         self.setTimeDisplay($(this).val());
         var curSelFaction = self.levelEditManager.selectedFaction;
+        var curSelUnit = self.levelEditManager.selectedUnit;
         self.levelEditManager.changeCurrentTime($(this).val());
-        self.levelEditManager.selectedUnit = self.gameManager.shapeManager.getShape($('#unit-select-items .select-item').attr('data-value'));
+        self.levelEditManager.selectedUnit = curSelUnit;
         self.levelEditManager.selectedFaction = curSelFaction;
         switch(self.levelEditManager.selectedFaction) {
             case 5: $('#fac-objective').focus(); break;
@@ -102,7 +103,7 @@ LevelEditScreen.prototype.init = function() {
         }
         // check for messages
         // change color of button if message exists
-        var message = self.levelEditManager.messages[$(this).val()];
+        var message = self.levelEditManager.messages.get($(this).val()-0);
         if (message) {
             self.messageButton.addClass('has-message');
             $('#message').val(message);

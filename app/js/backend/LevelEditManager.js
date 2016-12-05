@@ -135,10 +135,10 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
 		return true;
 	}
 
-    for(var i = time; i < time + 4; i++) {
-        if(i < this.totalTime && this.messages.has(i)) {
+    for(var i = time; i < time + 5; i++) {
+        if(i < this.totalTime + 1 && this.messages.has(i)) {
             Materialize.toast(
-                'Cannot place message less than 4 seconds before/after another.',
+                'Cannot place message less than 5 seconds before/after another.',
                 4000,
                 'wisteria-error-toast'
             );
@@ -146,10 +146,10 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
         }
     }
 
-    for(var i = time-4; i < time; i++) {
+    for(var i = time; i > time - 5; i--) {
         if(i > 0 && this.messages.has(i)) {
             Materialize.toast(
-                'Cannot place message less than 4 seconds before/after another.',
+                'Cannot place message less than 5 seconds before/after another.',
                 4000,
                 'wisteria-error-toast'
             );
