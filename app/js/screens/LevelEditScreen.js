@@ -91,8 +91,9 @@ LevelEditScreen.prototype.init = function() {
     this.timeBar.on('change', function () {
         self.setTimeDisplay($(this).val());
         var curSelFaction = self.levelEditManager.selectedFaction;
+        var curSelUnit = self.levelEditManager.selectedUnit;
         self.levelEditManager.changeCurrentTime($(this).val());
-        self.levelEditManager.selectedUnit = self.gameManager.shapeManager.getShape($('#unit-select-items .select-item').attr('data-value'));
+        self.levelEditManager.selectedUnit = curSelUnit;
         self.levelEditManager.selectedFaction = curSelFaction;
         switch(self.levelEditManager.selectedFaction) {
             case 5: $('#fac-objective').focus(); break;
