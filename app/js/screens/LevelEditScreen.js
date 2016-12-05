@@ -103,6 +103,7 @@ LevelEditScreen.prototype.init = function() {
             $('#message').val(null);
         }
     });
+    self.setTimeDisplay($('#level-total-time').val());
     this.timeBar.val($('#level-total-time').val());
 
     // update current shape
