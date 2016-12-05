@@ -58,7 +58,9 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
 
-    this.messages = new Map(); // TODO: change to Map() objects?
+    this.messages = this.level.messages;
+    if(this.messages === undefined)
+        this.messages = new Map(); // TODO: change to Map() objects?
 
     this.defenses = this.level.defenseStructures; // TODO: clone
     if(this.defenses === undefined)
