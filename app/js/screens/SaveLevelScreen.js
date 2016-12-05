@@ -26,6 +26,7 @@ var SaveLevelScreen = function (id, level) {
     this.level.enemySpawns = this.level.revertEnemySpawnMap();
     this.level.defenseStructures = manager.defenses;
     this.level.messages = manager.messages;
+    this.level.messages = this.level.revertMessageMap();
     Screen.call(this, id, true);
 };
 
