@@ -8,9 +8,9 @@ var LevelEditManager = function(levelSize) {
 	this.canvas = null;        // PixiCanvas that renders everything
 
 	this.MESSAGE_TIME_DIFFERENCE = 4; // minimum time between messages
-	this.messages = {};      // {time : String}
+	this.messages = new Map();      // {time : String}
 	this.defenses = [];        // [{name : String, coordinates : {x : int, y : int}}]
-	this.enemySpawns = {};     // {time : int, shapes : [{name : String, coordinates : {x : int, y : int}}]}
+	this.enemySpawns = new Map();     // {time : int, shapes : [{name : String, coordinates : {x : int, y : int}}]}
 	this.totalTime = 60;       // default total level time
 	this.currentTime = 60;      // default current time
 	this.allowedShapes = null; // {name : quantity}
@@ -58,7 +58,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
 
-    this.messages = {}; // TODO: change to Map() objects?
+    this.messages = new Map(); // TODO: change to Map() objects?
 
     this.defenses = this.level.defenseStructures; // TODO: clone
     if(this.defenses === undefined)
@@ -110,8 +110,8 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
 		time = this.currentTime;
 
     if(msg === '' || msg === undefined || msg === null) {
-        if(this.messages[time] !== undefined) {
-            delete this.messages[time];
+        if(this.messages.has(time)) {
+            delete this.messages.delete(time);
             Materialize.toast(
                 'Message deleted.',
                 4000,
@@ -123,8 +123,8 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
     }
 
 	// if message already exists at that location, update it
-	if (this.messages[time]) {
-		this.messages[time] = msg;
+	if (this.messages.has(time)) {
+		this.messages.set(time, msg);
 
 		Materialize.toast(
 	        'Updated message.',
@@ -136,7 +136,7 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
 	}
 
     for(var i = time; i < time + 4; i++) {
-        if(i < this.totalTime && this.messages[i] !== undefined) {
+        if(i < this.totalTime && this.messages.has(i)) {
             Materialize.toast(
                 'Cannot place message less than 4 seconds before/after another.',
                 4000,
@@ -147,7 +147,7 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
     }
 
     for(var i = time-4; i < time; i++) {
-        if(i > 0 && this.messages[i] !== undefined) {
+        if(i > 0 && this.messages.has(i)) {
             Materialize.toast(
                 'Cannot place message less than 4 seconds before/after another.',
                 4000,
@@ -156,7 +156,7 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
             return false;
         }
     }
-	this.messages[time] = msg;
+	this.messages.set(time, msg);
     Materialize.toast(
         'Placed message.',
         4000,
@@ -207,16 +207,13 @@ LevelEditManager.prototype.changeCurrentTime = function(newTime) {
  * @param {int} newTime Time after which to delete (seconds)
  */
 LevelEditManager.prototype.deleteAfter = function(newTime) {
-	var msgs = Object.keys(this.messages);
-	var spawns = Object.keys(this.enemySpawns);
-
-	for(var i = 0; i < msgs.length; i++) {
-		if(msgs[i] > newTime)
-			delete this.messages[msgs[i]];
-	}
-	for(var i = 0; i < spawns.length; i++) {
-		if(spawns[i] > newTime)
-			delete this.enemySpawns[spawns[i]];
+	for(var i = newTime+1; i < this.currentTime+1; i++) {
+        if(this.messages.has(i))
+            this.messages.delete(i);
+    }
+	for(var i = newTime+1; i < this.currentTime+1; i++) {
+		if(this.enemySpawns.has(i))
+			this.enemySpawns.delete(i);
 	}
 }
 
