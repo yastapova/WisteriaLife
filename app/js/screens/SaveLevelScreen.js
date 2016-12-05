@@ -23,6 +23,7 @@ var SaveLevelScreen = function (id, level) {
     this.level.time = manager.totalTime;
     this.level.enemyZone = manager.factionGrid;
     this.level.enemySpawns = manager.enemySpawns;
+    this.level.enemySpawns = this.level.revertEnemySpawnMap();
     this.level.defenseStructures = manager.defenses;
     this.level.messages = manager.messages;
     Screen.call(this, id, true);
