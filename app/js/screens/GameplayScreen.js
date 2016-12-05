@@ -232,7 +232,10 @@ GamePlayScreen.prototype.isLegal = function (user) {
     var userCheck = Screen.prototype.isLegal.call(this, user);
 
     if (userCheck === true) {
-        if (this.gameManager.screenManager.previousScreen != 'level-story')
+        if (
+            this.gameManager.screenManager.previousScreen != 'level-story'
+            && this.gameManager.screenManager.previousScreen != 'gameplay'
+        )
             return "Must come from story screen";
 
         // check user progress
