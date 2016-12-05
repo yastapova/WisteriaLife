@@ -50,6 +50,7 @@ LevelEditScreen.prototype.setLevel = function (level) {
             self.gameManager.shapeManager.getShape(
                 $(this).attr('data-value')
             );
+        self.levelEditManager.forceChangeFaction();
     });
 
     // units and powerup tooltips
@@ -123,18 +124,22 @@ LevelEditScreen.prototype.init = function() {
 
     $('#fac-objective').click(function () {
         this.gameManager.levelEditManager.selectedFaction = 5;
+        this.gameManager.levelEditManager.forceChangeUnit();
         console.log(this.gameManager.levelEditManager.selectedFaction);
     }.bind(this));
     $('#fac-enemy').click(function () {
         this.gameManager.levelEditManager.selectedFaction = 6;
+        this.gameManager.levelEditManager.forceChangeUnit();
         console.log(this.gameManager.levelEditManager.selectedFaction);
     }.bind(this));
     $('#fac-friend-zone').click(function () {
         this.gameManager.levelEditManager.selectedFaction = 2;
+        this.gameManager.levelEditManager.forceChangeUnit();
         console.log(this.gameManager.levelEditManager.selectedFaction);
     }.bind(this));
     $('#fac-enemy-zone').click(function () {
         this.gameManager.levelEditManager.selectedFaction = 3;
+        this.gameManager.levelEditManager.forceChangeUnit();
         console.log(this.gameManager.levelEditManager.selectedFaction);
     }.bind(this));
 
