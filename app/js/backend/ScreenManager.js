@@ -158,8 +158,10 @@ ScreenManager.prototype.switchScreens = function (screen, property) {
     this.screen = new this.screenMap[this.currentScreen](this.currentScreen, property);
 
     // overlay screens don't count as previous screen
-    if (this.screen.overlay)
+    if (this.screen.overlay) {
         this.previousScreen = previousScreen;
+        this.currentScreen = previousScreen;
+    }
 
     // return could be true, false, or a string
     var legal = this.isLegal(this.screen);
