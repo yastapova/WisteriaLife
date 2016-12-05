@@ -50,7 +50,7 @@ LevelStoryScreen.prototype.isLegal = function (user) {
 
     if (userCheck === true) {
         // check user progress
-        if (this.level > user.gameData.currentLevel + 1)
+        if (this.level <= 40 && this.level > user.gameData.currentLevel + 1)
             return "Not up to level " + this.level + " yet!";
 
     } else {
