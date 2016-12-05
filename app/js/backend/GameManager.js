@@ -126,6 +126,8 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 
                 if (this.screenManager.currentScreen == 'splash')
                     this.screenManager.switchScreens('map');
+
+    	        this.writeUserData();
 	        }else{
                 // Check if guest already has data
                 var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
@@ -151,7 +153,6 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        $('#user-icon-pic').css('display','none');
 	        $('#user-pic-drop').css('display','none');
 	        this.userDropName.text("Guest");
-	        this.writeUserData();
 	    }
     	else{
     		// User is signed in
@@ -170,8 +171,6 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        	this.userLevel.text = 'Level ' + this.user.gameData.currentLevel;
 	        	this.writeUserData();
 	        }
-	        console.log(user);
-
 	        // Splash changes
 	        $('#splash-logout').css('display','block');
 	        $('#splash-login').css('display', 'none');
@@ -303,12 +302,14 @@ GameManager.prototype.writeUserData = function () {
  */
 GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
 	if(exists){
+
         this.user = new User(user.displayName, user.photoURL, user.uid, snapshot.levels);
-		console.log("I exist!");
+
+        this.user.name = this.user.name ? this.user.name : 'Guest';
+
 		this.user.gameData = snapshot.gameData;
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
-        this.userName.text(this.user.name);
 
         // update data (particularly the avatar)
         this.writeUserData();
@@ -316,7 +317,6 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
         this.user = new User(user.displayName, user.photoURL, user.uid, []);
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
-        this.userName.text(this.user.name);
 		this.writeUserData();
 	}
 };

@@ -33,6 +33,7 @@ SplashScreen.prototype.init = function() {
     this.playButton.on('click', gameManager.play.bind(gameManager));
     this.guestLoginButton.on('click', gameManager.guestLogin.bind(gameManager));
     this.guestProceedLoginButton.on('click', gameManager.login.bind(gameManager));
+
     gameManager.auth.onAuthStateChanged(gameManager.onAuthStateChanged.bind(gameManager));
 
 };
