@@ -125,7 +125,7 @@ LevelEditScreen.prototype.init = function() {
     this.messageButton = $('#message-button');
     this.messageField = $('#message');
     this.messageBox = $('#message-box');
-    this.addMessage = $('#add-message');
+    this.messageForm = $('#message-form');
     this.messageOpen = false;
 
     // close on click outside of message dialog
@@ -142,7 +142,8 @@ LevelEditScreen.prototype.init = function() {
         this.messageBox.fadeIn('fast');
     }.bind(this));
 
-    this.addMessage.click(function () {
+    this.messageForm.submit(function (e) {
+        e.preventDefault();
         if (this.levelEditManager.addMessage(this.messageField.val())) {
             self.messageButton.addClass('has-message');
             this.messageBox.fadeOut('fast');
