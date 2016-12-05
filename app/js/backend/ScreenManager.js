@@ -23,6 +23,7 @@ var ScreenManager = function () {
     this.screenMap = {
         'about': AboutScreen,
         'defeat': DefeatScreen,
+        'editor-overlay': EditorOverlayScreen,
         'map': GameMapScreen,
         'gameplay': GameplayScreen,
         'level-editor': LevelEditScreen,
@@ -216,6 +217,7 @@ ScreenManager.prototype.isLegal = function (screen) {
 var Screen = require('../screens/Screen');
 var AboutScreen = require('../screens/AboutScreen');
 var DefeatScreen = require('../screens/DefeatScreen');
+var EditorOverlayScreen = require('../screens/EditorOverlayScreen');
 var GameMapScreen = require('../screens/GameMapScreen');
 var GameplayScreen = require('../screens/GameplayScreen');
 var LevelEditScreen = require('../screens/LevelEditScreen');

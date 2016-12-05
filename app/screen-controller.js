@@ -36,6 +36,13 @@ router.get('/defeat/:level', function(req, res, next) {
     });
 });
 
+router.get('/editor-overlay/:level', function(req, res, next) {
+    res.render('editor-overlay', {
+        title: 'Editor Overlay',
+        level: !isNaN(req.params.level) ? parseInt(req.params.level) : req.params.level
+    });
+});
+
 /* Gameplay.- Level Number */
 router.get('/gameplay/:level', function(req, res, next) {
     res.render('gameplay', {
