@@ -87,10 +87,16 @@
                         <i class="collapse-icon wisteria-icons right mdi mdi-chevron-down"></i>
                     </div>
                     <div class="collapsible-body">
-                        <button type="button" id="fac-objective">Defense</button>
-                        <button type="button" id="fac-enemy">Enemy</button>
-                        <button type="button" id="fac-friend-zone" value=2>Friend Zone</button>
-                        <button type="button" id="fac-enemy-zone" value=3>Enemy Zone</button>
+
+                        <div id="factions" class="faction-buttons">
+                            <button type="button" class="btn waves-effect" id="fac-objective">Defense</button>
+                            <button type="button" class="btn waves-effect" id="fac-enemy">Enemy</button>
+                        </div>
+
+                        <div id="zones" class="faction-buttons">
+                            <button type="button" class="btn waves-effect" id="fac-friend-zone" value=2>Friend Zone</button>
+                            <button type="button" class="btn waves-effect" id="fac-enemy-zone" value=3>Enemy Zone</button>
+                        </div>
                     </div>
                 </li>
             </ul>
