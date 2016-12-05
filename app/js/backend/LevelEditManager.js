@@ -201,7 +201,7 @@ LevelEditManager.prototype.forceChangeUnit = function() {
 }
 LevelEditManager.prototype.forceChangeFaction = function() {
     if(this.selectedFaction === this.BLANK) {
-        this.selectedFaction = this.ENEMY;
+        this.selectedFaction = this.OBJECTIVE;
     }
 }
 
@@ -253,6 +253,14 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         else {
             shape = this.selectedUnit;
         }
+    }
+    if(this.selectedFaction === undefined) {
+        Materialize.toast(
+            "No faction selected! Select a faction from the Colors sidebar.",
+            2000,
+            'wisteria-error-toast'
+        );
+        return;
     }
     if(this.selectedFaction === this.BLANK && faction !== this.GHOST)
     {
