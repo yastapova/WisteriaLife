@@ -102,7 +102,7 @@ LevelEditScreen.prototype.init = function() {
         }
         // check for messages
         // change color of button if message exists
-        var message = self.levelEditManager.messages[$(this).val()];
+        var message = self.levelEditManager.messages.get($(this).val()-0);
         if (message) {
             self.messageButton.addClass('has-message');
             $('#message').val(message);
