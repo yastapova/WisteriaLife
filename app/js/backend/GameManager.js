@@ -40,7 +40,7 @@ var GameManager = function () {
     this.userPicDrop = $('#user-pic-drop');
 
     // User
-    this.user = undefined;
+    this.user = '';
     this.userWistbux = $('#user-wistbux');
 };
 
@@ -119,10 +119,13 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     if(user) {
     	if(user.isAnonymous){
     		console.log("I am anonymous!");
-    		if(this.user === undefined){
+    		if(!this.user){
 	        	this.user = new User("Guest", null, user.uid);
 	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
                 this.userDropName.text("Guest");
+
+                if (this.screenManager.currentScreen == 'splash')
+                    this.screenManager.switchScreens('map');
 	        }else{
                 // Check if guest already has data
                 var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
@@ -239,7 +242,6 @@ GameManager.prototype.login = function() {
 GameManager.prototype.guest = function() {
     // Sign in Firebase using guest account
     firebase.auth().signInAnonymously();
-    this.screenManager.switchScreens('map');
 };
 
 /**
@@ -263,14 +265,14 @@ GameManager.prototype.logout = function() {
             // Sign out of Firebase.
             firebase.auth().signOut();
             this.screenManager.switchScreens('splash');
-            this.user = undefined;
+            this.user = '';
             this.userDropName.text("Guest");
             }.bind(this));
     }else{
         // Sign out of Firebase.
         firebase.auth().signOut();
         this.screenManager.switchScreens('splash');
-        this.user = undefined;
+        this.user = '';
         this.userDropName.text("Guest");
     }
 };
@@ -287,7 +289,7 @@ GameManager.prototype.play = function() {
  * Write User Data
  */
 GameManager.prototype.writeUserData = function () {
-	console.log("Writing data " + this.user.gameData);
+	console.log("Writing/updating data " + this.user.uid);
 	firebase.database().ref('users/' + this.user.uid).set({
     	username: this.user.name,
     	gameData: this.user.gameData,
@@ -307,6 +309,9 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
         this.userName.text(this.user.name);
+
+        // update data (particularly the avatar)
+        this.writeUserData();
 	}else{
         this.user = new User(user.displayName, user.photoURL, user.uid, []);
         this.userWistbux.text(this.user.gameData.wistbux);
