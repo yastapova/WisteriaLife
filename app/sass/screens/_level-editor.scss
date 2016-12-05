@@ -131,6 +131,44 @@ $toolbar-height-mobile: 36px;
     }
 }
 
+.faction-buttons {
+    padding: 5px;
+
+    button {
+        width: 45%;
+        margin: 0;
+        padding: 1px;
+        opacity: 0.35;
+        @include transition(all, 0.5s, linear);
+
+        &#fac-objective {
+            background-color: #773795;
+            color: #fff;
+        }
+
+        &#fac-enemy {
+            background-color: #94b21c;
+            color: #fff;
+        }
+
+        &#fac-friend-zone {
+            background-color: #fff;
+            color: #000;
+        }
+
+        &#fac-enemy-zone {
+            background-color: #696969;
+            color: #fff;
+        }
+
+        &:focus {
+            opacity: 1.0;
+            font-weight: bold;
+        }
+    }
+}
+
+
 button.has-message {
     color: $primary-dark;
 }
