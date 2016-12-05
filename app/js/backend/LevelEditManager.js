@@ -478,9 +478,11 @@ LevelEditManager.prototype.placeDefenses = function(defenses, addToMaps) {
         var shape = defenses[i].name;
         var coords = defenses[i].coordinates;
         shape = gameManager.shapeManager.getShape(shape);
+        this.selectedUnit = shape;
         this.placeShape(coords.y, coords.x, this.OBJECTIVE,
                         shape, this.nonGhostGrid, addToMaps);
     }
+    this.selectedUnit = undefined;
 }
 
 /**
