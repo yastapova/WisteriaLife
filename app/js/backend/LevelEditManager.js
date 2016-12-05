@@ -78,11 +78,9 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.nonGhostGrid = new Array(this.gridWidth * this.gridHeight);
     this.factionGrid = this.level.enemyZone.slice(0);
     this.enemySpawns = this.level.enemySpawns; // TODO: clone
-    if(this.enemySpawns === undefined)
+    if(this.enemySpawns === undefined){
         this.enemySpawns = new Map();
-    // else {
-    //     this.level.convertToEnemySpawnMap(this.enemySpawns);
-    // }
+    }
     for(var i = 0; i < this.gridHeight*this.gridWidth; i++)
     {
         this.ghostGrid[i] = this.BLANK;
