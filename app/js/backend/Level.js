@@ -44,13 +44,11 @@ Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
  */
 Level.prototype.revertEnemySpawnMap = function () {
     if (!this.enemySpawns) return;
-    var enemySpawnsToSave = [];
-    // var entries  = Object.entries(this.enemySpawns);
-    var entries = this.enemySpawns.entries();
-    for(var entry in entries){
+    var enemySpawnsToSave = [];        
+    for(let [key, value] of this.enemySpawns.entries()){
         var obj = {};
-        obj.time = parseInt(entries[entry][0]);
-        obj.shapes = entries[entry][1];
+        obj.time = key;
+        obj.shapes = value;
         enemySpawnsToSave.push(obj);
     }
     return enemySpawnsToSave;
@@ -61,12 +59,11 @@ Level.prototype.revertEnemySpawnMap = function () {
  */
 Level.prototype.revertMessageMap = function () {
     if (!this.messages) return;
-    var messagesToSave = [];
-    var entries  = Object.entries(this.messages);
-    for(var entry in entries){
+    var messagesToSave = [];    
+    for(let [key, value] of this.messages.entries()){
         var obj = {};
-        obj.time = parseInt(entries[entry][0]);
-        obj.message = entries[entry][1];
+        obj.time = key;
+        obj.message = value;
         messagesToSave.push(obj);
     }
     return messagesToSave;
