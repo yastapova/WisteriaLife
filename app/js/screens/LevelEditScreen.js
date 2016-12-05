@@ -138,6 +138,7 @@ LevelEditScreen.prototype.init = function() {
         if (this.levelEditManager.addMessage(this.messageField.val())) {
             self.messageButton.addClass('has-message');
             this.messageBox.fadeOut('fast');
+            this.messageOpen = false;
         }
     }.bind(this));
 
