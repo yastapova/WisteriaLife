@@ -22,7 +22,7 @@ var LevelEditManager = function(levelSize) {
 	this.renderGridOld = [];   // what was rendered last time
     this.ghostGrid = [];       // ghost only
 
-    this.selectedShape = null; // which shape is selected to place
+    this.selectedUnit = null; // which shape is selected to place
     this.selectedFaction = 0;  // which faction is selected to place
 
     // cell types
