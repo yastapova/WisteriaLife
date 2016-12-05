@@ -16,7 +16,7 @@
                 <span id="current-time">0:00</span>
             </div>
 
-            <div class="input-field col s6">
+            <div id="total-time-field" class="input-field col s6">
                 <div id="total-time-input">
                     <input value="60" id="level-total-time" type="text" class="validate">
                     <label id="level-total-time-label" for="level-total-time">Total Time</label>
@@ -106,14 +106,15 @@
                      <i class="wisteria-icons clear-cell mdi mdi-message-text"></i>
                  </button>
 
-
                  <div id="message-box">
                      <div id="message-box-content">
                         <div class="input-field col">
-                            <input id="message" type="text" class="validate">
-                            <label for="message">Message</label>
+                            <form id="message-form">
+                                <input id="message" type="text" class="validate">
+                                <label for="message">Message</label>
+                                <button id="add-message" class="btn waves-effect waves-light" type="submit">Add Message</button>
+                            </form>
                         </div>
-                        <button id="add-message" class="btn waves-effect waves-light">Add Message</button>
                      </div>
                  </div>
 

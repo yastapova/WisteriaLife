@@ -26,6 +26,7 @@ $toolbar-font-color: #000;
     position: fixed;
     top: calc(#{$toolbar-height-mobile} + #{$navbar-height-mobile});
     bottom: 0px;
+    z-index: 18;
 
     @media #{$medium-and-up} {
         top: calc(#{$toolbar-height} + #{$navbar-height});
@@ -138,6 +139,7 @@ $toolbar-font-color: #000;
     padding: 0 10px;
     width: 100%;
     position: fixed;
+    z-index: 23;
 
     @media #{$medium-and-up} {
         height: $toolbar-height;
@@ -151,6 +153,7 @@ $toolbar-font-color: #000;
     #cheat-button {
         float: right;
         margin-right: 0;
+        position: relative;
     }
 
     .toolbar-item {
@@ -175,10 +178,6 @@ $toolbar-font-color: #000;
             @media #{$medium-and-up} {
                 font-size: 2.5rem;;
             }
-        }
-
-        input {
-            margin: 0;
         }
     }
 
@@ -253,5 +252,47 @@ $toolbar-font-color: #000;
             opacity: 0.5;
             cursor: pointer;
         }
+    }
+}
+
+#cheat-box {
+    @extend .z-depth-4;
+    position: absolute;
+    right: 0%;
+    top: 125%;
+    background: #ffffff;
+    border: 1px solid $primary-color;
+    padding: 10px;
+    z-index: 20;
+    font-size: 1.0rem;
+    width: 250px;
+    display: none;
+
+    label {
+        left: 0;
+    }
+
+    &:after, &:before {
+        bottom: 100%;
+        right: 0%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+        z-index: 21;
+    }
+
+    &:after {
+        border-color: rgba(255, 255, 255, 0);
+        border-bottom-color: #ffffff;
+        border-width: 15px;
+        margin-left: -15px;
+    }
+
+    &:before {
+        border-width: 16px;
+        margin-left: -16px;
     }
 }
