@@ -12,7 +12,7 @@ var LevelEditManager = function(levelSize) {
 	this.defenses = [];        // [{name : String, coordinates : {x : int, y : int}}]
 	this.enemySpawns = {};     // {time : int, shapes : [{name : String, coordinates : {x : int, y : int}}]}
 	this.totalTime = 60;       // default total level time
-	this.currentTime = 0;      // default current time
+	this.currentTime = 60;      // default current time
 	this.allowedShapes = null; // {name : quantity}
     this.shapeLookupMap = {};
 
@@ -100,7 +100,44 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
  * @param {String} msg Message to display
  */
 LevelEditManager.prototype.addMessage = function(time, msg) {
+    if(msg === '' || msg === undefined || msg === null) {
+        if(this.messages[time] !== undefined) {
+            delete this.messages[time];
+            Materialize.toast(
+                'Message deleted.',
+                4000,
+                'wisteria-toast'
+            );
+            return;
+        }
+        return;
+    }
+    for(var i = time; i < time + 4; i++) {
+        if(i < this.totalTime && this.message[i] !== undefined) {
+            Materialize.toast(
+                'Cannot place message less than 4 seconds before/after another.',
+                4000,
+                'wisteria-error-toast'
+            );
+            return;
+        }
+    }
+    for(var i = time-4; i < time; i++) {
+        if(i > 0 && this.message[i] !== undefined) {
+            Materialize.toast(
+                'Cannot place message less than 4 seconds before/after another.',
+                4000,
+                'wisteria-error-toast'
+            );
+            return;
+        }
+    }
 	this.messages[time] = msg;
+    Materialize.toast(
+        'Placed message.',
+        4000,
+        'wisteria-toast'
+    );
 }
 
 /**
@@ -236,8 +273,17 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     if(faction === this.FRIEND || faction === this.OBJECTIVE)
         zone = this.FRIEND_ZONE;
     // enemies only in the enemy zone
-    else if(faction === this.ENEMY)
+    else if(faction === this.ENEMY) {
+        if(this.totalTime - this.currentTime < 3) {
+            Materialize.toast(
+                'Enemy spawns allowed only after 3 seconds.',
+                4000,
+                'wisteria-error-toast'
+            );
+            return;
+        }
         zone = this.ENEMY_ZONE;
+    }
     // zones can be anywhere
     else if(faction === this.ENEMY_ZONE || faction === this.FRIEND_ZONE) {
         zone = this.BLANK;
