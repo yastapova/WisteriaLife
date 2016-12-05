@@ -221,11 +221,10 @@ LevelEditScreen.prototype.init = function() {
 
     // navigate to save level screen
     $('#save-level-show').click(function () {
-        if(this.levelEditManager.defenses.length < 1 ||
-           Object.keys(this.levelEditManager.enemySpawns).length < 1) {
+        if(this.levelEditManager.enemySpawns.size < 1) {
             alert("Need at least 1 of each to save:\n"
             + this.levelEditManager.defenses.length + "/1 Defense Structures\n"
-            + Object.keys(this.levelEditManager.enemySpawns).length + "/1 Enemy Spawn");
+            + this.levelEditManager.enemySpawns.size + "/1 Enemy Spawn");
             return;
         }
         this.gameManager.screenManager.switchScreens('save-level', this.level);
