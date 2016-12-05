@@ -126,6 +126,8 @@ Screen.prototype.init = function () {
  *                             Message will appear as an error toast
  */
 Screen.prototype.isLegal = function (user) {
+    if (user === '')
+        return 'Please login or select "Play As Guest".';
     return true;
 }
 
