@@ -105,6 +105,8 @@ ScreenManager.prototype.setupInitScreen = function () {
     history.replaceState({screen: this.id, property: property}, '', '/' + screenSwitch +
         (property ? '/' + property : '' ));
 
+    console.log("Switch " + this.currentScreen);
+
     // wait to init until user available
     if (this.currentScreen !== 'splash') {
         this.loader.fadeIn();
@@ -164,7 +166,7 @@ ScreenManager.prototype.switchScreens = function (screen, property) {
         if (legal)
             Materialize.toast(legal, 4000, 'wisteria-error-toast');
 
-        this.switchScreens('map');
+        this.switchScreens('splash');
         return;
     }
 
