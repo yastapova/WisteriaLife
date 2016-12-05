@@ -91,8 +91,9 @@ LevelEditScreen.prototype.init = function() {
     this.timeBar.on('change', function () {
         self.setTimeDisplay($(this).val());
         var curSelFaction = self.levelEditManager.selectedFaction;
+        var curSelUnit = self.levelEditManager.selectedUnit;
         self.levelEditManager.changeCurrentTime($(this).val());
-        self.levelEditManager.selectedUnit = self.gameManager.shapeManager.getShape($('#unit-select-items .select-item').attr('data-value'));
+        self.levelEditManager.selectedUnit = curSelUnit;
         self.levelEditManager.selectedFaction = curSelFaction;
         switch(self.levelEditManager.selectedFaction) {
             case 5: $('#fac-objective').focus(); break;
@@ -125,7 +126,7 @@ LevelEditScreen.prototype.init = function() {
     this.messageButton = $('#message-button');
     this.messageField = $('#message');
     this.messageBox = $('#message-box');
-    this.addMessage = $('#add-message');
+    this.messageForm = $('#message-form');
     this.messageOpen = false;
 
     // close on click outside of message dialog
@@ -142,7 +143,8 @@ LevelEditScreen.prototype.init = function() {
         this.messageBox.fadeIn('fast');
     }.bind(this));
 
-    this.addMessage.click(function () {
+    this.messageForm.submit(function (e) {
+        e.preventDefault();
         if (this.levelEditManager.addMessage(this.messageField.val())) {
             self.messageButton.addClass('has-message');
             this.messageBox.fadeOut('fast');
