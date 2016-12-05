@@ -40,7 +40,7 @@ Level.prototype.convertToEnemySpawnMap = function (enemySpawns) {
 };
 
 /*
- * Revert enemySpawnMap into the enemy spawns array in the shapeAtrrObj 
+ * Revert enemySpawnMap into the enemy spawns array in the levelAtrrObj 
  */
 Level.prototype.revertEnemySpawnMap = function () {
     if (!this.enemySpawns) return;
@@ -54,6 +54,22 @@ Level.prototype.revertEnemySpawnMap = function () {
         enemySpawnsToSave.push(obj);
     }
     return enemySpawnsToSave;
+};
+
+/*
+ * Revert messageMap into the message map array in the levelAtrrObj 
+ */
+Level.prototype.revertMessageMap = function () {
+    if (!this.messages) return;
+    var messagesToSave = [];
+    var entries  = Object.entries(this.messages);
+    for(var entry in entries){
+        var obj = {};
+        obj.time = parseInt(entries[entry][0]);
+        obj.message = entries[entry][1];
+        messagesToSave.push(obj);
+    }
+    return messagesToSave;
 };
 
 /**

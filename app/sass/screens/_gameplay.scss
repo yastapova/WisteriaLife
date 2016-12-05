@@ -18,6 +18,9 @@
 $toolbar-height: 48px;
 $toolbar-height-mobile: 36px;
 
+$toolbar-color: desaturate($primary-color, 20%);
+$toolbar-font-color: #000;
+
 #gameplay-area {
     width: 100%;
     position: fixed;
@@ -46,9 +49,10 @@ $toolbar-height-mobile: 36px;
 #gameplay-sidebar {
     width: 20%;
     height: 100%;
-    background-color: $primary-color;
+    background-color: $toolbar-color;
     float: left;
     position: relative;
+    color: $toolbar-font-color;
 
     .collapsible {
         font-size: 0.9rem;
@@ -118,7 +122,7 @@ $toolbar-height-mobile: 36px;
         .wisteria-icons {
             font-size: 1.8rem;
         }
-        
+
         padding: 10px;
     }
 }
@@ -128,8 +132,9 @@ $toolbar-height-mobile: 36px;
  * Also applies to level editor
  */
 .gameplay-toolbar {
-    background-color: $primary-color;
+    background-color: $toolbar-color;
     height: $toolbar-height-mobile;
+    color: $toolbar-font-color;
     padding: 0 10px;
     width: 100%;
     position: fixed;
@@ -197,7 +202,7 @@ $toolbar-height-mobile: 36px;
         }
 
         #timer-display {
-            background-color: $primary-color;
+            background-color: $toolbar-color;
             position: absolute;
             z-index: 6;
             top: 50%;
