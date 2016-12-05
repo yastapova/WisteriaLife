@@ -88,7 +88,7 @@ LevelEditScreen.prototype.init = function() {
     // set initial time and time change event
     this.timeDisplay = $('#timer-display');
     this.timeBar = $('#timeline input');
-    this.timeBar.on('change', function () {
+    this.timeBar.on('input', function () {
         self.setTimeDisplay($(this).val());
         var curSelFaction = self.levelEditManager.selectedFaction;
         var curSelUnit = self.levelEditManager.selectedUnit;
