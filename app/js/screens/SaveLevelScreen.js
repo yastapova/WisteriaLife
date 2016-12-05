@@ -180,6 +180,9 @@ SaveLevelScreen.prototype.saveLevel = function(){
       .put(this.imgFile, {contentType: this.imgFile.type});
     }
 
+    // Write user data to firebase
+    this.gameManager.writeUserData();
+
 	// Switch screen to public or private
 	if(this.levelMisc.public === 1){
 		this.gameManager.screenManager.switchScreens('public-custom-levels');
