@@ -51,6 +51,8 @@ LevelEditScreen.prototype.setLevel = function (level) {
                 $(this).attr('data-value')
             );
         self.levelEditManager.forceChangeFaction();
+
+        $('#backspace-button button').removeClass('backspace-selected');
     });
 
     // units and powerup tooltips
@@ -105,14 +107,6 @@ LevelEditScreen.prototype.init = function() {
     });
     self.setTimeDisplay($('#level-total-time').val());
     this.timeBar.val($('#level-total-time').val());
-
-    // update current shape
-    $('#unit-select-menu select').change(function () {
-        self.gameLogicManager.currentUnit =
-            self.gameManager.shapeManager.getShape(
-                $(this).val()
-            );
-    });
 
     this.messageButton = $('#message-button');
     this.messageField = $('#message');
@@ -184,9 +178,15 @@ LevelEditScreen.prototype.init = function() {
     });
 
     $('#backspace-button button').click(function () {
-        this.gameManager.levelEditManager.selectedFaction = this.gameManager.levelEditManager.BLANK;
-        this.gameManager.levelEditManager.selectedUnit = this.gameManager.shapeManager.getShape("void");
-    }.bind(this));
+        self.gameManager.levelEditManager.selectedFaction = self.gameManager.levelEditManager.BLANK;
+        self.gameManager.levelEditManager.selectedUnit = self.gameManager.shapeManager.getShape("void");
+
+        // highlight delete button
+        $(this).addClass('backspace-selected');
+
+        // unselect unit buttons
+        $('#unit-select-items .select-item').removeClass('selected');
+    });
 
     // user confirms resize, clear and resize
     $('.resize-select button').click(function () {

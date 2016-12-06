@@ -41,16 +41,17 @@ SaveLevelScreen.prototype.init = function() {
     if(this.level.allowedShapes){
         console.log("Found old data.");
         var levelRef = firebase.database().ref('/customLevels/' + this.level.id).once('value').then(function(snapshot) {
-            var temp = snapshot.val();
             $('#level_title').val(snapshot.val().title).focus();
             $("label[for^='level_storyline']").addClass("active");
             $('#level_storyline').val(snapshot.val().storyline).focus();
             $("label[for^='level_title']").addClass("active");
+            // Is it public or private?        
+            $('#save-public').prop('checked', snapshot.val().public == 1);
         });
         // Update the range for all the allowed shapes
         for(var index in this.level.allowedShapes){
             $('#' + this.level.allowedShapes[index].shape +'_num').val(this.level.allowedShapes[index].quantity);
-        }
+        }        
     }
 
     // handle uploading image
@@ -104,13 +105,14 @@ SaveLevelScreen.prototype.init = function() {
     $('#wallforward_num').on("change", function() {
     $('.output_wallforward').val(" x" + this.value);
     }).trigger("change");
+    
 };
 
 SaveLevelScreen.prototype.saveImage = function(event){
 	this.imgFile = event.target.files[0];
 	// clear the selection in the file picker input (?)
 	$('#image-form')[0].reset();
-	$('#imgFileName').text(this.imgFile.name);
+	$('#img-file-name').text(this.imgFile.name);
 	this.levelMisc.img = this.imgFile.name;
 };
 

@@ -24,6 +24,9 @@ PublicCustomLevelsScreen.prototype.init = function () {
 
 PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
 
+    // avoid duplicates by clearing first
+    this.cards.empty();
+
     for (var level in levels) {
         if (!levels[level].public)
             continue;
