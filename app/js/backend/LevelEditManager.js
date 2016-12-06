@@ -206,13 +206,20 @@ LevelEditManager.prototype.changeCurrentTime = function(newTime) {
         this.nonGhostGrid[i] = this.BLANK;
     }
 
+	// save current selections
+	var selectedUnit = this.selectedUnit;
+	var selectedFaction = this.selectedFaction;
+
     this.placeDefenses(this.defenses, false);
     var spawns = this.checkForSpawns();
-    this.selectedUnit = "";
+
     this.spawnEnemies(spawns, false);
-    this.selectedUnit = undefined;
 
     this.renderGridCells();
+
+	// restore current selections
+	this.selectedUnit = selectedUnit;
+	this.selectedFaction = selectedFaction;
 }
 
 /**
@@ -301,7 +308,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         );
         return;
     }
-    if(this.selectedFaction === this.BLANK && 
+    if(this.selectedFaction === this.BLANK &&
        this.selectedUnit !== undefined &&
        this.selectedUnit.name === "void" &&
        faction !== this.GHOST)
@@ -311,7 +318,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     if(addToMaps === undefined && faction !== this.GHOST)
         addToMaps = true;
 
-    if(this.selectedFaction === this.BLANK && 
+    if(this.selectedFaction === this.BLANK &&
        faction === this.BLANK)
     {
         if(addToMaps && this.selectedUnit.name !== "void") {

@@ -90,17 +90,8 @@ LevelEditScreen.prototype.init = function() {
     this.timeBar = $('#timeline input');
     this.timeBar.on('input', function () {
         self.setTimeDisplay($(this).val());
-        var curSelFaction = self.levelEditManager.selectedFaction;
-        var curSelUnit = self.levelEditManager.selectedUnit;
         self.levelEditManager.changeCurrentTime($(this).val());
-        self.levelEditManager.selectedUnit = curSelUnit;
-        self.levelEditManager.selectedFaction = curSelFaction;
-        switch(self.levelEditManager.selectedFaction) {
-            case 5: $('#fac-objective').focus(); break;
-            case 6: $('#fac-enemy').focus(); break;
-            case 2: $('#fac-friend-zone').focus(); break;
-            case 3: $('#fac-enemy-zone').focus(); break;
-        }
+
         // check for messages
         // change color of button if message exists
         var message = self.levelEditManager.messages.get($(this).val()-0);
@@ -175,26 +166,16 @@ LevelEditScreen.prototype.init = function() {
         opacity: .6
     });
 
-    $('#fac-objective').click(function () {
-        this.gameManager.levelEditManager.selectedFaction = 5;
-        this.gameManager.levelEditManager.forceChangeUnit();
-        console.log(this.gameManager.levelEditManager.selectedFaction);
-    }.bind(this));
-    $('#fac-enemy').click(function () {
-        this.gameManager.levelEditManager.selectedFaction = 6;
-        this.gameManager.levelEditManager.forceChangeUnit();
-        console.log(this.gameManager.levelEditManager.selectedFaction);
-    }.bind(this));
-    $('#fac-friend-zone').click(function () {
-        this.gameManager.levelEditManager.selectedFaction = 2;
-        this.gameManager.levelEditManager.forceChangeUnit();
-        console.log(this.gameManager.levelEditManager.selectedFaction);
-    }.bind(this));
-    $('#fac-enemy-zone').click(function () {
-        this.gameManager.levelEditManager.selectedFaction = 3;
-        this.gameManager.levelEditManager.forceChangeUnit();
-        console.log(this.gameManager.levelEditManager.selectedFaction);
-    }.bind(this));
+    // faction selection
+    $('.faction-buttons button').click(function () {
+        self.gameManager.levelEditManager.selectedFaction = parseInt($(this).attr('data-faction'));
+        self.gameManager.levelEditManager.forceChangeUnit();
+        console.log('Selected faction: ' + $(this).text());
+
+        // highlight selected one
+        $('.faction-buttons button').removeClass('selected-faction');
+        $(this).addClass('selected-faction');
+    });
 
     $('#backspace-button button').click(function () {
         this.gameManager.levelEditManager.selectedFaction = this.gameManager.levelEditManager.BLANK;

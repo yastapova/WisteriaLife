@@ -92,13 +92,13 @@
                     <div class="collapsible-body">
 
                         <div id="factions" class="faction-buttons">
-                            <button type="button" class="btn waves-effect" id="fac-objective">Defense</button>
-                            <button type="button" class="btn waves-effect" id="fac-enemy">Enemy</button>
+                            <button type="button" class="btn waves-effect selected-faction" id="fac-objective" data-faction="5">Defense</button>
+                            <button type="button" class="btn waves-effect" id="fac-enemy" data-faction="6">Enemy</button>
                         </div>
 
                         <div id="zones" class="faction-buttons">
-                            <button type="button" class="btn waves-effect" id="fac-friend-zone" value=2>Friend Zone</button>
-                            <button type="button" class="btn waves-effect" id="fac-enemy-zone" value=3>Enemy Zone</button>
+                            <button type="button" class="btn waves-effect" id="fac-friend-zone" data-faction="2">Friend Zone</button>
+                            <button type="button" class="btn waves-effect" id="fac-enemy-zone" data-faction="3">Enemy Zone</button>
                         </div>
                     </div>
                 </li>
@@ -110,8 +110,8 @@
                 </button>
             </div>
 
-             <div id="toolbar-message" class="toolbar-item toolbar-button tooltipped" data-tooltip="Add Message">
-                 <button id="message-button" class="editor-buttons">
+             <div id="toolbar-message" class="toolbar-item toolbar-button">
+                 <button id="message-button" class="editor-buttons tooltipped" data-tooltip="Add Message">
                      <i class="wisteria-icons clear-cell mdi mdi-message-text"></i>
                  </button>
 
