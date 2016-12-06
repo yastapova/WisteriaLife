@@ -147,6 +147,11 @@ LevelEditScreen.prototype.init = function() {
         if (!($(this).val() <= 300) || !($(this).val() >= 30))  {
             // TODO show an error message
             console.log("this is invalid time");
+            Materialize.toast(
+                'New time entered must be between 30 and 300 seconds.',
+                4000,
+                'wisteria-error-toast'
+            );
         }
         else {
             self.levelEditManager.changeTotalTime($(this).val());
