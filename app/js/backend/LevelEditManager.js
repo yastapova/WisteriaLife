@@ -122,6 +122,15 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
         return false;
     }
 
+    if(msg.length > 100) {
+        Materialize.toast(
+            'Messages are limited to 100 characters. (Yours: '+msg.length+')',
+            2000,
+            'wisteria-error-toast'
+        );
+        return false;
+    }
+
 	// if message already exists at that location, update it
 	if (this.messages.has(time)) {
 		this.messages.set(time, msg);
@@ -302,7 +311,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     }
     if(this.selectedFaction === undefined) {
         Materialize.toast(
-            "No faction selected! Select a faction from the Colors sidebar.",
+            "No faction selected! Select a faction from the Factions sidebar.",
             2000,
             'wisteria-error-toast'
         );
@@ -323,7 +332,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     {
         if(addToMaps && this.selectedUnit.name !== "void") {
             Materialize.toast(
-                "No faction selected! Select a faction from the Colors sidebar.",
+                "No faction selected! Select a faction from the Factions sidebar.",
                 2000,
                 'wisteria-error-toast'
             );
