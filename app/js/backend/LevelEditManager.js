@@ -379,7 +379,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             return;
         }
         var current_spawns = this.checkForSpawns();
-        if(current_spawns.length >= 5) {
+        if(current_spawns !== undefined && current_spawns.length >= 5) {
             Materialize.toast(
                 'Only 5 enemy spawns allowed per time slot.',
                 2000,
