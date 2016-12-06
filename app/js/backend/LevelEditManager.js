@@ -174,10 +174,23 @@ LevelEditManager.prototype.changeTotalTime = function(newTime) {
 	if(newTime < this.totalTime && newTime >= 30) {
 		this.deleteAfter(newTime);
 	}
-	if(newTime <= 300 && newTime >= 30)
+	if(newTime <= 300 && newTime >= 30) {
 		this.totalTime = newTime;
-    if(newTime <= this.currentTime) {
-        this.changeCurrentTime(newTime);
+        if(newTime <= this.currentTime) {
+            this.changeCurrentTime(newTime);
+        }
+        Materialize.toast(
+            'Total time changed.',
+            4000,
+            'wisteria-toast'
+        );
+    }
+    else {
+        Materialize.toast(
+            'New time entered must be between 30 and 300 seconds.',
+            4000,
+            'wisteria-error-toast'
+        );
     }
 }
 
