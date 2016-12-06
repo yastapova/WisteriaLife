@@ -92,7 +92,7 @@ PrivateCustomLevelsScreen.prototype.addCustomLevel = function (id, level) {
                 card.find('.level-img').attr('src', url);
             });
 
-    this.cards.append(card);
+    this.cards.prepend(card);
 
 
 };

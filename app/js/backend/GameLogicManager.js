@@ -131,7 +131,7 @@ GameLogicManager.prototype.initCellLookup = function()
 
 /**
  * Set the level and canvas being played. Initializes the grids
- * and pulls information in from the level. Places defense 
+ * and pulls information in from the level. Places defense
  * structures onto the grid.
  * @param {Level} level Level object
  * @param {PixiCanvas} canvas Canvas being used to render level
@@ -327,7 +327,7 @@ GameLogicManager.prototype.renderGridCells = function() {
 /**
  * Spawns a new cell in a blank spot if necessary.
  * @param {int} index Index of the cell in the grids
- * @param {String : int, String : int} neighbors How many 
+ * @param {String : int, String : int} neighbors How many
  *       of each type of neighbor the cell has
  */
 GameLogicManager.prototype.reproduce = function(index, neighbors) {
@@ -350,7 +350,7 @@ GameLogicManager.prototype.reproduce = function(index, neighbors) {
 /**
  * A cell dies if necessary.
  * @param {int} index Index of the cell in the grids
- * @param {String : int, String : int} neighbors How many 
+ * @param {String : int, String : int} neighbors How many
  *       of each type of neighbor the cell has
  */
 GameLogicManager.prototype.die = function(index, neighbors) {
@@ -445,10 +445,16 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         zone = this.ENEMY_ZONE;
     // otherwise, just assume friend zone
     else
-        zone = this.FRIEND_ZONE;
+        zone = this.BLANK;
 
     // make sure the shape is being placed in the correct zone
-    if(this.getGridCell(this.factionGrid, clickRow, clickCol) !== zone) {
+    if(zone !== this.BLANK &&
+        this.getGridCell(this.factionGrid, clickRow, clickCol) !== zone) {
+        Materialize.toast(
+ 	        'Must place in friendly zone.',
+ 	        2000,
+ 	        'wisteria-error-toast'
+    	    );
         return;
     }
     // can't place on a void cell
