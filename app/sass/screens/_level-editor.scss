@@ -161,7 +161,11 @@ $toolbar-height-mobile: 36px;
             color: #fff;
         }
 
-        &:focus {
+        &:hover {
+            opacity: 0.6;
+        }
+
+        &.selected-faction {
             opacity: 1.0;
             font-weight: bold;
         }
