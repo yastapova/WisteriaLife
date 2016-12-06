@@ -60,7 +60,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
 
     this.messages = this.level.messages;
     if(this.messages === undefined)
-        this.messages = new Map(); // TODO: change to Map() objects?
+        this.messages = new Map();
 
     this.defenses = this.level.defenseStructures; // TODO: clone
     if(this.defenses === undefined)
@@ -223,6 +223,7 @@ LevelEditManager.prototype.changeCurrentTime = function(newTime) {
     var spawns = this.checkForSpawns();
 
     this.spawnEnemies(spawns, false);
+    this.addExistingSpawnsToLookupMap(spawns);
 
     this.renderGridCells();
 
@@ -442,55 +443,85 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     	    									 	        "coordinates" : {"x" : x,
     	    												 	             "y" : y}});
         	}
-            var currentLookup = this.shapeLookupMap[this.currentTime];
-            if(currentLookup === undefined) {
-                // map
-                this.shapeLookupMap[this.currentTime] = pixelMap;
-            }
-            else {
-                // add to map
-                var pixelMapKeys = Object.keys(pixelMap);
-                for(var i = 0; i < pixelMapKeys.length; i++) {
-                    var key = pixelMapKeys[i];
-                    this.shapeLookupMap[this.currentTime][key] = pixelMap[key];
-                }
-            }
+            this.addToLookupMap(pixelMap);
+            // var currentLookup = this.shapeLookupMap[this.currentTime];
+            // if(currentLookup === undefined) {
+            //     // map
+            //     this.shapeLookupMap[this.currentTime] = pixelMap;
+            // }
+            // else {
+            //     // add to map
+            //     var pixelMapKeys = Object.keys(pixelMap);
+            //     for(var i = 0; i < pixelMapKeys.length; i++) {
+            //         var key = pixelMapKeys[i];
+            //         this.shapeLookupMap[this.currentTime][key] = pixelMap[key];
+            //     }
+            // }
         }
         else if(faction === this.OBJECTIVE) {
         	// add to defenses list
         	this.defenses.push({"name" : name,
     						 	"coordinates" : {"x" : x,
     									 	     "y" : y}});
-            var currentLookup = this.shapeLookupMap[this.currentTime];
-            if(currentLookup === undefined) {
-                // map
-                this.shapeLookupMap[this.currentTime] = pixelMap;
-            }
-            else {
-                // add to map
-                var pixelMapKeys = Object.keys(pixelMap);
-                for(var i = 0; i < pixelMapKeys.length; i++) {
-                    var key = pixelMapKeys[i];
-                    this.shapeLookupMap[this.currentTime][key] = pixelMap[key];
-                }
-            }
+            this.addToLookupMap(pixelMap);
+            // var currentLookup = this.shapeLookupMap[this.currentTime];
+            // if(currentLookup === undefined) {
+            //     // map
+            //     this.shapeLookupMap[this.currentTime] = pixelMap;
+            // }
+            // else {
+            //     // add to map
+            //     var pixelMapKeys = Object.keys(pixelMap);
+            //     for(var i = 0; i < pixelMapKeys.length; i++) {
+            //         var key = pixelMapKeys[i];
+            //         this.shapeLookupMap[this.currentTime][key] = pixelMap[key];
+            //     }
+            // }
         }
         else if(faction === this.ENEMY_ZONE) {
-            // update the faction grid
-            // TODO fix
         	this.setGridCell(this.factionGrid, y, x, this.ENEMY_ZONE);
         }
         else if(faction === this.FRIEND_ZONE) {
-            // update the faction grid
-            // TODO fix
         	this.setGridCell(this.factionGrid, y, x, this.FRIEND_ZONE);
         }
     }
 
-    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth,
-    //                      		this.renderGrid, this.renderGridOld,
-    //                      		this.colors);
 	this.renderGridCells();
+}
+
+LevelEditManager.prototype.addExistingSpawnsToLookupMap = function(spawns) {
+    var pixelMap = {};
+    if(spawns === undefined)
+        return;
+    var gameManager = require('GameManager');
+
+    for(var j = 0; j < spawns.length; j++) {
+    // place each pixel of the shape
+        var shape = gameManager.shapeManager.getShape(spawns[i].name);
+        for (var i = 0; i < pixels.length; i += 2)
+        {
+            var col = clickCol + pixels[i+1];
+            var row = clickRow + pixels[i];
+
+            pixelMap[col + " " + row] = {"x" : clickCol, "y" : clickRow};
+        }
+    }
+}
+
+LevelEditManager.prototype.addToLookupMap = function(pixelMap) {
+    var currentLookup = this.shapeLookupMap[this.currentTime];
+    if(currentLookup === undefined) {
+        // map
+        this.shapeLookupMap[this.currentTime] = pixelMap;
+    }
+    else {
+        // add to map
+        var pixelMapKeys = Object.keys(pixelMap);
+        for(var i = 0; i < pixelMapKeys.length; i++) {
+            var key = pixelMapKeys[i];
+            this.shapeLookupMap[this.currentTime][key] = pixelMap[key];
+        }
+    }
 }
 
 LevelEditManager.prototype.deleteUnit = function(x, y) {
