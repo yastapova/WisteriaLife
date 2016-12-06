@@ -112,7 +112,7 @@ SaveLevelScreen.prototype.saveImage = function(event){
 	this.imgFile = event.target.files[0];
 	// clear the selection in the file picker input (?)
 	$('#image-form')[0].reset();
-	$('#imgFileName').text(this.imgFile.name);
+	$('#img-file-name').text(this.imgFile.name);
 	this.levelMisc.img = this.imgFile.name;
 };
 

@@ -58,7 +58,9 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
 
-    this.messages = new Map(); // TODO: change to Map() objects?
+    this.messages = this.level.messages;
+    if(this.messages === undefined)
+        this.messages = new Map(); // TODO: change to Map() objects?
 
     this.defenses = this.level.defenseStructures; // TODO: clone
     if(this.defenses === undefined)
@@ -120,6 +122,15 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
         return false;
     }
 
+    if(msg.length > 100) {
+        Materialize.toast(
+            'Messages are limited to 100 characters. (Yours: '+msg.length+')',
+            2000,
+            'wisteria-error-toast'
+        );
+        return false;
+    }
+
 	// if message already exists at that location, update it
 	if (this.messages.has(time)) {
 		this.messages.set(time, msg);
@@ -172,10 +183,23 @@ LevelEditManager.prototype.changeTotalTime = function(newTime) {
 	if(newTime < this.totalTime && newTime >= 30) {
 		this.deleteAfter(newTime);
 	}
-	if(newTime <= 300 && newTime >= 30)
+	if(newTime <= 300 && newTime >= 30) {
 		this.totalTime = newTime;
-    if(newTime <= this.currentTime) {
-        this.changeCurrentTime(newTime);
+        if(newTime <= this.currentTime) {
+            this.changeCurrentTime(newTime);
+        }
+        Materialize.toast(
+            'Total time changed.',
+            4000,
+            'wisteria-toast'
+        );
+    }
+    else {
+        Materialize.toast(
+            'New time entered must be between 30 and 300 seconds.',
+            4000,
+            'wisteria-error-toast'
+        );
     }
 }
 
@@ -191,13 +215,20 @@ LevelEditManager.prototype.changeCurrentTime = function(newTime) {
         this.nonGhostGrid[i] = this.BLANK;
     }
 
+	// save current selections
+	var selectedUnit = this.selectedUnit;
+	var selectedFaction = this.selectedFaction;
+
     this.placeDefenses(this.defenses, false);
     var spawns = this.checkForSpawns();
-    this.selectedUnit = "";
+
     this.spawnEnemies(spawns, false);
-    this.selectedUnit = undefined;
 
     this.renderGridCells();
+
+	// restore current selections
+	this.selectedUnit = selectedUnit;
+	this.selectedFaction = selectedFaction;
 }
 
 /**
@@ -280,13 +311,13 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     }
     if(this.selectedFaction === undefined) {
         Materialize.toast(
-            "No faction selected! Select a faction from the Colors sidebar.",
+            "No faction selected! Select a faction from the Factions sidebar.",
             2000,
             'wisteria-error-toast'
         );
         return;
     }
-    if(this.selectedFaction === this.BLANK && 
+    if(this.selectedFaction === this.BLANK &&
        this.selectedUnit !== undefined &&
        this.selectedUnit.name === "void" &&
        faction !== this.GHOST)
@@ -296,12 +327,12 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     if(addToMaps === undefined && faction !== this.GHOST)
         addToMaps = true;
 
-    if(this.selectedFaction === this.BLANK && 
+    if(this.selectedFaction === this.BLANK &&
        faction === this.BLANK)
     {
         if(addToMaps && this.selectedUnit.name !== "void") {
             Materialize.toast(
-                "No faction selected! Select a faction from the Colors sidebar.",
+                "No faction selected! Select a faction from the Factions sidebar.",
                 2000,
                 'wisteria-error-toast'
             );
@@ -342,6 +373,15 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         if(this.totalTime - this.currentTime < 3) {
             Materialize.toast(
                 'Enemy spawns allowed only after 3 seconds.',
+                2000,
+                'wisteria-error-toast'
+            );
+            return;
+        }
+        var current_spawns = this.checkForSpawns();
+        if(current_spawns !== undefined && current_spawns.length >= 5) {
+            Materialize.toast(
+                'Only 5 enemy spawns allowed per time slot.',
                 2000,
                 'wisteria-error-toast'
             );

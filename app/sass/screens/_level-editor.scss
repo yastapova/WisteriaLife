@@ -161,7 +161,11 @@ $toolbar-height-mobile: 36px;
             color: #fff;
         }
 
-        &:focus {
+        &:hover {
+            opacity: 0.6;
+        }
+
+        &.selected-faction {
             opacity: 1.0;
             font-weight: bold;
         }
@@ -169,8 +173,8 @@ $toolbar-height-mobile: 36px;
 }
 
 
-button.has-message {
-    color: $primary-dark;
+button.has-message, .backspace-selected {
+    color: $highlight-color;
 }
 
 .lean-overlay {

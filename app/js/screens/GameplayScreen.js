@@ -198,6 +198,7 @@ GamePlayScreen.prototype.init = function () {
     this.cheatButton.click(function () {
         this.cheatOpen = true;
         this.cheatBox.fadeIn('fast');
+        this.cheatField.focus();
     }.bind(this));
 
     this.cheatForm.submit(function (e) {

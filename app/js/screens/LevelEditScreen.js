@@ -51,6 +51,8 @@ LevelEditScreen.prototype.setLevel = function (level) {
                 $(this).attr('data-value')
             );
         self.levelEditManager.forceChangeFaction();
+
+        $('#backspace-button button').removeClass('backspace-selected');
     });
 
     // units and powerup tooltips
@@ -90,17 +92,8 @@ LevelEditScreen.prototype.init = function() {
     this.timeBar = $('#timeline input');
     this.timeBar.on('input', function () {
         self.setTimeDisplay($(this).val());
-        var curSelFaction = self.levelEditManager.selectedFaction;
-        var curSelUnit = self.levelEditManager.selectedUnit;
         self.levelEditManager.changeCurrentTime($(this).val());
-        self.levelEditManager.selectedUnit = curSelUnit;
-        self.levelEditManager.selectedFaction = curSelFaction;
-        switch(self.levelEditManager.selectedFaction) {
-            case 5: $('#fac-objective').focus(); break;
-            case 6: $('#fac-enemy').focus(); break;
-            case 2: $('#fac-friend-zone').focus(); break;
-            case 3: $('#fac-enemy-zone').focus(); break;
-        }
+
         // check for messages
         // change color of button if message exists
         var message = self.levelEditManager.messages.get($(this).val()-0);
@@ -114,14 +107,6 @@ LevelEditScreen.prototype.init = function() {
     });
     self.setTimeDisplay($('#level-total-time').val());
     this.timeBar.val($('#level-total-time').val());
-
-    // update current shape
-    $('#unit-select-menu select').change(function () {
-        self.gameLogicManager.currentUnit =
-            self.gameManager.shapeManager.getShape(
-                $(this).val()
-            );
-    });
 
     this.messageButton = $('#message-button');
     this.messageField = $('#message');
@@ -141,6 +126,7 @@ LevelEditScreen.prototype.init = function() {
     this.messageButton.click(function () {
         this.messageOpen = true;
         this.messageBox.fadeIn('fast');
+        this.messageField.focus();
     }.bind(this));
 
     this.messageForm.submit(function (e) {
@@ -156,6 +142,11 @@ LevelEditScreen.prototype.init = function() {
         if (!($(this).val() <= 300) || !($(this).val() >= 30))  {
             // TODO show an error message
             console.log("this is invalid time");
+            Materialize.toast(
+                'New time entered must be between 30 and 300 seconds.',
+                4000,
+                'wisteria-error-toast'
+            );
         }
         else {
             self.levelEditManager.changeTotalTime($(this).val());
@@ -175,31 +166,27 @@ LevelEditScreen.prototype.init = function() {
         opacity: .6
     });
 
-    $('#fac-objective').click(function () {
-        this.gameManager.levelEditManager.selectedFaction = 5;
-        this.gameManager.levelEditManager.forceChangeUnit();
-        console.log(this.gameManager.levelEditManager.selectedFaction);
-    }.bind(this));
-    $('#fac-enemy').click(function () {
-        this.gameManager.levelEditManager.selectedFaction = 6;
-        this.gameManager.levelEditManager.forceChangeUnit();
-        console.log(this.gameManager.levelEditManager.selectedFaction);
-    }.bind(this));
-    $('#fac-friend-zone').click(function () {
-        this.gameManager.levelEditManager.selectedFaction = 2;
-        this.gameManager.levelEditManager.forceChangeUnit();
-        console.log(this.gameManager.levelEditManager.selectedFaction);
-    }.bind(this));
-    $('#fac-enemy-zone').click(function () {
-        this.gameManager.levelEditManager.selectedFaction = 3;
-        this.gameManager.levelEditManager.forceChangeUnit();
-        console.log(this.gameManager.levelEditManager.selectedFaction);
-    }.bind(this));
+    // faction selection
+    $('.faction-buttons button').click(function () {
+        self.gameManager.levelEditManager.selectedFaction = parseInt($(this).attr('data-faction'));
+        self.gameManager.levelEditManager.forceChangeUnit();
+        console.log('Selected faction: ' + $(this).text());
+
+        // highlight selected one
+        $('.faction-buttons button').removeClass('selected-faction');
+        $(this).addClass('selected-faction');
+    });
 
     $('#backspace-button button').click(function () {
-        this.gameManager.levelEditManager.selectedFaction = this.gameManager.levelEditManager.BLANK;
-        this.gameManager.levelEditManager.selectedUnit = this.gameManager.shapeManager.getShape("void");
-    }.bind(this));
+        self.gameManager.levelEditManager.selectedFaction = self.gameManager.levelEditManager.BLANK;
+        self.gameManager.levelEditManager.selectedUnit = self.gameManager.shapeManager.getShape("void");
+
+        // highlight delete button
+        $(this).addClass('backspace-selected');
+
+        // unselect unit buttons
+        $('#unit-select-items .select-item').removeClass('selected');
+    });
 
     // user confirms resize, clear and resize
     $('.resize-select button').click(function () {
