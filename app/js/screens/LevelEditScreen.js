@@ -132,6 +132,7 @@ LevelEditScreen.prototype.init = function() {
     this.messageButton.click(function () {
         this.messageOpen = true;
         this.messageBox.fadeIn('fast');
+        this.messageField.focus();
     }.bind(this));
 
     this.messageForm.submit(function (e) {
