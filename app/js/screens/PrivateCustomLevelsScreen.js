@@ -14,7 +14,7 @@ PrivateCustomLevelsScreen.prototype.init = function () {
 
     this.cards = $('#custom-level-cards');
     this.sampleCard = $('#sample-card');
-    
+
     console.log(this.gameManager.user);
     console.log(this.gameManager.user.levels);
 
@@ -26,7 +26,6 @@ PrivateCustomLevelsScreen.prototype.init = function () {
         this.addCustomLevel.bind(this)
     );
 
-
     // test deleting levels
     $('#delete-custom-level').on('click', this.deleteLevels.bind(this));
 };
@@ -34,9 +33,9 @@ PrivateCustomLevelsScreen.prototype.init = function () {
 PrivateCustomLevelsScreen.prototype.deleteLevels = function(){
 	// Get current user
     var userId = firebase.auth().currentUser.uid;
-	// Grab the ids for the levels that are checked   
+	// Grab the ids for the levels that are checked
 	var levelsID = $('.input-field input:checkbox:checked');
-    console.log(levelsID); 
+    console.log(levelsID);
     if(levelsID.length === 0){
         return;
     }
@@ -64,7 +63,7 @@ PrivateCustomLevelsScreen.prototype.deleteLevels = function(){
         }
         // TEMPORARY -- ASK BRIAN ABOUT AUTO REFRESH
         this.screenManager.switchScreens('private-custom-levels');
-    }.bind(this.gameManager));	
+    }.bind(this.gameManager));
 };
 
 /**
