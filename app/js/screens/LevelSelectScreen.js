@@ -43,8 +43,8 @@ LevelSelectScreen.prototype.init = function() {
                         .attr('id', 'level-' + (i + 1));
 
         card.find('.level-num').text(i + 1);
-        card.find('.card-title span').text(levels[i].name);
-        card.find('.card-desc').text(levels[i].storyline);
+        card.find('.card-title span').text(levels[i].title);
+        card.find('.card-desc').text(levels[i].storyline.substring(0,200) + "...");
         card.find('a').attr('data-level', i + 1);
         card.find('img').attr('src', '/img/levels/' + levels[i].img);
 
