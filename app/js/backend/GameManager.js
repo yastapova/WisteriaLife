@@ -130,7 +130,7 @@ GameManager.prototype.onAuthStateChanged = function(user) {
     	        this.writeUserData();
 	        }else{
                 // Check if guest already has data
-                var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
+                firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
                   var exists = (snapshot.val() !== null);
                   this.userExistsCallback(user, exists, snapshot.val());
                 }.bind(this));
@@ -159,17 +159,36 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        // Get the avatar and name from the Firebase user object
 	        if(!this.user){
 	        	// Check if user already has data
-				var userRef = firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
+				firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
 				  var exists = (snapshot.val() !== null);
 				  this.userExistsCallback(user, exists, snapshot.val());
 				}.bind(this));
 	        	// Guest wants to log in
 	        } else if (this.user.name === "Guest"){
+                console.log("MERGING ACCOUNTS!");
+                // check the id values for this, possibly delete the old data
+                // custom levels change uid and author
+                // from users delete old uid user
+                // storage old uid data = new uid data
 	        	var currentGameData = this.user.gameData;
-	        	this.user = new User(user.displayName, user.photoURL, user.uid, []);
+                var oldUid = this.user.uid;
+	        	this.user = new User(user.displayName, user.photoURL, user.uid, this.user.levels);
 	        	this.user.gameData = currentGameData;
+                this.user.guestUid = oldUid;
 	        	this.userLevel.text = 'Level ' + this.user.gameData.currentLevel;
 	        	this.writeUserData();
+
+                // custom levels change uid and author
+                firebase.database().ref("/users/" + oldUid + "/levels/").once('value', function(snapshot){
+                var levels = snapshot.val();
+                for(var key in levels){                   
+                    firebase.database().ref('/customLevels/' + levels[key]).uid = this.user.uid;
+                    firebase.database().ref('/customLevels/' + levels[key]).author = this.user.userName;
+                }
+                // delete guest account
+                firebase.database().ref('/users/' + this.gameManager.user.guestUid).remove();
+                }.bind(this));
+                
 	        }
 	        // Splash changes
 	        $('#splash-logout').css('display','block');
@@ -252,13 +271,12 @@ GameManager.prototype.logout = function() {
         var userId = firebase.auth().currentUser.uid;
         firebase.database().ref("/users/" + userId + "/levels/").once('value', function(snapshot){
             var levels = snapshot.val();
-            // NOT SURE IF THIS WORKS
             for(var key in levels){
                 // delete from 2 locations: customLevels, levels
                 firebase.database().ref('/customLevels/' + levels[key]).remove();
                 firebase.database().ref('/levels/' + levels[key]).remove();
                 // delete img from storage if it exists
-                firebase.storage().ref(userId + "/"+ levels[key]).getDownloadURL().then(function(){console.log("Resolve");}, function(){console.log("Reject");});
+                firebase.storage().ref(userId + "/"+ levels[key]).getDownloadURL().then(function(){console.log("Found image");}, function(){console.log("No image found");});
             }
             firebase.database().ref('/users/' + userId).remove();
             // Sign out of Firebase.
@@ -289,12 +307,22 @@ GameManager.prototype.play = function() {
  */
 GameManager.prototype.writeUserData = function () {
 	console.log("Writing/updating data " + this.user.uid);
-	firebase.database().ref('users/' + this.user.uid).set({
-    	username: this.user.name,
-    	gameData: this.user.gameData,
-        levels: this.user.levels,
-        avatar: this.user.avatar
-	});
+    if(!this.user.guestUid){
+        firebase.database().ref('users/' + this.user.uid).set({
+            username: this.user.name,
+            gameData: this.user.gameData,
+            levels: this.user.levels,
+            avatar: this.user.avatar
+        });
+    }else{
+    	firebase.database().ref('users/' + this.user.uid).set({
+        	username: this.user.name,
+        	gameData: this.user.gameData,
+            levels: this.user.levels,
+            avatar: this.user.avatar,
+            guestUid: this.user.guestUid
+    	});
+    }
 };
 
 /**
@@ -302,12 +330,10 @@ GameManager.prototype.writeUserData = function () {
  */
 GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
 	if(exists){
-
         this.user = new User(user.displayName, user.photoURL, user.uid, snapshot.levels);
-
         this.user.name = this.user.name ? this.user.name : 'Guest';
-
 		this.user.gameData = snapshot.gameData;
+        this.user.guestUid = snapshot.guestUid;
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
 

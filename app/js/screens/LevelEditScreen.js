@@ -218,7 +218,8 @@ LevelEditScreen.prototype.init = function() {
 
     // navigate to save level screen
     $('#save-level-show').click(function () {
-        if(this.levelEditManager.enemySpawns.size < 1) {
+        if(this.levelEditManager.enemySpawns.size < 1 ||
+           this.levelEditManager.defenses.length < 1) {
             alert("Need at least 1 of each to save:\n"
             + this.levelEditManager.defenses.length + "/1 Defense Structures\n"
             + this.levelEditManager.enemySpawns.size + "/1 Enemy Spawn");
