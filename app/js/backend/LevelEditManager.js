@@ -480,12 +480,6 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             //     }
             // }
         }
-        else if(faction === this.ENEMY_ZONE) {
-        	this.setGridCell(this.factionGrid, y, x, this.ENEMY_ZONE);
-        }
-        else if(faction === this.FRIEND_ZONE) {
-        	this.setGridCell(this.factionGrid, y, x, this.FRIEND_ZONE);
-        }
     }
 
 	this.renderGridCells();
