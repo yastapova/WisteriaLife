@@ -28,7 +28,7 @@ LevelStoryScreen.prototype.init = function () {
     if ($.isNumeric(this.level)) {
         var levels = require('GameManager').levelManager.levels;
 
-        $("#level-1-story-title").text(levels[this.level - 1].name);
+        $("#level-1-story-title").text(levels[this.level - 1].title);
         $("#level-1-story-storyline").text(levels[this.level - 1].storyline);
         $("#level-story-number-display").text(this.level);
     } else {
