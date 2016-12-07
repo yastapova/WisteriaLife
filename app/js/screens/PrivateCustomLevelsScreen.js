@@ -15,9 +15,6 @@ PrivateCustomLevelsScreen.prototype.init = function () {
     this.cards = $('#custom-level-cards');
     this.sampleCard = $('#sample-card');
 
-    console.log(this.gameManager.user);
-    console.log(this.gameManager.user.levels);
-
     this.imageStorage = firebase.storage()
         .ref(firebase.auth().currentUser.uid);
 
@@ -30,46 +27,37 @@ PrivateCustomLevelsScreen.prototype.init = function () {
     $('#delete-custom-level').on('click', this.deleteLevels.bind(this));
 };
 
-PrivateCustomLevelsScreen.prototype.deleteLevels = function(){
+PrivateCustomLevelsScreen.prototype.deleteLevels = function () {
 	// Get current user
     var userId = firebase.auth().currentUser.uid;
 	// Grab the ids for the levels that are checked
 	var levelsID = $('.input-field input:checkbox:checked');
 
-    if(levelsID.length === 0){
+    if(levelsID.length === 0)
         return;
-    }
 
-	firebase.database().ref("/users/" + userId + "/levels/")
-        .once('value', function(snapshot){
-            // NOT SURE IF THIS WORKS TO DO
-            for(var index = 0; index < levelsID.length; index++){
-                var lkey = levelsID[index].id.substring(13);
-                // delete from 3 locations: customLevels, levels, and users
-                firebase.database().ref('/customLevels/' + lkey).remove();
-                firebase.database().ref('/levels/' + lkey).remove();
-                // which level is being deleted?
-                var levels = snapshot.val();
-                for(var key in levels){
-                    if(levels[key] == lkey){
-                        firebase.database()
-                            .ref("/users/" + firebase.auth().currentUser.uid +
-                                 '/levels/' + lkey
-                             ).remove();
-                        break;
-                    }
-                }
-                // delete img from storage if it exists
-                firebase.storage().ref(userId + "/" + lkey).delete()
-                    .then(function () {
-                        console.log('Deleted level image.');
-                    }).catch(function (error) {
-                        console.warn(error);
-                    });
-            }
-            // TEMPORARY -- ASK BRIAN ABOUT AUTO REFRESH
-            this.screenManager.switchScreens('private-custom-levels');
-        }.bind(this.gameManager));
+    levelsID.each(function () {
+        var lkey = $(this).attr('data-id');
+
+        // delete from 3 locations: customLevels, levels, and users
+        firebase.database().ref('/customLevels/' + lkey).remove();
+        firebase.database().ref('/levels/' + lkey).remove();
+        firebase.database()
+            .ref("/users/" + firebase.auth().currentUser.uid +
+                 '/levels/' + lkey
+             ).remove();
+
+        // delete img from storage if it exists
+        firebase.storage().ref(userId + "/" + lkey).delete()
+            .then(function () {
+                console.log('Deleted level image.');
+            }).catch(function (error) {
+                console.warn(error);
+            });
+    });
+
+    // refresh page to reload levels (private levels is on a once event)
+    this.gameManager.screenManager.switchScreens('private-custom-levels');
 };
 
 /**
@@ -95,6 +83,7 @@ PrivateCustomLevelsScreen.prototype.addCustomLevel = function (id, level) {
         card.find('.card-icon img').attr('src', this.gameManager.user.avatar);
     card.find('a').attr('data-level', id);
     card.find('input').attr('id',  'level-select-' + id);
+    card.find('input').attr('data-id',  id);
     card.find('label').attr('for', 'level-select-' + id);
 
     if (level.img !== undefined)
