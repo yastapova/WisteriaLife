@@ -15,6 +15,7 @@ var OverflowMenu = function (menu) {
     this.back = menu.back;
     this.store = menu.store;
     this.mute = menu.mute;
+    this.sound = menu.sound;
     this.about = menu.about;
 
     // set click events on all menu items
@@ -28,6 +29,10 @@ var OverflowMenu = function (menu) {
 
     this.mute.on('click', function () {
         this.handleMuteButton();
+    }.bind(this));
+
+    $('#drop-sound').on('click', function () {
+        this.handleSoundButton();
     }.bind(this));
 
     this.about.on('click', function () {
@@ -55,6 +60,17 @@ OverflowMenu.prototype = {
      */
     handleMuteButton: function () {
         this.gameManager.handleMute();
+        this.mute.css('display', 'none');
+        this.sound.css('display', 'block');
+    },
+
+    /**
+     * Handle sound button
+     */
+
+    handleSoundButton: function() {
+        this.mute.css('display', 'block');
+        this.sound.css('display', 'none');
     },
 
     /**

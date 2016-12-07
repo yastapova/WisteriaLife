@@ -188,5 +188,13 @@ nav {
         i:hover {
             color: #000;
         }
+
+        #drop-mute {
+            display: none;
+        }
+
+        #drop-sound {
+            display: block;
+        }
     }
 }
