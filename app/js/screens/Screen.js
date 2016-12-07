@@ -62,6 +62,8 @@ Screen.prototype.load = function () {
         // and don't push history
         if (this.overlay) {
 
+            console.log($(data).filter('#main-container').html());
+
             this.container.prepend($(data).filter('#main-container').html());
 
             // save element to easily hide later
@@ -135,6 +137,14 @@ Screen.prototype.isLegal = function (user) {
         return 'Screen cannot be accessed directly.';
 
     return true;
+}
+
+/**
+ * Base callback method that executes when navigating away from a page
+ * Used for clearing events if necessary (such as Firebase live updates)
+ */
+Screen.prototype.onLeave = function () {
+
 }
 
 module.exports = Screen;
