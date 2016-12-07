@@ -158,7 +158,7 @@ SaveLevelScreen.prototype.saveLevel = function(){
         return;
     }
 
-	// Get unique level id from fb if a new level, add unique id to user levels "array"
+	// Get unique level id from fb if a new level, add unique id to user levels "array": maps to itself
     if(this.level.id == "41" || this.level.id == "42" || this.level.id == "43"){
 	   this.level.id = firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().key;
         firebase.database().ref('users/' + this.gameManager.user.uid + '/levels/').push().set(this.level.id);
