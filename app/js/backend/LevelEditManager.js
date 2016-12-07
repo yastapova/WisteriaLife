@@ -94,6 +94,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     //                      		this.colors);
     // this.selectedFaction = this.OBJECTIVE;
 	this.placeDefenses(this.level.defenseStructures, false);
+    this.addExistingSpawnsToLookupMap(this.defenses);
     // this.selectedFaction = this.BLANK;
     this.renderGridCells();
 
@@ -220,8 +221,9 @@ LevelEditManager.prototype.changeCurrentTime = function(newTime) {
 	var selectedFaction = this.selectedFaction;
 
     this.placeDefenses(this.defenses, false);
-    var spawns = this.checkForSpawns();
+    this.addExistingSpawnsToLookupMap(this.defenses);
 
+    var spawns = this.checkForSpawns();
     this.spawnEnemies(spawns, false);
     this.addExistingSpawnsToLookupMap(spawns);
 
@@ -497,15 +499,19 @@ LevelEditManager.prototype.addExistingSpawnsToLookupMap = function(spawns) {
 
     for(var j = 0; j < spawns.length; j++) {
     // place each pixel of the shape
-        var shape = gameManager.shapeManager.getShape(spawns[i].name);
+        var shape = gameManager.shapeManager.getShape(spawns[j].name);
+        var pixels = shape.pixelsArray;
+        var spawnCol = spawns[j].coordinates.x;
+        var spawnRow = spawns[j].coordinates.y;
         for (var i = 0; i < pixels.length; i += 2)
         {
-            var col = clickCol + pixels[i+1];
-            var row = clickRow + pixels[i];
+            var col = spawnCol + pixels[i+1];
+            var row = spawnRow + pixels[i];
 
-            pixelMap[col + " " + row] = {"x" : clickCol, "y" : clickRow};
+            pixelMap[col + " " + row] = {"x" : spawnCol, "y" : spawnRow};
         }
     }
+    this.addToLookupMap(pixelMap);
 }
 
 LevelEditManager.prototype.addToLookupMap = function(pixelMap) {
@@ -532,7 +538,7 @@ LevelEditManager.prototype.deleteUnit = function(x, y) {
     if(coords === undefined)
         return;
 
-    var spawns = this.enemySpawns[this.currentTime];
+    var spawns = this.enemySpawns.get(this.currentTime);
     var i;
     var shape;
     if(spawns !== undefined) {
