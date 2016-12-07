@@ -109,7 +109,7 @@ LevelManager.prototype.loadLevel = function (id, setLevel) {
 LevelManager.prototype.loadUserLevels = function (levels, callback) {
 
     for (var level in levels) {
-        this.customLevels.child(levels[level]).on('value', function (snapshot) {
+        this.customLevels.child(levels[level]).once('value', function (snapshot) {
             callback(snapshot.key, snapshot.val());
         });
     }

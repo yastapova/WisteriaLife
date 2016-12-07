@@ -39,6 +39,19 @@
     color: $primary-color;
 }
 
+#custom-levels-options li {
+    opacity: 1.0;
+    @include transition(all, 0.5s, linear);
+
+    &:hover {
+        opacity: 0.5;
+    }
+
+    a:hover {
+        color: $primary-color;
+    }
+}
+
 .custom-levels-row {
     margin-top: 3.5rem;
 }
