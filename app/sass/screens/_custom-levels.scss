@@ -58,7 +58,13 @@
 
 .container-inner[id$=custom-levels-screen] {
     .icon-description {
-        height: 100px;
+        height: 130px;
+
+        span {
+            max-height: 100%;
+            display: block;
+            overflow: hidden;
+        }
     }
 }
 
