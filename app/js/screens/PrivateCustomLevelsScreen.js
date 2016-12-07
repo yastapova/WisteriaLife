@@ -80,7 +80,9 @@ PrivateCustomLevelsScreen.prototype.addCustomLevel = function (id, level) {
 
     card.find('.card-title').text(level.title);
     card.find('.card-desc').text(level.storyline);
-    card.find('.card-icon img').attr('src', this.gameManager.user.avatar);
+
+    if (this.gameManager.user.avatar)
+        card.find('.card-icon img').attr('src', this.gameManager.user.avatar);
     card.find('a').attr('data-level', id);
     card.find('input').attr('id',  'level-select-' + id);
     card.find('label').attr('for', 'level-select-' + id);
