@@ -59,7 +59,7 @@ OverflowMenu.prototype = {
      * Handle mute button
      */
     handleMuteButton: function () {
-        this.gameManager.handleMute();
+        this.gameManager.handleToggleSound();
         this.mute.css('display', 'none');
         this.sound.css('display', 'block');
     },
@@ -69,6 +69,7 @@ OverflowMenu.prototype = {
      */
 
     handleSoundButton: function() {
+        this.gameManager.handleToggleSound();
         this.mute.css('display', 'block');
         this.sound.css('display', 'none');
     },
