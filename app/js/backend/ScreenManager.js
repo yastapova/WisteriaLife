@@ -147,6 +147,7 @@ ScreenManager.prototype.setupInitScreen = function () {
  */
 ScreenManager.prototype.switchScreens = function (screen, property) {
 
+
     // save previous screen, update instance var only if not overlay
     var previousScreen = this.currentScreen;
 
@@ -155,7 +156,14 @@ ScreenManager.prototype.switchScreens = function (screen, property) {
                             ? screen : 'splash';
 
     // load and display the current screen
-    this.screen = new this.screenMap[this.currentScreen](this.currentScreen, property);
+    var newScreen = new this.screenMap[this.currentScreen](this.currentScreen, property);
+
+    // execute previous screen's onLeave event if not overlay
+    if (!newScreen.overlay) {
+        this.screen.onLeave();
+    }
+
+    this.screen = newScreen;
 
     // overlay screens don't count as previous screen
     if (this.screen.overlay) {

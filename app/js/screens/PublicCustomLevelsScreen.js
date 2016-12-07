@@ -16,7 +16,8 @@ PublicCustomLevelsScreen.prototype.init = function () {
     this.cards = $('#custom-level-cards');
     this.sampleCard = $('#sample-card');
 
-    require('GameManager').levelManager.loadAllCustomLevels(
+    // hold reference to detach listener later
+    this.dbRef = require('GameManager').levelManager.loadAllCustomLevels(
         this.addPublicLevels.bind(this)
     );
 
@@ -66,6 +67,13 @@ PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
         this.cards.prepend(card);
     }
 
+};
+
+/**
+ * Detach listeners to Firebase
+ */
+PublicCustomLevelsScreen.prototype.onLeave = function () {
+    this.dbRef.off();
 };
 
 module.exports = PublicCustomLevelsScreen;
