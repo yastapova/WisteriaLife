@@ -38,9 +38,12 @@ PauseScreen.prototype.init = function() {
 
 
     if (!$.isNumeric(this.level)) {
-        $('#level-back-button')
-            .attr('href', '/private-custom-levels')
-            .attr('data-region', '');
+
+        $('#level-back-button').attr('href', '#!');
+        $('#level-back-button').removeAttr('data-region');
+        $('#level-back-button').on('click', function() {
+            history.go(-2);
+        });
 
         $('#level-next-button')
             .attr('href', '/private-custom-levels')
