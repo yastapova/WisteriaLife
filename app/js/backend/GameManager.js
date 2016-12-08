@@ -378,12 +378,21 @@ GameManager.prototype.loadFromServer = function() {};
 /**
  * Mute all sounds
  */
-GameManager.prototype.handleMute = function() {
-    this.mute = true;
-    $('audio').each(function() {
-        $(this).attr("preload", "none");
-        $(this).prop("muted", true);
-    });
+GameManager.prototype.handleToggleSound = function() {
+    if(this.mute === false) {
+        this.mute = true;
+        $('audio').each(function() {
+            $(this).attr("preload", "none");
+            $(this).prop("muted", true);
+        });
+    }
+    else {
+        this.mute = false;
+        $('audio').each(function() {
+            $(this).attr("preload", "auto");
+            $(this).prop("muted", false);
+        });
+    }
 };
 
 /**

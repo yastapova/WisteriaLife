@@ -65,12 +65,4 @@ DefeatScreen.prototype.init = function() {
     }
 };
 
-DefeatScreen.prototype.share = function() {
-
-}
-
-DefeatScreen.prototype.replay = function() {
-
-}
-
 module.exports = DefeatScreen;

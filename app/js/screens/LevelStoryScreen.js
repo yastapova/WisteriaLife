@@ -28,13 +28,19 @@ LevelStoryScreen.prototype.init = function () {
     if ($.isNumeric(this.level)) {
         var levels = require('GameManager').levelManager.levels;
 
-        $("#level-1-story-title").text(levels[this.level - 1].name);
-        $("#level-1-story-storyline").text(levels[this.level - 1].storyline);
+        $("#level-1-story-title").text(levels[this.level - 1].title);
+
+        // replace new lines with HTML line break
+        $("#level-1-story-storyline").html(
+            levels[this.level - 1].storyline.replace(/(\n)+/g, '<br/><br/>')
+        );
         $("#level-story-number-display").text(this.level);
     } else {
         require('GameManager').levelManager.loadCustomLevel(this.level, function (level) {
             $("#level-1-story-title").text(level.title);
-            $("#level-1-story-storyline").text(level.storyline);
+            $("#level-1-story-storyline").html(
+                level.storyline.replace(/(\n)+/g, '<br/><br/>')
+            );
             $("#level-story-number-display").text(" by " + level.author);
         });
     }

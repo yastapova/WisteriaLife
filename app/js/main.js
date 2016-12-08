@@ -27,6 +27,7 @@ $(document).ready(function() {
         store: $('#drop-store'),
         mute: $('#drop-mute'),
         about: $('#drop-about'),
+        sound: $('#drop-sound'),
         loginout: $('#drop-loginout')
     };
 

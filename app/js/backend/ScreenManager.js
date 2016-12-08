@@ -206,12 +206,13 @@ ScreenManager.prototype.hideScreen = function (screen) {
 
 /**
  * Back button
+ * Same as browser button
+ *
+ * Screens user is not allowed to return to are
+ * not pushed to the history stack
  */
 ScreenManager.prototype.back = function () {
-    console.log("Back!");
     history.back();
-
-    // TODO - restricting where the user can go back to
 };
 
 /**
