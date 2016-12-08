@@ -1,6 +1,7 @@
 {
   "projects": {
-    "default": "wisteria-life-build4",
+    "default": "wisteria-life-build",
+    "final": "wisteria-life",
     "build4": "wisteria-life-build4",
     "build3": "wisteria-life-build3",
     "build2": "wisteria-life-build2",
