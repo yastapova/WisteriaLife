@@ -91,12 +91,12 @@ GameManager.prototype.resourceLoaded = function () {
 GameManager.prototype.initFirebase = function() {
     // Initialize Firebase
     var config = {
-    apiKey: "AIzaSyBDHjZ6QCq90PhuMr7AbzlxyX_BIY3UXYc",
-    authDomain: "wisteria-life-build4.firebaseapp.com",
-    databaseURL: "https://wisteria-life-build4.firebaseio.com",
-    storageBucket: "wisteria-life-build4.appspot.com",
-    messagingSenderId: "788760332289"
-    };
+    apiKey: "AIzaSyAeAjQJFC4PhrmyFDfNiQds7XdW7pSSzz0",
+    authDomain: "wisteria-life.firebaseapp.com",
+    databaseURL: "https://wisteria-life.firebaseio.com",
+    storageBucket: "wisteria-life.appspot.com",
+    messagingSenderId: "689320437204"
+  };
 
 	firebase.initializeApp(config);
 
