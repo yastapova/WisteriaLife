@@ -529,7 +529,12 @@ LevelEditManager.prototype.factionGridChanged = function(newFact, locations) {
             else {
                 removed = true;
                 for(var j = 0; j < removeList.length; j++) {
-                    spawns.splice(removeList[j],1);
+                    var shape = spawns.splice(removeList[j],1)[0];
+                    var coords = shape.coordinates;
+                    var gameManager = require('GameManager');
+                    shape = gameManager.shapeManager.getShape(shape.name);
+                    shape = shape.pixelsArray;
+                    this.eraseUnit(coords.x, coords.y, shape);
                 }
                 if(spawns.length < 1) {
                     removeKeys.push(time);
@@ -558,7 +563,12 @@ LevelEditManager.prototype.factionGridChanged = function(newFact, locations) {
         else {
             removed = true;
             for(var i = 0; i < removeList.length; i++) {
-                this.defenses.splice(removeList[i],1);
+                var shape = this.defenses.splice(removeList[i],1)[0];
+                var coords = shape.coordinates;
+                var gameManager = require('GameManager');
+                shape = gameManager.shapeManager.getShape(shape.name);
+                shape = shape.pixelsArray;
+                this.eraseUnit(coords.x, coords.y, shape);
             }
         }
     }
@@ -569,6 +579,20 @@ LevelEditManager.prototype.factionGridChanged = function(newFact, locations) {
             4000,
             'wisteria-toast'
         );
+    }
+}
+
+LevelEditManager.prototype.eraseUnit = function(startCol, startRow, pixels) {
+    if(pixels === undefined)
+        return;
+    for (var i = 0; i < pixels.length; i += 2)
+    {
+        var col = startCol + pixels[i+1];
+        var row = startRow + pixels[i];
+
+        var faction = this.getGridCell(this.factionGrid, row, col);
+        this.setGridCell(this.renderGrid, row, col, faction);
+        this.setGridCell(this.nonGhostGrid, row, col, this.BLANK);
     }
 }
 
