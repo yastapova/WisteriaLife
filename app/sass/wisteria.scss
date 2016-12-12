@@ -127,12 +127,36 @@ a {
     }
 }
 
+@keyframes toast-flash {
+    0%   {
+        background-color: #f1c40f;
+        color: #000;
+    }
+    100% {
+        background-color: rgba($primary-dark, 0.7);
+        color: #fff;
+    }
+}
+
 .wisteria-toast {
+    animation: toast-flash 0.5s ease-in;
     background-color: rgba($primary-dark, 0.7);
     float: left;
 }
 
+@keyframes error-toast-flash {
+    0%   {
+        background-color: #f1c40f;
+        color: #000;
+    }
+    100% {
+        background-color: rgba($error-color, 0.7);
+        color: #fff;
+    }
+}
+
 .wisteria-error-toast {
+    animation: error-toast-flash 0.5s ease-in;
     background-color: rgba($error-color, 0.7);
     float: left;
 }
