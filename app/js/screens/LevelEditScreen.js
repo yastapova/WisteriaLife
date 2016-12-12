@@ -138,29 +138,31 @@ LevelEditScreen.prototype.init = function() {
         }
     }.bind(this));
 
-    $('#level-total-time').change(function() {
-        if (!($(this).val() <= 300) || !($(this).val() >= 30))  {
-            Materialize.toast(
-                'New time entered must be between 30 and 300 seconds.',
-                4000,
-                'wisteria-error-toast'
-            );
-            $('#level-total-time').val($('#timeline input').val());
+    $('#level-total-time').change(function () {
+
+        try {
+            var time = Number.parseInt($(this).val());
+
+            if (time != $(this).val())
+                throw 'Not an integer';
+
+            if (!($(this).val() <= 300) || !($(this).val() >= 30))  {
+                toast(
+                    'New time entered must be between 30 and 300 seconds.',
+                    true
+                );
+                $(this).val(self.levelEditManager.totalTime);
+            }
+            else {
+                self.levelEditManager.changeTotalTime(time);
+                $('#timeline input').attr('max', $(this).val());
+                self.setTimeDisplay($('#timeline input').val());
+            }
+        } catch (e) {
+            toast('New time entered must be an integer amount.', true);
+            $(this).val(self.levelEditManager.totalTime);
         }
-        else if(!Number.isInteger(!$(this).val())) {
-            Materialize.toast(
-                'New time entered must be an integer amount.',
-                4000,
-                'wisteria-error-toast'
-            );
-            $('#level-total-time').val($('#timeline input').val());
-        }
-        else {
-            self.levelEditManager.changeTotalTime($(this).val());
-            $('#timeline input').attr('max', $(this).val());
-            $('#level-total-time').attr('value', $(this).val());
-            self.setTimeDisplay($('#timeline input').val());
-        }
+
     });
 
     $('#zoom-select-open').leanModal({
