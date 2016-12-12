@@ -1,10 +1,6 @@
 #editor-screen {
     height: 100%;
 
-     @media screen and (orientation:portrait) {
-         display: none;
-     }
-
     .editor-buttons{
         background-color : transparent;
         border: none;
@@ -14,6 +10,16 @@
 
     .toolbar-button {
         display: inline-block;
+    }
+}
+
+@media screen and (orientation:portrait) {
+    #editor-screen {
+        display: none;
+    }
+
+    #editor-screen + #portrait-warning {
+        display: block;
     }
 }
 

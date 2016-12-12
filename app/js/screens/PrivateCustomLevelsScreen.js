@@ -13,10 +13,7 @@ PrivateCustomLevelsScreen.prototype.init = function () {
     this.gameManager = require('GameManager');
 
     this.cards = $('#custom-level-cards');
-    this.sampleCard = $('#sample-card');
-
-    this.imageStorage = firebase.storage()
-        .ref(firebase.auth().currentUser.uid);
+    this.sampleCard = $('#sample-card');    
 
     this.gameManager.levelManager.loadUserLevels(
         this.gameManager.user.levels,
@@ -24,20 +21,7 @@ PrivateCustomLevelsScreen.prototype.init = function () {
     );
 
     // test deleting levels
-    
-    $('#delete-custom-level').leanModal({
-        dismissible: true,
-        opacity: .6
-    });
-
-     $('#delete-level-no').click(function () {
-        $('#delete-level-confirm').closeModal();
-    });
-
-    $('#delete-level-yes').click(function () {
-        $('#delete-level-confirm').closeModal();
-        this.deleteLevels();
-    }.bind(this));
+    $('#delete-custom-level').on('click', this.deleteLevels.bind(this));
 };
 
 PrivateCustomLevelsScreen.prototype.deleteLevels = function () {
@@ -55,7 +39,7 @@ PrivateCustomLevelsScreen.prototype.deleteLevels = function () {
             var db = snapshot.val();
             var userId = firebase.auth().currentUser.uid;            
             // delete img from storage if it exists
-            firebase.storage().ref("/" + userId + "/" + lkey + "/" + db.customLevels[lkey].img).delete()
+            firebase.storage().ref(lkey + "/" + db.customLevels[lkey].img).delete()
                 .then(function () {
                     console.log('Deleted level image.');
                 }).catch(function (error) {
@@ -99,7 +83,7 @@ PrivateCustomLevelsScreen.prototype.addCustomLevel = function (id, level) {
     card.find('label').attr('for', 'level-select-' + id);
 
     if (level.img !== undefined)
-        this.imageStorage.child(id + '/' + level.img)
+        firebase.storage().ref(id + '/' + level.img)
             .getDownloadURL()
             .then(function (url) {
                 card.find('.level-img').attr('src', url);

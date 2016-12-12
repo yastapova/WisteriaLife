@@ -79,7 +79,7 @@ PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
         if (levels[level].img !== undefined) {
             (function (card) {
                 firebase.storage()
-                .ref(levels[level].uid + '/' + level + '/' + levels[level].img)
+                .ref(level + '/' + levels[level].img)
                 .getDownloadURL()
                 .then(function (url) {
                     card.find('.level-img').attr('src', url);
