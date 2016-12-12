@@ -28,6 +28,12 @@ DefeatScreen.prototype.init = function() {
 	    }, function(response){});
 	};
 
+    if(this.gameManager.user.gameData.currentLevel < this.gameManager.gameLogicManager.level.id){
+        $('#level-next-button').attr("href", "#!");
+        $('#level-next-button').removeAttr("data-level");
+        $('#level-next-button i').css("color", "lightgray");
+    }
+
 	if(!this.gameManager.mute) {
         $('audio').each(function() {
             this.play();
