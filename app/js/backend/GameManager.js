@@ -176,21 +176,28 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        	this.user.gameData = currentGameData;
                 this.user.guestUid = oldUid;
 	        	this.userLevel.text = 'Level ' + this.user.gameData.currentLevel;
-	        	this.writeUserData();
-                // storage test
-                // for every level that has an image
-                // download image and upload to new storage
-                
+	        	this.writeUserData();                            
 
                 // custom levels change uid and author
-                firebase.database().ref("/users/" + oldUid + "/levels/").once('value', function(snapshot){
-                var levels = snapshot.val();
-                for(var key in levels){                   
-                    firebase.database().ref('/customLevels/' + levels[key]).uid = this.user.uid;
-                    firebase.database().ref('/customLevels/' + levels[key]).author = this.user.userName;
+                firebase.database().ref().once('value', function(snapshot){
+                var db = snapshot.val();
+                var updates = {};
+                for(var key in db.users[oldUid].levels){                            
+                    updates["/customLevels/" + key] = {
+                        author: this.user.name,
+                        dateCreated: db.customLevels[key].dateCreated,
+                        img: db.customLevels[key].img,
+                        public: db.customLevels[key].public,
+                        storyline: db.customLevels[key].storyline,
+                        title: db.customLevels[key].title,
+                        uid: this.user.uid
+                    };                    
+                    // firebase.database().ref('/customLevels/' + levels[key]).uid = this.user.uid;
+                    // firebase.database().ref('/customLevels/' + levels[key]).author = this.user.name;                    
                 }
+                firebase.database().ref().update(updates);
                 // delete guest account
-                firebase.database().ref('/users/' + this.gameManager.user.guestUid).remove();
+                firebase.database().ref('/users/' + this.user.guestUid).remove();
                 }.bind(this));
                 
 	        }

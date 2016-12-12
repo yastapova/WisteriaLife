@@ -98,12 +98,15 @@ PrivateCustomLevelsScreen.prototype.addCustomLevel = function (id, level) {
     card.find('input').attr('data-id',  id);
     card.find('label').attr('for', 'level-select-' + id);
 
-    if (level.img !== undefined)
+    if (level.img !== undefined){
         this.imageStorage.child(id + '/' + level.img)
             .getDownloadURL()
             .then(function (url) {
                 card.find('.level-img').attr('src', url);
+            }, function(error){
+                console.log("Error!");
             });
+    }
 
     this.cards.prepend(card);
 
