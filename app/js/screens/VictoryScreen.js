@@ -10,6 +10,10 @@ var VictoryScreen = function (id, level) {
 inherits(VictoryScreen, Screen);
 
 VictoryScreen.prototype.init = function() {
+    var victorySounds = ["/sounds/gameplay/victory1.mp3", "/sounds/gameplay/victory2.wav",
+                        "/sounds/gameplay/victory3.wav", "/sounds/gameplay/victory4.wav", 
+                        "/sounds/gameplay/victory5.wav"];
+
     console.log("Victory screen init called");
     document.getElementById('share').onclick = function() {
 	    FB.ui({
@@ -30,6 +34,8 @@ VictoryScreen.prototype.init = function() {
 	}
 
 	if(!this.gameManager.mute) {
+        var index = Math.floor(Math.random() * (victorySounds.length));
+        $('#victory-sound').attr("src", victorySounds[index]);
 		$('audio').each(function() {
 			this.play();
 		});

@@ -27,8 +27,12 @@ gulp.task('browserify', function() {
             './app/js/test-screen',
         ],
         insertGlobalVars: { // global inherits function
-            inherits: function(file, dir) {
+            inherits: function (file, dir) {
                 return 'require("inherits")';
+            },
+
+            toast: function (file, dirs) {
+                return 'require("toast")';
             }
         }
     });
@@ -59,8 +63,12 @@ gulp.task('browserify:prod', function() {
             './app/js/test-screen'
         ],
         insertGlobalVars: { // global inherits function
-            inherits: function(file, dir) {
+            inherits: function (file, dir) {
                 return 'require("inherits")';
+            },
+
+            toast: function (file, dirs) {
+                return 'require("toast")';
             }
         }
     });
