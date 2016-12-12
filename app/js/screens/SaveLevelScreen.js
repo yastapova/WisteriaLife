@@ -47,6 +47,9 @@ SaveLevelScreen.prototype.init = function() {
             $("label[for^='level_title']").addClass("active");
             // Is it public or private?        
             $('#save-public').prop('checked', snapshot.val().public == 1);
+            // Was there an image?
+            var img = snapshot.val().img;
+            $('#img-file-name').text(img === undefined ? "" : img);
         });
         // Update the range for all the allowed shapes
         for(var index in this.level.allowedShapes){
