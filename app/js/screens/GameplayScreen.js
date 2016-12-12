@@ -71,6 +71,31 @@ GamePlayScreen.prototype.setLevel = function (level) {
         return shapes;
     }.bind(this))());
 
+    $('#powerups-select-items').append((function () {
+        var powerups = [];
+        var userPowerups = this.gameManager.user.powerups;
+        for (var i = 0; i < userPowerups.length; i++) {
+            var powerup = userPowerups[i].charAt(0).toUpperCase() +
+                               allowed[i].slice(1);
+            powerups.push(
+                $('<span>')
+                    .attr('id', 'powerup-' + userPowerups[i])
+                    .addClass('select-item')
+                    .attr('data-value', userPowerups[i])
+                    .attr('data-tooltip', powerup)
+                    .append(
+                        $('<img>').attr('src', '/img/powerups/' + userPowerups[i] + '.png')
+                    )
+                    .append(
+                        $('<span>')
+                            .addClass('item-count')
+                            .text(this.gameManager.powerupManager.powerupsMap[userPowerups[i]])
+                    )
+            );
+        }
+        return powerups;
+    }.bind(this))());
+
     $('.collapsible').collapsible({
         accordion: false // TODO: change this to true on small screens
     });

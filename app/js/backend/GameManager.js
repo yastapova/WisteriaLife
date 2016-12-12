@@ -329,7 +329,8 @@ GameManager.prototype.writeUserData = function () {
             username: this.user.name,
             gameData: this.user.gameData,
             levels: this.user.levels,
-            avatar: this.user.avatar
+            avatar: this.user.avatar,
+            powerups: this.user.powerups
         });
     }else{
     	firebase.database().ref('users/' + this.user.uid).set({
@@ -337,6 +338,7 @@ GameManager.prototype.writeUserData = function () {
         	gameData: this.user.gameData,
             levels: this.user.levels,
             avatar: this.user.avatar,
+            powerups: this.user.powerups,
             guestUid: this.user.guestUid
     	});
     }
