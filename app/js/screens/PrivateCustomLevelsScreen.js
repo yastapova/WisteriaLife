@@ -38,22 +38,21 @@ PrivateCustomLevelsScreen.prototype.deleteLevels = function () {
 
     levelsID.each(function () {
         var lkey = $(this).attr('data-id');
-
-        // delete from 3 locations: customLevels, levels, and users
-        firebase.database().ref('/customLevels/' + lkey).remove();
-        firebase.database().ref('/levels/' + lkey).remove();
-        firebase.database()
-            .ref("/users/" + firebase.auth().currentUser.uid +
-                 '/levels/' + lkey
-             ).remove();
-
-        // delete img from storage if it exists
-        firebase.storage().ref(userId + "/" + lkey).delete()
-            .then(function () {
-                console.log('Deleted level image.');
-            }).catch(function (error) {
-                console.warn(error);
-            });
+        firebase.database().ref().once('value', function(snapshot){
+            var db = snapshot.val();
+            var userId = firebase.auth().currentUser.uid;            
+            // delete img from storage if it exists
+            firebase.storage().ref("/" + userId + "/" + lkey + "/" + db.customLevels[lkey].img).delete()
+                .then(function () {
+                    console.log('Deleted level image.');
+                }).catch(function (error) {
+                    console.warn(error);
+                }); 
+            // delete from 3 locations: customLevels, levels, users
+            firebase.database().ref('/customLevels/' + lkey).remove();
+            firebase.database().ref('/levels/' + lkey).remove(); 
+            firebase.database().ref("/users/" + userId + '/levels/' + lkey).remove();                          
+        });        
     });
 
     // refresh page to reload levels (private levels is on a once event)
