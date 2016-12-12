@@ -177,6 +177,10 @@ GameManager.prototype.onAuthStateChanged = function(user) {
                 this.user.guestUid = oldUid;
 	        	this.userLevel.text = 'Level ' + this.user.gameData.currentLevel;
 	        	this.writeUserData();
+                // storage test
+                // for every level that has an image
+                // download image and upload to new storage
+                
 
                 // custom levels change uid and author
                 firebase.database().ref("/users/" + oldUid + "/levels/").once('value', function(snapshot){
@@ -269,14 +273,20 @@ GameManager.prototype.logout = function() {
     if(this.user.name === "Guest"){
         // delete guest from database
         var userId = firebase.auth().currentUser.uid;
-        firebase.database().ref("/users/" + userId + "/levels/").once('value', function(snapshot){
-            var levels = snapshot.val();
-            for(var key in levels){
-                // delete from 2 locations: customLevels, levels
-                firebase.database().ref('/customLevels/' + levels[key]).remove();
-                firebase.database().ref('/levels/' + levels[key]).remove();
+        firebase.database().ref().once('value', function(snapshot){
+            var db = snapshot.val();
+            var userId = this.user.uid;
+            for(var key in db.users[userId].levels){
                 // delete img from storage if it exists
-                firebase.storage().ref(userId + "/"+ levels[key]).getDownloadURL().then(function(){console.log("Found image");}, function(){console.log("No image found");});
+                firebase.storage().ref("/" + userId + "/" + key + "/" + db.customLevels[key].img).delete()
+                    .then(function () {
+                        console.log('Deleted level image.');
+                    }).catch(function (error) {
+                        console.warn(error);
+                    }); 
+                // delete from 2 locations: customLevels, levels
+                firebase.database().ref('/customLevels/' + key).remove();
+                firebase.database().ref('/levels/' + key).remove();                           
             }
             firebase.database().ref('/users/' + userId).remove();
             // Sign out of Firebase.
@@ -284,7 +294,7 @@ GameManager.prototype.logout = function() {
             this.screenManager.switchScreens('splash');
             this.user = '';
             this.userDropName.text("Guest");
-            }.bind(this));
+        }.bind(this));
     }else{
         // Sign out of Firebase.
         firebase.auth().signOut();
