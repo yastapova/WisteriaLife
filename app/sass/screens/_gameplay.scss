@@ -1,9 +1,36 @@
 #gameplay-screen {
     height: 100%;
+}
 
-     @media screen and (orientation:portrait) {
-         display: none;
-     }
+#portrait-warning {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+    width: 90%;
+
+    .error-icon {
+        padding: 15px;
+
+        i {
+            font-size: 3.0rem;
+        }
+    }
+}
+
+@media screen and (orientation:portrait) {
+    #gameplay-screen, #toast-container {
+        display: none;
+    }
+
+    #gameplay-screen + #portrait-warning {
+        display: block;
+    }
+
+    #tutorial-editor-overlay-screen {
+        display: none;
+    }
 }
 
 /**
