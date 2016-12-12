@@ -283,6 +283,7 @@ LevelEditManager.prototype.spawnEnemies = function(spawns, addToMaps) {
         return;
     var gameManager = require('GameManager');
 
+    this.selectedFaction = this.ENEMY;
     // place each spawn
     for(var i = 0; i < spawns.length; i++) {
         var mob = spawns[i];
@@ -292,6 +293,8 @@ LevelEditManager.prototype.spawnEnemies = function(spawns, addToMaps) {
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.ENEMY, shape, null, addToMaps);
     }
+    this.selectedFaction = this.BLANK;
+    this.selectedUnit = undefined;
 }
 
 /**
