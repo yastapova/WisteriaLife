@@ -24,6 +24,7 @@ var LevelEditManager = function(levelSize) {
 
     this.selectedUnit = null; // which shape is selected to place
     this.selectedFaction = 0;  // which faction is selected to place
+    console.log("created LevelEditManager");
 
     // cell types
     this.BLANK = 0;
@@ -427,6 +428,10 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         this.setGridCell(this.renderGrid, row, col, faction);
     }
 
+    if(faction === this.ENEMY_ZONE || faction === this.FRIEND_ZONE) {
+        this.factionGridChanged(faction, Object.keys(pixelMap));
+    }
+
     // add an enemy unit to the proper list
     if(addToMaps) {
         var name = shape.name;         // name of the shape to add
@@ -446,19 +451,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     	    												 	             "y" : y}});
         	}
             this.addToLookupMap(pixelMap);
-            // var currentLookup = this.shapeLookupMap[this.currentTime];
-            // if(currentLookup === undefined) {
-            //     // map
-            //     this.shapeLookupMap[this.currentTime] = pixelMap;
-            // }
-            // else {
-            //     // add to map
-            //     var pixelMapKeys = Object.keys(pixelMap);
-            //     for(var i = 0; i < pixelMapKeys.length; i++) {
-            //         var key = pixelMapKeys[i];
-            //         this.shapeLookupMap[this.currentTime][key] = pixelMap[key];
-            //     }
-            // }
+            // var currentLookup = this.shape
         }
         else if(faction === this.OBJECTIVE) {
         	// add to defenses list
@@ -466,19 +459,6 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     						 	"coordinates" : {"x" : x,
     									 	     "y" : y}});
             this.addToLookupMap(pixelMap);
-            // var currentLookup = this.shapeLookupMap[this.currentTime];
-            // if(currentLookup === undefined) {
-            //     // map
-            //     this.shapeLookupMap[this.currentTime] = pixelMap;
-            // }
-            // else {
-            //     // add to map
-            //     var pixelMapKeys = Object.keys(pixelMap);
-            //     for(var i = 0; i < pixelMapKeys.length; i++) {
-            //         var key = pixelMapKeys[i];
-            //         this.shapeLookupMap[this.currentTime][key] = pixelMap[key];
-            //     }
-            // }
         }
     }
 
@@ -521,6 +501,74 @@ LevelEditManager.prototype.addToLookupMap = function(pixelMap) {
             var key = pixelMapKeys[i];
             this.shapeLookupMap[this.currentTime][key] = pixelMap[key];
         }
+    }
+}
+
+LevelEditManager.prototype.factionGridChanged = function(newFact, locations) {
+    if(locations === undefined)
+        return;
+    var removeList = [];
+    var removed = false;
+
+    if(newFact === this.FRIEND_ZONE) {
+        // check enemies
+        var removeKeys = [];
+        var times = this.enemySpawns.keys();
+        for(let [time, spawns] of this.enemySpawns.entries()) {
+            removeKeys = [];
+            for(var j = 0; j < spawns.length; j++) {
+                var coords = spawns[j].coordinates;
+                coords = coords.x + " " + coords.y;
+                if(locations.indexOf(coords) !== -1) {
+                    removeList.push(j);
+                }
+            }
+
+            if(removeList.length === 0)
+                return;
+            else {
+                removed = true;
+                for(var j = 0; j < removeList.length; j++) {
+                    spawns.splice(removeList[j],1);
+                }
+                if(spawns.length < 1) {
+                    removeKeys.push(time);
+                }
+            }
+        }
+        if(removeKeys.length > 0) {
+            for(var j = 0; j < removeKeys.length; j++){
+                this.enemySpawns.delete(removeKeys[j]);
+            }
+        }
+        
+    }
+    else if(newFact === this.ENEMY_ZONE) {
+        // check defenses
+        for(var i = 0; i < this.defenses.length; i++) {
+            var coords = this.defenses[i].coordinates;
+            coords = coords.x + " " + coords.y;
+            if(locations.indexOf(coords) !== -1) {
+                removeList.push(i);
+            }
+        }
+        // remove them; start from end of the array so indexes don't change
+        if(removeList.length === 0)
+            return;
+        else {
+            removed = true;
+            for(var i = 0; i < removeList.length; i++) {
+                this.defenses.splice(removeList[i],1);
+            }
+        }
+    }
+    if(removed) {
+        this.renderGridCells();
+        Materialize.toast(
+            'Some spawns or defenses have been removed due to faction zones changing.',
+            4000,
+            'wisteria-toast'
+        );
     }
 }
 
