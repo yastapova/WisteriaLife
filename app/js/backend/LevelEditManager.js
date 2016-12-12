@@ -80,7 +80,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.ghostGrid = new Array(this.gridWidth * this.gridHeight);
     this.nonGhostGrid = new Array(this.gridWidth * this.gridHeight);
     this.factionGrid = this.level.enemyZone.slice(0);
-    this.enemySpawns = this.level.enemySpawns; // TODO: clone
+    this.enemySpawns = this.level.enemySpawns; // TODO: clone?
     if(this.enemySpawns === undefined){
         this.enemySpawns = new Map();
     }
@@ -90,13 +90,9 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     	this.nonGhostGrid[i] = this.BLANK;
     }
 
-    // this.canvas.renderGridCells(this.gridHeight, this.gridWidth,
-    //                      		this.renderGrid, this.renderGridOld,
-    //                      		this.colors);
-    // this.selectedFaction = this.OBJECTIVE;
 	this.placeDefenses(this.level.defenseStructures, false);
     this.addExistingSpawnsToLookupMap(this.defenses);
-    // this.selectedFaction = this.BLANK;
+    this.selectedFaction = this.BLANK;
     this.renderGridCells();
 
 }
@@ -253,9 +249,12 @@ LevelEditManager.prototype.deleteAfter = function(newTime) {
 LevelEditManager.prototype.forceChangeUnit = function() {
     if(this.selectedUnit === undefined)
         return;
-    if(this.selectedUnit === "void" || this.selectedUnit.name === "void") {
-        var gameManager = require('GameManager');
-        this.selectedUnit = gameManager.shapeManager.getShape("archernw");
+    if(this.selectedUnit === null || 
+       this.selectedUnit === "void" || 
+       this.selectedUnit.name === "void") {
+        // var gameManager = require('GameManager');
+        // this.selectedUnit = gameManager.shapeManager.getShape("archernw");
+        this.selectedUnit = null;
     }
 }
 LevelEditManager.prototype.forceChangeFaction = function() {
@@ -322,11 +321,20 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         return;
     }
     if(this.selectedFaction === this.BLANK &&
-       this.selectedUnit !== undefined &&
-       this.selectedUnit.name === "void" &&
        faction !== this.GHOST)
     {
-        faction = this.BLANK;
+        if(this.selectedUnit !== undefined &&
+           this.selectedUnit.name === "void") {
+            faction = this.BLANK;
+        }
+        else {
+            Materialize.toast(
+                "No faction selected! Select a faction from the Factions sidebar.",
+                2000,
+                'wisteria-error-toast'
+            );
+            return;
+        }
     }
     if(addToMaps === undefined && faction !== this.GHOST)
         addToMaps = true;
