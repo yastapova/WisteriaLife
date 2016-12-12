@@ -47,9 +47,10 @@ PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
 
         // check if it matches a search term
         if (this.search) {
-            if (!(levels[level].title.includes(this.search)
-                || levels[level].author.includes(this.search)
-                || levels[level].storyline.includes(this.search)
+            var regex = new RegExp(this.search, 'i');
+            if (!(levels[level].title.match(regex)
+                || levels[level].author.match(regex)
+                || levels[level].storyline.match(regex)
             ))
                 continue;
         }
