@@ -21,4 +21,12 @@ AboutScreen.prototype.init = function () {
     $('.collapsible').collapsible();
 };
 
+/**
+ * Allow access to about screen regardless of login status
+ * @return {Boolean} always true
+ */
+AboutScreen.prototype.isLegal = function () {
+    return true;
+}
+
 module.exports = AboutScreen;

@@ -24,7 +24,20 @@ PrivateCustomLevelsScreen.prototype.init = function () {
     );
 
     // test deleting levels
-    $('#delete-custom-level').on('click', this.deleteLevels.bind(this));
+    
+    $('#delete-custom-level').leanModal({
+        dismissible: true,
+        opacity: .6
+    });
+
+     $('#delete-level-no').click(function () {
+        $('#delete-level-confirm').closeModal();
+    });
+
+    $('#delete-level-yes').click(function () {
+        $('#delete-level-confirm').closeModal();
+        this.deleteLevels();
+    }.bind(this));
 };
 
 PrivateCustomLevelsScreen.prototype.deleteLevels = function () {

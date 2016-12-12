@@ -147,6 +147,14 @@ LevelEditScreen.prototype.init = function() {
             );
             $('#level-total-time').val($('#timeline input').val());
         }
+        else if(!Number.isInteger(!$(this).val())) {
+            Materialize.toast(
+                'New time entered must be an integer amount.',
+                4000,
+                'wisteria-error-toast'
+            );
+            $('#level-total-time').val($('#timeline input').val());
+        }
         else {
             self.levelEditManager.changeTotalTime($(this).val());
             $('#timeline input').attr('max', $(this).val());

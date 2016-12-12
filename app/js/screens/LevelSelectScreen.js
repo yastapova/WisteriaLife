@@ -40,7 +40,7 @@ LevelSelectScreen.prototype.init = function() {
     // add cards for each level
     for (var i = (this.region - 1) * 10; i < this.region * 10; i++) {
         var card = this.sampleCard.clone()
-                        .attr('id', 'level-' + (i + 1));
+                        .attr('id', 'level-' + (i % 10 + 1));
 
         card.find('.level-num').text(i + 1);
         card.find('.card-title span').text(levels[i].title);
