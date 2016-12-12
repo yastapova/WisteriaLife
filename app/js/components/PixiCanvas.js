@@ -288,7 +288,7 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
 
     if(isGameplay) {
         var friend = gameManager.gameLogicManager.FRIEND;
-        gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend, null, null);
+        gameManager.gameLogicManager.placeShape(clickRow, clickCol, friend, null, null, true);
 
         $('#unit-' + unit + ' .item-count').text(
             gameManager.gameLogicManager.allowedShapesMap[unit]
@@ -297,7 +297,7 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
     }
     else {
         var faction = gameManager.levelEditManager.selectedFaction;
-        gameManager.levelEditManager.placeShape(clickRow, clickCol, faction, null, null);
+        gameManager.levelEditManager.placeShape(clickRow, clickCol, faction, null, null, true);
         gameManager.levelEditManager.clearGhostGrid();
     }
 
