@@ -85,3 +85,28 @@
 .input-field#card-checkbox label {
     position: initial;
 }
+
+#search-levels {
+    @extend .z-depth-2;
+    position: fixed;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 5px;
+    width: 50vw;
+
+    .prefix {
+        color: #666;
+    }
+
+    .input-field {
+        margin-top: 0;
+    }
+
+    input {
+        margin-bottom: 0;
+        padding: 0;
+        border: 0;
+    }
+}

@@ -113,20 +113,24 @@ LevelManager.prototype.loadUserLevels = function (levels, callback) {
             callback(snapshot.key, snapshot.val());
         });
     }
-}
+};
 
 /**
  * Load details (story, name) about a specific custom level
  * @param  {[type]}   id       [description]
  * @param  {Function} callback [description]
- * @return {[type]}            [description]
  */
 LevelManager.prototype.loadCustomLevel = function (id, callback) {
     this.customLevels.child(id).once('value', function (snapshot) {
         callback(snapshot.val());
     });
-}
+};
 
+/**
+ * Load all custom levels on an event (live updating)
+ * @param  {Function} callback callback when there are new items
+ * @return {Firebase} reference to firebase event
+ */
 LevelManager.prototype.loadAllCustomLevels = function (callback) {
 
     this.customLevels.on('value', function (snapshot) {
@@ -134,7 +138,18 @@ LevelManager.prototype.loadAllCustomLevels = function (callback) {
     });
 
     return this.customLevels;
-}
+};
+
+/**
+ * Load all custom levels one time only
+ * @param  {Function} callback callback when new items are loaded
+ */
+LevelManager.prototype.loadAllCustomLevelsOnce = function (callback) {
+
+    this.customLevels.once('value', function (snapshot) {
+        callback(snapshot.val());
+    });
+};
 
 /**
  * Initialize the private custom levels non game data fields

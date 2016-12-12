@@ -6,6 +6,8 @@ var PublicCustomLevelsScreen = function (id, publicCustomLevelsMap) {
     this.publicCustomLevelsMap = publicCustomLevelsMap;
     Screen.call(this,id);
     this.levels = [];
+
+    this.search = "";
 };
 
 inherits(PublicCustomLevelsScreen, Screen);
@@ -16,11 +18,22 @@ PublicCustomLevelsScreen.prototype.init = function () {
     this.cards = $('#custom-level-cards');
     this.sampleCard = $('#sample-card');
 
+    this.levelManager = require('GameManager').levelManager;
+
     // hold reference to detach listener later
-    this.dbRef = require('GameManager').levelManager.loadAllCustomLevels(
+    this.dbRef = this.levelManager.loadAllCustomLevels(
         this.addPublicLevels.bind(this)
     );
 
+    var self = this;
+    $('#custom-levels-search').on('input', function () {
+        self.search = $(this).val();
+
+        // force update
+        self.levelManager.loadAllCustomLevelsOnce(
+            self.addPublicLevels.bind(self)
+        );
+    });
 };
 
 PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
@@ -31,6 +44,15 @@ PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
     for (var level in levels) {
         if (!levels[level].public)
             continue;
+
+        // check if it matches a search term
+        if (this.search) {
+            if (!(levels[level].title.includes(this.search)
+                || levels[level].author.includes(this.search)
+                || levels[level].storyline.includes(this.search)
+            ))
+                continue;
+        }
 
         this.levels.push(level);
 
