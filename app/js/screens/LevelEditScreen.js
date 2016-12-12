@@ -50,7 +50,7 @@ LevelEditScreen.prototype.setLevel = function (level) {
             self.gameManager.shapeManager.getShape(
                 $(this).attr('data-value')
             );
-        self.levelEditManager.forceChangeFaction();
+        // self.levelEditManager.forceChangeFaction();
 
         $('#backspace-button button').removeClass('backspace-selected');
     });
