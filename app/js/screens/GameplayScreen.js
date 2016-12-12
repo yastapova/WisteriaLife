@@ -212,17 +212,9 @@ GamePlayScreen.prototype.init = function () {
             this.cheatBox.fadeOut('fast');
             this.cheatOpen = false;
 
-            Materialize.toast(
-                'Cheat successful.',
-                4000,
-                'wisteria-toast'
-            );
+            toast('Cheat successful.', false);
         } else {
-            Materialize.toast(
-                'Cheat code incorrect. Maybe play the level instead?',
-                4000,
-                'wisteria-error-toast'
-            );
+            toast('Cheat code incorrect. Maybe play the level instead?', true);
         }
     }.bind(this));
 };

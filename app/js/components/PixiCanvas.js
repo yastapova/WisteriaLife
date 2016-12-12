@@ -230,10 +230,10 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
     var isGameplay = gameManager.isGameplay;
     if(isGameplay) {
         if (gameManager.gameLogicManager.paused) {
-            Materialize.toast(
+            toast(
                 "Game not started yet! Press Play at the top.",
-                2000,
-                'wisteria-error-toast'
+                true,
+                2000
             );
             return;
         }
@@ -242,20 +242,20 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
         var unit = gameManager.gameLogicManager.currentUnit;
 
         if (!unit) {
-            Materialize.toast(
+            toast(
                 "No unit selected! Select a unit from the Units sidebar.",
-                2000,
-                'wisteria-error-toast'
+                true,
+                2000
             );
             return;
         } else
             unit = unit.name;
 
         if (gameManager.gameLogicManager.allowedShapesMap[unit] == 0) {
-            Materialize.toast(
+            toast(
                 "No more of this unit available.",
-                2000,
-                'wisteria-error-toast'
+                true,
+                2000
             );
             return;
         }
@@ -264,10 +264,10 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
         var unit = gameManager.levelEditManager.selectedUnit;
 
         if (!unit) {
-            Materialize.toast(
+            toast(
                 "No unit selected! Select a unit from the Units sidebar.",
-                2000,
-                'wisteria-error-toast'
+                true,
+                2000
             );
             return;
         } else

@@ -215,11 +215,7 @@ GameLogicManager.prototype.start = function () {
  */
 GameLogicManager.prototype.checkMessage = function () {
     if (this.level.messages.has(this.level.time)) {
-        Materialize.toast(
-            this.level.messages.get(this.level.time),
-            4000,
-            'wisteria-toast'
-        );
+        toast(this.level.messages.get(this.level.time), false);
     }
 };
 
@@ -450,11 +446,7 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     // make sure the shape is being placed in the correct zone
     if(zone !== this.BLANK &&
         this.getGridCell(this.factionGrid, clickRow, clickCol) !== zone) {
-        Materialize.toast(
- 	        'Must place in friendly zone.',
- 	        2000,
- 	        'wisteria-error-toast'
-    	    );
+        toast('Must place in friendly zone.', true, 2000);
         return;
     }
     // can't place on a void cell

@@ -119,7 +119,7 @@ ScreenManager.prototype.setupInitScreen = function () {
                 var legal = this.isLegal(this.screen);
                 if (legal !== true) {
                     if (legal)
-                        Materialize.toast(legal, 4000, 'wisteria-error-toast');
+                        toast(legal, true);
 
                     this.switchScreens('splash');
                     return;
@@ -175,7 +175,7 @@ ScreenManager.prototype.switchScreens = function (screen, property) {
     var legal = this.isLegal(this.screen);
     if (legal !== true) {
         if (legal)
-            Materialize.toast(legal, 4000, 'wisteria-error-toast');
+            toast(legal, true);
 
         this.switchScreens('splash');
         return;
