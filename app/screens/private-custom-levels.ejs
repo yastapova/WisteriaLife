@@ -12,7 +12,7 @@
                     <a href="/level-editor"><i class="wisteria-icons mdi mdi-plus"></i></a>
                 </li>
                 <li>
-                    <button id="delete-custom-level"><i class="wisteria-icons mdi mdi-delete"></i></button>
+                    <button id="delete-custom-level" data-target="delete-level-confirm"><i class="wisteria-icons mdi mdi-delete"></i></button>
                 </li>
             </ul>
         </div>
@@ -41,6 +41,20 @@
             </div>
         </div>
     </div>
+
+    <div id="delete-level-confirm" class="modal">
+        <div class="modal-content">
+            <h4>Warning - Delete Custom Level</h4>
+            <p>
+                Are you sure you wish to permanently delete your custom level? There is no undo for this action.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" id="delete-level-yes" class="modal-action waves-effect waves-green btn-flat">Yes, Delete</a>
+            <a href="#!" id="delete-level-no" class="modal-action waves-effect waves-green btn-flat">No</a>
+        </div>
+    </div>
+
 </div>
 
 <% include partials/footer %>
