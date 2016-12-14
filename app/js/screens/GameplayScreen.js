@@ -106,26 +106,22 @@ GamePlayScreen.prototype.setLevel = function (level) {
         // Play on start handled by TutorialScreen if level number < 11
         // Check if level number is greater than 10 or if it has a level id instead
         // if so, then do everything in TutorialScreen here
-        if(this.levelNumber > 10 || this.id != null) {
-            if (self.gameLogicManager.paused) {
-                self.gameLogicManager.start();
+        if(this.levelNumber <= 10 || this.id != null) {
+            if (this.gameLogicManager.paused) {
+                this.gameLogicManager.start();
 
-                if(this.id != null) {
-                    $('#playpause').attr('data-level', this.id);
-                }
-                else {
-                    $('#playpause').attr('data-level', this.level);
-                }
+                $('#playpause').attr('data-level', this.levelNumber);
+
                 $('#playpause').find('i').removeClass('play').removeClass('mdi-play');
                 $('#playpause').find('i').addClass('pause').addClass('mdi-pause');
                 $('#playpause').attr('href', '/pause');
                 return false;
             }
             else {
-                self.gameLogicManager.pause();
+                this.gameLogicManager.pause();
             }
         }
-    });
+    }.bind(this));
 
     // update timer once per second
     this.timeDisplay = $('#timer-display');

@@ -190,11 +190,14 @@ LevelEditScreen.prototype.init = function() {
         self.gameManager.levelEditManager.selectedFaction = self.gameManager.levelEditManager.BLANK;
         self.gameManager.levelEditManager.selectedUnit = self.gameManager.shapeManager.getShape("void");
 
-        // highlight delete button
-        $(this).addClass('backspace-selected');
+        // unlighted faction
+        $('.faction-buttons button').removeClass('selected-faction');
 
         // unselect unit buttons
-        $('#unit-select-items .select-item').removeClass('selected');
+        $('.select-item').removeClass('selected');
+
+        // highlight delete button
+        $(this).addClass('backspace-selected');
     });
 
     // user confirms resize, clear and resize
@@ -217,6 +220,12 @@ LevelEditScreen.prototype.init = function() {
                 self.currentZoom = 'large';
                 break;
         }
+
+        // unlighted faction
+        $('.faction-buttons button').removeClass('selected-faction');
+
+        // unselect unit buttons
+        $('.select-item').removeClass('selected');
 
         $('#resize-confirm').closeModal();
     });

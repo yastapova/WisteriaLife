@@ -249,8 +249,8 @@ LevelEditManager.prototype.deleteAfter = function(newTime) {
 LevelEditManager.prototype.forceChangeUnit = function() {
     if(this.selectedUnit === undefined)
         return;
-    if(this.selectedUnit === null || 
-       this.selectedUnit === "void" || 
+    if(this.selectedUnit === null ||
+       this.selectedUnit === "void" ||
        this.selectedUnit.name === "void") {
         // var gameManager = require('GameManager');
         // this.selectedUnit = gameManager.shapeManager.getShape("archernw");
@@ -557,7 +557,7 @@ LevelEditManager.prototype.factionGridChanged = function(newFact, locations) {
                 this.enemySpawns.delete(removeKeys[j]);
             }
         }
-        
+
     }
     else if(newFact === this.ENEMY_ZONE) {
         // check defenses
