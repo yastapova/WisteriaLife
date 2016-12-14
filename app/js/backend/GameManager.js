@@ -126,15 +126,14 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 
                 if (this.screenManager.currentScreen == 'splash')
                     this.screenManager.switchScreens('map');
-
-    	        this.writeUserData();
-	        }else{
-                // Check if guest already has data
-                firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
-                  var exists = (snapshot.val() !== null);
-                  this.userExistsCallback(user, exists, snapshot.val());
-                }.bind(this));
-            }
+    	        
+	        }
+            // Check if guest already has data
+            firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
+              var exists = (snapshot.val() !== null);
+              this.userExistsCallback(user, exists, snapshot.val());
+            }.bind(this));
+            
 
     		// Splash changes
 	        $('#splash-logout').css('display','block');
