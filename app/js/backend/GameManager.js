@@ -460,4 +460,18 @@ GameManager.prototype.playAttack = function () {
     }
 };
 
+GameManager.prototype.playSpawnSounds = function () {
+
+    var spawnSounds = ["/sounds/gameplay/slime1.wav", "/sounds/gameplay/slime2.wav",
+                        "/sounds/gameplay/slime3.wav", "/sounds/gameplay/slime4.wav",
+                        "/sounds/gameplay/slime5.wav", "/sounds/gameplay/slime6.wav",
+                        "/sounds/gameplay/slime7.wav", "/sounds/gameplay/slime8.wav"];
+
+    if(!this.mute && !this.isPlaying("spawn-sound")) {
+        var number = Math.floor(Math.random() * (spawnSounds.length));
+        $('#spawn-sound').attr("src", spawnSounds[number]);
+        $('#spawn-sound')[0].play();
+    }
+};
+
 module.exports = GameManager.getGameManager();

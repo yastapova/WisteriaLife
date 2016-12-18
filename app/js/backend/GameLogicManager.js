@@ -561,6 +561,8 @@ GameLogicManager.prototype.checkForSpawns = function() {
  *       spawns List of spawns at a given time
  */
 GameLogicManager.prototype.spawnEnemies = function(spawns) {
+    var gameManager = require('GameManager');
+
     if(typeof spawns === "undefined")
         return;
     var gameManager = require('GameManager');
@@ -574,6 +576,8 @@ GameLogicManager.prototype.spawnEnemies = function(spawns) {
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.ENEMY, shape, null);
     }
+
+    gameManager.playSpawnSounds();
 }
 
 /**
