@@ -190,9 +190,10 @@ GameLogicManager.prototype.start = function () {
     this.gameLoopTimer = setInterval(function () {
         if (!this.paused) {
             this.updateLoop();
-            this.renderGridCells(this.gridHeight, this.gridWidth,
-                         this.renderGrid, this.renderGridOld,
-                         this.colors);
+            // this.renderGridCells(this.gridHeight, this.gridWidth,
+            //              this.renderGrid, this.renderGridOld,
+            //              this.colors);
+            this.renderGridCells();
         }
     }.bind(this), 400);
 
@@ -490,9 +491,10 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         }
     }
 
-    this.renderGridCells(this.gridHeight, this.gridWidth,
-                         this.renderGrid, this.renderGridOld,
-                         this.colors);
+    // this.renderGridCells(this.gridHeight, this.gridWidth,
+    //                      this.renderGrid, this.renderGridOld,
+    //                      this.colors);
+    this.renderGridCells();
 }
 
 /**
