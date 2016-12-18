@@ -58,6 +58,7 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.canvas = canvas;
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
+    this.totalTime = this.level.time;
 
     this.messages = this.level.messages;
     if(this.messages === undefined)
