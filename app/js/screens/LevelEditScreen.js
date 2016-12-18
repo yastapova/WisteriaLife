@@ -151,6 +151,7 @@ LevelEditScreen.prototype.init = function() {
                     'New time entered must be between 30 and 300 seconds.',
                     true
                 );
+                this.gameManager.playErrorSounds();
                 $(this).val(self.levelEditManager.totalTime);
             }
             else {
@@ -160,6 +161,7 @@ LevelEditScreen.prototype.init = function() {
             }
         } catch (e) {
             toast('New time entered must be an integer amount.', true);
+            this.gameManager.playErrorSounds();
             $(this).val(self.levelEditManager.totalTime);
         }
 
