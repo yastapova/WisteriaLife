@@ -184,9 +184,9 @@ a {
 }
 
 .container-inner {
-    padding-top: $navbar-height-mobile;
+    padding-top: 15px;
 
-    @media #{$medium-and-up} {
+    @media #{$large-and-up} {
         padding-top: $navbar-height;
     }
 }

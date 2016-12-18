@@ -19,29 +19,100 @@ nav {
     }
 }
 
+#mobile-menu {
+
+    .user-pic {
+        float: left;
+        margin-left: 0;
+    }
+
+    .wisteria-icons {
+        font-size: 1.5rem;
+    }
+
+    #wistbux-count-mobile {
+        float: right;
+        color: #fff;
+
+        .wistbux {
+            font-size: 1.7rem;
+            vertical-align: middle;
+        }
+
+        .wistbux-count {
+            font-size: 1.1rem;
+            vertical-align: middle;
+        }
+    }
+}
+
+
+.user-pic {
+    display: none;
+    width:2.2rem;
+    height:2.2rem;
+    background-size:2.2rem;
+    border-radius:2rem;
+    vertical-align:-0.7rem;
+    margin-right: 1rem;
+}
+
+#mobile-menu .user-pic {
+    display: inline-block;
+    width: 3.5rem;
+    height: 3.5rem;
+}
+
+nav {
+    display: none;
+
+    @media #{$large-and-up} {
+        display: block;
+    }
+}
+
+#mobile-menu-activate {
+    display: block;
+    position: fixed;
+    top: 0%;
+    left: 0px;
+    margin: 5px 15px;
+    font-size: 2.0rem;
+    z-index: 99;
+
+    @media #{$large-and-up} {
+        display: none;
+    }
+
+    a {
+        color: $highlight-color;
+    }
+}
+
+
+
 #wisteria-nav {
     background-color: #000;
+
+    .user-dropdown-button {
+        margin-left: 1rem;
+
+        .user-pic {
+            margin-right: 0;
+        }
+    }
 
     #logo {
         color: $primary-color;
     }
 
-    #user-login {
+    .user-login {
         font-size: 1.2rem;
     }
 
-    #user-pic {
-        display: none;
-        width:2.2rem;
-        height:2.2rem;
-        background-size:2.2rem;
-        border-radius:2rem;
-        vertical-align:-0.7rem;
-        margin-left: 1rem;
-    }
-
-    #user-name {
+    .user-name {
       font-size: 1.2rem;
+      display: inline-block;
     }
 
     #user-dropdown {
@@ -121,7 +192,7 @@ nav {
                 }
             }
 
-            #drop-login {
+            .drop-login {
                 font-size: 1.5em;
                 float: right;
                 display: none;
@@ -133,7 +204,7 @@ nav {
                 }
             }
 
-            #drop-logout {
+            .drop-logout {
                 font-size: 1.5em;
                 float: right;
                 display:none;
@@ -145,7 +216,7 @@ nav {
                 }
             }
 
-            #drop-login-guest {
+            .drop-login-guest {
                 font-size: 1.5em;
                 float: right;
                 display:none;
@@ -188,13 +259,13 @@ nav {
         i:hover {
             color: #000;
         }
-
-        #drop-mute {
-            display: none;
-        }
-
-        #drop-sound {
-            display: block;
-        }
     }
+}
+
+.drop-mute {
+    display: block;
+}
+
+.drop-sound {
+    display: none;
 }

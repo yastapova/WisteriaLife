@@ -3,12 +3,9 @@
     <div id="wisteria-nav" class="nav-wrapper">
         <ul id="nav-mobile" class="left">
             <li id="account">
-                <div class="dropdown-button" data-activates="user-dropdown">
-                    <a href="#!" id="user-login">
-                    <i class="wisteria-icons left mdi mdi-account"></i>
-                    Guest</a>
-                    <a href="#!" id="user-pic"></a>
-                    <a href="#!" id="user-name"></a>
+                <div class="user-dropdown-button dropdown-button" data-activates="user-dropdown">
+                    <a href="#!" class="user-pic"></a>
+                    <a href="#!" class="user-name"></a>
                 </div>
             </li>
         </ul>
@@ -17,11 +14,10 @@
 
             <div id="user-dropdown-inner">
                 <div id="user-dropdown-header" class="cf">
-                    <div id="user-icon-def"><i class="wisteria-icons mdi mdi-account"></i></div>
-                    <div id="user-icon-pic"><a href="#!" id="user-pic-drop"></a></div>
+                    <div class="user-pic" id="user-icon-pic"><a href="#!" id="user-pic-drop"></a></div>
                     <div id="user-title">
-                        <span id="user-name-dropdown">Guest</span>
-                        <span id="user-level">Level 0</span>
+                        <span class="user-name" id="user-name-dropdown">Guest</span>
+                        <span class="user-level" id="user-level">Level 0</span>
                     </div>
                 </div>
 
@@ -30,13 +26,13 @@
                         Profile
                     </a>
 
-                    <a href="#!" id="drop-logout">
+                    <a href="#!" class="drop-logout logout-button">
                         <i class="wisteria-icons mdi mdi-power"></i>
                     </a>
-                    <a href="#!" id="drop-login">
+                    <a href="#!" class="drop-login login-button">
                         <i class="wisteria-icons mdi mdi-login"></i>
                     </a>
-                    <a href="#!" id="drop-login-guest">
+                    <a href="#!" class="drop-login-guest guest-login">
                         <i class="wisteria-icons mdi mdi-login"></i>
                     </a>
                 </div>
@@ -52,7 +48,7 @@
                         <span class="strike">W</span>
                     </span>
                     <span class="wistbux-count">
-                    <span id="user-wistbux">0</span>
+                        <span class="user-wistbux">0</span>
                     </span>
                 </a>
             </li>
@@ -66,11 +62,100 @@
         </ul>
 
         <ul id="hamburger-dropdown" class="dropdown-content">
-                <a href="#!" id="drop-back"><i class="wisteria-icons mdi mdi-keyboard-backspace"></i></a>
-                <a href="/store" id="drop-store"><i class="wisteria-icons mdi mdi-store"></i></a>
-                <a href="#!" id="drop-mute"><i class="wisteria-icons mdi mdi-volume-off"></i></a>
-                <a href="#!" id="drop-sound"><i class="wisteria-icons mdi mdi-volume-high"></i></a>
-                <a href="/about" id="drop-about"><i class="wisteria-icons mdi mdi-information"></i></a>
+                <a href="#!" class="drop-back"><i class="wisteria-icons mdi mdi-keyboard-backspace"></i></a>
+                <a href="/store" class="drop-store"><i class="wisteria-icons mdi mdi-store"></i></a>
+                <a href="#!" class="drop-mute"><i class="wisteria-icons mdi mdi-volume-off"></i></a>
+                <a href="#!" class="drop-sound"><i class="wisteria-icons mdi mdi-volume-high"></i></a>
+                <a href="/about" class="drop-about"><i class="wisteria-icons mdi mdi-information"></i></a>
         </ul>
     </div>
 </nav>
+
+<!-- Mobile Menu -->
+
+<div id="mobile-menu-activate">
+    <a href="#!" id="mobile-menu-button" data-activates="mobile-menu" class="button-collapse"><i class="wisteria-icons mdi mdi-menu"></i></a>
+</div>
+<ul id="mobile-menu" class="side-nav">
+    <li><div class="userView">
+        <div class="background">
+            <img src="/img/wisteria-tunnel.jpg">
+        </div>
+        <div class="cf">
+            <div class="user-pic" id="user-icon-pic"><a href="#!" id="user-pic-drop"></a></div>
+            <div id="wistbux-count-mobile">
+                <span class="wistbux">
+                    <span class="strike">W</span>
+                </span>
+                <span class="wistbux-count">
+                    <span class="user-wistbux">0</span>
+                </span>
+            </div>
+        </div>
+
+        <a href="#!name"><span class="white-text name user-name">Guest</span></a>
+        <a href="#!email"><span class="white-text email user-email"></span></a>
+    </div></li>
+
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Wisteria Life</a></li>
+
+    <li>
+        <a class="waves-effect" href="/">
+            <i class="wisteria-icons mdi mdi-home"></i> Home
+        </a>
+    </li>
+
+    <li><div class="divider"></div></li>
+
+    <li class="drop-back">
+        <a class="waves-effect" href="#!">
+            <i class="wisteria-icons mdi mdi-keyboard-backspace"></i> Back
+        </a>
+    </li>
+
+    <li class="drop-store">
+        <a class="waves-effect" href="/store">
+            <i class="wisteria-icons mdi mdi-store"></i> Ye Old Shoppe
+        </a>
+    </li>
+
+    <li class="drop-mute">
+        <a class="waves-effect" href="#!">
+            <i class="wisteria-icons mdi mdi-volume-off"></i> Mute Sounds
+        </a>
+    </li>
+
+    <li class="drop-sound">
+        <a class="waves-effect" href="#!">
+            <i class="wisteria-icons mdi mdi-volume-high"></i> Unmute Sounds
+        </a>
+    </li>
+
+    <li class="drop-about">
+        <a class="waves-effect" href="/about">
+            <i class="wisteria-icons mdi mdi-information"></i> About
+        </a>
+    </li>
+
+    <li><div class="divider"></div></li>
+    <li><a class="subheader">Account</a></li>
+
+    <li class="logout-button">
+        <a href="#!" class="waves-effect">
+            <i class="wisteria-icons mdi mdi-power"></i> Logout
+        </a>
+    </li>
+
+    <li class="login-button">
+        <a href="#!" class="waves-effect">
+            <i class="wisteria-icons mdi mdi-google"></i> Login with Google
+        </a>
+    </li>
+
+    <li class="guest-login">
+        <a href="#!" class="waves-effect">
+            <i class="wisteria-icons mdi mdi-google"></i> Login with Google
+        </a>
+    </li>
+</ul>
