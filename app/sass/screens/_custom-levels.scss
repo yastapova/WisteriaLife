@@ -53,7 +53,11 @@
 }
 
 .custom-levels-row {
-    margin-top: 3.5rem;
+    padding-top: 50px;
+
+    @media #{$large-and-up} {
+        padding-top: 3.5rem;
+    }
 }
 
 .container-inner[id$=custom-levels-screen] {

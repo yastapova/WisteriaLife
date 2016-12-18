@@ -23,16 +23,17 @@ var TestB = require('./test-screen/test').TestB;
 $(document).ready(function() {
     var menuElements = {
         activate: $('#hamburger-vert'),
-        back: $('#drop-back'),
-        store: $('#drop-store'),
-        mute: $('#drop-mute'),
-        about: $('#drop-about'),
-        sound: $('#drop-sound'),
-        loginout: $('#drop-loginout')
+        back: $('.drop-back'),
+        store: $('.drop-store'),
+        mute: $('.drop-mute'),
+        about: $('.drop-about'),
+        sound: $('.drop-sound')
     };
 
     var OverflowMenu = require('OverflowMenu');
     var menu = new OverflowMenu(menuElements);
+
+     $('#mobile-menu-button').sideNav();
 
     var userMenuElements = {
         activate: $('#user-menu'),

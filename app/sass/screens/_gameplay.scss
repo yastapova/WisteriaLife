@@ -51,11 +51,11 @@ $toolbar-font-color: #000;
 #gameplay-area {
     width: 100%;
     position: fixed;
-    top: calc(#{$toolbar-height-mobile} + #{$navbar-height-mobile});
+    top: #{$toolbar-height-mobile};
     bottom: 0px;
     z-index: 18;
 
-    @media #{$medium-and-up} {
+    @media #{$large-and-up} {
         top: calc(#{$toolbar-height} + #{$navbar-height});
     }
 
@@ -167,6 +167,11 @@ $toolbar-font-color: #000;
     width: 100%;
     position: fixed;
     z-index: 23;
+    padding-left: 40px;
+
+    @media #{$large-and-up} {
+        padding-left: 10px;
+    }
 
     @media #{$medium-and-up} {
         height: $toolbar-height;
@@ -254,9 +259,9 @@ $toolbar-font-color: #000;
     }
 
     &.toolbar-top {
-        top: $navbar-height-mobile;
+        top: 0px;
 
-        @media #{$medium-and-up} {
+        @media #{$large-and-up} {
             top: $navbar-height;
         }
     }

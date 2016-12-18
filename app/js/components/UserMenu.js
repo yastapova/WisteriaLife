@@ -15,15 +15,15 @@ var UserMenu = function (menu) {
         this.handleLoginoutButton();
     }.bind(this));
 
-    this.loginDropButton = $('#drop-login');
-    this.logoutDropButton = $('#drop-logout');
-    this.dropGuestLoginButton = $('#drop-login-guest');
+    this.loginButton = $('.login-button');
+    this.logoutButton = $('.logout-button');
+    this.guestLoginButton = $('.guest-login');
 
     // Listeners for buttons
     var gameManager = require('GameManager');
-    this.loginDropButton.on('click', gameManager.login.bind(gameManager));
-    this.logoutDropButton.on('click', gameManager.logout.bind(gameManager));
-    this.dropGuestLoginButton.on('click', gameManager.guestLogin.bind(gameManager));
+    this.loginButton.on('click', gameManager.login.bind(gameManager));
+    this.logoutButton.on('click', gameManager.logout.bind(gameManager));
+    this.guestLoginButton.on('click', gameManager.guestLogin.bind(gameManager));
 };
 
 UserMenu.prototype = {

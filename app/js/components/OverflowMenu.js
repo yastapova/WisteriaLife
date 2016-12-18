@@ -31,7 +31,7 @@ var OverflowMenu = function (menu) {
         this.handleMuteButton();
     }.bind(this));
 
-    $('#drop-sound').on('click', function () {
+    this.sound.on('click', function () {
         this.handleSoundButton();
     }.bind(this));
 
@@ -60,8 +60,8 @@ OverflowMenu.prototype = {
      */
     handleMuteButton: function () {
         this.gameManager.handleToggleSound();
-        this.mute.css('display', 'none');
-        this.sound.css('display', 'block');
+        this.mute.hide();
+        this.sound.show();
     },
 
     /**
@@ -70,8 +70,8 @@ OverflowMenu.prototype = {
 
     handleSoundButton: function() {
         this.gameManager.handleToggleSound();
-        this.mute.css('display', 'block');
-        this.sound.css('display', 'none');
+        this.mute.show();
+        this.sound.hide();
     },
 
     /**
