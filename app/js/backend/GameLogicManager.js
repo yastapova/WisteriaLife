@@ -477,6 +477,11 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         {
             // set the cell on the chosen grid
             this.setGridCell(grid, row, col, faction);
+            if(faction === this.OBJECTIVE) {
+                if(this.getGridCell(grid, row, col) !== this.OBJECTIVE) {
+                    this.defensesLeft++;
+                }
+            }
             // if it's a battle, set it on the new battleGrid too
             if(battle)
                 this.setGridCell(this.battleGridNew, row, col, faction);
@@ -509,7 +514,7 @@ GameLogicManager.prototype.placeDefenses = function() {
         this.placeShape(coords.y, coords.x, this.OBJECTIVE,
                         shape, this.defenseGrid);
         shape = shape.pixelsArray;
-        this.defensesLeft += shape.length/2;
+        // this.defensesLeft += shape.length/2;
     }
 }
 
