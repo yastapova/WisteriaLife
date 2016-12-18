@@ -475,13 +475,13 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         // verify that this cell can be placed on
         if(this.getGridCell(this.battleGrid, row, col) !== this.VOID)
         {
-            // set the cell on the chosen grid
-            this.setGridCell(grid, row, col, faction);
             if(faction === this.OBJECTIVE) {
                 if(this.getGridCell(grid, row, col) !== this.OBJECTIVE) {
                     this.defensesLeft++;
                 }
             }
+            // set the cell on the chosen grid
+            this.setGridCell(grid, row, col, faction);
             // if it's a battle, set it on the new battleGrid too
             if(battle)
                 this.setGridCell(this.battleGridNew, row, col, faction);
