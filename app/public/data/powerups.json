@@ -1,102 +1,102 @@
 {
     "powerups": [{
-        "name": "Reduce Time",
+        "name": "reducetime",
         "type": "Magic",
         "description": "Reduce remaining survival time by 5-10 sec.",
         "price": 100,
         "thumbnail": "reducetime.png"
     }, {
-        "name": "Stop Spawn",
+        "name": "stopspawn",
         "type": "Magic",
         "description": "Reduce the number of enemies about to spawn in the next few seconds.",
         "price": 100,
         "thumbnail": "stopspawn.png"
     }, {
-        "name": "Void Cell",
+        "name": "void",
         "type": "Magic",
         "description": "Void a cell so that they are no longer involved in the physics of the this world.",
         "price": 100,
-        "thumbnail": "voidcell.png"
+        "thumbnail": "void.png"
     }, {
-        "name": "Tower",
+        "name": "tower",
         "type": "Shape",
         "description": "A non-moving 2x2 cell square.",
         "price": 100,
         "thumbnail": "tower.png"
     }, {
-        "name": "Blockade",
+        "name": "blockade",
         "type": "Shape",
         "description": "A stationary defense unit that repeatedly changes shape.",
         "price": 100,
         "thumbnail": "blockade.png"
     }, {
-        "name": "Shield",
+        "name": "shield",
         "type": "Shape",
         "description": "A stationary defense unit that repeatedly changes shape.",
         "price": 100,
-        "thumbnail": "shild.png"
+        "thumbnail": "shield.png"
     }, {
-        "name": "Caltrops",
+        "name": "caltrops",
         "type": "Shape",
         "description": "A unit that explodes into several stable structures.",
         "price": 100,
         "thumbnail": "caltrops.png"
     }, {
-        "name": "Archer NW",
+        "name": "archernw",
         "type": "Shape",
         "description": "A unit moving diagonally northwest.",
         "price": 100,
         "thumbnail": "archernw.png"
     }, {
-        "name": "Archer NE",
+        "name": "archerne",
         "type": "Shape",
         "description": "A unit moving diagonally northwest.",
         "price": 100,
         "thumbnail": "archerne.png"
     }, {
-        "name": "Archer SE",
+        "name": "archerse",
         "type": "Shape",
         "description": "A unit moving diagonally southeast.",
         "price": 100,
         "thumbnail": "archerse.png"
     }, {
-        "name": "Archer SW",
+        "name": "archersw",
         "type": "Shape",
         "description": "A unit moving diagonally southwest.",
         "price": 100,
         "thumbnail": "archersw.png"
     }, {
-        "name": "Infantry W",
+        "name": "infantryw",
         "type": "Shape",
         "description": "A unit moving linearly west.",
         "price": 100,
         "thumbnail": "infantryw.png"
     }, {
-        "name": "Infantry N",
+        "name": "infantryn",
         "type": "Shape",
         "description": "A unit moving linearly north.",
         "price": 100,
         "thumbnail": "infantryn.png"
     }, {
-        "name": "Infantry E",
+        "name": "infantrye",
         "type": "Shape",
         "description": "A unit moving linearly east.",
         "price": 100,
         "thumbnail": "infantrye.png"
     }, {
-        "name": "Infantry S",
+        "name": "infantrys",
         "type": "Shape",
         "description": "A unit moving linearly south.",
         "price": 100,
         "thumbnail": "infantrys.png"
     }, {
-        "name": "Wall Backward",
+        "name": "wallbackward",
         "type": "Shape",
         "description": "A stationary defense unit that does not change shape.",
         "price": 100,
         "thumbnail": "wallbackward.png"
     }, {
-        "name": "Wall Forward",
+        "name": "wallforward",
         "type": "Shape",
         "description": "A stationary defense unit that does not change shape.",
         "price": 100,
