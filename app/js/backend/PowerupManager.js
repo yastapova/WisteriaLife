@@ -18,6 +18,15 @@ PowerupManager.prototype.load = function (callback) {
 	this.loadPowerups(callback);
 };
 
+/**
+ * Look up powerup object in the map
+ * @param  {String} name name of powerup
+ * @return {Powerup}      powerup object
+ */
+PowerupManager.prototype.getPowerup = function (name) {
+    return this.powerupsMap.get(name);
+};
+
 // Loads the powerups from firebase
 PowerupManager.prototype.loadPowerups = function(callback) {
 	// Reference to the /powerups/ database path
@@ -42,55 +51,55 @@ PowerupManager.prototype.loadJSONData = function (data, callback) {
 			thumbnail: powerupData.thumbnail
 		};
 		switch (powerupData.name) {
-		case "Reduce Time":
+		case "reducetime":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useReduceTimePowerup));
 			break;
-		case "Stop Spawn":
+		case "stopspawn":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useStopSpawnPowerup));
 			break;
-		case "Void Cell":
+		case "void":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Tower":
+		case "tower":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Blockade":
+		case "blockade":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Shield":
+		case "shield":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Caltrops":
+		case "caltrops":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Archer NW":
+		case "archernw":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Archer NE":
+		case "archerne":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Archer SE":
+		case "archerse":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Archer SW":
+		case "archersw":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Infantry W":
+		case "infantryw":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Infantry N":
+		case "infantryn":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Infantry E":
+		case "infantrye":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Infantry S":
+		case "infantrys":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Wall Backward":
+		case "wallbackward":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
-		case "Wall Forward":
+		case "wallforward":
 			this.powerupsMap.set(powerupData.name, new Powerup(powerupAttrObj, this.useShapePowerup));
 			break;
 		}
@@ -103,43 +112,59 @@ PowerupManager.prototype.loadJSONData = function (data, callback) {
  * Use a shape powerup
  * @param level the level obj to use the shape powerup on
  */
-PowerupManager.prototype.useShapePowerup = function(level) {
-	for(var i = 0; i < level.allowedShapes.length; i++){
-		if(level.allowedShapes[i].shape === powerupData.name){
-			level.allowedShapes[i].quantity += 1;
-			return;
-		}
+PowerupManager.prototype.useShapePowerup = function(gameManager, shape) {
+	var current = $("#powerup-" + shape + " .item-count").text();
+	if(current === "0"){
+		return;
 	}
-	var shape = {};
-	shape.shape = powerupData.name;
-	shape.quantity = 1;
-	level.allowedShapes.push(shape);
+	current =  current - '0';
+	$("#powerup-" + shape + " .item-count").text(--current);
+	gameManager.gameLogicManager.allowedShapesMap[shape]++;	
+	$("#unit-" + shape + " .item-count").text(gameManager.gameLogicManager.allowedShapesMap[shape]);
+	// decrement user powerups here
+	gameManager.user.powerups[shape]--;
 };
 
 /**
  * Use a reduce time powerup.
  * @param level the level obj to use the reduce time powerup on
  */
-PowerupManager.prototype.useReduceTimePowerup = function(level) {
-	if(level.time - 5 <= 0){
-		level.time = 0;
+PowerupManager.prototype.useReduceTimePowerup = function(gameManager, shape) {
+	var current = $("#powerup-" + shape + " .item-count").text();
+	if(current === "0"){
+		return;
+	}
+	current =  current - '0';
+	$("#powerup-" + shape + " .item-count").text(--current);
+	if(gameManager.gameLogicManager.level.time - 5 <= 0){
+		gameManager.gameLogicManager.level.time = 0;
 	}
 	else{
-		level.time = level.time - 5;
+		gameManager.gameLogicManager.level.time = gameManager.gameLogicManager.level.time - 5;
 	}
+	// decrement user powerups here
+	gameManager.user.powerups[shape]--;
 };
 
 /**
  * Use a stop spawn powerup
  * @param level the level obj to use the stop spawn powerup on
  */
-PowerupManager.prototype.useStopSpawnPowerup = function(level) {
-	for(var currentTime = level.time; currentTime > 0; currentTime--){
-		if(level.enemySpawns.has(currentTime)){
-			level.enemySpawns.delete(currentTime);
+PowerupManager.prototype.useStopSpawnPowerup = function(gameManager, shape) {
+	var current = $("#powerup-" + shape + " .item-count").text();
+	if(current === "0"){
+		return;
+	}
+	current =  current - '0';
+	$("#powerup-" + shape + " .item-count").text(--current);
+	for(var currentTime = gameManager.gameLogicManager.level.time; currentTime > 0; currentTime--){
+		if(gameManager.gameLogicManager.level.enemySpawns.has(currentTime)){
+			gameManager.gameLogicManager.level.enemySpawns.delete(currentTime);
 			return;
 		}
 	}
+	// decrement user powerups here
+	gameManager.user.powerups[shape]--;
 };
 
 module.exports = PowerupManager;

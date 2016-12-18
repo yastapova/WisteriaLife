@@ -179,23 +179,26 @@ PixiCanvas.prototype.calculateCellLocation = function (col, row) {
 PixiCanvas.prototype.setCell = function (col, row, color) {
     var location = this.calculateCellLocation(col, row);
 
-    // calculate location of the cell
-    var rect = new PIXI.Graphics();
-    rect.beginFill(color);
-
-    // set the line style to have a width of 5 and set the color to red
-    rect.lineStyle(1, 0xAAAAAA);
-
-    // draw a rectangle
-    rect.drawRect(location.x, location.y, this.cellLength, this.cellLength);
-
-    // replace existing shape at location if exists
+    // remove existing shape at location if exists
     var oldRect = this.grid[col][row];
     if (oldRect)
         this.stage.removeChild(oldRect);
-    this.grid[col][row] = rect;
 
-    this.stage.addChild(rect);
+    if(color !== null) {
+        // calculate location of the cell
+        var rect = new PIXI.Graphics();
+        rect.beginFill(color);
+
+        // set the line style to have a width of 5 and set the color to red
+        rect.lineStyle(1, 0xAAAAAA);
+
+        // draw a rectangle
+        rect.drawRect(location.x, location.y, this.cellLength, this.cellLength);
+
+        // add new shape at location
+        this.grid[col][row] = rect;
+        this.stage.addChild(rect);
+    }
 
 }
 

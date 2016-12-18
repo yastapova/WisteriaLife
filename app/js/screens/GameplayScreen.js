@@ -71,12 +71,33 @@ GamePlayScreen.prototype.setLevel = function (level) {
         return shapes;
     }.bind(this))());
 
+    var userPowerups = Object.keys(this.gameManager.user.powerups);
     $('#powerups-select-items').append((function () {
         var powerups = [];
-        var userPowerups = this.gameManager.user.powerups;
         for (var i = 0; i < userPowerups.length; i++) {
-            var powerup = userPowerups[i].charAt(0).toUpperCase() +
-                               allowed[i].slice(1);
+            var powerup;
+            if (userPowerups[i].charAt(0) == 'a'){
+                powerup = userPowerups[i].charAt(0).toUpperCase() +
+                               userPowerups[i].slice(1,-2) + " " +
+                               userPowerups[i].slice(-2).toUpperCase();
+            }
+            else if(userPowerups[i].charAt(0) == 'i'){
+                powerup = userPowerups[i].charAt(0).toUpperCase() +
+                               userPowerups[i].slice(1,-1) + " " +
+                               userPowerups[i].slice(-1).toUpperCase();
+            }
+            else if(userPowerups[i].slice(0,4) === "stop"){
+                powerup = userPowerups[i].charAt(0).toUpperCase() +
+                               userPowerups[i].slice(1,4) + " " + userPowerups[i].charAt(4).toUpperCase() + userPowerups[i].slice(5);
+            }
+            else if(userPowerups[i].slice(0,4) === "redu"){
+                powerup = userPowerups[i].charAt(0).toUpperCase() +
+                               userPowerups[i].slice(1,6) + " " +userPowerups[i].charAt(6).toUpperCase() + userPowerups[i].slice(7);
+            }
+            else{
+                powerup = userPowerups[i].charAt(0).toUpperCase() +
+                               userPowerups[i].slice(1);
+            }
             powerups.push(
                 $('<span>')
                     .attr('id', 'powerup-' + userPowerups[i])
@@ -89,7 +110,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
                     .append(
                         $('<span>')
                             .addClass('item-count')
-                            .text(this.gameManager.powerupManager.powerupsMap[userPowerups[i]])
+                            .text(this.gameManager.user.powerups[userPowerups[i]])
                     )
             );
         }
@@ -168,6 +189,26 @@ GamePlayScreen.prototype.setLevel = function (level) {
             );
     });
 
+    // update current powerup
+    $('#powerups-select-items .select-item').click(function () {
+
+        // highlight selected
+        $('.select-item').removeClass('selected');
+        $(this).addClass('selected');
+
+        var powerup = self.gameManager.powerupManager.getPowerup($(this).attr('data-value'));
+        powerup.effect(self.gameManager, $(this).attr('data-value'));
+        
+        // self.gameManager.user.powerups[$(this).attr('data-value')]--;
+        // // for shape powerups
+        // if($(this).attr('data-value') !== "reducetime" && $(this).attr('data-value') !== "stopspawn"){
+        //     self.gameLogicManager.currentUnit =
+        //         self.gameManager.shapeManager.getShape(
+        //             $(this).attr('data-value')
+        //         );
+        // }
+    });
+
     // units and powerup tooltips
     $('.select-item').tooltip({
         delay: 50,
@@ -235,6 +276,7 @@ GamePlayScreen.prototype.init = function () {
 
             toast('Cheat successful.', false);
         } else {
+            this.gameManager.playErrorSounds();
             toast('Cheat code incorrect. Maybe play the level instead?', true);
         }
     }.bind(this));
@@ -290,12 +332,15 @@ GamePlayScreen.prototype.isLegal = function (user) {
         if (
             this.gameManager.screenManager.previousScreen != 'level-story'
             && this.gameManager.screenManager.previousScreen != 'gameplay'
-        )
+        ) {
+            this.gameManager.playErrorSounds();
             return "Must come from story screen";
-
+        }
         // check user progress
-        if (this.levelNumber <= 40 && this.levelNumber > user.gameData.currentLevel + 1)
+        if (this.levelNumber <= 40 && this.levelNumber > user.gameData.currentLevel + 1) {
+            this.gameManager.playErrorSounds();
             return "Not up to level " + this.levelNumber + " yet!";
+        }
     } else
         return userCheck;
 

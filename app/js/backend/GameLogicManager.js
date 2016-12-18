@@ -190,9 +190,10 @@ GameLogicManager.prototype.start = function () {
     this.gameLoopTimer = setInterval(function () {
         if (!this.paused) {
             this.updateLoop();
-            this.renderGridCells(this.gridHeight, this.gridWidth,
-                         this.renderGrid, this.renderGridOld,
-                         this.colors);
+            // this.renderGridCells(this.gridHeight, this.gridWidth,
+            //              this.renderGrid, this.renderGridOld,
+            //              this.colors);
+            this.renderGridCells();
         }
     }.bind(this), 400);
 
@@ -225,6 +226,8 @@ GameLogicManager.prototype.checkMessage = function () {
  * grid.
  */
 GameLogicManager.prototype.updateLoop = function() {
+    var gameManager = require('GameManager');
+
     // TODO check time; end game if zero
 
     for(var i = 0; i < this.gridHeight; i++)
@@ -264,6 +267,7 @@ GameLogicManager.prototype.updateLoop = function() {
                     // if an enemy is on top of this, destroy it
                     if(battleCell === this.ENEMY) {
                         this.defenseGrid[index] = this.BLANK;
+                        gameManager.playAttack();
                         this.defensesLeft--;
                     }
                     break;
@@ -421,6 +425,9 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             shape = this.currentUnit;
         }
     }
+    if(shape.name === "void") {
+        faction = this.VOID;
+    }
     // checks if this is a battleGrid placement
     var battle = false;
     if(grid === null) {
@@ -480,6 +487,12 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
                     this.defensesLeft++;
                 }
             }
+            else if(faction === this.VOID) {
+                if(this.getGridCell(this.defenseGrid, row, col) === this.OBJECTIVE) {
+                    toast('Cannot place void cell on a defense structure.', true, 2000);
+                    return;
+                }
+            }
             // set the cell on the chosen grid
             this.setGridCell(grid, row, col, faction);
             // if it's a battle, set it on the new battleGrid too
@@ -488,11 +501,24 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             // also set it on the renderGrid
             this.setGridCell(this.renderGrid, row, col, faction);
         }
+        else {
+            // if you place a void cell on a void cell, it cancels out
+            if(faction !== this.VOID)
+                return;
+            // set the cell on the chosen grid
+            this.setGridCell(grid, row, col, this.BLANK);
+            // if it's a battle, set it on the new battleGrid too
+            if(battle)
+                this.setGridCell(this.battleGridNew, row, col, this.BLANK);
+            // also set it on the renderGrid
+            this.setGridCell(this.renderGrid, row, col, this.BLANK);
+        }
     }
 
-    this.renderGridCells(this.gridHeight, this.gridWidth,
-                         this.renderGrid, this.renderGridOld,
-                         this.colors);
+    // this.renderGridCells(this.gridHeight, this.gridWidth,
+    //                      this.renderGrid, this.renderGridOld,
+    //                      this.colors);
+    this.renderGridCells();
 }
 
 /**
@@ -535,6 +561,8 @@ GameLogicManager.prototype.checkForSpawns = function() {
  *       spawns List of spawns at a given time
  */
 GameLogicManager.prototype.spawnEnemies = function(spawns) {
+    var gameManager = require('GameManager');
+
     if(typeof spawns === "undefined")
         return;
     var gameManager = require('GameManager');
@@ -548,6 +576,8 @@ GameLogicManager.prototype.spawnEnemies = function(spawns) {
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.ENEMY, shape, null);
     }
+
+    gameManager.playSpawnSounds();
 }
 
 /**

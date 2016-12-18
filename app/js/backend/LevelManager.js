@@ -85,6 +85,8 @@ LevelManager.prototype.loadJSONDataLevel = function (data) {
  * @return the level object with the given id
  */
 LevelManager.prototype.loadLevel = function (id, setLevel) {
+    var gameManager = require('GameManager');
+    
     console.log("Load level called for id: " + id);
     // Reference to the /levels/ database path
     firebase.database().ref('levels').once('value', function (snapshot) {
@@ -97,6 +99,7 @@ LevelManager.prototype.loadLevel = function (id, setLevel) {
                 4000,
                 'wisteria-error-toast'
             );
+            gameManager.playErrorSounds();
             return;
         }
 

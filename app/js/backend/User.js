@@ -14,7 +14,11 @@ var User = function(name, avatar, uid, levels) {
     this.avatar = avatar;
     this.uid = uid;
     this.gameData = new GameData();
-    this.powerups = [];
+    this.powerups = {
+        "archernw": 1,
+        "reducetime":1,
+        "stopspawn":1
+    }; // object
     this.levels = levels ? levels : [];
 };
 

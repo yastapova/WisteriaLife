@@ -408,6 +408,20 @@ GameManager.prototype.handleToggleSound = function() {
 };
 
 /**
+ * Check is a sound is already playing
+ */
+
+GameManager.prototype.isPlaying = function(audioid) {
+    var audio = document.getElementById(audioid);
+    if(audio.currentTime > 0 || !audio.paused) {
+        return true;
+    }
+    else {
+        return false;
+    }
+};
+
+/**
  * Return to the previous screen if eligible
  */
 GameManager.prototype.back = function() {};
@@ -422,6 +436,41 @@ GameManager.prototype.checkIsLoggedIn = function() {
     }
     else {
         return false;
+    }
+};
+
+GameManager.prototype.playAttack = function () {
+    var chance = Math.floor(Math.random() * 100);
+
+    if(chance < 65) {
+        var attackSounds = ["/sounds/gameplay/attack1.wav", "/sounds/gameplay/attack2.wav",
+                            "/sounds/gameplay/attack3.wav", "/sounds/gameplay/attack4.mp3"];
+
+        if(!this.mute && !this.isPlaying("attack-sound")) {
+            var number = Math.floor(Math.random() * (attackSounds.length));
+            $('#attack-sound').attr("src", attackSounds[number]);
+            $('#attack-sound')[0].play();
+        }
+    }
+};
+
+GameManager.prototype.playSpawnSounds = function () {
+
+    var spawnSounds = ["/sounds/gameplay/slime1.wav", "/sounds/gameplay/slime2.wav",
+                        "/sounds/gameplay/slime3.wav", "/sounds/gameplay/slime4.wav",
+                        "/sounds/gameplay/slime5.wav", "/sounds/gameplay/slime6.wav",
+                        "/sounds/gameplay/slime7.wav", "/sounds/gameplay/slime8.wav"];
+
+    if(!this.mute && !this.isPlaying("spawn-sound")) {
+        var number = Math.floor(Math.random() * (spawnSounds.length));
+        $('#spawn-sound').attr("src", spawnSounds[number]);
+        $('#spawn-sound')[0].play();
+    }
+};
+
+GameManager.prototype.playErrorSounds = function () {
+    if(!this.mute) {
+        $('#error-sound')[0].play();
     }
 };
 
