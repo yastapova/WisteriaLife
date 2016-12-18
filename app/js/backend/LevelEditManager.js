@@ -783,7 +783,7 @@ LevelEditManager.prototype.renderGridCells = function() {
             // get status of this cell
             var renderCell = this.renderGrid[index];
             // check if it has been updated since last render
-            if(renderCell !== this.renderGridOld[index]) {
+            if(renderCell !== this.renderGridOld[index] || this.canvas.resize) {
                 // if yes, render it again
                 this.canvas.setCell(j, i, this.colors[renderCell]);
             }

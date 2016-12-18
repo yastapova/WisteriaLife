@@ -25,6 +25,9 @@ var PixiCanvas = function (element, size) {
     });
     this.renderer.autoResize = true;
     // this.renderer.backgroundColor = 0xeeeeee;
+    //
+
+    this.resize = false;
 
     //Add the canvas to the HTML document
     element.get(0).appendChild(this.renderer.view);
@@ -40,11 +43,6 @@ var PixiCanvas = function (element, size) {
     for (var i = 0; i < this.size.width; i++) {
         this.grid[i] = new Array(this.size.height);
     }
-
-    // resize canvas whenever window resizes
-    $(window).resize(function () {
-        this.resizePixiCanvas();
-    }.bind(this));
 
     // canvas click event
     this.renderer.view.addEventListener('click', this.respondToMouseClick.bind(this));
@@ -100,6 +98,7 @@ PixiCanvas.prototype.setDimensions = function (size) {
     // resize canvas whenever window resizes
     $(window).resize(function () {
         this.resizePixiCanvas();
+        this.resize = true;
     }.bind(this));
 }
 
@@ -147,35 +146,9 @@ PixiCanvas.prototype.resizePixiCanvas = function () {
  * Render the basic grid
  */
 PixiCanvas.prototype.render = function () {
+    this.resize = false;
     this.renderer.render(this.stage);
 };
-
-/**
- * Duplicate of GameLogicManager.renderGridCells
- *
- * TODO: using this method results in severe lag, although the identical
- * method in GameLogicManager does not
- */
-PixiCanvas.prototype.renderGridCells = function(gridHeight, gridWidth, renderGrid, renderGridOld, colors) {
-    for(var i = 0; i < gridHeight; i++)
-    {
-        for(var j = 0; j < gridWidth; j++)
-        {
-            // CALCULATE THE ARRAY INDEX OF THIS CELL
-            // AND GET ITS CURRENT STATE
-            var index = (i * gridWidth) + j;
-            var renderCell = renderGrid[index];
-            if(renderCell !== renderGridOld[index]) {
-                this.setCell(j, i, colors[renderCell]);
-            }
-        }
-    }
-
-    renderGridOld = renderGrid;
-    renderGrid = renderGrid.slice(0);
-
-    this.render();
-}
 
 /**
  * Clear the canvas
@@ -206,23 +179,26 @@ PixiCanvas.prototype.calculateCellLocation = function (col, row) {
 PixiCanvas.prototype.setCell = function (col, row, color) {
     var location = this.calculateCellLocation(col, row);
 
-    // calculate location of the cell
-    var rect = new PIXI.Graphics();
-    rect.beginFill(color);
-
-    // set the line style to have a width of 5 and set the color to red
-    rect.lineStyle(1, 0xAAAAAA);
-
-    // draw a rectangle
-    rect.drawRect(location.x, location.y, this.cellLength, this.cellLength);
-
-    // replace existing shape at location if exists
+    // remove existing shape at location if exists
     var oldRect = this.grid[col][row];
     if (oldRect)
         this.stage.removeChild(oldRect);
-    this.grid[col][row] = rect;
 
-    this.stage.addChild(rect);
+    if(color !== null) {
+        // calculate location of the cell
+        var rect = new PIXI.Graphics();
+        rect.beginFill(color);
+
+        // set the line style to have a width of 5 and set the color to red
+        rect.lineStyle(1, 0xAAAAAA);
+
+        // draw a rectangle
+        rect.drawRect(location.x, location.y, this.cellLength, this.cellLength);
+
+        // add new shape at location
+        this.grid[col][row] = rect;
+        this.stage.addChild(rect);
+    }
 
 }
 
