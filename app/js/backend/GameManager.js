@@ -127,14 +127,13 @@ GameManager.prototype.onAuthStateChanged = function(user) {
                 if (this.screenManager.currentScreen == 'splash')
                     this.screenManager.switchScreens('map');
 
-    	        this.writeUserData();
-	        }else{
-                // Check if guest already has data
-                firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
-                  var exists = (snapshot.val() !== null);
-                  this.userExistsCallback(user, exists, snapshot.val());
-                }.bind(this));
-            }
+	        }
+            // Check if guest already has data
+            firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
+              var exists = (snapshot.val() !== null);
+              this.userExistsCallback(user, exists, snapshot.val());
+            }.bind(this));
+
 
     		// Splash changes
 	        $('#splash-logout').css('display','block');
@@ -176,13 +175,13 @@ GameManager.prototype.onAuthStateChanged = function(user) {
 	        	this.user.gameData = currentGameData;
                 this.user.guestUid = oldUid;
 	        	this.userLevel.text = 'Level ' + this.user.gameData.currentLevel;
-	        	this.writeUserData();                            
+	        	this.writeUserData();
 
                 // custom levels change uid and author
                 firebase.database().ref().once('value', function(snapshot){
                 var db = snapshot.val();
                 var updates = {};
-                for(var key in db.users[oldUid].levels){                            
+                for(var key in db.users[oldUid].levels){
                     updates["/customLevels/" + key] = {
                         author: this.user.name,
                         dateCreated: db.customLevels[key].dateCreated,
@@ -191,15 +190,15 @@ GameManager.prototype.onAuthStateChanged = function(user) {
                         storyline: db.customLevels[key].storyline,
                         title: db.customLevels[key].title,
                         uid: this.user.uid
-                    };                    
+                    };
                     // firebase.database().ref('/customLevels/' + levels[key]).uid = this.user.uid;
-                    // firebase.database().ref('/customLevels/' + levels[key]).author = this.user.name;                    
+                    // firebase.database().ref('/customLevels/' + levels[key]).author = this.user.name;
                 }
                 firebase.database().ref().update(updates);
                 // delete guest account
                 firebase.database().ref('/users/' + this.user.guestUid).remove();
                 }.bind(this));
-                
+
 	        }
 	        // Splash changes
 	        $('#splash-logout').css('display','block');
@@ -290,10 +289,10 @@ GameManager.prototype.logout = function() {
                         console.log('Deleted level image.');
                     }).catch(function (error) {
                         console.warn(error);
-                    }); 
+                    });
                 // delete from 2 locations: customLevels, levels
                 firebase.database().ref('/customLevels/' + key).remove();
-                firebase.database().ref('/levels/' + key).remove();                           
+                firebase.database().ref('/levels/' + key).remove();
             }
             firebase.database().ref('/users/' + userId).remove();
             // Sign out of Firebase.
