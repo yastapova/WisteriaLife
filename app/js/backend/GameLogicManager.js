@@ -225,6 +225,8 @@ GameLogicManager.prototype.checkMessage = function () {
  * grid.
  */
 GameLogicManager.prototype.updateLoop = function() {
+    var gameManager = require('GameManager');
+
     // TODO check time; end game if zero
 
     for(var i = 0; i < this.gridHeight; i++)
@@ -264,6 +266,7 @@ GameLogicManager.prototype.updateLoop = function() {
                     // if an enemy is on top of this, destroy it
                     if(battleCell === this.ENEMY) {
                         this.defenseGrid[index] = this.BLANK;
+                        gameManager.playAttack();
                         this.defensesLeft--;
                     }
                     break;
