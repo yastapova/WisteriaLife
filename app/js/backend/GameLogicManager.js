@@ -306,7 +306,7 @@ GameLogicManager.prototype.renderGridCells = function() {
             // get its status in renderGrid
             var renderCell = this.renderGrid[index];
             // did it change since the previous update?
-            if(renderCell !== this.renderGridOld[index]) {
+            if(renderCell !== this.renderGridOld[index] || this.canvas.resize) {
                 // if yes, change it
                 this.canvas.setCell(j, i, this.colors[renderCell]);
             }
