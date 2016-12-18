@@ -422,6 +422,9 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             shape = this.currentUnit;
         }
     }
+    if(shape.name === "void") {
+        faction = this.VOID;
+    }
     // checks if this is a battleGrid placement
     var battle = false;
     if(grid === null) {
@@ -481,6 +484,12 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
                     this.defensesLeft++;
                 }
             }
+            else if(faction === this.VOID) {
+                if(this.getGridCell(this.defenseGrid, row, col) === this.OBJECTIVE) {
+                    toast('Cannot place void cell on a defense structure.', true, 2000);
+                    return;
+                }
+            }
             // set the cell on the chosen grid
             this.setGridCell(grid, row, col, faction);
             // if it's a battle, set it on the new battleGrid too
@@ -488,6 +497,18 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
                 this.setGridCell(this.battleGridNew, row, col, faction);
             // also set it on the renderGrid
             this.setGridCell(this.renderGrid, row, col, faction);
+        }
+        else {
+            // if you place a void cell on a void cell, it cancels out
+            if(faction !== this.VOID)
+                return;
+            // set the cell on the chosen grid
+            this.setGridCell(grid, row, col, this.BLANK);
+            // if it's a battle, set it on the new battleGrid too
+            if(battle)
+                this.setGridCell(this.battleGridNew, row, col, this.BLANK);
+            // also set it on the renderGrid
+            this.setGridCell(this.renderGrid, row, col, this.BLANK);
         }
     }
 
