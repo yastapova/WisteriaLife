@@ -1,0 +1,86 @@
+{
+  "allowedShapes" : [ {
+    "quantity" : 3,
+    "shape" : "archernw"
+  }, {
+    "quantity" : 3,
+    "shape" : "archersw"
+  } ],
+  "custom" : "false",
+  "defenseStructures" : [ {
+    "coordinates" : {
+      "x" : 24,
+      "y" : 12
+    },
+    "name" : "tower"
+  }, {
+    "coordinates" : {
+      "x" : 24,
+      "y" : 4
+    },
+    "name" : "tower"
+  } ],
+  "enemySpawns" : [ {
+    "shapes" : [ {
+      "coordinates" : {
+        "x" : 15,
+        "y" : 11
+      },
+      "name" : "archerne"
+    } ],
+    "time" : 42
+  }, {
+    "shapes" : [ {
+      "coordinates" : {
+        "x" : 15,
+        "y" : 6
+      },
+      "name" : "archerse"
+    }, {
+      "coordinates" : {
+        "x" : 12,
+        "y" : 0
+      },
+      "name" : "archerse"
+    }, {
+      "coordinates" : {
+        "x" : 5,
+        "y" : 17
+      },
+      "name" : "archerne"
+    } ],
+    "time" : 33
+  } ],
+  "enemyZone" : [ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ],
+  "grid" : "small",
+  "id" : "2",
+  "messages" : [ {
+    "message" : "Excellent work, My Liege! You have preserved our lives once more.",
+    "time" : 59
+  }, {
+    "message" : "Unfortunately, most of our army is out on patrol. You can see how many units remain on the left.",
+    "time" : 54
+  }, {
+    "message" : "You will have to use our units wisely to defend us. Archers can move in multiple directions.",
+    "time" : 49
+  }, {
+    "message" : "Be on your guard, My Liege, an enemy approaches!",
+    "time" : 44
+  }, {
+    "message" : "The enemy is dispatched, My Liege. But my scouts report a larger force of enemy archers approaching.",
+    "time" : 35
+  }, {
+    "message" : "We have beaten them back for now, but I fear the worst is still ahead.",
+    "time" : 20
+  }, {
+    "message" : "Some of these enemies were wearing Wisteria uniforms! Perhaps we have traitors in our midst.",
+    "time" : 15
+  }, {
+    "message" : "I will send my scouts out to confirm this. Regardless, we must prepare for the next battle.",
+    "time" : 10
+  }, {
+    "message" : "Some of our infantry units have returned from patrol and will join us in the next battle.",
+    "time" : 5
+  } ],
+  "time" : 60
+}

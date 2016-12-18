@@ -1,0 +1,125 @@
+{
+  "allowedShapes" : [ {
+    "quantity" : 4,
+    "shape" : "archernw"
+  }, {
+    "quantity" : 4,
+    "shape" : "archersw"
+  }, {
+    "quantity" : 4,
+    "shape" : "infantryw"
+  } ],
+  "custom" : "true",
+  "defenseStructures" : [ {
+    "coordinates" : {
+      "x" : 23,
+      "y" : 3
+    },
+    "name" : "tower"
+  }, {
+    "coordinates" : {
+      "x" : 23,
+      "y" : 9
+    },
+    "name" : "tower"
+  }, {
+    "coordinates" : {
+      "x" : 23,
+      "y" : 15
+    },
+    "name" : "tower"
+  } ],
+  "enemySpawns" : [ {
+    "shapes" : [ {
+      "coordinates" : {
+        "x" : 10,
+        "y" : 3
+      },
+      "name" : "infantrye"
+    }, {
+      "coordinates" : {
+        "x" : 10,
+        "y" : 9
+      },
+      "name" : "infantrye"
+    }, {
+      "coordinates" : {
+        "x" : 10,
+        "y" : 15
+      },
+      "name" : "infantrye"
+    } ],
+    "time" : 34
+  }, {
+    "shapes" : [ {
+      "coordinates" : {
+        "x" : 15,
+        "y" : 9
+      },
+      "name" : "archerse"
+    }, {
+      "coordinates" : {
+        "x" : 5,
+        "y" : 8
+      },
+      "name" : "infantrye"
+    }, {
+      "coordinates" : {
+        "x" : 13,
+        "y" : 3
+      },
+      "name" : "infantrye"
+    } ],
+    "time" : 24
+  }, {
+    "shapes" : [ {
+      "coordinates" : {
+        "x" : 10,
+        "y" : 3
+      },
+      "name" : "infantrye"
+    }, {
+      "coordinates" : {
+        "x" : 10,
+        "y" : 15
+      },
+      "name" : "infantrye"
+    } ],
+    "time" : 49
+  } ],
+  "enemyZone" : [ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ],
+  "grid" : "small",
+  "id" : "3",
+  "messages" : [ {
+    "message" : "Several infantry brigades are ready to defend the castle!",
+    "time" : 59
+  }, {
+    "message" : "Once you command them, they will move to meet the enemy straight on.",
+    "time" : 54
+  }, {
+    "message" : "Command them now, My Liege! Enemies approach!",
+    "time" : 49
+  }, {
+    "message" : "We are holding steady and morale is high.",
+    "time" : 40
+  }, {
+    "message" : "More enemies incoming! To arms!",
+    "time" : 35
+  }, {
+    "message" : "Hold the line! They will fall beneath our blades!",
+    "time" : 29
+  }, {
+    "message" : "Just when we thought they were done... to arms! To arms!",
+    "time" : 24
+  }, {
+    "message" : "Our soldiers will win this day my Liege. We will hold the wall.",
+    "time" : 19
+  }, {
+    "message" : "We must return to the War Room and discuss strategy moving forward.",
+    "time" : 14
+  }, {
+    "message" : "We will place several contingents of troops on guard tonight.",
+    "time" : 9
+  } ],
+  "time" : 60
+}
