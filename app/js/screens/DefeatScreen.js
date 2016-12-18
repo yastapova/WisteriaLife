@@ -35,9 +35,7 @@ DefeatScreen.prototype.init = function() {
     }
 
 	if(!this.gameManager.mute) {
-        $('audio').each(function() {
-            this.play();
-        });
+        $('#defeat-sound')[0].play();
     }
 
 	if (!$.isNumeric(this.level)) {

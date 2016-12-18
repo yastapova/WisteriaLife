@@ -455,9 +455,7 @@ GameManager.prototype.playAttack = function () {
         if(!this.mute && !this.isPlaying("attack-sound")) {
             var number = Math.floor(Math.random() * (attackSounds.length));
             $('#attack-sound').attr("src", attackSounds[number]);
-            $('audio').each(function() {
-                this.play();
-            });
+            $('#attack-sound')[0].play();
         }
     }
 };
