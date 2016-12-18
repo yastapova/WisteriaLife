@@ -474,4 +474,10 @@ GameManager.prototype.playSpawnSounds = function () {
     }
 };
 
+GameManager.prototype.playErrorSounds = function () {
+    if(!this.mute) {
+        $('#error-sound')[0].play();
+    }
+};
+
 module.exports = GameManager.getGameManager();

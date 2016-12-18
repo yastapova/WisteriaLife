@@ -276,6 +276,7 @@ GamePlayScreen.prototype.init = function () {
 
             toast('Cheat successful.', false);
         } else {
+            this.gameManager.playErrorSounds();
             toast('Cheat code incorrect. Maybe play the level instead?', true);
         }
     }.bind(this));
@@ -331,12 +332,15 @@ GamePlayScreen.prototype.isLegal = function (user) {
         if (
             this.gameManager.screenManager.previousScreen != 'level-story'
             && this.gameManager.screenManager.previousScreen != 'gameplay'
-        )
+        ) {
+            this.gameManager.playErrorSounds();
             return "Must come from story screen";
-
+        }
         // check user progress
-        if (this.levelNumber <= 40 && this.levelNumber > user.gameData.currentLevel + 1)
+        if (this.levelNumber <= 40 && this.levelNumber > user.gameData.currentLevel + 1) {
+            this.gameManager.playErrorSounds();
             return "Not up to level " + this.levelNumber + " yet!";
+        }
     } else
         return userCheck;
 
