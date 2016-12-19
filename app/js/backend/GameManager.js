@@ -408,7 +408,7 @@ GameManager.prototype.saveToServer = function() {};
 GameManager.prototype.loadFromServer = function() {};
 
 /**
- * Mute all sounds
+ * Mute sounds if not muted already, otherwise unmute
  */
 GameManager.prototype.handleToggleSound = function() {
     if(this.mute === false) {
@@ -429,6 +429,8 @@ GameManager.prototype.handleToggleSound = function() {
 
 /**
  * Check is a sound is already playing
+ * @param {String} an audio tag id
+ * @return {boolean} true if sound is playing, false if not
  */
 
 GameManager.prototype.isPlaying = function(audioid) {
@@ -459,6 +461,11 @@ GameManager.prototype.checkIsLoggedIn = function() {
     }
 };
 
+ /*
+ * Play the attack sounds during gameplay 80% of the time
+ * Choose a random attack sound to play
+ */
+
 GameManager.prototype.playAttack = function () {
     var chance = Math.floor(Math.random() * 100);
 
@@ -474,6 +481,11 @@ GameManager.prototype.playAttack = function () {
     }
 };
 
+ /*
+ * Play the spawn sounds during gameplay
+ * Choose a random spawn sound to play
+ */
+
 GameManager.prototype.playSpawnSounds = function () {
 
     var spawnSounds = ["/sounds/gameplay/slime1.wav", "/sounds/gameplay/slime2.wav",
@@ -487,6 +499,10 @@ GameManager.prototype.playSpawnSounds = function () {
         $('#spawn-sound')[0].play();
     }
 };
+
+ /*
+ * Play error sound
+ */
 
 GameManager.prototype.playErrorSounds = function () {
     if(!this.mute) {
