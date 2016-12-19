@@ -79,12 +79,21 @@
                     </div>
                 </li>
             </ul>
-        </div>
-
+        </div>        
         <!-- Gameplay Canvas - filled in by Pixi -->
-        <div class="canvas" id="gameplay-canvas"></div>
-
+        <div class="canvas" id="gameplay-canvas"></div>        
     </div>
 </div>
-
+<div id="powerup-confirm" class="modal">
+        <div class="modal-content">
+            <h4>Warning - About to Use Powerup</h4>
+            <p>
+                Are you sure you wish to use this powerup? Once confirmed, this transaction cannot be reversed.
+            </p>
+        </div>
+        <div class="modal-footer">
+            <a href="#!" id="powerup-yes" class="modal-action waves-effect waves-green btn-flat">Use</a>
+            <a href="#!" id="powerup-no" class="modal-action waves-effect waves-green btn-flat">Cancel</a>
+        </div>
+    </div>
 <% include partials/footer %>
