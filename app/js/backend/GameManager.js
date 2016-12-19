@@ -444,7 +444,7 @@ GameManager.prototype.playAttack = function () {
 
     if(chance < 80) {
         var attackSounds = ["/sounds/gameplay/attack1.wav", "/sounds/gameplay/attack2.wav",
-                            "/sounds/gameplay/attack3.wav", "/sounds/gameplay/attack4.mp3"];
+                            "/sounds/gameplay/attack3.wav", "/sounds/gameplay/attack4.wav"];
 
         if(!this.mute && !this.isPlaying("attack-sound")) {
             var number = Math.floor(Math.random() * (attackSounds.length));
