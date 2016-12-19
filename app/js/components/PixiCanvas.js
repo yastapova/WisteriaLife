@@ -282,7 +282,7 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
     this.render();
 };
 
-PixiCanvas.prototype.respondToMouseMove = function () {
+PixiCanvas.prototype.respondToMouseMove = function (event) {
     // calculate coordinates
     var canvasCoords;
 

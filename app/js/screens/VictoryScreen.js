@@ -10,7 +10,7 @@ var VictoryScreen = function (id, level) {
 inherits(VictoryScreen, Screen);
 
 VictoryScreen.prototype.init = function() {
-    var victorySounds = ["/sounds/gameplay/victory1.mp3", "/sounds/gameplay/victory2.wav",
+    var victorySounds = ["/sounds/gameplay/victory1.wav", "/sounds/gameplay/victory2.wav",
                         "/sounds/gameplay/victory3.wav", "/sounds/gameplay/victory4.wav", 
                         "/sounds/gameplay/victory5.wav"];
 
@@ -19,7 +19,7 @@ VictoryScreen.prototype.init = function() {
 	    FB.ui({
 	    method: 'share',
 	    display: 'popup',
-	    href: 'https://wisteria-life-build4.appspot.com',
+	    href: 'https://wisteria-life.appspot.com',
 	    }, function(response){});
 	};
 	if(this.gameManager.user.gameData.currentLevel < this.gameManager.gameLogicManager.level.id){
