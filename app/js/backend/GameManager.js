@@ -442,7 +442,7 @@ GameManager.prototype.checkIsLoggedIn = function() {
 GameManager.prototype.playAttack = function () {
     var chance = Math.floor(Math.random() * 100);
 
-    if(chance < 65) {
+    if(chance < 80) {
         var attackSounds = ["/sounds/gameplay/attack1.wav", "/sounds/gameplay/attack2.wav",
                             "/sounds/gameplay/attack3.wav", "/sounds/gameplay/attack4.mp3"];
 
