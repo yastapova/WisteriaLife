@@ -39,27 +39,44 @@ Morgantha continues speaking highly of your mother. The next morning, you set of
 
 
 15: Easthaven Village
+As you enter the chapel of the monastery, an eerie chill fills the air. All of the pews are scattered toward the walls, and a large scorch mark is seared into the ground in the center of the room.
 
+You notice several odd looking books on the altar. One is open to a page full of unidentifiable text that makes your eyes swim as you gaze upon it. You shut it quickly, and stuff them into your pack despite how uneasy they make you feel.
+
+You and your troops continue farther down the road until you reach Easthaven Village.
 
 
 16: Alazar's Tradepost
+After defeating the slime-beings in the village, you and the troops camp there for the night, thankfully, without incident. The next morning, after finding nothing unusual, you head back to the castle to resupply.
 
+Once there, you give the odd tomes you found to Morgantha. Her eyes grow wide when she sees them, and she mutters a prayer under her breath. She takes them and promises to find out what she can. You wish you had Magus DaZel at a time like this, but unfortunately his tower is still impenetrable.
 
+The next morning, you take yet more troops and supplies, and aim to go as far as you can before camping for the night. You make it past Easthaven to Alazar's Tradepost.
 
 17: Smuggler's Cave
+Once the Tradepost is rid of slime monsters, it makes a good place to camp and resupply. It was once the hub of all eastward trade. You wonder what happened to Alazar and his family, and hope that they escaped in time.
 
+The next morning, you continue on your way east, fighting slowly as you go along. You stop at the Smuggler's Cave, once a hub of less-than-legal but not outright dangerous activity.
 
 
 18: Albin's Wheat Farm
+You make camp at the cave, and find more supplies to sustain your journey. Continuing east, you notice that you start to encounter the Slime far more often. Luckily, at your insistence, your troops have been careful and you have not lost any to the nefarious control of this evil entity.
 
+You continue on, and stop at Albin's Wheat Farm, one of the farms primarily responsible for sustaining the food supply of your kingdom. The farming infrastructure will have to be entirely rebuilt if your kingdom is to survive.
 
 
 19: Magus Research Outpost
+After camping at the farm, you resume your journey. You realize that the road and the trail of slime-people is leading you toward the mysterious Elder Ruins. They have been there longer than any historical accounts can remember.
 
+You first stop at the research outpost that had been set up by some of Magus DaZel's apprentices. They were studying the ruins before the Magus called them all back to his tower to help with some experiment.
 
 
 20: The Elder Ruins
+You struggle to clear the outpost of Slime, but you succeed and look over all of the research notes you have liberated. You see numerous references to someone called "Ixrazidious," who also seems to be called "The Great One" and "The Old One."
 
+Your troops rest for a few hours while you go over the notes and learn what you can. Most of it seems to require previous knowledge, but you collect everything into your pack anyway.
+
+Refereshed and reinvigorated, you and your troops continue into the Elder Ruins...
 
 
 21: Along the West Road
