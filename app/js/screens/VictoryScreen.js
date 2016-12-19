@@ -79,7 +79,7 @@ VictoryScreen.prototype.init = function() {
         } else {
             console.log("Moving to next level!");
         }
-    });
+    }.bind(this));
 };
 
 VictoryScreen.prototype.share = function() {
