@@ -193,13 +193,15 @@ GamePlayScreen.prototype.setLevel = function (level) {
 
     // update current powerup
     $('#powerups-select-items .select-item').click(function () {
-
+        
         // highlight selected
         $('.select-item').removeClass('selected');
         $(this).addClass('selected');
 
-        var powerup = self.gameManager.powerupManager.getPowerup($(this).attr('data-value'));
-        powerup.effect(self.gameManager, $(this).attr('data-value'));
+        self.powerup = self.gameManager.powerupManager.getPowerup($(this).attr('data-value'));
+        // pause and show modal
+        self.gameLogicManager.pause();
+        $('#powerup-confirm').openModal();        
 
         // self.gameManager.user.powerups[$(this).attr('data-value')]--;
         // // for shape powerups
@@ -209,6 +211,17 @@ GamePlayScreen.prototype.setLevel = function (level) {
         //             $(this).attr('data-value')
         //         );
         // }
+    });
+
+    $('#powerup-yes').on('click', function(){
+        $('#powerup-confirm').closeModal();
+        self.usePowerup();
+        self.gameLogicManager.start();
+    }.bind(self));
+
+    $('#powerup-no').on('click', function(){
+        $('#powerup-confirm').closeModal();
+        self.gameLogicManager.start();
     });
 
     // units and powerup tooltips
@@ -358,6 +371,10 @@ GamePlayScreen.prototype.isLegal = function (user) {
         return userCheck;
 
     return true;
-}
+};
+
+GamePlayScreen.prototype.usePowerup = function() {    
+    this.powerup.effect(this.gameManager, this.powerup.name);
+};
 
 module.exports = GamePlayScreen;

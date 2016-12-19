@@ -334,6 +334,7 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
         this.user.name = this.user.name ? this.user.name : 'Guest';
 		this.user.gameData = snapshot.gameData;
         this.user.guestUid = snapshot.guestUid;
+        this.user.powerups = snapshot.powerups;
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
 
