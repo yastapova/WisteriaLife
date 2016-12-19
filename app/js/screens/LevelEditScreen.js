@@ -160,6 +160,23 @@ LevelEditScreen.prototype.init = function() {
                 self.gameManager.playErrorSounds();
                 $(this).val(self.levelEditManager.totalTime);
             }
+            else if(time < self.levelEditManager.totalTime && time >= 30) {
+                $('#delete-extra-time-confirm').openModal();
+     
+                $('#delete-extra-time-no').click(function () {
+                    $('#delete-extra-time-confirm').closeModal();
+                    $('#level-total-time').val(self.levelEditManager.totalTime);
+                    self.setTimeDisplay($('#level-total-time').val());
+                    $('#timeline input').val($('#level-total-time').val());
+                });
+             
+                $('#delete-extra-time-yes').click(function () {
+                    $('#delete-extra-time-confirm').closeModal();
+                    self.levelEditManager.changeTotalTime(time);
+                    $('#timeline input').attr('max', $(this).val());
+                    self.setTimeDisplay($('#timeline input').val());
+                }.bind(this));
+            }
             else {
                 self.levelEditManager.changeTotalTime(time);
                 $('#timeline input').attr('max', $(this).val());
