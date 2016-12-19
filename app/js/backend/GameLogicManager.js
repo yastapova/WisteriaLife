@@ -217,6 +217,7 @@ GameLogicManager.prototype.start = function () {
 GameLogicManager.prototype.checkMessage = function () {
     if (this.level.messages.has(this.level.time)) {
         toast(this.level.messages.get(this.level.time), false);
+        this.level.messages.delete(this.level.time);
     }
 };
 
@@ -425,15 +426,7 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             shape = this.currentUnit;
         }
     }
-// <<<<<<< HEAD
-//     if(shape.name === "void") {
-//         faction = this.VOID;        
-//     }
-// =======
-//     // if(shape.name === "void") {
-//     //     faction = this.VOID;
-//     // }
-// >>>>>>> 48c37e8e6ccc893ce6ebd9925aa53fd8474d85ff
+
     // checks if this is a battleGrid placement
     var battle = false;
     if(grid === null) {

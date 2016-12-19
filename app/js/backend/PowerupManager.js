@@ -159,6 +159,7 @@ PowerupManager.prototype.useShapePowerup = function(gameManager, shape) {
 	$("#unit-" + shape + " .item-count").text(gameManager.gameLogicManager.allowedShapesMap[shape]);
 	// decrement user powerups here
 	gameManager.user.powerups[shape]--;
+	gameManager.writeUserData();
 };
 
 /**
@@ -180,6 +181,7 @@ PowerupManager.prototype.useReduceTimePowerup = function(gameManager, shape) {
 	}
 	// decrement user powerups here
 	gameManager.user.powerups[shape]--;
+	gameManager.writeUserData();
 };
 
 /**
@@ -196,11 +198,12 @@ PowerupManager.prototype.useStopSpawnPowerup = function(gameManager, shape) {
 	for(var currentTime = gameManager.gameLogicManager.level.time; currentTime > 0; currentTime--){
 		if(gameManager.gameLogicManager.level.enemySpawns.has(currentTime)){
 			gameManager.gameLogicManager.level.enemySpawns.delete(currentTime);
-			return;
+			break;
 		}
 	}
 	// decrement user powerups here
 	gameManager.user.powerups[shape]--;
+	gameManager.writeUserData();
 };
 
 module.exports = PowerupManager;
