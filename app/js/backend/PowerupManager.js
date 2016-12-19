@@ -118,8 +118,44 @@ PowerupManager.prototype.useShapePowerup = function(gameManager, shape) {
 		return;
 	}
 	current =  current - '0';
-	$("#powerup-" + shape + " .item-count").text(--current);
-	gameManager.gameLogicManager.allowedShapesMap[shape]++;	
+	$("#powerup-" + shape + " .item-count").text(--current);	
+	if(gameManager.gameLogicManager.allowedShapesMap[shape]){
+		gameManager.gameLogicManager.allowedShapesMap[shape]++;	
+	}else{
+		$('#unit-select-items').append((function () {
+        var shapes = [];
+        var unitName;
+            if (shape.charAt(0) == 'a')
+                unitName = shape.charAt(0).toUpperCase() +
+                               shape.slice(1,-2) + " " +
+                               shape.slice(-2).toUpperCase();
+
+            else if(shape.charAt(0) == 'i')
+                unitName = shape.charAt(0).toUpperCase() +
+                               shape.slice(1,-1) + " " +
+                               shape.slice(-1).toUpperCase();
+            else
+                unitName = shape.charAt(0).toUpperCase() +
+                               shape.slice(1);
+        shapes.push(
+            $('<span>')
+                .attr('id', 'unit-' + shape)
+                .addClass('select-item')
+                .attr('data-value', shape)
+                .attr('data-tooltip', unitName)
+                .append(
+                    $('<img>').attr('src', '/img/powerups/' + shape + '.png')
+                )
+                .append(
+                    $('<span>')
+                        .addClass('item-count')
+                        .text(1)
+                )
+        );
+        return shapes;
+    }.bind(this))());
+		gameManager.gameLogicManager.allowedShapesMap[shape] = 1;	
+	}
 	$("#unit-" + shape + " .item-count").text(gameManager.gameLogicManager.allowedShapesMap[shape]);
 	// decrement user powerups here
 	gameManager.user.powerups[shape]--;

@@ -360,7 +360,6 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
     }
 };
 
-
 /**
  * Guest login modal
  */
