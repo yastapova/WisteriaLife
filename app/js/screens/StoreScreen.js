@@ -86,15 +86,14 @@ StoreScreen.prototype.init = function() {
     });
 };
 
-StoreScreen.prototype.buyPowerup = function(powerup, price){
-	console.log("Attempting to buy powerup!");
-	var availableWistbux = this.gameManager.user.wistbux;
+StoreScreen.prototype.buyPowerup = function(powerup, price) {
+	var availableWistbux = this.gameManager.user.gameData.wistbux;
 	if(availableWistbux >= price){
-		this.gameManager.user.wistbux -= price;
-		if(this.gameManager.user.powerup[powerup]){
-			this.gameManager.user.powerup[powerup] = 1;
+		this.gameManager.user.gameData.wistbux -= price;
+		if(this.gameManager.user.powerups[powerup]){
+			this.gameManager.user.powerups[powerup] = 1;
 		}else{
-			this.gameManager.user.powerup[powerup]++;
+			this.gameManager.user.powerups[powerup]++;
 		}
 		this.gameManager.writeUserData();
 		toast("Purchase Successful!");

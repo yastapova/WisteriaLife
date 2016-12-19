@@ -187,7 +187,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
             self.gameManager.shapeManager.getShape(
                 $(this).attr('data-value')
             );
-        self.gameLogicManager.selectedFaction = 
+        self.gameLogicManager.selectedFaction =
             self.gameLogicManager.FRIEND;
     });
 
@@ -200,7 +200,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
 
         var powerup = self.gameManager.powerupManager.getPowerup($(this).attr('data-value'));
         powerup.effect(self.gameManager, $(this).attr('data-value'));
-        
+
         // self.gameManager.user.powerups[$(this).attr('data-value')]--;
         // // for shape powerups
         // if($(this).attr('data-value') !== "reducetime" && $(this).attr('data-value') !== "stopspawn"){
@@ -276,11 +276,22 @@ GamePlayScreen.prototype.init = function () {
             this.cheatBox.fadeOut('fast');
             this.cheatOpen = false;
 
-            toast('Cheat successful.', false);
+            toast('Cheat successful.');
+
+        } else if (this.cheatField.val().toLowerCase() == 'makemerich' + this.levelNumber + 'kiwi') {
+
+            this.gameManager.user.gameData.wistbux += 100;
+    	    this.gameManager.writeUserData();
+    	    this.gameManager.userWistbux.text(this.gameManager.user.gameData.wistbux);
+
+            toast('A careless enemy unit dropped 100 wistbux!');
+
         } else {
             this.gameManager.playErrorSounds();
             toast('Cheat code incorrect. Maybe play the level instead?', true);
         }
+
+
     }.bind(this));
 };
 
