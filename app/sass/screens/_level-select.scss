@@ -12,12 +12,24 @@
 
 #region-header{
     position: fixed;
-    margin-top: 0em;
+    margin-top: -15px;
     margin-bottom:3em;
-    height:3em;
+    height:50px;
     z-index:10;
     background: rgba(16, 16, 16, 0.4);
     width:100%;
+
+    @media #{$large-and-up} {
+        margin-top: 0;
+    }
+
+    a {
+        vertical-align: middle;
+    }
+
+    h2 {
+        margin: 1em;
+    }
 }
 
 #region-number {
@@ -53,7 +65,7 @@
 }
 
 .card-locked {
-    opacity: 0.6;
+    opacity: 0.45;
 
     .locked-icon {
         display: inline-block;

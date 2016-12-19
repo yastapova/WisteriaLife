@@ -34,6 +34,12 @@ LevelEditScreen.prototype.setLevel = function (level) {
     this.levelEditManager.setLevel(level, canvas);
     this.levelEditManager.custom = false;
 
+    $('#level-total-time').val(this.totalTime);
+    this.setTimeDisplay($('#level-total-time').val());
+    $('#timeline input').val($('#level-total-time').val());
+    $('#timeline input').attr('max', $('#level-total-time').val());
+
+
     $('.collapsible').collapsible({
         accordion: false // TODO: change this to true on small screens
     });
@@ -151,6 +157,7 @@ LevelEditScreen.prototype.init = function() {
                     'New time entered must be between 30 and 300 seconds.',
                     true
                 );
+                self.gameManager.playErrorSounds();
                 $(this).val(self.levelEditManager.totalTime);
             }
             else {
@@ -160,6 +167,7 @@ LevelEditScreen.prototype.init = function() {
             }
         } catch (e) {
             toast('New time entered must be an integer amount.', true);
+            self.gameManager.playErrorSounds();
             $(this).val(self.levelEditManager.totalTime);
         }
 

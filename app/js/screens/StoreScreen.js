@@ -100,6 +100,14 @@ StoreScreen.prototype.buyPowerup = function(powerup, price){
 		toast("Insufficient Funds!");
 	}
 
+    // whole card clickable
+    // adjust accordingly
+    // #store-cards is the parent of the whole cards section
+    // Each card has an ID in the format starting with store-item-...
+    $('#store-cards').on('click', '[id|=store-item-]', function () {
+        // buy event goes here
+    });
+
 };
 
 module.exports = StoreScreen;

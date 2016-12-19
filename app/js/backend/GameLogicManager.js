@@ -226,6 +226,8 @@ GameLogicManager.prototype.checkMessage = function () {
  * grid.
  */
 GameLogicManager.prototype.updateLoop = function() {
+    var gameManager = require('GameManager');
+
     // TODO check time; end game if zero
 
     for(var i = 0; i < this.gridHeight; i++)
@@ -265,6 +267,7 @@ GameLogicManager.prototype.updateLoop = function() {
                     // if an enemy is on top of this, destroy it
                     if(battleCell === this.ENEMY) {
                         this.defenseGrid[index] = this.BLANK;
+                        gameManager.playAttack();
                         this.defensesLeft--;
                     }
                     break;
@@ -558,6 +561,8 @@ GameLogicManager.prototype.checkForSpawns = function() {
  *       spawns List of spawns at a given time
  */
 GameLogicManager.prototype.spawnEnemies = function(spawns) {
+    var gameManager = require('GameManager');
+
     if(typeof spawns === "undefined")
         return;
     var gameManager = require('GameManager');
@@ -571,6 +576,8 @@ GameLogicManager.prototype.spawnEnemies = function(spawns) {
         shape = gameManager.shapeManager.getShape(shape);
         this.placeShape(coords.y, coords.x, this.ENEMY, shape, null);
     }
+
+    gameManager.playSpawnSounds();
 }
 
 /**

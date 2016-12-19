@@ -58,6 +58,8 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
     this.canvas = canvas;
     this.gridWidth = this.canvas.size.width;
     this.gridHeight = this.canvas.size.height;
+    this.totalTime = this.level.time;
+    this.currentTime = this.level.time;
 
     this.messages = this.level.messages;
     if(this.messages === undefined)
@@ -104,6 +106,8 @@ LevelEditManager.prototype.setLevel = function (level, canvas) {
  * @return {Boolean} whether or not it was successful
  */
 LevelEditManager.prototype.addMessage = function(msg, time) {
+    var gameManager = require('GameManager');
+
 	if (time === undefined)
 		time = this.currentTime;
 
@@ -126,6 +130,7 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
             2000,
             'wisteria-error-toast'
         );
+        gameManager.playErrorSounds();
         return false;
     }
 
@@ -138,7 +143,6 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
 	        4000,
 	        'wisteria-toast'
 	    );
-
 		return true;
 	}
 
@@ -149,6 +153,7 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
                 4000,
                 'wisteria-error-toast'
             );
+            gameManager.playErrorSounds();
             return false;
         }
     }
@@ -160,6 +165,7 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
                 4000,
                 'wisteria-error-toast'
             );
+            gameManager.playErrorSounds();
             return false;
         }
     }
@@ -198,6 +204,7 @@ LevelEditManager.prototype.changeTotalTime = function(newTime) {
             4000,
             'wisteria-error-toast'
         );
+        gameManager.playErrorSounds();
     }
 }
 
@@ -306,6 +313,8 @@ LevelEditManager.prototype.spawnEnemies = function(spawns, addToMaps) {
  * @param {int[]} grid Grid to place the shape on
  */
 LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, shape, grid, addToMaps) {
+    var gameManager = require('GameManager');
+
     // if no shape is specified, check if one is selected
     if(shape === null || shape === undefined) {
         if(this.selectedUnit === null || this.selectedUnit === undefined) {
@@ -321,6 +330,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             2000,
             'wisteria-error-toast'
         );
+        gameManager.playErrorSounds();
         return;
     }
     if(this.selectedFaction === this.BLANK &&
@@ -336,6 +346,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
                 2000,
                 'wisteria-error-toast'
             );
+            gameManager.playErrorSounds();
             return;
         }
     }
@@ -351,6 +362,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
                 2000,
                 'wisteria-error-toast'
             );
+            gameManager.playErrorSounds();
             return;
         }
         var y = clickRow;  // y coordinate
@@ -391,6 +403,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
                 2000,
                 'wisteria-error-toast'
             );
+            gameManager.playErrorSounds();
             return;
         }
         var current_spawns = this.checkForSpawns();
@@ -400,6 +413,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
                 2000,
                 'wisteria-error-toast'
             );
+            gameManager.playErrorSounds();
             return;
         }
         zone = this.ENEMY_ZONE;
@@ -421,6 +435,7 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
 	        2000,
 	        'wisteria-error-toast'
    	    );
+        gameManager.playErrorSounds();
         return;
     }
 

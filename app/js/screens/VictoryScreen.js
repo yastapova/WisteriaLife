@@ -36,9 +36,7 @@ VictoryScreen.prototype.init = function() {
 	if(!this.gameManager.mute) {
         var index = Math.floor(Math.random() * (victorySounds.length));
         $('#victory-sound').attr("src", victorySounds[index]);
-		$('audio').each(function() {
-			this.play();
-		});
+        $('#victory-sound')[0].play();
 	}
 
     if (!$.isNumeric(this.level)) {

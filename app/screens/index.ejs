@@ -1,17 +1,16 @@
 <% include partials/header %>
 
-<div id="splash-screen-logged-in" class="container-inner">
+<div id="splash-screen" class="container-inner">
     <!-- Page Content goes here -->
-    <h2 id="splash-title">Wisteria Life</h2>        
-    <div class="user-actions">        
-        <button id="splash-guest" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-login"></i> Guest</button>
-        <button id="splash-login" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-login"></i> Login with<i class="wisteria-icons right mdi mdi-google"></i></button>
-        <button id="splash-guest-login" data-target="confirmation-modal" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-login"></i>Login with<i class="wisteria-icons right mdi mdi-google"></i></button>
-        <button id="splash-play" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-play"></i> Play</button>
-        <button id="splash-logout" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-power"></i> Logout</button>
-    </div>
+    <h2 id="splash-title">Wisteria Life</h2>
+    <div class="splash-buttons">
+        <button id="splash-guest" class="play-guest waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-login"></i> Guest</button>
+        <button id="splash-login" class="login-button waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-login"></i> Login with<i class="wisteria-icons right mdi mdi-google"></i></button>
+        <button id="splash-guest-login" data-target="confirmation-modal" class="guest-login waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-login"></i>Login with<i class="wisteria-icons right mdi mdi-google"></i></button>
+        <button id="splash-play" class="waves-effect waves-light btn-large play-button"><i class="wisteria-icons left mdi mdi-play"></i> Play</button>
+        <button id="splash-logout" class="logout-button waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-power"></i> Logout</button>
 
-    <div class="splash-buttons">        
+
         <a href="/about" class="waves-effect waves-light btn-large"><i class="wisteria-icons left mdi mdi-information-outline"></i>About</a>
     </div>
 
