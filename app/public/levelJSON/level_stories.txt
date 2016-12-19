@@ -80,11 +80,23 @@ Refereshed and reinvigorated, you and your troops continue into the Elder Ruins.
 
 
 21: Along the West Road
+After clearing the ruins with some difficulty, you investigate the enormous dais in the center of what was once the main building of the place. In the center of the dais is a crystal statuette of a talon holding an eye.
 
+When you touch the statuette, it somehow causes you unbearable searing pain. You decide that something this dangerous definitely shouldn't be left here where it apparently belongs. You grab a cloth bag and carefully remove the statuette. When you take it off the dais, you hear a screech that seems to come from nowhere and everywhere at once. After that, the eerie feeling lessens somewhat, and you hasten to return home.
+
+Morgantha hurries toward you. "Oh thank the stars that you are safe, my Liege! I have figured out what the tomes you found refer to! They contain summoning rituals to speak to the Old God Ixrazidious!" she exclaims.
+
+You briefly recount the tale of your recent adventure. Morgantha and High General McBeige both listen intently. You hand Morgantha the notes you found, as well as the bag containing the crystal claw. She informs you that this artifact is for focusing dark, otherworldly energy to strengthen the Old God's powers in this world. Luckily, you removed it from the ritual room and interrupted whatever nefarious plans were in place.
+
+"Well, it doesn't seem that we'll be relaxing for long," sighs McBeige. "More slime zombies have been spotted to the west, and I have a new company of rested troops ready for you tomorrow morning."
+
+Exhausted, you trudge up to your quarters in the keep and gladly let slumber overtake you. You curse the sun the next morning as it wakes you through your window, and get ready for the march onward. You head out west today.
 
 
 22: McPherson's Lumbermill
+Continuing along the road, you come to McPherson's Lumbermill. Before the Slime attacked, old man McPherson ran the lumbermill closest to the castle. Business was booming since the castle demanded a great deal of lumber, and the logging camp was nearby.
 
+Today, the mill stands still, except for the mindless slime-slaves crawling everywhere.
 
 
 23: Baldwood Logging Camp
