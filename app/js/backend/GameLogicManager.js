@@ -423,7 +423,7 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         }
     }
     if(shape.name === "void") {
-        faction = this.VOID;
+        faction = this.VOID;        
     }
     // checks if this is a battleGrid placement
     var battle = false;
@@ -468,7 +468,7 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         else {
             return;
         }
-    }
+    }    
 
     // place each pixel of the shape
     for (var i = 0; i < pixels.length; i += 2)

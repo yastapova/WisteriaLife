@@ -177,7 +177,7 @@ GamePlayScreen.prototype.setLevel = function (level) {
     this.gameManager.screenManager.timers.push(this.timer);
 
     // update current shape
-    $('#unit-select-items .select-item').click(function () {
+    $('#unit-select-items').on('click', '.select-item', function () {
 
         // highlight selected
         $('.select-item').removeClass('selected');
