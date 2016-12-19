@@ -187,6 +187,8 @@ GamePlayScreen.prototype.setLevel = function (level) {
             self.gameManager.shapeManager.getShape(
                 $(this).attr('data-value')
             );
+        self.gameLogicManager.selectedFaction = 
+            self.gameLogicManager.FRIEND;
     });
 
     // update current powerup
