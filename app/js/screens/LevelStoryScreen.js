@@ -59,6 +59,8 @@ LevelStoryScreen.prototype.isLegal = function (user) {
         if (this.level <= 40 && this.level > user.gameData.currentLevel + 1)
             return "Not up to level " + this.level + " yet!";
 
+    } else if (this.level > 40 && this.level < 44 ) { 
+        return "Invalid level!";
     } else {
         return userCheck;
     }
