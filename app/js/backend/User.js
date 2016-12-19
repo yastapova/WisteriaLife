@@ -9,12 +9,12 @@
 
 var GameData = require('./GameData');
 
-var User = function(name, avatar, uid, levels) {
+var User = function(name, avatar, uid, levels, powerups) {
     this.name = name;
     this.avatar = avatar;
     this.uid = uid;
     this.gameData = new GameData();
-    this.powerups = {}; // object
+    this.powerups = powerups ? powerups : {}; // object
     this.levels = levels ? levels : [];
 };
 
