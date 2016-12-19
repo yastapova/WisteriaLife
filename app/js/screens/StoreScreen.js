@@ -78,7 +78,10 @@ StoreScreen.prototype.init = function() {
 
     $('#buy-yes').on('click', function(){
     	$('#buy-confirm').closeModal();
-    	self.buyPowerup(self.powerup, self.gameManager.powerupManager.getPowerup(self.powerup).price);
+        if(!this.gameManager.mute) {
+            $('#purchase-sound')[0].play();
+        }
+        self.buyPowerup(self.powerup, self.gameManager.powerupManager.getPowerup(self.powerup).price);
     }.bind(self));
 
     $('#buy-no').on('click', function(){
@@ -99,6 +102,7 @@ StoreScreen.prototype.buyPowerup = function(powerup, price) {
 		this.gameManager.writeUserData();
 		toast("Purchase Successful!");
 	}else{
+        this.gameManager.playErrorSounds();
 		toast("Insufficient Funds!", true);
 	}
 
