@@ -37,6 +37,15 @@
         }
     }
 
+    span.holo-title {
+        font-size: 1.1rem;
+        color: rgba(255, 255, 255, 0.8);
+        display: inline-block;
+        line-height: 2.90rem;
+        text-transform: uppercase;
+        padding: 0 30px;
+    }
+
     ul.holo-tab-bar-buttons {
 
         list-style: none;

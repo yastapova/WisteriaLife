@@ -79,8 +79,8 @@ $toolbar-font-color: #000;
     height: 100%;
     background-color: $toolbar-color;
     float: left;
-    position: relative;
     color: $toolbar-font-color;
+    overflow: auto;
 
     .collapsible {
         font-size: 0.9rem;
@@ -101,9 +101,11 @@ $toolbar-font-color: #000;
     .collapse-icon {
         font-size: 0.6rem;
         margin-right: 0;
+        display: none;
 
         @media #{$medium-and-up} {
             font-size: 1.0rem;
+            display: inline-block;
         }
     }
 
@@ -138,7 +140,7 @@ $toolbar-font-color: #000;
             right: 0%;
             height: 13px;
             width: 13px;
-            font-size: 0.9rem;
+            font-size: 0.6rem;
             border-radius: 50%;
             background-color: $highlight-color;
             color: #fff;

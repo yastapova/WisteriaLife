@@ -48,15 +48,18 @@ SplashScreen.prototype.init = function() {
         } else {
             this.guestLoginButton.hide();
         }
-    } else {
-        this.loginButton.show();
-        this.guestButton.show();
-
-        this.guestLoginButton.hide();
-        this.playButton.hide();
-        this.logoutButton.hide();
     }
 
+    // if has referrer, check this too
+    else if (this.gameManager &&
+        this.gameManager.screenManager.previousScreen !== '') {
+        $('.login-button').show();
+        $('.play-guest').show();
+
+        $('.guest-login').hide();
+        $('.play-button').hide();
+        $('.logout-button').hide();
+    }
 };
 
 SplashScreen.prototype.checkUser = function() {
