@@ -13,9 +13,22 @@
         <span class="defeat-pause-victory-icons">
             <a id="level-back-button" href="/level-select" data-region="<%= region %>"><i class="wisteria-icons back mdi mdi-step-backward"></i></a>
             <a href="/gameplay" data-level="<%= level %>"><i class="wisteria-icons replay mdi mdi-replay"></i></a>
-            <a id="share" href="#!"><i class="wisteria-icons share mdi mdi-share-variant"></i></a>
+            <a id="share" href="#!" class="dropdown-button" data-activates="share-dropdown">
+                <i class="wisteria-icons share mdi mdi-share-variant"></i>
+            </a>
             <a id="level-next-button" href="/level-story" data-level="<%= level + 1 %>"><i class="wisteria-icons next mdi mdi-play"></i></a>
         </span>
+
+        <ul id="share-dropdown" class="dropdown-content">
+            <a id="facebook-share" href="#!">
+                <i class="wisteria-icons facebook mdi mdi-facebook"></i>
+            </a>
+
+            <a id="twitter-share" href="https://twitter.com/intent/tweet?text=I cannot figure out how to defeat the slimes on Wisteria Life. See if you can!&amp;url=http://wisteria-life.appspot.com" class="twitter-share-button">
+                <i class="wisteria-icons twitter mdi mdi-twitter"></i>
+            </a>
+        </ul>
+
     </div>
 </div>
 
