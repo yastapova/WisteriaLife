@@ -100,35 +100,61 @@ Today, the mill stands still, except for the mindless slime-slaves crawling ever
 
 
 23: Baldwood Logging Camp
+After clearing the mill, you return to the castle before going further. Morgantha has news to report.
 
+"I have been working on a little something, my Liege," she winks at you with her one good eye. "I have concocted here a little counter-agent to those mind-slaving powers of theirs. We've tested it on one of the straggling slime-zombies around here, and it set the poor soul back to rights. He was a little nauseuos, I grant."
+
+She gives you several flasks of the stuff to coat your weapons and armor with, and says she'll send a runner out with more later. In the meantime, you go off to Baldwood Logging Camp to try out her concoction. You remember that you always thought that "Baldwood," named for the perpetually leafless trees, was hilarious.
 
 
 24: Starling Hollow
+Morgantha's brew worked perfectly! You saved everyone who remained in the logging camp, and a few villagers from Starling Hollow that wandered over. Starling Hollow is your next stop, and you'll need a lot of the brew to deal with the mind-controlled villagers.
 
+Morgantha's runner arrives just in time with a fresh supply of potions. High General McBeige has also sent word that he will begin leading small expeditions back out east to save any remaining people from the clutches of this menace.
+
+You continue on the road to Starling Hollow.
 
 
 25: Abandoned Library
+Starling Hollow has been cleared, and you have a lot of Morgantha's brew left, so you press on. The next point of interest along the road is a library that had formerly been open to all travelers.
 
+Now, it sits in a state of disarray, crawling with slimed readers and librarians alike. You ready your weapons.
 
 
 26: Crocodile Creek
+Liberating the library went smoothly, and you scoured the shelves and questioned the librarians for any information they might possibly have about this mysterious and terrible Ixrazidious.
 
+Unfortunately, you come up empty-handed. You make camp for the night in the library, and a new runner is meets you in the morning with another cache of Morgantha's brew. You press on to Crocodile Creek, named for the obvious proliferation of a certain animal.
 
 
 27: Petrified Forest
+Continuing forward, you notice as you did before that the slime-beings seem to be getting more and more abundant. You take this as a good sign that you are getting closer to something important.
 
+You and your troops continue on to the Petrified Forest. This forest is essentially untouched, as the wood useless to the lumber industry.
 
 
 28: Hermit's Hut
-
+After passing through the forest, you come accross a small hut encrusted with vines and weeds. Out back, you see a small vegetable garden and two chickens. Seems that some sort of hermit lives here. You knock to determine whether anyone conscious remains in this place.
 
 
 29: The Shallows
+After freeing the hermit from the slime-induced malaise, you are able to glean some information from him. It appears that you are getting closer and closer to the source of the dark powers in this region.
 
+Though you cannot make much sense of the hermit's words, but he seems to constantly be muttering something about "the cave" and how "he's coming to get me." You take it to mean that some man in a cave is the source of this mess.
+
+A soldier in your party who originates from this area informs you that there is a marsh cave farther to the west. You decide to investigate this further, and after camping at the hermit's hut, you cautiously make your way to The Shallows. This area is named for the seemingly shallow and harmless mud pits that are quick to suck in anything trying to make its way across.
 
 
 30: Damp Marsh Cave
+Luckily some of your soldiers are locals, and you make it across the Shallows without incident, other than the brief attack of Slime.
 
+Entering the cave, you are met with the same eerie atmosphere as you encountered in the Elder Ruins far to the east. You descend further and further into the cave, carefully observing everything as you go. You notice some of the same runic writing on the walls as you found in the Elder Ruins.
+
+You finally make it to what seems to be the bottom level of the cave, and it opens into a large chamber with pools of slime-defiled water on either side. In the large center area of the chamber, surrounded by slime-creatures and mind-slaves seemingly under his command, is the figure of a man.
+
+He turns to face you, and you are shocked to see the face of your father, Royal Consort Frederick, staring emptily at you. He must have been here for decades! You hope that Morgantha's brew will still work on him.
+
+He extends a single arm in your direction, and screeches what sound like words in some unknown tongue. The slime-beasts all move in the direction of your troops, and you ready yourself for a fight.
 
 
 31: Northward Bridge
