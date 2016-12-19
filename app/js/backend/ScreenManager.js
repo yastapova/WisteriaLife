@@ -172,8 +172,6 @@ ScreenManager.prototype.switchScreens = function (screen, property) {
 
     this.previousScreen = previousScreen;
 
-    console.log(this.previousScreen);
-
     // return could be true, false, or a string
     var legal = this.isLegal(this.screen);
     if (legal !== true) {

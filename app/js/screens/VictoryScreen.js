@@ -10,11 +10,11 @@ var VictoryScreen = function (id, level) {
 inherits(VictoryScreen, Screen);
 
 VictoryScreen.prototype.init = function() {
-    
+
     $(".dropdown-button").dropdown();
 
     var victorySounds = ["/sounds/gameplay/victory1.wav", "/sounds/gameplay/victory2.wav",
-                        "/sounds/gameplay/victory3.wav", "/sounds/gameplay/victory4.wav", 
+                        "/sounds/gameplay/victory3.wav", "/sounds/gameplay/victory4.wav",
                         "/sounds/gameplay/victory5.wav"];
 
     console.log("Victory screen init called");
@@ -43,7 +43,7 @@ VictoryScreen.prototype.init = function() {
 	}
 
     if (!$.isNumeric(this.level)) {
-        
+
         $('#level-back-button').attr('href', '#!');
         $('#level-back-button').removeAttr('data-region');
         $('#level-back-button').on('click', function() {
@@ -71,6 +71,15 @@ VictoryScreen.prototype.init = function() {
      	$('#level-back-button')
             .attr('data-region', region);
     }
+
+    $('#level-next-button').on('click', function () {
+        if (this.level == 40) {
+            console.log("Finished Wisteria Life!");
+            window.location = 'http://the-scarlet-life.appspot.com/';
+        } else {
+            console.log("Moving to next level!");
+        }
+    });
 };
 
 VictoryScreen.prototype.share = function() {
