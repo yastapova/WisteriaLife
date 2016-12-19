@@ -22,7 +22,7 @@ StoreScreen.prototype.init = function() {
     this.sampleCard = $('#sample-powerups-card');
     this.gameManager = require('GameManager');
 
-    var map = this.gameManager.powerupManager.powerupsMap;     
+    var map = this.gameManager.powerupManager.powerupsMap;
     for(let [key, value] of map.entries()){
         var card = this.sampleCard.clone()
                         .attr('id', 'powerup-' + key);
@@ -65,23 +65,25 @@ StoreScreen.prototype.init = function() {
         card.find('button').attr('data-powerup', value.name);
         card.find('img').attr('src', '/img/powerups/' + value.thumbnail);
         card.find('.price').text(value.price);
-       
+
         this.cards.append(card);
     }
     var self = this;
-    $('.buy-button').on('click', function(){
-    	$('#buy-confirm').openModal();
-    	self.powerup = $(this).attr('data-powerup');
+
+    // whole card clickable
+    $('#store-cards').on('click', '[id|=powerup]', function () {
+        $('#buy-confirm').openModal();
+    	self.powerup = $(this).find('button').attr('data-powerup');
     });
 
-    $('#buy-yes').on('click', function(){   
-    	$('#buy-confirm').closeModal(); 	
+    $('#buy-yes').on('click', function(){
+    	$('#buy-confirm').closeModal();
     	self.buyPowerup(self.powerup, self.gameManager.powerupManager.getPowerup(self.powerup).price);
     }.bind(self));
 
     $('#buy-no').on('click', function(){
     	$('#buy-confirm').closeModal();
-    });   
+    });
 };
 
 StoreScreen.prototype.buyPowerup = function(powerup, price){
@@ -97,16 +99,8 @@ StoreScreen.prototype.buyPowerup = function(powerup, price){
 		this.gameManager.writeUserData();
 		toast("Purchase Successful!");
 	}else{
-		toast("Insufficient Funds!");
+		toast("Insufficient Funds!", true);
 	}
-
-    // whole card clickable
-    // adjust accordingly
-    // #store-cards is the parent of the whole cards section
-    // Each card has an ID in the format starting with store-item-...
-    $('#store-cards').on('click', '[id|=store-item-]', function () {
-        // buy event goes here
-    });
 
 };
 
