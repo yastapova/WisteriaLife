@@ -129,7 +129,7 @@ GameManager.prototype.onAuthStateChanged = function (user) {
         if (user.isAnonymous) { // is user a guest?
 
             if (!this.user) { // guest user doesn't already exist
-                this.user = new User('Guest', null, user.uid, [], {});
+                this.user = new User('Guest', null, user.uid, []);
                 this.userLevel.text('Level ' + this.user.gameData.currentLevel);
 
                 // automatically move to map when logging in as guest
@@ -306,14 +306,24 @@ GameManager.prototype.play = function() {
 GameManager.prototype.writeUserData = function () {
     console.log("Writing/updating data " + this.user.uid);
     if(!this.user.guestUid){
-        firebase.database().ref('users/' + this.user.uid).set({
-            username: this.user.name,
-            gameData: this.user.gameData,
-            levels: this.user.levels,
-            avatar: this.user.avatar,
-            powerups: this.user.powerups
-        });
+        if(this.user.powerups !== undefined){
+            firebase.database().ref('users/' + this.user.uid).set({
+                username: this.user.name,
+                gameData: this.user.gameData,
+                levels: this.user.levels,
+                avatar: this.user.avatar,
+                powerups: this.user.powerups
+            });
+        }else{
+            firebase.database().ref('users/' + this.user.uid).set({
+                username: this.user.name,
+                gameData: this.user.gameData,
+                levels: this.user.levels,
+                avatar: this.user.avatar                
+            });
+        }
     }else{
+        if(this.user.powerups !== undefined){
         firebase.database().ref('users/' + this.user.uid).set({
             username: this.user.name,
             gameData: this.user.gameData,
@@ -322,6 +332,15 @@ GameManager.prototype.writeUserData = function () {
             powerups: this.user.powerups,
             guestUid: this.user.guestUid
         });
+        }else{
+            firebase.database().ref('users/' + this.user.uid).set({
+                username: this.user.name,
+                gameData: this.user.gameData,
+                levels: this.user.levels,
+                avatar: this.user.avatar  ,
+                guestUid: this.user.guestUid              
+            });
+        }
     }
 };
 
@@ -341,7 +360,7 @@ GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
         // update data (particularly the avatar)
         this.writeUserData();
     }else{
-        this.user = new User(user.displayName, user.photoURL, user.uid, [], {});
+        this.user = new User(user.displayName, user.photoURL, user.uid, []);
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
         this.writeUserData();
