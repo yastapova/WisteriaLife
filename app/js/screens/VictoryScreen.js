@@ -10,12 +10,15 @@ var VictoryScreen = function (id, level) {
 inherits(VictoryScreen, Screen);
 
 VictoryScreen.prototype.init = function() {
+    
+    $(".dropdown-button").dropdown();
+
     var victorySounds = ["/sounds/gameplay/victory1.wav", "/sounds/gameplay/victory2.wav",
                         "/sounds/gameplay/victory3.wav", "/sounds/gameplay/victory4.wav", 
                         "/sounds/gameplay/victory5.wav"];
 
     console.log("Victory screen init called");
-    document.getElementById('share').onclick = function() {
+    document.getElementById('facebook-share').onclick = function() {
 	    FB.ui({
 	    method: 'share',
 	    display: 'popup',
