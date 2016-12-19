@@ -79,9 +79,8 @@ $toolbar-font-color: #000;
     height: 100%;
     background-color: $toolbar-color;
     float: left;
-    position: relative;
     color: $toolbar-font-color;
-    overflow: scroll;
+    overflow: auto;
 
     .collapsible {
         font-size: 0.9rem;
