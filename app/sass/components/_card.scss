@@ -18,6 +18,14 @@
 }
 
 .card {
+    opacity: 0.8;
+    @include transition(all, 0.5s, linear);
+
+    &:hover {
+        cursor: pointer;
+        opacity: 1.0;
+    }
+
     .card-content {
         padding: 10px 20px 20px;
         height: 220px;

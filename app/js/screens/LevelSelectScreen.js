@@ -54,6 +54,11 @@ LevelSelectScreen.prototype.init = function() {
 
         this.cards.append(card);
     }
+
+    // whole card clickable, but only allowed cards
+    $('#level-cards > div:not(.card-locked)').on('click', function () {
+        gameManager.screenManager.switchScreens('level-story', $(this).find('a').attr('data-level'));
+    });
 };
 
 LevelSelectScreen.prototype.loadAvailableLevels = function() {

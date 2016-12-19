@@ -34,6 +34,14 @@ PublicCustomLevelsScreen.prototype.init = function () {
             self.addPublicLevels.bind(self)
         );
     });
+
+    // whole card clickable, but only allowed cards
+    $('#custom-level-cards').on('click', '[id|=custom-level-]', function () {
+        require('GameManager').screenManager.switchScreens(
+            'level-story',
+            $(this).find('a').attr('data-level')
+        );
+    });
 };
 
 PublicCustomLevelsScreen.prototype.addPublicLevels = function (levels) {
