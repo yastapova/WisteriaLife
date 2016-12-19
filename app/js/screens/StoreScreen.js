@@ -91,7 +91,7 @@ StoreScreen.prototype.buyPowerup = function(powerup, price) {
 	if(availableWistbux >= price){
 		this.gameManager.user.gameData.wistbux -= price;
         $('.user-wistbux').text(this.gameManager.user.gameData.wistbux);
-		if(this.gameManager.user.powerups[powerup]){
+		if(this.gameManager.user.powerups[powerup] === undefined){
 			this.gameManager.user.powerups[powerup] = 1;
 		}else{
 			this.gameManager.user.powerups[powerup]++;
