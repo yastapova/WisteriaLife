@@ -1,0 +1,98 @@
+{
+  "allowedShapes" : [ {
+    "quantity" : 1,
+    "shape" : "caltrops"
+  }, {
+    "quantity" : 2,
+    "shape" : "archernw"
+  }, {
+    "quantity" : 2,
+    "shape" : "archersw"
+  }, {
+    "quantity" : 2,
+    "shape" : "infantryw"
+  } ],
+  "custom" : "true",
+  "defenseStructures" : [ {
+    "coordinates" : {
+      "x" : 23,
+      "y" : 2
+    },
+    "name" : "tower"
+  }, {
+    "coordinates" : {
+      "x" : 28,
+      "y" : 9
+    },
+    "name" : "tower"
+  }, {
+    "coordinates" : {
+      "x" : 23,
+      "y" : 16
+    },
+    "name" : "tower"
+  } ],
+  "enemySpawns" : [ {
+    "shapes" : [ {
+      "coordinates" : {
+        "x" : 8,
+        "y" : 2
+      },
+      "name" : "infantrye"
+    }, {
+      "coordinates" : {
+        "x" : 11,
+        "y" : 15
+      },
+      "name" : "infantrye"
+    } ],
+    "time" : 42
+  }, {
+    "shapes" : [ {
+      "coordinates" : {
+        "x" : 9,
+        "y" : 9
+      },
+      "name" : "infantrye"
+    }, {
+      "coordinates" : {
+        "x" : 6,
+        "y" : 2
+      },
+      "name" : "infantrye"
+    }, {
+      "coordinates" : {
+        "x" : 6,
+        "y" : 16
+      },
+      "name" : "infantrye"
+    } ],
+    "time" : 31
+  } ],
+  "enemyZone" : [ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 ],
+  "grid" : "small",
+  "id" : "5",
+  "messages" : [ {
+    "message" : "They may start throwing new evils at us, but we will prevail!",
+    "time" : 59
+  }, {
+    "message" : "They're still preparing. Try throwing down the caltrops ahead of time, my Liege!",
+    "time" : 54
+  }, {
+    "message" : "Once the caltrops stabilize, they are a good defense against their first line.",
+    "time" : 49
+  }, {
+    "message" : "Here come the foul slimeballs! Soldiers, to arms! For Wisteria!",
+    "time" : 44
+  }, {
+    "message" : "The first wave has been beaten back. Here they come again!",
+    "time" : 34
+  }, {
+    "message" : "There are only a few enemies remaining. I think those caltrops will be a great help in the future.",
+    "time" : 17
+  }, {
+    "message" : "Runners have brought word that some outlying villages have evacuated. They are seeking shelter here.",
+    "time" : 10
+  } ],
+  "time" : 60
+}
