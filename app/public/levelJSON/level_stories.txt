@@ -158,39 +158,74 @@ He extends a single arm in your direction, and screeches what sound like words i
 
 
 31: Northward Bridge
+Morgantha's brew works on him indeed, and Frederick falls back as if dizzy. He is overcome with the nausea Morgantha warned you about, but soon comes to his senses, as do the people around him, who would seem to be those who were in his search party all those years ago.
 
+He is still disoriented and does not recognize you. After all, why should he? He disappeared long ago. He does recognize the uniforms, though, and manages a raspy "Wis... teria... ?"
+
+You assure him that you and your soldiers belong to the kingdom of Wisteria, and some of your troops help the newly-freed people out of the cave. After leaving the oppressive atmosphere of the cave, they seem much better. Either way, it is slow going back to your castle, and you arrive some time later.
+
+After a long night's rest in the keep, you feel reinvigorated and ready to take on the next challenge. You leave Frederick and his search party to rest in the castle as High General McBeige musters a new company for you to lead out into the last region of your kingdom.
+
+You load up on more of Morgantha's indespensible brew and head north to the bridge that you defended about a week ago.
 
 
 32: The Standing Stones
-
+After a short skirmish at the bridge, you decide to press on to the Standing Stones, another old monument in your kingdom. They are enormous pillars of rock with runes carved all the way down. Thankfully, you notice that the runes are nothing like the ones you keep seeing when you encounter the forces of Ixrazidious.
 
 
 33: Northfork Village
+After the Standing Stones, you return to the castle to resupply. When Morgantha learns that you are heading next to her home village, she gives you a nice, long list of items to bring back for her.
 
+Frederick emerges from the keep, and thanks you heartily for rescuing him and freeing him and his party from a fate worse than death. He says that High General McBeige filled him in on what he has missed in the past years. He embraces you.
+
+"I cannot believe that I have missed my own child growing up! How difficult it must be to have the fate of the entire kingdom on your shoulders. I must say that you are handling it admirably. It seems that you are close to defeating whatever this evil force is. I only hope that you are able to find Imogen," he says sorrowfully.
+
+High General McBeige meets you at the gate. "We've cleared out the eastern parts of the kingdom, thanks to Morgantha's brew. I'll be sure to hold the castle steady for you as you go off to hopefully finally defeat whatever is causing this."
+
+They wish you luck, and you and your company are off to Northfork Village.
 
 
 34: Odd Runes
+After clearing the village and freeing all of its inhabitants, some of them inform you of a circle of odd runes on the northern outskirts of the village. You and your party head north to take a look.
 
 
+35: Crow's Nest Hill
+You find an enormous summoning circle, almost 50 yards in diameter. Much to your dismay, the runes around it are indeed of the Ixrazidious-type. In fact, they resemble the same rituals you originally found in the books in the old abandoned monastery to the southeast.
 
-35: Rat's Nest Hill
+There seems to be nothing left to glean any new information from, so you decide to leave this evil place. First, you instruct your men to stamp out and destroy the circle. Hopefully, this will disrupt whatever ritual they were planning.
 
+You continue on to Crow's Nest Hill, named such because it towers over all the surrounding land and affords those who climb to its crest a completely unobstructed view. Such a vantage point will prove useful for scouting.
 
 
 36: Whispering Wood
+The Crow's Nest revealed little you did not know or assume already. It seems that the eastern and western parts of your kingdom are doing much better, but an evil aura still seems to hang over the north.
 
+You return to the castle to share what you have found in the last few encounters. As soon as you return, you are met with terrible news. General McBeige was slain in an ambush by slime-monsters. They have gotten bolder, or more desparate.
+
+You mourn the death of such a capable general. Unfortunately, you cannot leave the castle without a leader. You hand a provisional promotion to one of the current Mid Generals, Daria Mussel. You direct Frederick to work together with her in defense of the castle.
+
+In the meantime, after resting and resupplying yet again, you head back out into the field and make your way to the Whispering Wood.
 
 
 37: The Summer Home
+The slime cultists you encounter in the woods are quickly defeated and freed from their mind-control. You continue on your way north and arrive at what your family calls "The Summer Home."
 
+This is a castle that belonged to one side of the family, before they united their territories through marriage generations ago. The capital of the kingdom was placed at the larger Wisteria Castle, and the other castle was dubbed the "Summer Home" because the family tended not to be there often. Now, it was being used as an orphanage and a schoolhouse.
+
+Much to your dismay, you find the gate broken open, and the place is crawling with slime-slaves.
 
 
 38: Halls of Healing
+You manage to free all of the denizens of the small castle, and are eager to press on. You feel as though you're closing in on whatever it is that is causing this. 
 
+After a brief rest, you set off further north. After a long while of walking, you come upon the Halls of Healing. These used to be the last sanctuary for weary travelers before they had to travel through the treacherous mountain pass into the neighboring kingdom. Now, however, they are just as full of slime as everywhere else.
 
 
 39: Belladonna's Iron Company
+You spend a night's rest at the Halls of Healing after clearing it. The healers there tend to the wounds of your troops and tell you that they sense the evil is coming from the iron mines to the north.
 
+You set off toward the ominous mountain, with the camp of Belladonna's Iron Company still at its foot. You press onwards, eager to face whoever the leader of this cult of Ixrazidious is, or perhaps an actual avatar of the Old God.
 
 
 40: Depths of the Iron Mines
+You quickly clear the camp of slime-zombies
