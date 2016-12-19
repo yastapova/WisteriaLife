@@ -425,9 +425,9 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             shape = this.currentUnit;
         }
     }
-    if(shape.name === "void") {
-        faction = this.VOID;
-    }
+    // if(shape.name === "void") {
+    //     faction = this.VOID;
+    // }
     // checks if this is a battleGrid placement
     var battle = false;
     if(grid === null) {
@@ -463,7 +463,7 @@ GameLogicManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         return;
     }
     // decrement the shape from the allowed units count if needed
-    if(faction === this.FRIEND) {
+    if(faction === this.FRIEND || faction === this.VOID) {
         var val = this.allowedShapesMap[shape.name];
         if(val > 0) {
             this.allowedShapesMap[shape.name]--;

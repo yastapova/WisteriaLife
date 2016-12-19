@@ -263,7 +263,9 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
     var clickRow = Math.floor(canvasCoords.y/this.cellLength);
 
     if(isGameplay) {
-        var faction = gameManager.gameLogicManager.selectedFaction;
+        var faction = gameManager.gameLogicManager.FRIEND;
+        if(gameManager.currentUnit.name === "void")
+            faction = gameManager.gameLogicManager.VOID;
         gameManager.gameLogicManager.placeShape(clickRow, clickCol, faction, null, null, true);
 
         $('#unit-' + unit + ' .item-count').text(
