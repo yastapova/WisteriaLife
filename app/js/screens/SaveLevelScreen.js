@@ -49,7 +49,7 @@ SaveLevelScreen.prototype.init = function() {
             $('#save-public').prop('checked', snapshot.val().public == 1);
             // Was there an image?
             var img = snapshot.val().img;
-            $('#img-file-name').text(img === undefined ? "" : img);
+            $('#img-file-name').text(img === undefined ? "Upload Image" : img);
         });
         // Update the range for all the allowed shapes
         for(var index in this.level.allowedShapes){
@@ -111,6 +111,8 @@ SaveLevelScreen.prototype.init = function() {
     $('#wallforward_num').on("change", function() {
     $('.output_wallforward').val(" x" + this.value);
     }).trigger("change");
+
+    $('#img-file-name').text("Upload Image");
     
 };
 
