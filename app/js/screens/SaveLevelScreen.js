@@ -159,10 +159,17 @@ SaveLevelScreen.prototype.saveLevel = function(){
         if(this.levelMisc.storyline === undefined ||
            this.levelMisc.storyline === "")
             story = 0;
-        alert("Must have all of the following to save:\n"
-            + title + "/1 Level Title\n"
-            + story + "/1 Level Story\n"
-            + this.level.allowedShapes.length + "/1 Allowed Unit");
+
+        $('#level-title-count').text(title);
+        $('#level-story-count').text(story);
+        $('#allowed-units-count').text(this.level.allowedShapes.length);
+
+        $('#insufficient-details-save').openModal();
+
+        $('#insufficient-details-save-okay').click(function () {
+                $('#insufficient-details-save').closeModal();
+        });
+
         return;
     }
 
