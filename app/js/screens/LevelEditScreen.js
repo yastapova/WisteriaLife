@@ -272,9 +272,15 @@ LevelEditScreen.prototype.init = function() {
     $('#save-level-show').click(function () {
         if(this.levelEditManager.enemySpawns.size < 1 ||
            this.levelEditManager.defenses.length < 1) {
-            alert("Need at least 1 of each to save:\n"
-            + this.levelEditManager.defenses.length + "/1 Defense Structures\n"
-            + this.levelEditManager.enemySpawns.size + "/1 Enemy Spawn");
+
+            $('#number-defenses').text(this.levelEditManager.defenses.length);
+            $('#number-spawns').text(this.levelEditManager.enemySpawns.size);
+
+            $('#insufficient-details-editor').openModal();
+
+            $('#insufficient-details-okay').click(function () {
+                $('#insufficient-details-editor').closeModal();
+            });
             return;
         }
         this.gameManager.screenManager.switchScreens('save-level', this.level);
