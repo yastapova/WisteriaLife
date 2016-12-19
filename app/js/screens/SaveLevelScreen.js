@@ -75,6 +75,9 @@ SaveLevelScreen.prototype.init = function() {
     $('#blockade_num').on("change", function() {
     $('.output_blockade').val(" x" + this.value);
     }).trigger("change");
+    $('#shield_num').on("change", function() {
+    $('.output_shield').val(" x" + this.value);
+    }).trigger("change");
     $('#caltrops_num').on("change", function() {
     $('.output_caltrops').val(" x" + this.value);
     }).trigger("change");

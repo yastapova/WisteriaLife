@@ -264,7 +264,7 @@ PixiCanvas.prototype.respondToMouseClick = function (event) {
 
     if(isGameplay) {
         var faction = gameManager.gameLogicManager.FRIEND;
-        if(gameManager.currentUnit.name === "void")
+        if(gameManager.gameLogicManager.currentUnit.name === "void")
             faction = gameManager.gameLogicManager.VOID;
         gameManager.gameLogicManager.placeShape(clickRow, clickCol, faction, null, null, true);
 

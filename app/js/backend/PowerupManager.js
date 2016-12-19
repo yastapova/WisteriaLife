@@ -119,7 +119,7 @@ PowerupManager.prototype.useShapePowerup = function(gameManager, shape) {
 	}
 	current =  current - '0';
 	$("#powerup-" + shape + " .item-count").text(--current);	
-	if(gameManager.gameLogicManager.allowedShapesMap[shape]){
+	if(gameManager.gameLogicManager.allowedShapesMap[shape] === undefined){
 		gameManager.gameLogicManager.allowedShapesMap[shape]++;	
 	}else{
 		$('#unit-select-items').append((function () {
