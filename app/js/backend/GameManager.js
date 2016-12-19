@@ -430,6 +430,16 @@ GameManager.prototype.checkIsLoggedIn = function() {
     }
 };
 
+GameManager.prototype.isPlaying = function(audioid) {
+    var audio = document.getElementById(audioid);
+    if(audio.currentTime > 0 || !audio.paused) {
+        return true;
+    }
+    else {
+        return false;
+    }
+};
+
 GameManager.prototype.playAttack = function () {
     var chance = Math.floor(Math.random() * 100);
 
