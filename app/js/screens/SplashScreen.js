@@ -51,8 +51,8 @@ SplashScreen.prototype.init = function() {
     }
 
     // if has referrer, check this too
-    else if (this.gameManager &&
-        this.gameManager.screenManager.previousScreen !== '') {
+    else if (gameManager &&
+        gameManager.screenManager.previousScreen !== '') {
         $('.login-button').show();
         $('.play-guest').show();
 

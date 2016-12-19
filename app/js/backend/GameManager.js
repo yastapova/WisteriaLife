@@ -264,6 +264,7 @@ GameManager.prototype.logout = function() {
         firebase.database().ref().once('value', function(snapshot){
             var db = snapshot.val();
             var userId = this.user.uid;
+            if (!db.users[userId]) return;
             for(var key in db.users[userId].levels){
                 // delete img from storage if it exists
                 firebase.storage().ref("/" + userId + "/" + key + "/" + db.customLevels[key].img).delete()
@@ -319,7 +320,7 @@ GameManager.prototype.writeUserData = function () {
                 username: this.user.name,
                 gameData: this.user.gameData,
                 levels: this.user.levels,
-                avatar: this.user.avatar                
+                avatar: this.user.avatar
             });
         }
     }else{
@@ -338,7 +339,7 @@ GameManager.prototype.writeUserData = function () {
                 gameData: this.user.gameData,
                 levels: this.user.levels,
                 avatar: this.user.avatar  ,
-                guestUid: this.user.guestUid              
+                guestUid: this.user.guestUid
             });
         }
     }

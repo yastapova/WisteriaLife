@@ -151,6 +151,9 @@ ScreenManager.prototype.switchScreens = function (screen, property) {
     // save previous screen, update instance var only if not overlay
     var previousScreen = this.currentScreen;
 
+    if (screen == 'splash')
+        previousScreen = 'something';
+
     // screen should be valid, otherwise go to splash
     this.currentScreen = screen && screen in this.screenMap
                             ? screen : 'splash';
@@ -167,9 +170,12 @@ ScreenManager.prototype.switchScreens = function (screen, property) {
 
     // overlay screens don't count as previous screen
     if (this.screen.overlay) {
-        this.previousScreen = previousScreen;
         this.currentScreen = previousScreen;
     }
+
+    this.previousScreen = previousScreen;
+
+    console.log(this.previousScreen);
 
     // return could be true, false, or a string
     var legal = this.isLegal(this.screen);
