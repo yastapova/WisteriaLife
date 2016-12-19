@@ -33,8 +33,29 @@ SplashScreen.prototype.init = function() {
     this.playButton.on('click', gameManager.play.bind(gameManager));
     // this.guestLoginButton.on('click', gameManager.guestLogin.bind(gameManager));
     this.guestProceedLoginButton.on('click', gameManager.login.bind(gameManager));
+    //
 
-    gameManager.auth.onAuthStateChanged(gameManager.onAuthStateChanged.bind(gameManager));
+    if (gameManager.user) {
+        this.playButton.show();
+        this.logoutButton.show();
+
+        this.loginButton.hide();
+        this.guestButton.hide();
+
+        if (gameManager.user.name == 'Guest') {
+            this.guestLoginButton.show();
+
+        } else {
+            this.guestLoginButton.hide();
+        }
+    } else {
+        this.loginButton.show();
+        this.guestButton.show();
+
+        this.guestLoginButton.hide();
+        this.playButton.hide();
+        this.logoutButton.hide();
+    }
 
 };
 

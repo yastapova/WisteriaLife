@@ -1,0 +1,155 @@
+{
+  "allowedShapes" : [ {
+    "quantity" : 2,
+    "shape" : "caltrops"
+  }, {
+    "quantity" : 3,
+    "shape" : "archernw"
+  }, {
+    "quantity" : 3,
+    "shape" : "archerne"
+  }, {
+    "quantity" : 3,
+    "shape" : "archerse"
+  }, {
+    "quantity" : 3,
+    "shape" : "archersw"
+  }, {
+    "quantity" : 2,
+    "shape" : "infantryw"
+  }, {
+    "quantity" : 2,
+    "shape" : "infantrye"
+  }, {
+    "quantity" : 3,
+    "shape" : "wallbackward"
+  }, {
+    "quantity" : 3,
+    "shape" : "wallforward"
+  } ],
+  "custom" : "true",
+  "defenseStructures" : [ {
+    "coordinates" : {
+      "x" : 15,
+      "y" : 3
+    },
+    "name" : "tower"
+  }, {
+    "coordinates" : {
+      "x" : 19,
+      "y" : 7
+    },
+    "name" : "tower"
+  }, {
+    "coordinates" : {
+      "x" : 15,
+      "y" : 12
+    },
+    "name" : "tower"
+  }, {
+    "coordinates" : {
+      "x" : 19,
+      "y" : 16
+    },
+    "name" : "tower"
+  } ],
+  "enemySpawns" : [ {
+    "shapes" : [ {
+      "coordinates" : {
+        "x" : 6,
+        "y" : 11
+      },
+      "name" : "archerne"
+    }, {
+      "coordinates" : {
+        "x" : 27,
+        "y" : 1
+      },
+      "name" : "archersw"
+    }, {
+      "coordinates" : {
+        "x" : 31,
+        "y" : 13
+      },
+      "name" : "infantryw"
+    } ],
+    "time" : 79
+  }, {
+    "shapes" : [ {
+      "coordinates" : {
+        "x" : 0,
+        "y" : 2
+      },
+      "name" : "infantrye"
+    }, {
+      "coordinates" : {
+        "x" : 31,
+        "y" : 5
+      },
+      "name" : "infantryw"
+    }, {
+      "coordinates" : {
+        "x" : 6,
+        "y" : 14
+      },
+      "name" : "caltrops"
+    } ],
+    "time" : 60
+  }, {
+    "shapes" : [ {
+      "coordinates" : {
+        "x" : 31,
+        "y" : 1
+      },
+      "name" : "infantryw"
+    }, {
+      "coordinates" : {
+        "x" : 31,
+        "y" : 10
+      },
+      "name" : "infantryw"
+    }, {
+      "coordinates" : {
+        "x" : 0,
+        "y" : 6
+      },
+      "name" : "infantrye"
+    }, {
+      "coordinates" : {
+        "x" : 0,
+        "y" : 15
+      },
+      "name" : "infantrye"
+    } ],
+    "time" : 37
+  } ],
+  "enemyZone" : [ 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3 ],
+  "grid" : "small",
+  "id" : "10",
+  "messages" : [ {
+    "message" : "The refugees are attempting to cross the bridge.",
+    "time" : 89
+  }, {
+    "message" : "The slime-beasts are crawling into the river. They're trying to destroy the bridge!",
+    "time" : 84
+  }, {
+    "message" : "We'll have to work fast. The first wave is coming!",
+    "time" : 79
+  }, {
+    "message" : "The first wave has been repelled, but the second won't be as easy.",
+    "time" : 66
+  }, {
+    "message" : "Keep it up, troops! The refugees have almost crossed!",
+    "time" : 45
+  }, {
+    "message" : "The next wave is coming! To arms!",
+    "time" : 40
+  }, {
+    "message" : "We're beating back the last few of the green fiends.",
+    "time" : 17
+  }, {
+    "message" : "Huzzah! We have triumphed! Victory for Wisteria!",
+    "time" : 8
+  } ],
+  "time" : 90
+}

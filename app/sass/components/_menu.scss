@@ -115,6 +115,10 @@ nav {
       display: inline-block;
     }
 
+    .card {
+        @include transition(all, 0s, linear);
+    }
+
     #user-dropdown {
         width: 100px;
         min-width: 200px;
