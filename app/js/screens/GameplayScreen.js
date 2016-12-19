@@ -70,8 +70,10 @@ GamePlayScreen.prototype.setLevel = function (level) {
         }
         return shapes;
     }.bind(this))());
-
-    var userPowerups = Object.keys(this.gameManager.user.powerups);
+    var userPowerups = [];
+    if(this.gameManager.user.powerups !== undefined){
+        userPowerups = Object.keys(this.gameManager.user.powerups);
+    }
     $('#powerups-select-items').append((function () {
         var powerups = [];
         for (var i = 0; i < userPowerups.length; i++) {

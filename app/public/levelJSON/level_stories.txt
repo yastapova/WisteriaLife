@@ -100,71 +100,132 @@ Today, the mill stands still, except for the mindless slime-slaves crawling ever
 
 
 23: Baldwood Logging Camp
+After clearing the mill, you return to the castle before going further. Morgantha has news to report.
 
+"I have been working on a little something, my Liege," she winks at you with her one good eye. "I have concocted here a little counter-agent to those mind-slaving powers of theirs. We've tested it on one of the straggling slime-zombies around here, and it set the poor soul back to rights. He was a little nauseuos, I grant."
+
+She gives you several flasks of the stuff to coat your weapons and armor with, and says she'll send a runner out with more later. In the meantime, you go off to Baldwood Logging Camp to try out her concoction. You remember that you always thought that "Baldwood," named for the perpetually leafless trees, was hilarious.
 
 
 24: Starling Hollow
+Morgantha's brew worked perfectly! You saved everyone who remained in the logging camp, and a few villagers from Starling Hollow that wandered over. Starling Hollow is your next stop, and you'll need a lot of the brew to deal with the mind-controlled villagers.
 
+Morgantha's runner arrives just in time with a fresh supply of potions. High General McBeige has also sent word that he will begin leading small expeditions back out east to save any remaining people from the clutches of this menace.
+
+You continue on the road to Starling Hollow.
 
 
 25: Abandoned Library
+Starling Hollow has been cleared, and you have a lot of Morgantha's brew left, so you press on. The next point of interest along the road is a library that had formerly been open to all travelers.
 
+Now, it sits in a state of disarray, crawling with slimed readers and librarians alike. You ready your weapons.
 
 
 26: Crocodile Creek
+Liberating the library went smoothly, and you scoured the shelves and questioned the librarians for any information they might possibly have about this mysterious and terrible Ixrazidious.
 
+Unfortunately, you come up empty-handed. You make camp for the night in the library, and a new runner is meets you in the morning with another cache of Morgantha's brew. You press on to Crocodile Creek, named for the obvious proliferation of a certain animal.
 
 
 27: Petrified Forest
+Continuing forward, you notice as you did before that the slime-beings seem to be getting more and more abundant. You take this as a good sign that you are getting closer to something important.
 
+You and your troops continue on to the Petrified Forest. This forest is essentially untouched, as the wood useless to the lumber industry.
 
 
 28: Hermit's Hut
-
+After passing through the forest, you come accross a small hut encrusted with vines and weeds. Out back, you see a small vegetable garden and two chickens. Seems that some sort of hermit lives here. You knock to determine whether anyone conscious remains in this place.
 
 
 29: The Shallows
+After freeing the hermit from the slime-induced malaise, you are able to glean some information from him. It appears that you are getting closer and closer to the source of the dark powers in this region.
 
+Though you cannot make much sense of the hermit's words, but he seems to constantly be muttering something about "the cave" and how "he's coming to get me." You take it to mean that some man in a cave is the source of this mess.
+
+A soldier in your party who originates from this area informs you that there is a marsh cave farther to the west. You decide to investigate this further, and after camping at the hermit's hut, you cautiously make your way to The Shallows. This area is named for the seemingly shallow and harmless mud pits that are quick to suck in anything trying to make its way across.
 
 
 30: Damp Marsh Cave
+Luckily some of your soldiers are locals, and you make it across the Shallows without incident, other than the brief attack of Slime.
 
+Entering the cave, you are met with the same eerie atmosphere as you encountered in the Elder Ruins far to the east. You descend further and further into the cave, carefully observing everything as you go. You notice some of the same runic writing on the walls as you found in the Elder Ruins.
+
+You finally make it to what seems to be the bottom level of the cave, and it opens into a large chamber with pools of slime-defiled water on either side. In the large center area of the chamber, surrounded by slime-creatures and mind-slaves seemingly under his command, is the figure of a man.
+
+He turns to face you, and you are shocked to see the face of your father, Royal Consort Frederick, staring emptily at you. He must have been here for decades! You hope that Morgantha's brew will still work on him.
+
+He extends a single arm in your direction, and screeches what sound like words in some unknown tongue. The slime-beasts all move in the direction of your troops, and you ready yourself for a fight.
 
 
 31: Northward Bridge
+Morgantha's brew works on him indeed, and Frederick falls back as if dizzy. He is overcome with the nausea Morgantha warned you about, but soon comes to his senses, as do the people around him, who would seem to be those who were in his search party all those years ago.
 
+He is still disoriented and does not recognize you. After all, why should he? He disappeared long ago. He does recognize the uniforms, though, and manages a raspy "Wis... teria... ?"
+
+You assure him that you and your soldiers belong to the kingdom of Wisteria, and some of your troops help the newly-freed people out of the cave. After leaving the oppressive atmosphere of the cave, they seem much better. Either way, it is slow going back to your castle, and you arrive some time later.
+
+After a long night's rest in the keep, you feel reinvigorated and ready to take on the next challenge. You leave Frederick and his search party to rest in the castle as High General McBeige musters a new company for you to lead out into the last region of your kingdom.
+
+You load up on more of Morgantha's indespensible brew and head north to the bridge that you defended about a week ago.
 
 
 32: The Standing Stones
-
+After a short skirmish at the bridge, you decide to press on to the Standing Stones, another old monument in your kingdom. They are enormous pillars of rock with runes carved all the way down. Thankfully, you notice that the runes are nothing like the ones you keep seeing when you encounter the forces of Ixrazidious.
 
 
 33: Northfork Village
+After the Standing Stones, you return to the castle to resupply. When Morgantha learns that you are heading next to her home village, she gives you a nice, long list of items to bring back for her.
 
+Frederick emerges from the keep, and thanks you heartily for rescuing him and freeing him and his party from a fate worse than death. He says that High General McBeige filled him in on what he has missed in the past years. He embraces you.
+
+"I cannot believe that I have missed my own child growing up! How difficult it must be to have the fate of the entire kingdom on your shoulders. I must say that you are handling it admirably. It seems that you are close to defeating whatever this evil force is. I only hope that you are able to find Imogen," he says sorrowfully.
+
+High General McBeige meets you at the gate. "We've cleared out the eastern parts of the kingdom, thanks to Morgantha's brew. I'll be sure to hold the castle steady for you as you go off to hopefully finally defeat whatever is causing this."
+
+They wish you luck, and you and your company are off to Northfork Village.
 
 
 34: Odd Runes
+After clearing the village and freeing all of its inhabitants, some of them inform you of a circle of odd runes on the northern outskirts of the village. You and your party head north to take a look.
 
 
+35: Crow's Nest Hill
+You find an enormous summoning circle, almost 50 yards in diameter. Much to your dismay, the runes around it are indeed of the Ixrazidious-type. In fact, they resemble the same rituals you originally found in the books in the old abandoned monastery to the southeast.
 
-35: Rat's Nest Hill
+There seems to be nothing left to glean any new information from, so you decide to leave this evil place. First, you instruct your men to stamp out and destroy the circle. Hopefully, this will disrupt whatever ritual they were planning.
 
+You continue on to Crow's Nest Hill, named such because it towers over all the surrounding land and affords those who climb to its crest a completely unobstructed view. Such a vantage point will prove useful for scouting.
 
 
 36: Whispering Wood
+The Crow's Nest revealed little you did not know or assume already. It seems that the eastern and western parts of your kingdom are doing much better, but an evil aura still seems to hang over the north.
 
+You return to the castle to share what you have found in the last few encounters. As soon as you return, you are met with terrible news. General McBeige was slain in an ambush by slime-monsters. They have gotten bolder, or more desparate.
+
+You mourn the death of such a capable general. Unfortunately, you cannot leave the castle without a leader. You hand a provisional promotion to one of the current Mid Generals, Daria Mussel. You direct Frederick to work together with her in defense of the castle.
+
+In the meantime, after resting and resupplying yet again, you head back out into the field and make your way to the Whispering Wood.
 
 
 37: The Summer Home
+The slime cultists you encounter in the woods are quickly defeated and freed from their mind-control. You continue on your way north and arrive at what your family calls "The Summer Home."
 
+This is a castle that belonged to one side of the family, before they united their territories through marriage generations ago. The capital of the kingdom was placed at the larger Wisteria Castle, and the other castle was dubbed the "Summer Home" because the family tended not to be there often. Now, it was being used as an orphanage and a schoolhouse.
+
+Much to your dismay, you find the gate broken open, and the place is crawling with slime-slaves.
 
 
 38: Halls of Healing
+You manage to free all of the denizens of the small castle, and are eager to press on. You feel as though you're closing in on whatever it is that is causing this. 
 
+After a brief rest, you set off further north. After a long while of walking, you come upon the Halls of Healing. These used to be the last sanctuary for weary travelers before they had to travel through the treacherous mountain pass into the neighboring kingdom. Now, however, they are just as full of slime as everywhere else.
 
 
 39: Belladonna's Iron Company
+You spend a night's rest at the Halls of Healing after clearing it. The healers there tend to the wounds of your troops and tell you that they sense the evil is coming from the iron mines to the north.
 
+You set off toward the ominous mountain, with the camp of Belladonna's Iron Company still at its foot. You press onwards, eager to face whoever the leader of this cult of Ixrazidious is, or perhaps an actual avatar of the Old God.
 
 
 40: Depths of the Iron Mines
+You quickly clear the camp of slime-zombies

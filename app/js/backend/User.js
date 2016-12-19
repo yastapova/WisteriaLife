@@ -14,7 +14,12 @@ var User = function(name, avatar, uid, levels, powerups) {
     this.avatar = avatar;
     this.uid = uid;
     this.gameData = new GameData();
-    this.powerups = powerups ? powerups : {}; // object
+    if(powerups === undefined){
+        this.powerups = {'void': 0, 'stopspawn':0, 'reducetime':0};
+    }else{
+        this.powerups = powerups;
+    }
+    //this.powerups = powerups === undefined ? powerups : {'void': 0, 'stopspawn':0, 'reducetime':0}; // object
     this.levels = levels ? levels : [];
 };
 

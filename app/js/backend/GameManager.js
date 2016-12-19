@@ -30,18 +30,11 @@ var GameManager = function () {
 
     this.mute = false;
 
-    // Menu Bar
-    this.userPic = $('#user-pic');
-    this.userName = $('#user-name');
-    // Dropdown
-    this.userDropName = $('#user-name-dropdown');
-    this.userLevel = $('#user-level');
-    this.userIconPic = $('#user-icon-pic');
-    this.userPicDrop = $('#user-pic-drop');
+    this.userLevel = $('.user-level');
 
     // User
     this.user = '';
-    this.userWistbux = $('#user-wistbux');
+    this.userWistbux = $('.user-wistbux');
 };
 
 /**
@@ -98,7 +91,7 @@ GameManager.prototype.initFirebase = function() {
     messagingSenderId: "689320437204"
   };
 
-	firebase.initializeApp(config);
+    firebase.initializeApp(config);
 
 
     // Shortcuts to Firebase SDK features.
@@ -115,140 +108,129 @@ GameManager.prototype.initFirebase = function() {
  * @return {User} User object
  */
 
-GameManager.prototype.onAuthStateChanged = function(user) {
-    if(user) {
-    	if(user.isAnonymous){
-    		console.log("I am anonymous!");
-    		if(!this.user){
-	        	this.user = new User("Guest", null, user.uid, [], {});
-	        	this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
-                this.userDropName.text("Guest");
+GameManager.prototype.onAuthStateChanged = function (user) {
+    if (user) { // if logging in, user is true
 
+        // hide login buttons
+        $('.login-button').hide();
+
+        // logging in so show play button
+        $('.play-button').show();
+
+        // show logout buttons
+        $('.logout-button').show();
+
+        // hide email field
+        $('.user-email').hide();
+
+        // hide login as guest button
+        $('.play-guest').hide();
+
+        if (user.isAnonymous) { // is user a guest?
+
+            if (!this.user) { // guest user doesn't already exist
+                this.user = new User('Guest', null, user.uid, []);
+                this.userLevel.text('Level ' + this.user.gameData.currentLevel);
+
+                // automatically move to map when logging in as guest
                 if (this.screenManager.currentScreen == 'splash')
                     this.screenManager.switchScreens('map');
+            }
 
-	        }
-            // Check if guest already has data
-            firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
-              var exists = (snapshot.val() !== null);
-              this.userExistsCallback(user, exists, snapshot.val());
+            // check for existing guest data
+            firebase.database().ref('/users/' + user.uid).once('value', function (snapshot) {
+                var exists = snapshot.val() !== null;
+                this.userExistsCallback(user, exists, snapshot.val());
             }.bind(this));
 
+            // show guest login button
+            $('.guest-login').show();
 
-    		// Splash changes
-	        $('#splash-logout').css('display','block');
-	        $('#splash-login').css('display', 'none');
-	        $('#splash-guest-login').css('display', 'block');
-	        $('#splash-guest').css('display', 'none');
-	        $('#splash-play').css('display', 'block');
+            $('.user-name').text('Guest');
 
-	        $('#splash-play').css('display', 'block');
+            // show default icon
+            $('.user-pic')
+                .css({
+                    "background" : "url(" + '/img/default-avatar.jpg' + ") no-repeat center center",
+                    "background-size" : "cover",
+                    "display" : "inline-block"
+                });
 
-	        // Dropdown changes
-	        $('#drop-login').css('display','none');
-	        $('#drop-login-guest').css('display', 'block');
-	        $('#drop-logout').css('display', 'block');
-	        $('#user-icon-def').css('display','inline-block');
-	        $('#user-icon-pic').css('display','none');
-	        $('#user-pic-drop').css('display','none');
-	        this.userDropName.text("Guest");
-	    }
-    	else{
-    		// User is signed in
-	        // Get the avatar and name from the Firebase user object
-	        if(!this.user){
-	        	// Check if user already has data
-				firebase.database().ref('/users/' + user.uid).once('value', function(snapshot) {
-				  var exists = (snapshot.val() !== null);
-				  this.userExistsCallback(user, exists, snapshot.val());
-				}.bind(this));
-	        	// Guest wants to log in
-	        } else if (this.user.name === "Guest"){
-                console.log("MERGING ACCOUNTS!");
-                // check the id values for this, possibly delete the old data
-                // custom levels change uid and author
-                // from users delete old uid user
-                // storage old uid data = new uid data
-	        	var currentGameData = this.user.gameData;
-                var oldUid = this.user.uid;
-	        	this.user = new User(user.displayName, user.photoURL, user.uid, this.user.levels, this.user.powerups);
-	        	this.user.gameData = currentGameData;
-                this.user.guestUid = oldUid;
-	        	this.userLevel.text = 'Level ' + this.user.gameData.currentLevel;
-	        	this.writeUserData();
 
-                // custom levels change uid and author
-                firebase.database().ref().once('value', function(snapshot){
-                var db = snapshot.val();
-                var updates = {};
-                for(var key in db.users[oldUid].levels){
-                    updates["/customLevels/" + key] = {
-                        author: this.user.name,
-                        dateCreated: db.customLevels[key].dateCreated,
-                        img: db.customLevels[key].img,
-                        public: db.customLevels[key].public,
-                        storyline: db.customLevels[key].storyline,
-                        title: db.customLevels[key].title,
-                        uid: this.user.uid
-                    };
-                    // firebase.database().ref('/customLevels/' + levels[key]).uid = this.user.uid;
-                    // firebase.database().ref('/customLevels/' + levels[key]).author = this.user.name;
-                }
-                firebase.database().ref().update(updates);
-                // delete guest account
-                firebase.database().ref('/users/' + this.user.guestUid).remove();
+        } else { // Google account logging in
+            if (!this.user) { // does user exist yet?
+
+                // Check if user already has data
+                console.log(user.email);
+                firebase.database().ref('/users/' + user.uid).once('value', function (snapshot) {
+                    var exists = (snapshot.val() !== null);
+                    this.userExistsCallback(user, exists, snapshot.val());
                 }.bind(this));
 
-	        }
-	        // Splash changes
-	        $('#splash-logout').css('display','block');
-	        $('#splash-login').css('display', 'none');
-	        $('#splash-guest').css('display', 'none');
-	        $('#splash-guest-login').css('display', 'none');
-	        $('#splash-play').css('display', 'block');
+            } else { // if this a guest merge?
 
+                var currentGameData = this.user.gameData;
+                var oldUid = this.user.uid;
+                this.user = new User(user.displayName, user.photoURL, user.uid, this.user.levels, this.user.powerups);
+                this.user.gameData = currentGameData;
+                this.user.guestUid = oldUid;
+                this.userLevel.text('Level ' + this.user.gameData.currentLevel);
+                this.writeUserData();
 
-	        // Navbar changes
-	        this.userName.text(user.displayName);
-	        this.userPic.css({"background" : "url(" + (user.photoURL) + ") no-repeat center center",
-                "background-size" : "cover"});
-	        $('#user-login').css('display','none');
-	        $('#user-name').css('display','inline-block');
-	        $('#user-pic').css('display','inline-block');
+                // custom levels change uid and author
+                firebase.database().ref().once('value', function (snapshot){
+                    var db = snapshot.val();
+                    var updates = {};
+                    for(var key in db.users[oldUid].levels){
+                        updates["/customLevels/" + key] = {
+                            author: this.user.name,
+                            dateCreated: db.customLevels[key].dateCreated,
+                            img: db.customLevels[key].img,
+                            public: db.customLevels[key].public,
+                            storyline: db.customLevels[key].storyline,
+                            title: db.customLevels[key].title,
+                            uid: this.user.uid
+                        };
+                        // firebase.database().ref('/customLevels/' + levels[key]).uid = this.user.uid;
+                        // firebase.database().ref('/customLevels/' + levels[key]).author = this.user.name;
+                    }
+                    firebase.database().ref().update(updates);
+                    // delete guest account
+                    firebase.database().ref('/users/' + this.user.guestUid).remove();
+                }.bind(this));
 
-	        // Dropdown changes
-	        this.userPicDrop.css({"background" : "url(" + (user.photoURL) + ") no-repeat center center",
-                "background-size" : "cover"});
-	        this.userDropName.text(user.displayName);
-	        $('#drop-logout').css('display','block');
-	        $('#drop-login-guest').css('display', 'none');
-	        $('#drop-login').css('display', 'none');
-	        $('#user-icon-def').css('display','none');
-	        $('#user-icon-pic').css('display','inline-block');
-	        $('#user-pic-drop').css('display','inline-block');
-    	}
-    }else{
-    	// Splash changes
-        $('#splash-logout').css('display','none');
-        $('#splash-guest-login').css('display', 'none');
-        $('#splash-login').css('display', 'block');
-        $('#splash-guest').css('display', 'block');
-        $('#splash-play').css('display', 'none');
+                $('.user-name').text(user.displayName);
+                $('.user-pic')
+                    .css({
+                        "background" : "url(" + (user.photoURL) + ") no-repeat center center",
+                        "background-size" : "cover",
+                        "display" : "inline-block"
+                    });
+                $('.user-email').text(user.email).show();
 
+            }
 
-        // Navbar changes
-        $('#user-login').css('display','block');
-        $('#user-name').css('display','none');
-        $('#user-pic').css('display','none');
+            // hide guest login button
+            $('.guest-login').hide();
+            $('.play-guest').hide();
+        }
 
-        // Dropdown changes
-        $('#drop-login').css('display','block');
-        $('#drop-login-guest').css('display', 'none');
-        $('#drop-logout').css('display', 'none');
-        $('#user-icon-def').css('display','inline-block');
-        $('#user-icon-pic').css('display','none');
-        $('#user-pic-drop').css('display','none');
-        this.userDropName.text("Guest");
+    } else { // logging out
+        $('.login-button').show();
+        $('.logout-button').hide();
+        $('.guest-login').hide();
+        $('.play-button').hide();
+        $('.play-guest').show();
+        $('.user-email').hide();
+
+        $('.user-name').text('Guest');
+        $('.user-pic')
+            .css({
+                "background" : "url(" + '/img/default-avatar.jpg' + ") no-repeat center center",
+                "background-size" : "cover",
+                "display" : "inline-block"
+            });
+
         this.userWistbux.text(0);
 
         this.user = "";
@@ -299,14 +281,14 @@ GameManager.prototype.logout = function() {
             firebase.auth().signOut();
             this.screenManager.switchScreens('splash');
             this.user = '';
-            this.userDropName.text("Guest");
+            // this.userDropName.text("Guest");
         }.bind(this));
     }else{
         // Sign out of Firebase.
         firebase.auth().signOut();
         this.screenManager.switchScreens('splash');
         this.user = '';
-        this.userDropName.text("Guest");
+        // this.userDropName.text("Guest");
     }
 };
 
@@ -322,24 +304,43 @@ GameManager.prototype.play = function() {
  * Write User Data
  */
 GameManager.prototype.writeUserData = function () {
-	console.log("Writing/updating data " + this.user.uid);
+    console.log("Writing/updating data " + this.user.uid);
     if(!this.user.guestUid){
+        if(this.user.powerups !== undefined){
+            firebase.database().ref('users/' + this.user.uid).set({
+                username: this.user.name,
+                gameData: this.user.gameData,
+                levels: this.user.levels,
+                avatar: this.user.avatar,
+                powerups: this.user.powerups
+            });
+        }else{
+            firebase.database().ref('users/' + this.user.uid).set({
+                username: this.user.name,
+                gameData: this.user.gameData,
+                levels: this.user.levels,
+                avatar: this.user.avatar                
+            });
+        }
+    }else{
+        if(this.user.powerups !== undefined){
         firebase.database().ref('users/' + this.user.uid).set({
             username: this.user.name,
             gameData: this.user.gameData,
             levels: this.user.levels,
             avatar: this.user.avatar,
-            powerups: this.user.powerups
-        });
-    }else{
-    	firebase.database().ref('users/' + this.user.uid).set({
-        	username: this.user.name,
-        	gameData: this.user.gameData,
-            levels: this.user.levels,
-            avatar: this.user.avatar,
             powerups: this.user.powerups,
             guestUid: this.user.guestUid
-    	});
+        });
+        }else{
+            firebase.database().ref('users/' + this.user.uid).set({
+                username: this.user.name,
+                gameData: this.user.gameData,
+                levels: this.user.levels,
+                avatar: this.user.avatar  ,
+                guestUid: this.user.guestUid              
+            });
+        }
     }
 };
 
@@ -347,29 +348,43 @@ GameManager.prototype.writeUserData = function () {
  * Callback for reading user data from firebase
  */
 GameManager.prototype.userExistsCallback = function (user, exists, snapshot) {
-	if(exists){
+    if (exists){
         this.user = new User(user.displayName, user.photoURL, user.uid, snapshot.levels, snapshot.powerups);
         this.user.name = this.user.name ? this.user.name : 'Guest';
-		this.user.gameData = snapshot.gameData;
+        this.user.gameData = snapshot.gameData;
         this.user.guestUid = snapshot.guestUid;
+        this.user.powerups = snapshot.powerups;
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
 
         // update data (particularly the avatar)
         this.writeUserData();
-	}else{
-        this.user = new User(user.displayName, user.photoURL, user.uid, [], {});
+    }else{
+        this.user = new User(user.displayName, user.photoURL, user.uid, []);
         this.userWistbux.text(this.user.gameData.wistbux);
         this.userLevel.text('Level ' + this.user.gameData.currentLevel);
-		this.writeUserData();
-	}
+        this.writeUserData();
+    }
+
+    // is it a non-guest user?
+    if (user.displayName) {
+
+        $('.user-name').text(user.displayName);
+        $('.user-pic')
+            .css({
+                "background" : "url(" + (user.photoURL) + ") no-repeat center center",
+                "background-size" : "cover",
+                "display" : "inline-block"
+            });
+        $('.user-email').text(user.email).show();
+    }
 };
 
 /**
  * Guest login modal
  */
 GameManager.prototype.guestLogin = function () {
-	$('#confirmation-modal').openModal();
+    $('#confirmation-modal').openModal();
 };
 
 /**
@@ -413,6 +428,20 @@ GameManager.prototype.handleToggleSound = function() {
 };
 
 /**
+ * Check is a sound is already playing
+ */
+
+GameManager.prototype.isPlaying = function(audioid) {
+    var audio = document.getElementById(audioid);
+    if(audio.currentTime > 0 || !audio.paused) {
+        return true;
+    }
+    else {
+        return false;
+    }
+};
+
+/**
  * Return to the previous screen if eligible
  */
 GameManager.prototype.back = function() {};
@@ -423,16 +452,6 @@ GameManager.prototype.back = function() {};
  */
 GameManager.prototype.checkIsLoggedIn = function() {
     if (firebase.auth().currentUser) {
-        return true;
-    }
-    else {
-        return false;
-    }
-};
-
-GameManager.prototype.isPlaying = function(audioid) {
-    var audio = document.getElementById(audioid);
-    if(audio.currentTime > 0 || !audio.paused) {
         return true;
     }
     else {
