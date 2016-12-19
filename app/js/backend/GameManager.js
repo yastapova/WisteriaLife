@@ -130,7 +130,7 @@ GameManager.prototype.onAuthStateChanged = function (user) {
 
             if (!this.user) { // guest user doesn't already exist
                 this.user = new User('Guest', null, user.uid);
-                this.userLevel.textContent = 'Level ' + this.user.gameData.currentLevel;
+                this.userLevel.text('Level ' + this.user.gameData.currentLevel);
 
                 // automatically move to map when logging in as guest
                 if (this.screenManager.currentScreen == 'splash')
@@ -161,6 +161,7 @@ GameManager.prototype.onAuthStateChanged = function (user) {
             if (!this.user) { // does user exist yet?
 
                 // Check if user already has data
+                console.log(user.email);
 				firebase.database().ref('/users/' + user.uid).once('value', function (snapshot) {
                     var exists = (snapshot.val() !== null);
                     this.userExistsCallback(user, exists, snapshot.val());
@@ -173,7 +174,7 @@ GameManager.prototype.onAuthStateChanged = function (user) {
 	        	this.user = new User(user.displayName, user.photoURL, user.uid, this.user.levels);
 	        	this.user.gameData = currentGameData;
                 this.user.guestUid = oldUid;
-	        	this.userLevel.text = 'Level ' + this.user.gameData.currentLevel;
+	        	this.userLevel.text('Level ' + this.user.gameData.currentLevel);
 	        	this.writeUserData();
 
                 // custom levels change uid and author
