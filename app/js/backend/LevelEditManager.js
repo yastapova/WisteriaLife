@@ -114,10 +114,9 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
     if(msg === '' || msg === undefined || msg === null) {
         if(this.messages.has(time)) {
             delete this.messages.delete(time);
-            Materialize.toast(
-                'Message deleted.',
-                4000,
-                'wisteria-toast'
+            toast(
+                'Message deleted.'
+
             );
             return false; // false to keep the dialog open
         }
@@ -125,10 +124,9 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
     }
 
     if(msg.length > 100) {
-        Materialize.toast(
+        toast(
             'Messages are limited to 100 characters. (Yours: '+msg.length+')',
-            2000,
-            'wisteria-error-toast'
+            true
         );
         gameManager.playErrorSounds();
         return false;
@@ -138,20 +136,17 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
 	if (this.messages.has(time)) {
 		this.messages.set(time, msg);
 
-		Materialize.toast(
-	        'Updated message.',
-	        4000,
-	        'wisteria-toast'
+		toast(
+	        'Updated message.'
 	    );
 		return true;
 	}
 
     for(var i = time; i < time + 5; i++) {
         if(i < this.totalTime + 1 && this.messages.has(i)) {
-            Materialize.toast(
+            toast(
                 'Cannot place message less than 5 seconds before/after another.',
-                4000,
-                'wisteria-error-toast'
+                true
             );
             gameManager.playErrorSounds();
             return false;
@@ -160,20 +155,18 @@ LevelEditManager.prototype.addMessage = function(msg, time) {
 
     for(var i = time; i > time - 5; i--) {
         if(i > 0 && this.messages.has(i)) {
-            Materialize.toast(
+            toast(
                 'Cannot place message less than 5 seconds before/after another.',
-                4000,
-                'wisteria-error-toast'
+                true
             );
             gameManager.playErrorSounds();
             return false;
         }
     }
 	this.messages.set(time, msg);
-    Materialize.toast(
-        'Placed message.',
-        4000,
-        'wisteria-toast'
+    toast(
+        'Placed message.'
+
     );
 	return true;
 }
@@ -192,17 +185,15 @@ LevelEditManager.prototype.changeTotalTime = function(newTime) {
         if(newTime <= this.currentTime) {
             this.changeCurrentTime(newTime);
         }
-        Materialize.toast(
-            'Total time changed.',
-            4000,
-            'wisteria-toast'
+        toast(
+            'Total time changed.'
+
         );
     }
     else {
-        Materialize.toast(
+        toast(
             'New time entered must be between 30 and 300 seconds.',
-            4000,
-            'wisteria-error-toast'
+            true
         );
         gameManager.playErrorSounds();
     }
@@ -325,10 +316,9 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
         }
     }
     if(this.selectedFaction === undefined) {
-        Materialize.toast(
+        toast(
             "No faction selected! Select a faction from the Factions sidebar.",
-            2000,
-            'wisteria-error-toast'
+            true
         );
         gameManager.playErrorSounds();
         return;
@@ -341,10 +331,9 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
             faction = this.BLANK;
         }
         else {
-            Materialize.toast(
+            toast(
                 "No faction selected! Select a faction from the Factions sidebar.",
-                2000,
-                'wisteria-error-toast'
+                true
             );
             gameManager.playErrorSounds();
             return;
@@ -357,10 +346,9 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
        faction === this.BLANK)
     {
         if(addToMaps && this.selectedUnit.name !== "void") {
-            Materialize.toast(
+            toast(
                 "No faction selected! Select a faction from the Factions sidebar.",
-                2000,
-                'wisteria-error-toast'
+                true
             );
             gameManager.playErrorSounds();
             return;
@@ -398,20 +386,18 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     // enemies only in the enemy zone
     else if(faction === this.ENEMY) {
         if(this.totalTime - this.currentTime < 3) {
-            Materialize.toast(
+            toast(
                 'Enemy spawns allowed only after 3 seconds.',
-                2000,
-                'wisteria-error-toast'
+                true
             );
             gameManager.playErrorSounds();
             return;
         }
         var current_spawns = this.checkForSpawns();
         if(current_spawns !== undefined && current_spawns.length >= 5 && addToMaps) {
-            Materialize.toast(
+            toast(
                 'Only 5 enemy spawns allowed per time slot.',
-                2000,
-                'wisteria-error-toast'
+                true
             );
             gameManager.playErrorSounds();
             return;
@@ -430,10 +416,9 @@ LevelEditManager.prototype.placeShape = function(clickRow, clickCol, faction, sh
     // make sure that we're trying to place the shape in the proper zone
     if(zone !== this.BLANK &&
        this.getGridCell(this.factionGrid, clickRow, clickCol) !== zone) {
-	   Materialize.toast(
+	   toast(
 	        'Invalid zone for placement!',
-	        2000,
-	        'wisteria-error-toast'
+	        true
    	    );
         gameManager.playErrorSounds();
         return;
@@ -600,10 +585,9 @@ LevelEditManager.prototype.factionGridChanged = function(newFact, locations) {
     }
     if(removed) {
         this.renderGridCells();
-        Materialize.toast(
-            'Some spawns or defenses have been removed due to faction zones changing.',
-            4000,
-            'wisteria-toast'
+        toast(
+            'Some spawns or defenses have been removed due to faction zones changing.'
+
         );
     }
 }
