@@ -1,6 +1,8 @@
 # WisteriaLife
 CSE 308 course project based on the Game of Life
 
+https://wisteria-life.herokuapp.com
+
 ## System Dependencies
 [Node.js](https://nodejs.org/en/) (4.6.1+)
 
